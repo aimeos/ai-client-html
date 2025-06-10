@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 /* Available data:
@@ -22,7 +22,7 @@ $detailController = $this->config( 'client/html/catalog/detail/url/controller', 
 $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', ['absoluteUri' => 1] );
 $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
-
+unset( $detailFilter['d_prodid'] ); // product name isn't suitable because different from URL
 
 /** client/html/account/download/url/target
  * Destination of the URL where the controller specified in the URL is known
@@ -111,6 +111,8 @@ $priceTaxflag = $price->getTaxFlag();
 $priceCurrency = $this->translate( 'currency', $price->getCurrencyId() );
 
 
+$pricetype = 'price:default';
+$pricefmt = $this->translate( 'client/code', $pricetype );
 /// Price format with price value (%1$s) and currency (%2$s)
 $priceFormat = $this->translate( 'client/code', 'price:default', null, 0, false ) ?: $this->translate( 'client', '%1$s %2$s' );
 /// Tax format with tax rate (%1$s) and tax name (%2$s)
@@ -124,14 +126,26 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 ?>
 <div>
-	<div class="row g-0 headline">
-		<div class="col-8 col-md-6 offset-4 offset-md-6">
+	<div class="headline row g-0">
+		<div class="col-7 offset-5 col-sm-6 offset-sm-6">
 			<div class="row g-0">
-				<div class="col-4 quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ), $enc::TRUST ) ?></div>
-				<div class="col-4 unitprice"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ) ?></div>
-				<div class="col-3 price"><?= $enc->html( $this->translate( 'client', 'Sum' ), $enc::TRUST ) ?></div>
+				<div class="quantity col-10 col-sm-5"><?= $enc->html( $this->translate( 'client', 'Quantity' ), $enc::TRUST ) ?></div>
+				<div class="unitprice col-md-3"><?= $enc->html( $this->translate( 'client', 'Price' ), $enc::TRUST ) ?></div>
+				<div class="price col-sm-5 col-md-3"><?= $enc->html( $this->translate( 'client', 'Sum' ), $enc::TRUST ) ?></div>
 				<?php if( $modify ) : ?>
-					<div class="action col-1"></div>
+					<div class="action col-2 col-sm-2 col-md-1">
+						<?php
+							$pos = [];
+							foreach( $this->summaryBasket->getProducts() as $position => $product ) {
+								if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 ) {
+									$pos[] = $position;
+								}
+							}
+						?>
+						<a class="minibutton delete" title="<?= $enc->attr( $this->translate( 'client', 'Remove' ) ) ?>"
+							href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ['b_action' => 'delete', 'b_position' => $pos] ) ) ?>">
+						</a>
+					</div>
 				<?php endif ?>
 			</div>
 		</div>
@@ -146,8 +160,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<?php endif ?>
 
 		<?php foreach( $list as $position => $product ) : $totalQuantity += $product->getQuantity() ?>
-			<div class="row g-0 product-item <?= ( isset( $errors['product'][$position] ) ? 'error' : '' ) ?>">
-				<div class="col-4 col-md-6">
+			<div class="product-item row g-0 <?= ( isset( $errors['product'][$position] ) ? 'error' : '' ) ?>">
+				<div class="col-5 col-sm-6">
 					<div class="row g-0">
 						<div class="status col-1">
 							<?php if( ( $status = $product->getStatusDelivery() ) >= 0 ) : $key = 'stat:' . $status ?>
@@ -170,31 +184,33 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 									$url = $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 								}
 							?>
-							<a class="product-name" href="<?= $enc->attr( $url ) ?>"><?= $enc->html( $product->getName(), $enc::TRUST ) ?></a>
-							<p class="code">
-								<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.' ), $enc::TRUST ) ?></span>
-								<span class="value"><?= $product->getProductCode() ?></span>
-							</p>
-							<?php if( ( $desc = $product->getDescription() ) !== '' ) : ?>
-								<p class="product-description"><?= $enc->html( $desc ) ?></p>
-							<?php endif ?>
-							<?php foreach( $attrTypes as $attrType ) : ?>
-								<?php if( !( $attributes = $product->getAttributeItems( $attrType ) )->isEmpty() ) : ?>
-									<ul class="attr-list attr-type-<?= $enc->attr( $attrType ) ?>">
-										<?php foreach( $product->getAttributeItems( $attrType ) as $attribute ) : ?>
-											<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ) ?>">
-												<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ) ?></span>
-												<span class="value">
-													<?php if( $attribute->getQuantity() > 1 ) : ?>
-														<?= $enc->html( $attribute->getQuantity() ) ?>×
-													<?php endif ?>
-													<?= $enc->html( $attrType !== 'custom' && $attribute->getName() ? $attribute->getName() : $attribute->getValue() ) ?>
-												</span>
-											</li>
-										<?php endforeach ?>
-									</ul>
+							<a href="<?= $enc->attr( $url ) ?>">
+								<p class="product-name"><?= $enc->html( $product->getName(), $enc::TRUST ) ?></p>
+								<p class="code">
+									<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.' ), $enc::TRUST ) ?></span>
+									<span class="value"><?= $product->getProductCode() ?></span>
+								</p>
+								<?php if( ( $desc = $product->getDescription() ) !== '' ) : ?>
+									<p class="product-description"><?= $enc->html( $desc ) ?></p>
 								<?php endif ?>
-							<?php endforeach ?>
+								<?php foreach( $attrTypes as $attrType ) : ?>
+									<?php if( !( $attributes = $product->getAttributeItems( $attrType ) )->isEmpty() ) : ?>
+										<ul class="attr-list attr-type-<?= $enc->attr( $attrType ) ?>">
+											<?php foreach( $product->getAttributeItems( $attrType ) as $attribute ) : ?>
+												<li class="attr-item attr-code-<?= $enc->attr( $attribute->getCode() ) ?>">
+													<span class="name"><?= $enc->html( $this->translate( 'client/code', $attribute->getCode() ) ) ?></span>
+													<span class="value">
+														<?php if( $attribute->getQuantity() > 1 ) : ?>
+															<?= $enc->html( $attribute->getQuantity() ) ?>×
+														<?php endif ?>
+														<?= $enc->html( $attrType !== 'custom' && $attribute->getName() ? $attribute->getName() : $attribute->getValue() ) ?>
+													</span>
+												</li>
+											<?php endforeach ?>
+										</ul>
+									<?php endif ?>
+								<?php endforeach ?>
+							</a>
 							<?php if( isset( $this->orderItem ) && $this->orderItem->getStatusPayment() >= \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED
 									&& ( $product->getStatusPayment() < 0 || $product->getStatusPayment() >= \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED )
 									&& ( $attribute = $product->getAttributeItem( 'download', 'hidden' ) ) ) : ?>
@@ -216,17 +232,17 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 								</p>
 							<?php endif ?>
 						</div>
-						</div>
 					</div>
-				<div class="col-8 col-md-6">
-					<div class="row g-0">
-						<div class="quantity col-4">
+				</div>
+				<div class="col-7 col-sm-6">
+					<div class="order row g-0">
+						<div class="quantity col-10 col-sm-5">
 
 							<?php if( $modify && ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
 
 								<?php if( $product->getQuantity() > 1 ) : ?>
 									<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() - 1 ) ?>
-									<a class="minibutton change down" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>">−</a>
+									<a class="minibutton change down" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'Decrease' ) ) ?>">−</a>
 								<?php else : ?>
 									&nbsp;&nbsp;&nbsp;
 								<?php endif ?>
@@ -236,7 +252,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 									value="<?= $enc->attr( $product->getQuantity() ) ?>"
 									step="<?= $enc->attr( $product->getScale() ) ?>"
 									min="<?= $enc->attr( $product->getScale() ) ?>"
-									max="2147483647"
+									max="2147483647" autocomplete="off"
+									title="<?= $enc->attr( $this->translate( 'client', 'Quantity' ) ) ?>"
 								>
 								<input type="hidden" type="text"
 									name="<?= $enc->attr( $this->formparam( array( 'b_prod', $position, 'position' ) ) ) ?>"
@@ -244,19 +261,19 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 								>
 
 								<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() + 1 ) ?>
-								<a class="minibutton change up" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>">+</a>
+								<a class="minibutton change up" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'Increase' ) ) ?>">+</a>
 
 							<?php else : ?>
 								<?= $enc->html( $product->getQuantity() ) ?>
 							<?php endif ?>
 						</div>
-						<div class="unitprice col-4"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue(), $precision ), $priceCurrency ) ) ?></div>
-						<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() * $product->getQuantity(), $precision ), $priceCurrency ) ) ?></div>
+						<div class="unitprice col-md-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() + $product->getPrice()->getCosts(), $precision ), $priceCurrency ) ) ?></div>
+						<div class="price col-sm-5 col-md-3"><?= $enc->html( sprintf( $priceFormat, $this->number( ( $product->getPrice()->getValue() + $product->getPrice()->getCosts() ) * $product->getQuantity(), $precision ), $priceCurrency ) ) ?></div>
 						<?php if( $modify ) : ?>
-						<div class="action col-1">
+						<div class="action col-2 col-sm-2 col-md-1">
 							<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
 								<?php $basketParams = array( 'b_action' => 'delete', 'b_position' => $position ) ?>
-								<a class="minibutton delete" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>"></a>
+								<a class="minibutton delete" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'Remove' ) ) ?>"></a>
 							<?php endif ?>
 						</div>
 						<?php endif ?>
@@ -286,8 +303,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 				</div>
 				<div class="col-5 col-md-6">
 					<div class="row g-0">
-						<div class="quantity col-4">1</div>
-						<div class="unitprice col-4"><?= $price ?></div>
+						<div class="quantity col-5">1</div>
+						<div class="unitprice col-3"><?= $price ?></div>
 						<div class="price col-3"><?= $price ?></div>
 						<?php if( $modify ) : ?>
 							<div class="action col-1"></div>
@@ -315,8 +332,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 				</div>
 				<div class="col-4 col-md-6">
 					<div class="row g-0">
-						<div class="quantity col-4">1</div>
-						<div class="unitprice col-4"><?= $price ?></div>
+						<div class="quantity col-5">1</div>
+						<div class="unitprice col-3"><?= $price ?></div>
 						<div class="price col-3"><?= $price ?></div>
 						<?php if( $modify ) : ?>
 							<div class="action col-1"></div>
@@ -328,9 +345,9 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<?php endif ?>
 	<?php endforeach ?>
 
-	<?php if( $priceTaxflag === false || $this->summaryBasket->getPrice()->getCosts() > 0 ) : ?>
+	<?php if( $priceTaxflag === false || $this->summaryBasket->getCosts( 'delivery' ) + $this->summaryBasket->getCosts( 'payment' ) > 0 ) : ?>
 		<div class="subtotal row g-0">
-			<div class="col-8 col-md-6 offset-4 offset-md-6">
+			<div class="col-12 col-md-6 offset-md-6">
 				<div class="row g-0">
 					<div class="col-8"><?= $enc->html( $this->translate( 'client', 'Sub-total' ) ) ?></div>
 					<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue(), $precision ), $priceCurrency ) ) ?></div>
@@ -344,7 +361,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 	<?php if( ( $costs = $this->summaryBasket->getCosts( 'delivery' ) ) > 0 ) : ?>
 		<div class="delivery row g-0">
-			<div class="col-8 col-md-6 offset-4 offset-md-6">
+			<div class="col-12 col-md-6 offset-md-6">
 				<div class="row g-0">
 					<div class="col-8"><?= $enc->html( $this->translate( 'client', 'Shipping' ) ) ?></div>
 					<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $costs, $precision ), $priceCurrency ) ) ?></div>
@@ -358,7 +375,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 	<?php if( ( $costs = $this->summaryBasket->getCosts( 'payment' ) ) > 0 ) : ?>
 		<div class="payment row g-0">
-			<div class="col-8 col-md-6 offset-4 offset-md-6">
+			<div class="col-12 col-md-6 offset-md-6">
 				<div class="row g-0">
 					<div class="col-8"><?= $enc->html( $this->translate( 'client', 'Payment costs' ) ) ?></div>
 					<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $costs, $precision ), $priceCurrency ) ) ?></div>
@@ -372,10 +389,10 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 	<?php if( $priceTaxflag === true ) : ?>
 		<div class="total row g-0">
-			<div class="col-8 col-md-6 offset-4 offset-md-6">
-				<div class="row g-0 price-total">
-					<div class="quantity col-4"><?= $enc->html( sprintf( $this->translate( 'client', '%1$s article', '%1$s articles', ceil( $totalQuantity ) ), round( $totalQuantity, 3 ) ) ) ?></div>
-					<div class="col-4 total-text"><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></div>
+			<div class="col-12 col-md-6 offset-md-6">
+				<div class="price-total row g-0">
+					<div class="quantity col-5"><?= $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', ceil( $totalQuantity ) ), round( $totalQuantity, 3 ) ) ) ?></div>
+					<div class="total-text col-3"><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></div>
 					<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts(), $precision ), $priceCurrency ) ) ?></div>
 					<?php if( $modify ) : ?>
 						<div class="action col-1"></div>
@@ -389,7 +406,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 		<?php foreach( $map as $taxRate => $priceItem ) : ?>
 			<?php if( ( $taxValue = $priceItem->getTaxValue() ) > 0 ) : ?>
 				<div class="tax row g-0">
-					<div class="col-8 col-md-6 offset-4 offset-md-6">
+					<div class="col-12 col-md-6 offset-md-6">
 						<div class="row g-0">
 							<div class="col-8"><?= $enc->html( sprintf( $priceTaxflag ? $taxFormatIncl : $taxFormatExcl, $this->number( $taxRate ), $this->translate( 'client/code', $taxName ) ) ) ?></div>
 							<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $taxValue, $precision ), $priceCurrency ) ) ?></div>
@@ -405,10 +422,10 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 	<?php if( $priceTaxflag === false ) : ?>
 		<div class="total row g-0">
-			<div class="col-8 col-md-6 offset-4 offset-md-6">
+			<div class="col-12 col-md-6 offset-md-6">
 				<div class="row g-0">
-					<div class="quantity col-4"><?= $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', $totalQuantity ), $totalQuantity ) ) ?></div>
-					<div class="price col-4"><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></div>
+					<div class="quantity col-5"><?= $enc->html( sprintf( $this->translate( 'client', '%1$d article', '%1$d articles', $totalQuantity ), $totalQuantity ) ) ?></div>
+					<div class="unitprice col-3"><?= $enc->html( $this->translate( 'client', 'Total' ) ) ?></div>
 					<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getValue() + $this->summaryBasket->getPrice()->getCosts() + $this->summaryBasket->getPrice()->getTaxValue(), $precision ), $priceCurrency ) ) ?></div>
 					<?php if( $modify ) : ?>
 						<div class="action col-1"></div>
@@ -420,7 +437,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 	<?php if( $this->summaryBasket->getPrice()->getRebate() > 0 ) : ?>
 		<div class="rebate row g-0">
-			<div class="col-8 col-md-6 offset-4 offset-md-6">
+			<div class="col-12 col-md-6 offset-md-6">
 				<div class="row g-0">
 					<div class="quantity col-8"><?= $enc->html( $this->translate( 'client', 'Included rebates' ) ) ?></div>
 					<div class="price col-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $this->summaryBasket->getPrice()->getRebate(), $precision ), $priceCurrency ) ) ?></div>

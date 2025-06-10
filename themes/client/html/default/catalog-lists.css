@@ -67,7 +67,7 @@
 
 .catalog-list-type .type-item {
 	display: inline-block;
-	padding: 0.5rem;
+	padding: 0.75rem;
 }
 
 .catalog-list-type a.type-item:link,
@@ -335,6 +335,7 @@
 
 .catalog-list-items .addbasket .btn-primary {
 	width: calc(100% - 6rem);
+	max-width: 100%;
 }
 
 .catalog-list-items .addbasket .btn-primary:before {

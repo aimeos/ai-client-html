@@ -13,7 +13,7 @@ function slideToggle(t,e,o){0===t.clientHeight?j(t,e,o,!0):j(t,e,o)}function sli
  *
  * @license LGPLv3, https://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2014-2023
+ * @copyright Aimeos (aimeos.org), 2014-2025
  */
 
 
@@ -179,6 +179,10 @@ Aimeos = {
 	 * Initializes the setup methods
 	 */
 	init() {
+		if(this.once) return;
+		this.once = true;
+
+		this.loadImages();
 		this.onCloseContainer();
 	}
 };
@@ -216,9 +220,12 @@ AimeosBasket = {
 			basket.append(el);
 		});
 
-		$('script.basket-standard', doc).each((idx, el) => {
-			basket.append($('<script/>').attr('src', el.getAttribute('src')));
-		});
+		if(!$('body').hasClass('basket')) {
+			$('script.basket-standard', doc).each((idx, el) => {
+				basket.append(el);
+			});
+			$('body').addClass('basket');
+		}
 
 		$(".btn-update", basket).hide();
 
@@ -261,6 +268,9 @@ AimeosBasket = {
 	 * Initializes the basket actions
 	 */
 	init: function() {
+		if(this.once) return;
+		this.once = true;
+
 		this.onBack();
 	}
 };
@@ -270,6 +280,29 @@ AimeosBasket = {
  * Aimeos common catalog actions
  */
  AimeosCatalog = {
+
+	/**
+	 * Checks if all selection variants have been choosen
+	 *
+	 * @param {DOMNode} node
+	 * @returns TRUE if selection is complete, FALSE if not
+	 */
+	checkVariants(node) {
+		let result = true;
+
+		$(".items-selection .selection[data-attrdeps] .select-item", $(node).closest(".basket")).each((idx, el) => {
+
+			if($(".select-list", el).val() !== '' || $(".select-option:checked", el).length > 0) {
+				$(el).removeClass("error");
+			} else {
+				$(el).addClass("error");
+				result = false;
+			}
+		});
+
+		return result;
+	},
+
 
 	/**
 	 * Checks if all variant attributes of a variant article have been selected
@@ -444,19 +477,9 @@ AimeosBasket = {
 	onCheckVariant() {
 
 		$(document).on("click", ".product .addbasket .btn-action", ev => {
-			let result = true;
-
-			$(".selection[data-attrdeps] .select-item", $(ev.currentTarget).closest(".items-selection")).each((idx, el) => {
-
-				if($(".select-list", el).val() !== '' || $(".select-option:checked", el).length > 0) {
-					$(el).removeClass("error");
-				} else {
-					$(el).addClass("error");
-					result = false;
-				}
-			});
-
-			return result;
+			if(!this.checkVariants(ev.currentTarget)) {
+				ev.preventDefault();
+			}
 		});
 	},
 
@@ -602,6 +625,9 @@ AimeosBasket = {
 	 * Initializes the common catalog actions
 	 */
 	init: function() {
+		if(this.once) return;
+		this.once = true;
+
 		this.onSelectDependencies();
 		this.onSelectVariant();
 		this.onCheckVariant();
@@ -689,6 +715,9 @@ AimeosPage = {
 	 * Initializes the menu actions
 	 */
 	init: function() {
+		if(this.once) return;
+		this.once = true;
+
 		this.onLinkTop();
 		this.onMenuScroll();
 		this.onHideOffscreen();
@@ -707,6 +736,5 @@ $(function() {
 	Aimeos.init();
 	AimeosPage.init();
 	AimeosCatalog.init();
-
-	Aimeos.loadImages();
+	AimeosBasket.init();
 });

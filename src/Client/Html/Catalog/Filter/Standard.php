@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  * @package Client
  * @subpackage Html
  */
@@ -54,9 +54,6 @@ class Standard
 	 * @param string Last part of the class name
 	 * @since 2014.03
 	 */
-
-
-	private static $headerSingleton;
 
 	/** client/html/catalog/filter/subparts
 	 * List of HTML sub-clients rendered within the catalog filter section
@@ -237,11 +234,6 @@ class Standard
 	 */
 	public function header( string $uid = '' ) : ?string
 	{
-		if( self::$headerSingleton !== null ) {
-			return '';
-		}
-		self::$headerSingleton = true;
-
 		$view = $this->view();
 		$confkey = 'client/html/catalog/filter';
 		$prefixes = ['f_name', 'f_catid', 'f_supid', 's_name'];
@@ -299,7 +291,7 @@ class Standard
 	 * @param string|null $name Name of the sub-client (Default if null)
 	 * @return \Aimeos\Client\Html\Iface Sub-client object
 	 */
-	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
+	public function getSubClient( string $type, ?string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		return $this->createSubClient( 'catalog/filter/' . $type, $name );
 	}
@@ -339,7 +331,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
-	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$config = $this->context()->config();
 		$params = $this->getClientParams( $view->param(), ['f_', 'l_type'] );
@@ -461,7 +453,10 @@ class Standard
 			 * @since 2020.04
 			 */
 
-			if( $startid = $config->get( 'client/html/catalog/filter/tree/startid' ) ) {
+			$startid = $config->get( 'client/html/catalog/lists/catid-default' );
+			$startid = $config->get( 'client/html/catalog/filter/tree/startid', $startid );
+
+			if( $startid ) {
 				$params['f_catid'] = $view->param( 'f_catid', $startid );
 				$params['f_name'] = $view->param( 'f_name', '' );
 			}

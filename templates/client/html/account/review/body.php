@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2020-2023
+ * @copyright Aimeos (aimeos.org), 2020-2025
  */
 
 
@@ -182,7 +182,7 @@ $enc = $this->encoder();
 					<?php endif ?>
 				<?php endforeach ?>
 
-				<button class="btn btn-primary"><?= $enc->html( $this->translate( 'client', 'Submit' ) ) ?></button>
+				<button type="submit" class="btn btn-primary"><?= $enc->html( $this->translate( 'client', 'Submit' ) ) ?></button>
 
 			</form>
 		</div>

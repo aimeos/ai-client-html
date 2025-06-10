@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2023
+ * @copyright Aimeos (aimeos.org), 2016-2025
  * @package Client
  * @subpackage Html
  */
@@ -63,7 +63,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
-	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$context = $this->context();
 		$config = $context->config();
@@ -151,8 +151,8 @@ class Standard
 			$addr->setLanguageId( $context->locale()->getLanguageId() );
 		}
 
-		$billing = $addr->toArray();
-		$billing['string'] = $this->call( 'getAddressString', $view, $addr );
+		$payment = $addr->toArray();
+		$payment['string'] = $this->call( 'getAddressString', $view, $addr );
 
 		foreach( $item->getAddressItems() as $pos => $address )
 		{
@@ -162,11 +162,13 @@ class Standard
 		}
 
 		$view->profileItem = $item;
-		$view->addressBilling = $billing;
+		$view->addressPayment = $payment;
 		$view->addressDelivery = $deliveries;
-		$view->addressSalutations = $salutations;
-		$view->addressLanguages = $languages;
+		$view->addressPaymentCss = $this->cssPayment();
+		$view->addressDeliveryCss = $this->cssDelivery();
 		$view->addressCountries = $countries;
+		$view->addressLanguages = $languages;
+		$view->addressSalutations = $salutations;
 		$view->addressStates = $states;
 
 		return parent::data( $view, $tags, $expire );
@@ -187,37 +189,162 @@ class Standard
 			return;
 		}
 
+		$data = $view->param( 'address/payment', [] );
+		$map = $view->param( 'address/delivery', [] );
+
+		if( !empty( $data ) && ( $view->addressPaymentError = $this->checkFields( $data, 'payment' ) ) !== [] ) {
+			throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one payment address part is missing or invalid' ) );
+		}
+
 		$cntl = \Aimeos\Controller\Frontend::create( $this->context(), 'customer' );
 		$addrItems = $cntl->uses( ['customer/address'] )->get()->getAddressItems();
 		$cntl->add( $view->param( 'address/payment', [] ) );
-		$map = [];
 
-		foreach( $view->param( 'address/delivery/customer.address.id', [] ) as $pos => $id )
+		if( $pos = $view->param( 'address/delete' ) )
 		{
-			foreach( $view->param( 'address/delivery', [] ) as $key => $list )
-			{
-				if( array_key_exists( $pos, $list ) ) {
-					$map[$pos][$key] = $list[$pos];
-				}
+			if( isset( $addrItems[$pos] ) ) {
+				$cntl->deleteAddressItem( $addrItems[$pos] );
 			}
-		}
 
-		if( $pos = $view->param( 'address/delete' ) ) {
 			unset( $map[$pos] );
 		}
 
 		foreach( $map as $pos => $data )
 		{
+			if( ( $view->addressDeliveryError = $this->checkFields( $data, 'delivery' ) ) !== [] ) {
+				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one delivery address part is missing or invalid' ) );
+			}
+
 			$addrItem = $addrItems->get( $pos ) ?: $cntl->createAddressItem();
 			$cntl->addAddressItem( $addrItem->fromArray( $data ), $pos );
-			$addrItems->remove( $pos );
-		}
-
-		foreach( $addrItems as $addrItem ) {
-			$cntl->deleteAddressItem( $addrItem );
 		}
 
 		$cntl->store();
+	}
+
+
+	/**
+	 * Checks the address fields for missing data and sanitizes the given parameter list.
+	 *
+	 * @param array $params Associative list of address keys (order.address.* or customer.address.*) and their values
+	 * @return array List of missing field names
+	 */
+	protected function checkFields( array $params, string $type ) : array
+	{
+		$view = $this->view();
+		$prefix = $type === 'payment' ? 'customer.' : 'customer.address.';
+
+		$mandatory = $view->config( 'client/html/common/address/delivery/mandatory', [] );
+		$optional = $view->config( 'client/html/common/address/delivery/optional', [] );
+		$hidden = $view->config( 'client/html/common/address/delivery/hidden', [] );
+
+		$allFields = array_flip( array_merge( $mandatory, $optional, $hidden ) );
+		$invalid = $this->validateFields( $params, $allFields );
+		$this->checkSalutation( $params, $mandatory );
+
+		$msg = match( $type ) {
+			'delivery' => $view->translate( 'client', 'Delivery address part "%1$s" is invalid' ),
+			'payment' => $view->translate( 'client', 'Payment address part "%1$s" is invalid' ),
+			default => $view->translate( 'client', 'Address part "%1$s" is invalid' )
+		};
+
+		foreach( $invalid as $key => $name ) {
+			$invalid[$key] = sprintf( $msg, $name );
+		}
+
+		$msg = match( $type ) {
+			'delivery' => $view->translate( 'client', 'Delivery address part "%1$s" is missing' ),
+			'payment' => $view->translate( 'client', 'Payment address part "%1$s" is missing' ),
+			default => $view->translate( 'client', 'Address part "%1$s" is missing' )
+		};
+
+		foreach( $mandatory as $key )
+		{
+			if( !isset( $params[$prefix . $key] ) || $params[$prefix . $key] == '' ) {
+				$invalid[$key] = sprintf( $msg, $key );
+			}
+		}
+
+		return $invalid;
+	}
+
+
+	/**
+	 * Additional checks for the salutation
+	 *
+	 * @param array $params Associative list of address keys (order.address.*) and their values
+	 * @param array &$mandatory List of mandatory field names
+	 */
+	protected function checkSalutation( array $params, array &$mandatory )
+	{
+		if( isset( $params['order.address.salutation'] )
+				&& $params['order.address.salutation'] === 'company'
+				&& in_array( 'company', $mandatory ) === false
+		) {
+			$mandatory[] = 'company';
+		}
+	}
+
+
+	/**
+	 * Returns the CSS classes for the delivery address fields
+	 *
+	 * @return array Associative list of CSS classes for the delivery address fields
+	 */
+	protected function cssDelivery() : array
+	{
+		$config = $this->context()->config();
+
+		$mandatory = $config->get( 'client/html/common/address/delivery/mandatory', [] );
+		$optional = $config->get( 'client/html/common/address/delivery/optional', [] );
+		$hidden = $config->get( 'client/html/common/address/delivery/hidden', [] );
+
+		$css = [];
+
+		foreach( $mandatory as $name ) {
+			$css[$name][] = 'mandatory';
+		}
+
+		foreach( $optional as $name ) {
+			$css[$name][] = 'optional';
+		}
+
+		foreach( $hidden as $name ) {
+			$css[$name][] = 'hidden';
+		}
+
+		return $css;
+	}
+
+
+	/**
+	 * Returns the CSS classes for the payment address fields
+	 *
+	 * @return array Associative list of CSS classes for the payment address fields
+	 */
+	protected function cssPayment() : array
+	{
+		$config = $this->context()->config();
+
+		$mandatory = $config->get( 'client/html/common/address/payment/mandatory', [] );
+		$optional = $config->get( 'client/html/common/address/payment/optional', [] );
+		$hidden = $config->get( 'client/html/common/address/payment/hidden', [] );
+
+		$css = [];
+
+		foreach( $mandatory as $name ) {
+			$css[$name][] = 'mandatory';
+		}
+
+		foreach( $optional as $name ) {
+			$css[$name][] = 'optional';
+		}
+
+		foreach( $hidden as $name ) {
+			$css[$name][] = 'hidden';
+		}
+
+		return $css;
 	}
 
 
@@ -271,6 +398,36 @@ class Standard
 			$addr->getWebsite(),
 			$addr->getVatID()
 		) ) );
+	}
+
+
+	/**
+	 * Validate the address key/value pairs using regular expressions
+	 *
+	 * @param array &$params Associative list of address keys (order.address.*) and their values
+	 * @param array $fields List of field names to validate
+	 * @return array List of invalid address keys
+	 */
+	protected function validateFields( array $params, array $fields ) : array
+	{
+		$invalid = [];
+		$config = $this->context()->config();
+
+		foreach( $params as $key => $value )
+		{
+			$name = ( $pos = strrpos( $key, '.' ) ) ? substr( $key, $pos + 1 ) : $key;
+
+			if( isset( $fields[$name] ) )
+			{
+				$regex = $config->get( 'client/html/common/address/validate/' . $name );
+
+				if( $regex && preg_match( '/' . $regex . '/', $value ) !== 1 ) {
+					$invalid[$name] = $name;
+				}
+			}
+		}
+
+		return $invalid;
 	}
 
 

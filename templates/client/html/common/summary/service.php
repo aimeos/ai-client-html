@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 /* Available data:
@@ -31,7 +31,7 @@ $type = $this->get( 'type' );
 		<ul class="attr-list">
 
 			<?php foreach( $attributes as $attribute ) : ?>
-				<?php if( in_array( $attribute->getType(), ['', 'hidden', 'tx'] ) ) : ?>
+				<?php if( strpos( $attribute->getType(), 'hidden' ) === false ) : ?>
 					<li class="<?= $enc->attr( $type . '-' . $attribute->getCode() ) ?>">
 
 						<span class="name">

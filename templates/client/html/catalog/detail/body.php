@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 /* Available data:
@@ -60,14 +60,6 @@ if( isset( $this->detailProductItem )
 
 $attrTypes = $this->get( 'detailAttributeTypes', [] );
 $propTypes = $this->get( 'detailPropertyTypes', [] );
-
-$attrTypeName = function( string $code ) use ( $attrTypes ) {
-	return isset( $attrTypes[$code] ) && $attrTypes[$code]->getName() !== $attrTypes[$code]->getLabel() ? $attrTypes[$code]->getName() : $this->translate( 'client/code', $code );
-};
-
-$propTypeName = function( string $code ) use ( $propTypes ) {
-	return isset( $propTypes[$code] ) && $propTypes[$code]->getName() !== $propTypes[$code]->getLabel() ? $propTypes[$code]->getName() : $this->translate( 'client/code', $code );
-};
 
 
 ?>
@@ -176,7 +168,7 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 
 							<?php if( $this->detailProductItem->getType() === 'select' ) : ?>
 
-								<div class="catalog-detail-basket-selection">
+								<div class="catalog-detail-basket-selection items-selection">
 
 									<?= $this->partial(
 										/** client/html/common/partials/selection
@@ -207,7 +199,7 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 
 							<?php elseif( $this->detailProductItem->getType() === 'group' ) : ?>
 
-								<div class="catalog-detail-basket-selection">
+								<div class="catalog-detail-basket-selection items-group">
 
 									<?= $this->partial(
 										/** client/html/catalog/detail/partials/group
@@ -234,7 +226,7 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 
 							<?php endif ?>
 
-							<div class="catalog-detail-basket-attribute">
+							<div class="catalog-detail-basket-attribute items-attribute">
 
 								<?= $this->partial(
 									/** client/html/common/partials/attribute
@@ -346,39 +338,40 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 
 				<div class="col-sm-12">
 					<div class="catalog-detail-additional content-block">
-						<nav>
-							<div class="nav nav-tabs" id="nav-tab" role="tablist">
+						<nav class="nav nav-tabs" id="nav-tab" role="tablist">
 
-								<?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
-									<a class="nav-link active" id="nav-description-tab" data-bs-toggle="tab" data-bs-target="#nav-description" type="button" role="tab" aria-controls="nav-description" aria-selected="true">
-										<?= $enc->html( $this->translate( 'client', 'Description' ), $enc::TRUST ) ?>
-									</a>
-								<?php endif ?>
-
-								<?php if( !$this->get( 'detailAttributeMap', map() )->isEmpty() || !$this->get( 'detailPropertyMap', map() )->isEmpty() ) : ?>
-									<a class="nav-link nav-attribute" id="nav-attribute-tab" data-bs-toggle="tab" data-bs-target="#nav-attribute" type="button" role="tab" aria-controls="nav-attribute">
-										<?= $enc->html( $this->translate( 'client', 'Characteristics' ), $enc::TRUST ) ?>
-									</a>
-								<?php endif ?>
-
-								<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
-									<a class="nav-link nav-characteristics" id="nav-characteristics-tab" data-bs-toggle="tab" data-bs-target="#nav-characteristics" type="button" role="tab" aria-controls="nav-characteristics">
-										<?= $enc->html( $this->translate( 'client', 'Downloads' ), $enc::TRUST ) ?>
-									</a>
-								<?php endif ?>
-
-								<a class="nav-link nav-review" id="nav-review-tab" data-bs-toggle="tab" data-bs-target="#nav-review" type="button" role="tab" aria-controls="nav-review">
-									<?= $enc->html( $this->translate( 'client', 'Reviews' ), $enc::TRUST ) ?>
-									<span class="ratings"><?= $enc->html( $this->detailProductItem->getRatings() ) ?></span>
+							<?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
+								<a class="nav-link active" id="nav-description-tab" data-bs-toggle="tab" href="#nav-description" role="button" aria-controls="nav-description" aria-expanded="true">
+									<?= $enc->html( $this->translate( 'client', 'Description' ), $enc::TRUST ) ?>
 								</a>
-							</div>
+							<?php endif ?>
+
+							<?php if( !$this->get( 'detailAttributeMap', map() )->isEmpty() || !$this->get( 'detailPropertyMap', map() )->isEmpty() ) : ?>
+								<a class="nav-link nav-attribute" id="nav-attribute-tab" data-bs-toggle="tab" href="#nav-attribute" role="button" aria-controls="nav-attribute" aria-expanded="false">
+									<?= $enc->html( $this->translate( 'client', 'Characteristics' ), $enc::TRUST ) ?>
+								</a>
+							<?php endif ?>
+
+							<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
+								<a class="nav-link nav-download" id="nav-download-tab" data-bs-toggle="tab" href="#nav-download" role="button" aria-controls="nav-download" aria-expanded="false">
+									<?= $enc->html( $this->translate( 'client', 'Downloads' ), $enc::TRUST ) ?>
+								</a>
+							<?php endif ?>
+
+							<a class="nav-link nav-review" id="nav-review-tab" data-bs-toggle="tab" href="#nav-review" role="button" aria-controls="nav-review" aria-expanded="false">
+								<?= $enc->html( $this->translate( 'client', 'Reviews' ), $enc::TRUST ) ?>
+								<span class="ratings"><?= $enc->html( $this->detailProductItem->getRatings() ) ?></span>
+							</a>
+
 						</nav>
 
 						<div class="tab-content" id="nav-tabContent">
-							<div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab"
-								aria-label="<?= $enc->attr( $this->translate( 'client', 'Product description' ) ) ?>">
 
-								<?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
+							<?php if( !( $textItems = $this->detailProductItem->getRefItems( 'text', 'long' ) )->isEmpty() ) : ?>
+
+								<div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab"
+									aria-label="<?= $enc->attr( $this->translate( 'client', 'Product description' ) ) ?>">
+
 									<div class="block description">
 
 										<?php foreach( $textItems as $textItem ) : ?>
@@ -386,14 +379,14 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 										<?php endforeach ?>
 
 									</div>
-								<?php endif ?>
+								</div>
 
-							</div>
+							<?php endif ?>
 
-							<div class="tab-pane fade" id="nav-attribute" role="tabpanel" aria-labelledby="nav-attribute-tab"
-								aria-label="<?= $enc->attr( $this->translate( 'client', 'Product attributes' ) ) ?>">
+							<?php if( !$this->get( 'detailAttributeMap', map() )->isEmpty() || !$this->get( 'detailPropertyMap', map() )->isEmpty() ) : ?>
 
-								<?php if( !$this->get( 'detailAttributeMap', map() )->isEmpty() || !$this->get( 'detailPropertyMap', map() )->isEmpty() ) : ?>
+								<div class="tab-pane fade" id="nav-attribute" role="tabpanel" aria-labelledby="nav-attribute-tab"
+									aria-label="<?= $enc->attr( $this->translate( 'client', 'Product attributes' ) ) ?>">
 
 									<div class="block attributes">
 										<table class="attributes">
@@ -403,7 +396,7 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 													<?php foreach( $attrItems as $attrItem ) : ?>
 
 														<tr class="item <?= ( $ids = $attrItem->get( 'parent' ) ) ? 'subproduct ' . map( $ids )->prefix( 'subproduct-' )->join( ' ' ) : '' ?>">
-															<td class="name"><?= $enc->html( $attrTypeName( $type ) ) ?></td>
+															<td class="name"><?= $enc->html( $attrTypes[$type]?->getName() ?? $type ) ?></td>
 															<td class="value">
 																<div class="media-list">
 
@@ -437,7 +430,7 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 													<?php foreach( $propItems as $propItem ) : ?>
 
 														<tr class="item <?= ( $id = $propItem->get( 'parent' ) ) ? 'subproduct subproduct-' . $id : '' ?>">
-															<td class="name"><?= $enc->html( $propTypeName( $propItem->getType() ), $enc::TRUST ) ?></td>
+															<td class="name"><?= $enc->html( $propTypes[$propItem->getType()]?->getName() ?? $propItem->getType(), $enc::TRUST ) ?></td>
 															<td class="value"><?= $enc->html( $propItem->getValue() ) ?></td>
 														</tr>
 
@@ -447,37 +440,42 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 											</tbody>
 										</table>
 									</div>
+								</div>
 
-								<?php endif ?>
-							</div>
+							<?php endif ?>
 
-							<div class="tab-pane fade" id="nav-characteristics" role="tabpanel" aria-labelledby="nav-characteristics-tab"
-								aria-label="<?= $enc->attr( $this->translate( 'client', 'Product characteristics' ) ) ?>">
+							<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
 
-								<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
+								<div class="tab-pane fade" id="nav-download" role="tabpanel" aria-labelledby="nav-download-tab"
+									aria-label="<?= $enc->attr( $this->translate( 'client', 'Product downloads' ) ) ?>">
 
-									<ul class="block downloads">
+									<?php if( !( $mediaItems = $this->detailProductItem->getRefItems( 'media', 'download' ) )->isEmpty() ) : ?>
 
-										<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
+										<ul class="block downloads">
 
-											<li class="item">
-												<a href="<?= $this->content( $mediaItem->getUrl( true ), $mediaItem->getFileSystem() ) ?>"
-													title="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first( $mediaItem->getLabel() ) ) ?>">
-													<img class="media-image"
-														alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first( $mediaItem->getLabel() ) ) ?>"
-														src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
-														srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews( true ), $mediaItem->getFileSystem() ) ) ?>"
-													>
-													<span class="media-name"><?= $enc->html( $mediaItem->getProperties( 'title' )->first( $mediaItem->getLabel() ) ) ?></span>
-												</a>
-											</li>
+											<?php foreach( $mediaItems as $id => $mediaItem ) : ?>
 
-										<?php endforeach ?>
+												<li class="item">
+													<a href="<?= $this->content( $mediaItem->getUrl( true ), $mediaItem->getFileSystem() ) ?>"
+														title="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first( $mediaItem->getLabel() ) ) ?>">
+														<img class="media-image"
+															alt="<?= $enc->attr( $mediaItem->getProperties( 'title' )->first( $mediaItem->getLabel() ) ) ?>"
+															src="<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>"
+															srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews( true ), $mediaItem->getFileSystem() ) ) ?>"
+														>
+														<span class="media-name"><?= $enc->html( $mediaItem->getProperties( 'title' )->first( $mediaItem->getLabel() ) ) ?></span>
+													</a>
+												</li>
 
-									</ul>
+											<?php endforeach ?>
 
-								<?php endif ?>
-							</div>
+										</ul>
+
+									<?php endif ?>
+
+								</div>
+
+							<?php endif ?>
 
 							<div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab"
 								aria-label="<?= $enc->attr( $this->translate( 'client', 'Product reviews' ) ) ?>">
@@ -491,26 +489,34 @@ $propTypeName = function( string $code ) use ( $propTypes ) {
 												<div class="rating-stars"><?= str_repeat( '★', (int) round( $this->detailProductItem->getRating() ) ) ?></div>
 											</div>
 											<table class="rating-dist" data-ratings="<?= $enc->attr( $this->detailProductItem->getRatings() ) ?>">
-												<tr>
-													<td class="rating-label"><label for="rating-5">★★★★★</label></td>
-													<td class="rating-percent"><progress id="rating-5" value="0" max="100">0</progress></td>
-												</tr>
-												<tr>
-													<td class="rating-label"><label for="rating-4">★★★★</label></td>
-													<td class="rating-percent"><progress id="rating-4" value="0" max="100">0</progress></td>
-												</tr>
-												<tr>
-													<td class="rating-label"><label for="rating-3">★★★</label></td>
-													<td class="rating-percent"><progress id="rating-3" value="0" max="100">0</progress></td>
-												</tr>
-												<tr>
-													<td class="rating-label"><label for="rating-2">★★</label></td>
-													<td class="rating-percent"><progress id="rating-2" value="0" max="100">0</progress></td>
-												</tr>
-												<tr>
-													<td class="rating-label"><label for="rating-1">★</label></td>
-													<td class="rating-percent"><progress id="rating-1" value="0" max="100">0</progress></td>
-												</tr>
+												<thead>
+													<tr>
+														<th class="rating-label" scope="col"><?= $enc->html( $this->translate( 'client', 'Stars' ) ) ?></th>
+														<th class="rating-percent" scope="col"><?= $enc->html( $this->translate( 'client', 'Percentage' ) ) ?></th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td class="rating-label"><label for="rating-5">★★★★★</label></td>
+														<td class="rating-percent"><progress id="rating-5" value="0" max="100">0</progress></td>
+													</tr>
+													<tr>
+														<td class="rating-label"><label for="rating-4">★★★★</label></td>
+														<td class="rating-percent"><progress id="rating-4" value="0" max="100">0</progress></td>
+													</tr>
+													<tr>
+														<td class="rating-label"><label for="rating-3">★★★</label></td>
+														<td class="rating-percent"><progress id="rating-3" value="0" max="100">0</progress></td>
+													</tr>
+													<tr>
+														<td class="rating-label"><label for="rating-2">★★</label></td>
+														<td class="rating-percent"><progress id="rating-2" value="0" max="100">0</progress></td>
+													</tr>
+													<tr>
+														<td class="rating-label"><label for="rating-1">★</label></td>
+														<td class="rating-percent"><progress id="rating-1" value="0" max="100">0</progress></td>
+													</tr>
+												</tbody>
 											</table>
 										</div>
 										<div class="col-md-8 review-list">

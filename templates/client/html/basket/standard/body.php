@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 $enc = $this->encoder();
@@ -19,9 +19,9 @@ $enc = $this->encoder();
 				<?= $this->csrf()->formfield() ?>
 
 				<div class="row header">
-					<h2 class="col-12 col-sm-6"><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></h2>
+					<h2 class="col-12 col-md-6"><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></h2>
 
-					<div class="col-12 col-sm-6">
+					<div class="col-12 col-md-6">
 						<div class="input-group basket-save">
 							<input class="form-control basket-name" type="text" maxlength="255"
 								placeholder="<?= $enc->attr( $this->translate( 'client', 'Basket name' ) ) ?>"
@@ -63,12 +63,12 @@ $enc = $this->encoder();
 					</div>
 				</div>
 
-				<div class="basket-standard-coupon">
-					<div class="header">
+				<div class="basket-standard-coupon row">
+					<div class="col-12 col-md-6 header">
 						<h2><?= $enc->html( $this->translate( 'client', 'Coupon codes' ) ) ?></h2>
 					</div>
 
-					<div class="content">
+					<div class="col-12 col-md-6 content">
 
 						<div class="input-group coupon-new">
 							<input class="form-control coupon-code" type="text" maxlength="255"
@@ -79,16 +79,18 @@ $enc = $this->encoder();
 						</div>
 
 						<?php if( !( $coupons = $this->standardBasket->getCoupons() )->isEmpty() ) : ?>
-							<div class="coupon-detail">
-								<p class="name"><?= $enc->html( $this->translate( 'client', 'Coupons' ) ) ?>:</p>
-								<ul class="attr-list">
+							<div class="coupon-detail row">
+								<div class="col-6">
+									<div class="name"><?= $enc->html( $this->translate( 'client', 'Coupons' ) ) ?>:</div>
+								</div>
+								<div class="col-6">
 									<?php foreach( $coupons as $code => $products ) : $params = array( 'b_action' => 'coupon-delete', 'b_coupon' => $code ) ?>
-									<li class="attr-item">
-										<span class="coupon-code"><?= $enc->html( $code ) ?></span>
-										<a class="minibutton delete" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $params ) ) ?>"></a>
-									</li>
+										<div class="coupon-codes">
+											<span class="coupon-code"><?= $enc->html( $code ) ?></span>
+											<a class="minibutton delete" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $params ) ) ?>"></a>
+										</div>
 									<?php endforeach ?>
-								</ul>
+								</div>
 							</div>
 						<?php endif ?>
 					</div>

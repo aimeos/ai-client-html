@@ -2,14 +2,15 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 $enc = $this->encoder();
 
 $items = [];
 
-$pricefmt = $this->translate( 'client/code', 'price:default' );
+$pricetype = 'price:default';
+$pricefmt = $this->translate( 'client/code', $pricetype );
 /// Price format with price value (%1$s) and currency (%2$s)
 $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'client', '%1$s %2$s' );
 

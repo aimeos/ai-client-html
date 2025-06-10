@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 $enc = $this->encoder();
@@ -122,7 +122,7 @@ $enc = $this->encoder();
 
 				<li class="pinned-item product" data-prodid="<?= $enc->attr( $id ) ?>">
 					<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/catalog/session/pinned/url', $pinParams ) ) ?>">
-						<button class="minibutton delete" title="<?= $this->translate( 'client', 'Delete item' ) ?>"></button>
+						<button type="submit" class="minibutton delete" title="<?= $this->translate( 'client', 'Delete item' ) ?>"></button>
 						<?= $this->csrf()->formfield() ?>
 					</form>
 

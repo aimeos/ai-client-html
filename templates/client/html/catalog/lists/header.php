@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 $enc = $this->encoder();
@@ -22,6 +22,9 @@ $enc = $this->encoder();
  * @see client/html/catalog/detail/metatags
  */
 
+$multi = $this->config( 'client/html/catalog/multiroute', false );
+$linkKey = $multi && $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+
 
 ?>
 <?php if( (bool) $this->config( 'client/html/catalog/lists/metatags', true ) === true ) : ?>
@@ -33,7 +36,8 @@ $enc = $this->encoder();
 			<title><?= $enc->html( strip_tags( $catItem->getName() ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
 		<?php endif ?>
 
-		<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', map( $this->get( 'listParams', [] ) )->except( 'f_sort' )->all(), ['absoluteUri' => true] ) ) ?>">
+
+		<link rel="canonical" href="<?= $enc->attr( $this->link( $linkKey, map( $this->get( 'listParams', [] ) )->except( 'f_sort' )->all(), ['absoluteUri' => true] ) ) ?>">
 
 		<?php foreach( $catItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
 			<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>">
@@ -75,5 +79,5 @@ $enc = $this->encoder();
 <script defer src="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/catalog-lists.js', 'fs-theme', true ) ) ?>"></script>
 
 <?php foreach( $this->get( 'listStockUrl', [] ) as $url ) : ?>
-	<script class="items-stock" defer src="<?= $enc->attr( $url ) ?>"></script>
+	<script class="items-stock" nonce="<?= $enc->attr( $this->get( 'contextNonce' ) ) ?>" defer src="<?= $enc->attr( $url ) ?>"></script>
 <?php endforeach ?>

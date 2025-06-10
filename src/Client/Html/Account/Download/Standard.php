@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2023
+ * @copyright Aimeos (aimeos.org), 2016-2025
  * @package Client
  * @subpackage Html
  */
@@ -110,14 +110,11 @@ class Standard
 				return $view->response()->withStatus( 401 )->withHeader( 'Location', $view->url( $target ) );
 			}
 
-			$manager = \Aimeos\MShop::create( $context, 'order/product/attribute' );
-			$item = $manager->get( $id );
-
 			if( $this->checkDownload( $id ) === false ) {
 				return $view->response()->withStatus( 403 )->withHeader( 'Location', $view->url( $target ) );
-			} else {
-				$this->addDownload( $item );
 			}
+
+			$this->addDownload( \Aimeos\MShop::create( $context, 'order/product/attribute' )->get( $id ) );
 
 			parent::init();
 		}
@@ -177,23 +174,22 @@ class Standard
 	 * @param string|null $id Unique order base product attribute ID referencing the download file
 	 * @return bool True if download is allowed, false if not
 	 */
-	protected function checkAccess( string $id = null ) : bool
+	protected function checkAccess( ?string $id = null ) : bool
 	{
 		$context = $this->context();
 
-		if( ( $customerId = $context->user() ) !== null && $id !== null )
+		if( $id && ( $customerId = $context->user() ) )
 		{
 			$manager = \Aimeos\MShop::create( $context, 'order' );
 
-			$search = $manager->filter();
-			$expr = array(
-				$search->compare( '==', 'order.customerid', $customerId ),
-				$search->compare( '==', 'order.product.attribute.id', $id ),
-			);
-			$search->setConditions( $search->and( $expr ) );
-			$search->slice( 0, 1 );
+			$filter = $manager->filter();
+			$filter->add( $filter->and( [
+				$filter->compare( '>=', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED ),
+				$filter->compare( '==', 'order.customerid', $customerId ),
+				$filter->compare( '==', 'order.product.attribute.id', $id ),
+			] ) )->slice( 0, 1 );
 
-			if( !$manager->search( $search )->isEmpty() ) {
+			if( !$manager->search( $filter )->isEmpty() ) {
 				return true;
 			}
 		}
@@ -208,7 +204,7 @@ class Standard
 	 * @param string|null $id Unique order base product attribute ID referencing the download file
 	 * @return bool True if download is allowed, false if not
 	 */
-	protected function checkDownload( string $id = null ) : bool
+	protected function checkDownload( ?string $id = null ) : bool
 	{
 		$context = $this->context();
 

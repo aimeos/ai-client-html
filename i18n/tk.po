@@ -4,11 +4,12 @@
 # 
 # Translators:
 # Ayshe Sammiyeva, 2023
+# Ayshe Sammiyeva, 2023
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2025-02-09 12:55+0100\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Ayshe Sammiyeva, 2023\n"
 "Language-Team: Turkmen (http://app.transifex.com/aimeos/aimeos-core/language/tk/)\n"
@@ -85,6 +86,9 @@ msgstr "%2$s -njide %1$s"
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
 
+msgid "(opens in new window)"
+msgstr ""
+
 #, php-format
 msgid "+ %1$s %2$s"
 msgstr ""
@@ -107,8 +111,14 @@ msgstr "-%1$s%%"
 msgid "A non-recoverable error occured"
 msgstr "Düzedip bolmaýan ýalňyşlyk ýüze çykdy"
 
+msgid "Add"
+msgstr "Goşmak"
+
 msgid "Add billing address"
 msgstr "Hasaplaşyk salgysyny goşmak"
+
+msgid "Add delivery address"
+msgstr ""
 
 msgid "Add to basket"
 msgstr "Sebede goş"
@@ -135,6 +145,13 @@ msgstr "Iň bolmanda bir töleg salgysynyň bölegi ýok ýa-da nädogry"
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
 msgstr "Iň bolmanda bir gowşuryş salgysynyň bölegi ýok ýa-da nädogry"
+
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr ""
+
+msgid "At least one product couldn't be added to the basket."
+msgstr ""
 
 msgid "Back"
 msgstr "Yza"
@@ -186,8 +203,26 @@ msgstr "Kategoriýalar"
 msgid "Change"
 msgstr "Üýtgediň"
 
+msgid "Change address"
+msgstr ""
+
+msgid "Change billing address"
+msgstr ""
+
+msgid "Change coupons"
+msgstr ""
+
+msgid "Change delivery"
+msgstr ""
+
+msgid "Change delivery address"
+msgstr ""
+
 msgid "Change payment"
 msgstr "Tölegini üýtgediň"
+
+msgid "Change products"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "Häsiýetleri"
@@ -228,6 +263,9 @@ msgstr "Döredildi"
 
 msgid "Customer account"
 msgstr "Müşderi hasaby"
+
+msgid "Decrease"
+msgstr ""
 
 msgid "Delete"
 msgstr "Pozuň"
@@ -312,6 +350,15 @@ msgstr "Iň ýokary baha"
 
 #, php-format
 msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
+msgstr ""
+
+#, php-format
+msgid ""
 "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
 "conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
 "href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
@@ -336,6 +383,9 @@ msgstr "Incl. %1$s%% VAT"
 
 msgid "Included rebates"
 msgstr "Arzanladyşy goşulan"
+
+msgid "Increase"
+msgstr ""
 
 msgid "Interval"
 msgstr "Aralyk"
@@ -370,6 +420,9 @@ msgstr "Soňky gezek"
 msgid "Latest"
 msgstr "Iň soňky"
 
+msgid "Less"
+msgstr ""
+
 msgid "List view"
 msgstr "Sanaw görnüşi"
 
@@ -380,6 +433,9 @@ msgid "Mobile"
 msgstr ""
 
 msgid "Mobile number"
+msgstr ""
+
+msgid "More"
 msgstr ""
 
 msgid "More reviews"
@@ -453,6 +509,9 @@ msgstr "Töleg çykdajylary"
 msgid "Payment status"
 msgstr "Töleg ýagdaýy"
 
+msgid "Percentage"
+msgstr ""
+
 msgid "Pin product"
 msgstr "Harydy belläň"
 
@@ -519,6 +578,9 @@ msgstr ""
 msgid "Product description"
 msgstr ""
 
+msgid "Product downloads"
+msgstr ""
+
 msgid "Product filters"
 msgstr ""
 
@@ -554,6 +616,9 @@ msgstr "Salgylanma"
 
 msgid "Relevance"
 msgstr "Baglanyşygy"
+
+msgid "Remove"
+msgstr ""
 
 msgid "Reset"
 msgstr "Täzeden düzmek"
@@ -623,6 +688,9 @@ msgstr ""
 
 msgid "Sort by:"
 msgstr "Tertipleşdiriň:"
+
+msgid "Stars"
+msgstr ""
 
 msgid "State"
 msgstr "Şäher"
@@ -709,6 +777,9 @@ msgstr "Üç aý"
 msgid "Time frame"
 msgstr "Wagt çäkleri"
 
+msgid "Title"
+msgstr ""
+
 msgid "Toggle fullscreen"
 msgstr "Doly ekrany açmak"
 
@@ -759,13 +830,13 @@ msgid "What do you think about the product"
 msgstr "Önüm hakda näme pikir edýärsiňiz"
 
 msgid "Y-m-d"
-msgstr "Y-m-d"
+msgstr "d.m.Y"
 
 msgid "YYYY-MM-DD"
-msgstr "YYYY-MM-DD"
+msgstr "gg.aa.ýýýý"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr "YYYY-MM-DD HH:mm"
+msgstr "gg.aa.ýýýý ss:mm"
 
 msgid "You are here:"
 msgstr "Siz şu ýerde:"

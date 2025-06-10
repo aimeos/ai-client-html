@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2020-2023
+ * @copyright Aimeos (aimeos.org), 2020-2025
  */
 
 
@@ -37,7 +37,7 @@ class ContextTest extends \PHPUnit\Framework\TestCase
 
 	public function testData()
 	{
-		$this->client->expects( $this->once() )->method( 'data' ) ->will( $this->returnArgument( 0 ) );
+		$this->client->expects( $this->once() )->method( 'data' ) ->willReturnArgument( 0 );
 
 		$result = $this->object->data( \TestHelper::view() );
 

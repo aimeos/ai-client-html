@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 
@@ -94,9 +94,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$basketMock->addProduct( $product );
 		$basketMock->addService( $service );
-		$object->expects( $this->once() )->method( 'processPayment' )->will( $this->returnValue( $form ) );
-		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get()->setId( '123' ) ) );
-		$orderMock->expects( $this->once() )->method( 'save' )->will( $this->returnValue( $orderItem->setId( '123' ) ) );
+		$object->expects( $this->once() )->method( 'processPayment' )->willReturn( $form );
+		$basketMock->expects( $this->once() )->method( 'store' )->willReturn( $basketMock->get()->setId( '123' ) );
+		$orderMock->expects( $this->once() )->method( 'save' )->willReturn( $orderItem->setId( '123' ) );
 
 		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Basket\Standard::class, $basketMock );
 		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Order\Standard::class, $orderMock );
@@ -135,8 +135,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create();
 
-		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get()->setId( '123' ) ) );
-		$orderMock->expects( $this->exactly( 2 ) )->method( 'save' )->will( $this->returnValue( $orderItem ) );
+		$basketMock->expects( $this->once() )->method( 'store' )->willReturn( $basketMock->get()->setId( '123' ) );
+		$orderMock->expects( $this->exactly( 2 ) )->method( 'save' )->willReturn( $orderItem );
 
 		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Basket\Standard::class, $basketMock );
 		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Order\Standard::class, $orderMock );
@@ -176,9 +176,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$basketMock->addProduct( $product );
 		$basketMock->addService( $service );
-		$object->expects( $this->once() )->method( 'processPayment' )->will( $this->returnValue( null ) );
-		$basketMock->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $basketMock->get()->setId( '123' ) ) );
-		$orderMock->expects( $this->exactly( 2 ) )->method( 'save' )->will( $this->returnValue( $orderItem ) );
+		$object->expects( $this->once() )->method( 'processPayment' )->willReturn( null );
+		$basketMock->expects( $this->once() )->method( 'store' )->willReturn( $basketMock->get()->setId( '123' ) );
+		$orderMock->expects( $this->exactly( 2 ) )->method( 'save' )->willReturn( $orderItem );
 
 		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Basket\Standard::class, $basketMock );
 		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Order\Standard::class, $orderMock );

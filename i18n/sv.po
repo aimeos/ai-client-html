@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2025-02-09 12:55+0100\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Edvin Brobeck <edvin@brobeck.se>, 2020\n"
 "Language-Team: Swedish (http://app.transifex.com/aimeos/aimeos-core/language/sv/)\n"
@@ -21,14 +21,14 @@ msgstr ""
 #, php-format
 msgid "%1$d article"
 msgid_plural "%1$d articles"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$d artikel"
+msgstr[1] "%1$d artikel"
 
 #, php-format
 msgid "%1$d review"
 msgid_plural "%1$d reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$d granskning"
+msgstr[1] "%1$d granskning"
 
 #, php-format
 msgid ""
@@ -63,7 +63,7 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -75,23 +75,26 @@ msgstr "%2$s %1$s off"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
-msgstr ""
+msgstr "%1$s på %2$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%3$s%1$s + %3$s%2$s"
 
+msgid "(opens in new window)"
+msgstr "(öppnas i nytt fönster)"
+
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -105,10 +108,16 @@ msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
-msgstr ""
+msgstr "Ett fel som inte kan återställas inträffade"
+
+msgid "Add"
+msgstr "Lägg till"
 
 msgid "Add billing address"
 msgstr "Lägg till faktureringsadress"
+
+msgid "Add delivery address"
+msgstr "Lägg till leveransadress"
 
 msgid "Add to basket"
 msgstr "Lägg i varukorgen"
@@ -120,7 +129,7 @@ msgid "Additional 2"
 msgstr "Extra 2"
 
 msgid "Apply"
-msgstr ""
+msgstr "Tillämpa"
 
 msgid "Article"
 msgstr "Artikel"
@@ -136,6 +145,13 @@ msgstr "Minst en del av faktureringsadressen saknas eller är felaktig "
 msgid "At least one delivery address part is missing or invalid"
 msgstr "Minst en del av leveransadressen saknas eller är felaktig"
 
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr "Minst en del av betalningsadressen saknas eller är ogiltig"
+
+msgid "At least one product couldn't be added to the basket."
+msgstr "Minst en produkt kunde inte läggas till i korgen."
+
 msgid "Back"
 msgstr "Bakåt"
 
@@ -143,13 +159,13 @@ msgid "Basket"
 msgstr "Varukorg"
 
 msgid "Basket details"
-msgstr ""
+msgstr "Detaljer om korgen"
 
 msgid "Basket name"
-msgstr ""
+msgstr "Korgens namn"
 
 msgid "Basket saved sucessfully"
-msgstr ""
+msgstr "Korgen sparades framgångsrikt"
 
 msgid "Billing address"
 msgstr "Faktureringsadress"
@@ -166,10 +182,10 @@ msgid "Birthday"
 msgstr "Födelsedag"
 
 msgid "Breadcrumb navigation"
-msgstr ""
+msgstr "Breadcrumb-navigering"
 
 msgid "Bulk order"
-msgstr ""
+msgstr "Bulkbeställning"
 
 msgid "Bundled products"
 msgstr "Ingående produkter"
@@ -186,21 +202,39 @@ msgstr "Kategorier"
 msgid "Change"
 msgstr "Ändra"
 
+msgid "Change address"
+msgstr "Ändra adress"
+
+msgid "Change billing address"
+msgstr "Ändra faktureringsadress"
+
+msgid "Change coupons"
+msgstr "Ändra kuponger"
+
+msgid "Change delivery"
+msgstr "Förändra leverans"
+
+msgid "Change delivery address"
+msgstr "Ändra leveransadress"
+
 msgid "Change payment"
 msgstr "Ändra betalningsmetod"
+
+msgid "Change products"
+msgstr "Ändra produkter"
 
 msgid "Characteristics"
 msgstr "Egenskaper"
 
 msgid "Checkout"
-msgstr ""
+msgstr "Checka ut"
 
 msgid "City"
 msgstr "Stad"
 
 #, php-format
 msgid "Class \"%1$s\" not found"
-msgstr ""
+msgstr "Klassen \"%1$s\" hittades inte"
 
 msgid "Close"
 msgstr "Stäng"
@@ -229,11 +263,14 @@ msgstr "Skapad"
 msgid "Customer account"
 msgstr "Kundkonto"
 
+msgid "Decrease"
+msgstr "Minskning"
+
 msgid "Delete"
 msgstr "Radera"
 
 msgid "Delete item"
-msgstr ""
+msgstr "Ta bort objekt"
 
 msgid "Delivery"
 msgstr "Leverans"
@@ -254,7 +291,7 @@ msgid "Delivery address part \"%1$s\" is missing"
 msgstr "Leveransadress, del \"%1$s\" saknas"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "Leverans inom"
 
 msgid "Description"
 msgstr "Beskrivning"
@@ -278,7 +315,7 @@ msgid "Favorite products"
 msgstr "Favoritprodukter"
 
 msgid "Fax"
-msgstr ""
+msgstr "Fax"
 
 msgid "Fields with an * are mandatory"
 msgstr "Fält emd en * är obligatoriska"
@@ -287,28 +324,37 @@ msgid "Filter"
 msgstr "Filtersökning"
 
 msgid "First"
-msgstr ""
+msgstr "Första"
 
 msgid "First name"
 msgstr "Förnamn"
 
 msgid "Found products"
-msgstr ""
+msgstr "Hittade produkter"
 
 msgid "GB999999973"
 msgstr "moms-id"
 
 msgid "Go to page"
-msgstr ""
+msgstr "Gå till sidan"
 
 msgid "Grid view"
 msgstr "Rutnät"
 
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 msgid "Highest price"
-msgstr ""
+msgstr "Högsta pris"
+
+#, php-format
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
+msgstr "Jag accepterar <a href=\"%1$s\" target=\"_blank\" title=\"villkor (öppnas i ny flik)\">villkor</a>, <a href=\"%2$s\" target=\"_blank\" title=\"integritetspolicy (öppnas i ny flik)\">integritetspolicy</a> och <a href=\"%3$s\" target=\"_blank\" title=\"avbokningspolicy (öppnas i ny flik)\">avbokningspolicy</a>"
 
 #, php-format
 msgid ""
@@ -328,7 +374,7 @@ msgstr "Om priset sänks"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "Inkl. %1$s%% %2$s"
 
 #, php-format
 msgid "Incl. %1$s%% VAT"
@@ -337,29 +383,32 @@ msgstr "Inkl. %1$s%% Moms"
 msgid "Included rebates"
 msgstr "Inkluderad rabatt"
 
+msgid "Increase"
+msgstr "Ökning"
+
 msgid "Interval"
 msgstr "Intervall"
 
 #, php-format
 msgid "Invalid characters in client name \"%1$s\""
-msgstr ""
+msgstr "Ogiltiga tecken i klientnamnet \"%1$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
-msgstr ""
+msgstr "Ogiltigt klassnamn \"%1$s\""
 
 #, php-format
 msgid "Invalid domain \"%1$s\""
-msgstr ""
+msgstr "Ogiltig domän \"%1$s\""
 
 msgid "Invoice"
-msgstr ""
+msgstr "Faktura"
 
 msgid "Language"
 msgstr "Språk"
 
 msgid "Last"
-msgstr ""
+msgstr "Sista"
 
 msgid "Last name"
 msgstr "Efternamn"
@@ -370,17 +419,23 @@ msgstr "Senast sedd"
 msgid "Latest"
 msgstr "Senaste"
 
+msgid "Less"
+msgstr "Mindre"
+
 msgid "List view"
 msgstr "Lista"
 
 msgid "Lowest price"
-msgstr ""
+msgstr "Lägsta pris"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Mobil"
 
 msgid "Mobile number"
-msgstr ""
+msgstr "Mobilnummer"
+
+msgid "More"
+msgstr "Mer om"
 
 msgid "More reviews"
 msgstr "Fler rescensioner"
@@ -389,7 +444,7 @@ msgid "Name"
 msgstr "Namn"
 
 msgid "New"
-msgstr ""
+msgstr "Ny"
 
 msgid "New delivery address"
 msgstr "Ny leveransadress"
@@ -407,11 +462,11 @@ msgid ""
 msgstr "Inga artiklar hittades med sökningen <span class=\"searchstring\">\"%1$s\"</span>. Försök igen med annat sökord"
 
 msgid "No order ID available in session"
-msgstr ""
+msgstr "Inget order-ID tillgängligt i sessionen"
 
 #, php-format
 msgid "No view available"
-msgstr ""
+msgstr "Ingen vy tillgänglig"
 
 msgid "One month"
 msgstr "En månad"
@@ -420,10 +475,10 @@ msgid "One week"
 msgstr "En vecka"
 
 msgid "Open submenu"
-msgstr ""
+msgstr "Öppna undermeny"
 
 msgid "Order ID"
-msgstr ""
+msgstr "Order-ID"
 
 msgid "Order details"
 msgstr "Orderdetaljer"
@@ -453,8 +508,11 @@ msgstr "Betalningskostnader"
 msgid "Payment status"
 msgstr "Betalningsstatus"
 
+msgid "Percentage"
+msgstr "Procentuell andel"
+
 msgid "Pin product"
-msgstr ""
+msgstr "Stift produkt"
 
 msgid "Pinned products"
 msgstr "Sparade produkter"
@@ -490,10 +548,10 @@ msgid "Price"
 msgstr "Pris"
 
 msgid "Price filter"
-msgstr ""
+msgstr "Pris filter"
 
 msgid "Price range"
-msgstr ""
+msgstr "Prisintervall"
 
 msgid "Proceed"
 msgstr "Fortsätt"
@@ -505,37 +563,40 @@ msgid "Product"
 msgstr "Produkt"
 
 msgid "Product actions"
-msgstr ""
+msgstr "Produktåtgärder"
 
 msgid "Product attributes"
-msgstr ""
+msgstr "Produktens egenskaper"
 
 msgid "Product categories"
-msgstr ""
+msgstr "Produktkategorier"
 
 msgid "Product characteristics"
-msgstr ""
+msgstr "Produktens egenskaper"
 
 msgid "Product description"
-msgstr ""
+msgstr "Produktbeskrivning"
+
+msgid "Product downloads"
+msgstr "Nedladdningar av produkter"
 
 msgid "Product filters"
-msgstr ""
+msgstr "Produktfilter"
 
 msgid "Product image"
 msgstr "Produktbild"
 
 msgid "Product information"
-msgstr ""
+msgstr "Information om produkten"
 
 msgid "Product price"
-msgstr ""
+msgstr "Produktens pris"
 
 msgid "Product reviews"
-msgstr ""
+msgstr "Produktrecensioner"
 
 msgid "Product search"
-msgstr ""
+msgstr "Produktsökning"
 
 msgid "Products you might be also interested in"
 msgstr "Du kanske är intresserad av följande produkter"
@@ -555,6 +616,9 @@ msgstr "Referens"
 msgid "Relevance"
 msgstr "Relevans"
 
+msgid "Remove"
+msgstr "Ta bort"
+
 msgid "Reset"
 msgstr "Återställ"
 
@@ -569,7 +633,7 @@ msgid "SKU or article name"
 msgstr "SKU eller artikelnamn"
 
 msgid "Sale"
-msgstr ""
+msgstr "Försäljning"
 
 msgid "Salutation"
 msgstr "Tilltal"
@@ -578,10 +642,10 @@ msgid "Save"
 msgstr "Spara"
 
 msgid "Saved basket removed sucessfully"
-msgstr ""
+msgstr "Sparad korg borttagen framgångsrikt"
 
 msgid "Saved baskets"
-msgstr ""
+msgstr "Sparade korgar"
 
 msgid "Search"
 msgstr "Sök"
@@ -619,13 +683,16 @@ msgid "Show"
 msgstr "Visa"
 
 msgid "Sort by"
-msgstr ""
+msgstr "Sortera efter"
 
 msgid "Sort by:"
 msgstr "Sortera efter"
 
+msgid "Stars"
+msgstr "Stjärnor"
+
 msgid "State"
-msgstr ""
+msgstr "Stat"
 
 msgid "Stock"
 msgstr "Lagerantal"
@@ -645,7 +712,7 @@ msgid "Sub-total"
 msgstr "Delsumma"
 
 msgid "Submit"
-msgstr ""
+msgstr "Skicka in"
 
 msgid "Subscription ID"
 msgstr "Prenumeration ID"
@@ -666,13 +733,13 @@ msgid "Supplier information"
 msgstr "Butiksinformation"
 
 msgid "Supplier list"
-msgstr ""
+msgstr "Lista över leverantörer"
 
 msgid "Suppliers"
 msgstr "Butiker"
 
 msgid "Take a look"
-msgstr ""
+msgstr "Ta en titt"
 
 msgid "Telephone"
 msgstr "Telefon"
@@ -709,6 +776,9 @@ msgstr "Tre månader"
 msgid "Time frame"
 msgstr "Tidsram"
 
+msgid "Title"
+msgstr "Titel"
+
 msgid "Toggle fullscreen"
 msgstr "Växla till fullskärm"
 
@@ -727,7 +797,7 @@ msgstr "Kan ej skapa ett konto: %1$s"
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
-msgstr ""
+msgstr "Det gick inte att spara adressen för kunden \"%1$s\": %2$s"
 
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
@@ -738,13 +808,13 @@ msgid "Update"
 msgstr "Uppdatera"
 
 msgid "Variant"
-msgstr ""
+msgstr "Variant"
 
 msgid "Vat ID"
 msgstr "Moms ID"
 
 msgid "Vendor response"
-msgstr ""
+msgstr "Svar från leverantör"
 
 msgid "Watch"
 msgstr "Bevaka"
@@ -762,24 +832,24 @@ msgid "Y-m-d"
 msgstr "Y-m-d"
 
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "ÅÅÅÅ-MM-DD"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr ""
+msgstr "ÅÅÅÅ-MM-DD tt:mm"
 
 msgid "You are here:"
 msgstr "Du är här: "
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr ""
+msgstr "Du kan bara spara upp till %1$s produkter som favoriter"
 
 #, php-format
 msgid "You can only watch up to %1$s products"
-msgstr ""
+msgstr "Du kan bara titta på upp till %1$s produkter"
 
 msgid "You must log in first"
-msgstr ""
+msgstr "Du måste logga in först"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Du tas nu till nästa steg"
@@ -830,7 +900,7 @@ msgid "none"
 msgstr "inget"
 
 msgid "on request"
-msgstr ""
+msgstr "på begäran"
 
 #, php-format
 msgid "payment"
@@ -840,11 +910,11 @@ msgid "pin"
 msgstr "Pin"
 
 msgid "price:default"
-msgstr ""
+msgstr "pris:standard"
 
 #, php-format
 msgid "process"
-msgstr ""
+msgstr "process"
 
 msgid "stock-high"
 msgstr "Finns i lager"
@@ -872,10 +942,10 @@ msgid "▲ Price"
 msgstr "▲ Pris"
 
 msgid "▶"
-msgstr ""
+msgstr "▶"
 
 msgid "▶▶"
-msgstr ""
+msgstr "▶▶"
 
 msgid "▼ Name"
 msgstr "▼ Namn"
@@ -884,7 +954,7 @@ msgid "▼ Price"
 msgstr "▼ Pris"
 
 msgid "◀"
-msgstr ""
+msgstr "◀"
 
 msgid "◀◀"
-msgstr ""
+msgstr "◀◀"

@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2019-2023
+ * @copyright Aimeos (aimeos.org), 2019-2025
  */
 
 $enc = $this->encoder();
@@ -40,7 +40,9 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 						<div class="row">
 							<div class="col-4 quantity"><?= $enc->html( $this->translate( 'client', 'Quantity' ) ) ?></div>
 							<div class="col-4 price"><?= $enc->html( $this->translate( 'client', 'Price' ) ) ?></div>
-							<div class="col-4 buttons"><div class="minibutton add"></div></div>
+							<div class="col-4 buttons">
+								<a class="minibutton add" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Add' ) ) ?>"></a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -54,21 +56,25 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 								<input type="hidden" class="productid"
 									name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'prodid'] ) ) ?>"
 								>
-								<input type="text" class="value search" tabindex="1"
+								<input type="text" class="value search"
 									placeholder="<?= $enc->attr( $this->translate( 'client', 'SKU or article name' ) ) ?>"
+									title="<?= $enc->attr( $this->translate( 'client', 'SKU or article name' ) ) ?>"
 								>
 								<div class="vattributes"></div>
 							</div>
 							<div class="col-sm-6">
 								<div class="row">
 									<div class="col-4 quantity">
-										<input type="number" class="value" tabindex="1"
+										<input type="number" class="value"
 											name="<?= $enc->attr( $this->formparam( ['b_prod', $idx, 'quantity'] ) ) ?>"
-											min="1" max="2147483647" step="1" required="required" value="1"
+											min="1" max="2147483647" step="1" required="required" value="1" autocomplete="off"
+											title="<?= $enc->attr( $this->translate( 'client', 'Quantity' ) ) ?>"
 										>
 									</div>
 									<div class="col-4 price"></div>
-									<div class="col-4 buttons"><div class="minibutton delete" tabindex="1"></div></div>
+									<div class="col-4 buttons">
+										<a class="minibutton delete" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Remove' ) ) ?>"></a>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -82,21 +88,25 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 							<input type="hidden" class="productid" disabled="disabled"
 								name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'prodid'] ) ) ?>"
 							>
-							<input type="text" class="value search" tabindex="1" disabled="disabled"
+							<input type="text" class="value search" disabled="disabled"
 								placeholder="<?= $enc->attr( $this->translate( 'client', 'SKU or article name' ) ) ?>"
+								title="<?= $enc->attr( $this->translate( 'client', 'SKU or article name' ) ) ?>"
 							>
 							<div class="vattributes"></div>
 						</div>
 						<div class="col-sm-6">
 							<div class="row">
 								<div class="col-4 quantity">
-									<input type="number" class="value" tabindex="1" disabled="disabled"
+									<input type="number" class="value" disabled="disabled"
 										name="<?= $enc->attr( $this->formparam( ['b_prod', '_idx_', 'quantity'] ) ) ?>"
-										min="1" max="2147483647" step="1" required="required" value="1"
+										min="1" max="2147483647" step="1" required="required" value="1" autocomplete="off"
+										title="<?= $enc->attr( $this->translate( 'client', 'Quantity' ) ) ?>"
 									>
 								</div>
 								<div class="col-4 price"></div>
-								<div class="col-4 buttons"><div class="minibutton delete"></div></div>
+								<div class="col-4 buttons">
+									<a class="minibutton delete" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Remove' ) ) ?>"></a>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -104,7 +114,7 @@ $rows = (int) $this->config( 'client/html/basket/bulk/rows', 1 );
 			</div>
 
 			<div class="button-group">
-				<button class="btn btn-primary btn-lg btn-action" type="submit" value="" tabindex="1">
+				<button class="btn btn-primary btn-lg btn-action" type="submit" value="">
 					<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ) ?>
 				</button>
 			</div>

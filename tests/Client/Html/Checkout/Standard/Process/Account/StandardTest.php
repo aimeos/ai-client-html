@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 
@@ -67,9 +67,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->onlyMethods( array( 'add', 'get', 'store' ) )
 			->getMock();
 
-		$customerStub->expects( $this->once() )->method( 'add' )->will( $this->returnValue( $customerStub ) );
-		$customerStub->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $customerStub ) );
-		$customerStub->expects( $this->once() )->method( 'get' )->will( $this->returnValue( $customerItem ) );
+		$customerStub->expects( $this->once() )->method( 'add' )->willReturn( $customerStub );
+		$customerStub->expects( $this->once() )->method( 'store' )->willReturn( $customerStub );
+		$customerStub->expects( $this->once() )->method( 'get' )->willReturn( $customerItem );
 
 		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Customer\Standard::class, $customerStub );
 

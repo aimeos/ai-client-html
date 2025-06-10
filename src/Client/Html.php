@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  * @package Client
  * @subpackage Html
  */
@@ -32,7 +32,7 @@ class Html
 	 * @throws \Aimeos\Client\Html\Exception If requested client implementation couldn't be found or initialisation fails
 	 */
 	public static function create( \Aimeos\MShop\ContextIface $context,
-		string $path, string $name = null ) : \Aimeos\Client\Html\Iface
+		string $path, ?string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		if( empty( $path ) ) {
 			throw new \Aimeos\Client\Html\Exception( 'Component path is empty', 400 );
@@ -63,7 +63,7 @@ class Html
 	 * @param string $classname Full name of the class for which the object should be returned
 	 * @param \Aimeos\Client\Html\Iface|null $client ExtJS client object
 	 */
-	public static function inject( string $classname, \Aimeos\Client\Html\Iface $client = null )
+	public static function inject( string $classname, ?\Aimeos\Client\Html\Iface $client = null )
 	{
 		self::$objects['\\' . ltrim( $classname, '\\' )] = $client;
 	}
@@ -80,8 +80,16 @@ class Html
 	protected static function addComponentDecorators( \Aimeos\MShop\ContextIface $context,
 		\Aimeos\Client\Html\Iface $client, string $path ) : \Aimeos\Client\Html\Iface
 	{
-		$localClass = str_replace( '/', '\\', ucwords( $path, '/' ) );
 		$config = $context->config();
+		$localClass = str_replace( '/', '\\', ucwords( $path, '/' ) );
+
+		$classprefix = '\\Aimeos\\Client\\Html\\' . $localClass . '\\Decorator\\';
+		$decorators = array_reverse( $config->get( 'client/html/' . $path . '/decorators/local', [] ) );
+		$client = self::addDecorators( $context, $client, $decorators, $classprefix );
+
+		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
+		$decorators = array_reverse( $config->get( 'client/html/' . $path . '/decorators/global', [] ) );
+		$client = self::addDecorators( $context, $client, $decorators, $classprefix );
 
 		/** client/html/common/decorators/default
 		 * Configures the list of decorators applied to all html clients
@@ -104,7 +112,7 @@ class Html
 		 * @param array List of decorator names
 		 * @since 2014.03
 		 */
-		$decorators = $config->get( 'client/html/common/decorators/default', [] );
+		$decorators = array_reverse( $config->get( 'client/html/common/decorators/default', [] ) );
 		$excludes = $config->get( 'client/html/' . $path . '/decorators/excludes', [] );
 
 		foreach( $decorators as $key => $name )
@@ -115,14 +123,6 @@ class Html
 		}
 
 		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
-		$client = self::addDecorators( $context, $client, $decorators, $classprefix );
-
-		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
-		$decorators = $config->get( 'client/html/' . $path . '/decorators/global', [] );
-		$client = self::addDecorators( $context, $client, $decorators, $classprefix );
-
-		$classprefix = '\\Aimeos\\Client\\Html\\' . $localClass . '\\Decorator\\';
-		$decorators = $config->get( 'client/html/' . $path . '/decorators/local', [] );
 		$client = self::addDecorators( $context, $client, $decorators, $classprefix );
 
 		return $client;

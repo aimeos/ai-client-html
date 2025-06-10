@@ -16,9 +16,7 @@ AimeosCatalogFilter = {
 	 */
 	async loadAttributeCounts() {
 
-		const nodes = $('.catalog-filter-attribute[data-counturl]');
-
-		for(const node of nodes) {
+		$('.catalog-filter-attribute[data-counturl]').each(async (idx, node) => {
 
 			await fetch($(node).data('counturl')).then(response => {
 				return response.json();
@@ -38,7 +36,7 @@ AimeosCatalogFilter = {
 					$(el).closest("fieldset.attr-sets").show();
 				});
 			});
-		}
+		})
 	},
 
 
@@ -47,9 +45,7 @@ AimeosCatalogFilter = {
 	 */
 	async loadSupplierCounts() {
 
-		const nodes = $('.catalog-filter-supplier[data-counturl]');
-
-		for(const node of nodes) {
+		$('.catalog-filter-supplier[data-counturl]').each(async (idx, node) => {
 
 			await fetch($(node).data('counturl')).then(response => {
 				return response.json();
@@ -65,7 +61,7 @@ AimeosCatalogFilter = {
 					}
 				});
 			});
-		}
+		})
 	},
 
 
@@ -74,9 +70,7 @@ AimeosCatalogFilter = {
 	 */
 	async loadTreeCounts() {
 
-		const nodes = $('.catalog-filter-tree[data-counturl]');
-
-		for(const node of nodes) {
+		$('.catalog-filter-tree[data-counturl]').each(async (idx, node) => {
 
 			await fetch($(node).data('counturl')).then(response => {
 				return response.json();
@@ -92,7 +86,7 @@ AimeosCatalogFilter = {
 					}
 				});
 			});
-		}
+		})
 	},
 
 
@@ -188,6 +182,7 @@ AimeosCatalogFilter = {
 
 		$(".catalog-filter-search .value").each((idx, el) => {
 			const url = $(el).data("url");
+			let cache = {} // workaround for re-rendering on Swiffy slider animation
 
 			autocomplete({
 				input: el,
@@ -200,8 +195,16 @@ AimeosCatalogFilter = {
 						update(data);
 					});
 				},
-				render: function(item) {
-					return $(item.html.trim()).get(0);
+				render: function(item, value) {
+					if(!cache[value]) {
+						cache = {}; cache[value] = {};
+					}
+
+					if(!cache[value][item.label]) {
+						cache[value][item.label] = $(item.html.trim()).get(0);
+					}
+
+					return cache[value][item.label];
 				}
 			});
 		});
@@ -468,6 +471,9 @@ AimeosCatalogFilter = {
 	 * Initialize the catalog filter actions
 	 */
 	init() {
+		if(this.once) return;
+		this.once = true;
+
 		this.onMenuHover();
 
 		this.onShowCategories();

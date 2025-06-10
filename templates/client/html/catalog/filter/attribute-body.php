@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 $enc = $this->encoder();
@@ -23,7 +23,8 @@ $enc = $this->encoder();
  * @since 2014.03
  */
 
-$linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+$multi = $this->config( 'client/html/catalog/multiroute', false );
+$linkKey = $multi && $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
 
 $attrIds = array_filter( $this->param( 'f_attrid', [] ) );
 $optIds = array_filter( $this->param( 'f_optid', [] ) );
@@ -31,10 +32,6 @@ $oneIds = array_filter( $this->param( 'f_oneid', [] ) );
 $attrTypes = $this->get( 'detailAttributeTypes', [] );
 $attrMap = $this->get( 'attributeMap', [] );
 $params = $this->param();
-
-$attrTypeName = function( string $code ) use ( $attrTypes ) {
-	return isset( $attrTypes[$code] ) && $attrTypes[$code]->getName() !== $attrTypes[$code]->getLabel() ? $attrTypes[$code]->getName() : $this->translate( 'client/code', $code );
-};
 
 
 ?>
@@ -86,7 +83,7 @@ $attrTypeName = function( string $code ) use ( $attrTypes ) {
 					<?php if( !empty( $attributes ) ) : ?>
 
 						<fieldset class="attr-sets attr-<?= $enc->attr( $attrType, $enc::TAINT, '-' ) ?>">
-							<legend class="attr-type"><?= $enc->html( $attrTypeName( $attrType ) ) ?></legend>
+							<legend class="attr-type"><?= $enc->html( $attrTypes[$attrType]?->getName() ?? $attrType ) ?></legend>
 							<ul class="attr-list"><!--
 
 								<?php foreach( $attributes as $id => $attribute ) : ?>

@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2020-2023
+ * @copyright Aimeos (aimeos.org), 2020-2025
  * @package Client
  * @subpackage Html
  */
@@ -28,7 +28,7 @@ class Context extends Base implements Iface
 	 * @return \Aimeos\Base\View\Iface The view object with the data required by the templates
 	 * @since 2020.07
 	 */
-	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$context = $this->context();
 		$locale = $context->locale();
@@ -42,6 +42,7 @@ class Context extends Base implements Iface
 		$view->contextSiteLabel = $locale->getSiteItem()->getLabel();
 		$view->contextSiteTheme = $locale->getSiteItem()->getTheme();
 		$view->contextSiteId = $locale->getSiteId();
+		$view->contextNonce = $context->nonce();
 
 		return $this->client()->data( $view, $tags, $expire );
 	}

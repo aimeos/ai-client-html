@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 /* Available data:
@@ -129,19 +129,21 @@ $params = ['path' => $name, 'd_name' => $name, 'd_prodid' => $this->productItem-
 
 
 ?>
-<div class="catalog-social">
+<ul class="catalog-social">
 <?php foreach( $list as $entry ) : $default = ( isset( $urls[$entry] ) ? $urls[$entry] : null ) ?>
 	<?php if( ( $link = $this->config( 'client/html/catalog/social/url/' . $entry, $default ) ) !== null ) : ?>
 		<?php $mediaItem = $this->productItem->getRefItems( 'media', 'default', 'default' )->first() ?>
-		<a class="social-button social-button-<?= $enc->attr( $entry ) ?>" rel="noopener"
-			href="<?= $enc->attr( sprintf( $link,
-				$enc->url( $this->link( 'client/html/catalog/detail/url', $params, ['absoluteUri' => true] ) ),
-				urlencode( $this->productItem->getName() ),
-				$mediaItem ? $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) : ''
-			) ) ?>"
-			title="<?= $enc->attr( $entry ) ?>"
-			target="_blank"
-		></a><!--
-	--><?php endif ?>
+		<li>
+			<a class="social-button social-button-<?= $enc->attr( $entry ) ?>" rel="noopener"
+				href="<?= $enc->attr( sprintf( $link,
+					$enc->url( $this->link( 'client/html/catalog/detail/url', $params, ['absoluteUri' => true] ) ),
+					urlencode( $this->productItem->getName() ),
+					$mediaItem ? $this->content( $mediaItem->getPreview( true ), $mediaItem->getFileSystem() ) : ''
+				) ) ?>"
+				title="<?= $enc->attr( $entry ) ?> <?= $enc->attr( $this->translate( 'client', '(opens in new window)' ) ) ?>"
+				target="_blank"
+			></a>
+		</li>
+	<?php endif ?>
 <?php endforeach ?>
-</div>
+</ul>

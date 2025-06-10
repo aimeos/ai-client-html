@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2025-02-08 13:35+0100\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/aimeos/aimeos-core/language/es_AR/)\n"
@@ -84,6 +84,9 @@ msgstr ""
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr ""
 
+msgid "(opens in new window)"
+msgstr ""
+
 #, php-format
 msgid "+ %1$s %2$s"
 msgstr ""
@@ -104,6 +107,9 @@ msgid "-%1$s%%"
 msgstr ""
 
 msgid "A non-recoverable error occured"
+msgstr ""
+
+msgid "Add"
 msgstr ""
 
 msgid "Add billing address"
@@ -135,19 +141,18 @@ msgstr ""
 msgid "At least one delivery address part is missing or invalid"
 msgstr ""
 
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr ""
+
+msgid "At least one product couldn't be added to the basket."
+msgstr ""
+
 msgid "Back"
 msgstr ""
 
 msgid "Basket"
 msgstr "Carrito"
-
-#, fuzzy
-msgid "Basket details"
-msgstr "Carrito"
-
-#, fuzzy
-msgid "Basket name"
-msgstr "Apellido"
 
 msgid "Basket saved sucessfully"
 msgstr ""
@@ -185,6 +190,9 @@ msgid "Categories"
 msgstr "Categorias"
 
 msgid "Change"
+msgstr ""
+
+msgid "Change coupons"
 msgstr ""
 
 msgid "Change payment"
@@ -228,6 +236,9 @@ msgid "Created"
 msgstr "Creado"
 
 msgid "Customer account"
+msgstr ""
+
+msgid "Decrease"
 msgstr ""
 
 msgid "Delete"
@@ -287,16 +298,8 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#, fuzzy
-msgid "First"
-msgstr "Nombre"
-
 msgid "First name"
 msgstr "Nombre"
-
-#, fuzzy
-msgid "Found products"
-msgstr "Productos sugeridos"
 
 msgid "GB999999973"
 msgstr ""
@@ -311,6 +314,10 @@ msgid "HH:mm"
 msgstr ""
 
 msgid "Highest price"
+msgstr ""
+
+#, php-format
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
 msgstr ""
 
 #, php-format
@@ -334,6 +341,9 @@ msgstr ""
 msgid "Included rebates"
 msgstr ""
 
+msgid "Increase"
+msgstr ""
+
 msgid "Interval"
 msgstr ""
 
@@ -355,10 +365,6 @@ msgstr ""
 msgid "Language"
 msgstr "Idioma"
 
-#, fuzzy
-msgid "Last"
-msgstr "Apellido"
-
 msgid "Last name"
 msgstr "Apellido"
 
@@ -367,6 +373,9 @@ msgstr ""
 
 msgid "Latest"
 msgstr "Último"
+
+msgid "Less"
+msgstr ""
 
 msgid "List view"
 msgstr ""
@@ -378,6 +387,9 @@ msgid "Mobile"
 msgstr ""
 
 msgid "Mobile number"
+msgstr ""
+
+msgid "More"
 msgstr ""
 
 msgid "More reviews"
@@ -449,6 +461,9 @@ msgstr ""
 msgid "Payment status"
 msgstr "Estado del pago"
 
+msgid "Percentage"
+msgstr ""
+
 msgid "Pin product"
 msgstr ""
 
@@ -500,47 +515,17 @@ msgstr ""
 msgid "Product"
 msgstr "Producto"
 
-#, fuzzy
-msgid "Product actions"
-msgstr "Producto"
-
-#, fuzzy
 msgid "Product attributes"
-msgstr "Atributos"
+msgstr ""
 
-#, fuzzy
-msgid "Product categories"
-msgstr "Categorias"
-
-#, fuzzy
-msgid "Product characteristics"
-msgstr "Características"
-
-#, fuzzy
-msgid "Product description"
-msgstr "Suscripciones"
-
-#, fuzzy
-msgid "Product filters"
-msgstr "Producto"
+msgid "Product downloads"
+msgstr ""
 
 msgid "Product image"
 msgstr ""
 
 msgid "Product information"
 msgstr ""
-
-#, fuzzy
-msgid "Product price"
-msgstr "Producto"
-
-#, fuzzy
-msgid "Product reviews"
-msgstr "Producto"
-
-#, fuzzy
-msgid "Product search"
-msgstr "Producto"
 
 msgid "Products you might be also interested in"
 msgstr ""
@@ -558,6 +543,9 @@ msgid "Reference"
 msgstr "Referencia"
 
 msgid "Relevance"
+msgstr ""
+
+msgid "Remove"
 msgstr ""
 
 msgid "Reset"
@@ -627,6 +615,9 @@ msgstr ""
 msgid "Sort by:"
 msgstr ""
 
+msgid "Stars"
+msgstr ""
+
 msgid "State"
 msgstr ""
 
@@ -668,10 +659,6 @@ msgstr ""
 msgid "Supplier information"
 msgstr ""
 
-#, fuzzy
-msgid "Supplier list"
-msgstr "Proveedores"
-
 msgid "Suppliers"
 msgstr "Proveedores"
 
@@ -711,6 +698,9 @@ msgid "Three month"
 msgstr ""
 
 msgid "Time frame"
+msgstr ""
+
+msgid "Title"
 msgstr ""
 
 msgid "Toggle fullscreen"
@@ -763,13 +753,13 @@ msgid "What do you think about the product"
 msgstr ""
 
 msgid "Y-m-d"
-msgstr ""
+msgstr "d/m/Y"
 
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "DD/MM/AAAA"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr ""
+msgstr "DD/MM/AAAA hh:mm"
 
 msgid "You are here:"
 msgstr ""
@@ -895,9 +885,6 @@ msgstr ""
 
 #~ msgid "Addresses"
 #~ msgstr "Direcciones"
-
-#~ msgid "Attributes"
-#~ msgstr "Atributos"
 
 #~ msgid "Options"
 #~ msgstr "Opciones"

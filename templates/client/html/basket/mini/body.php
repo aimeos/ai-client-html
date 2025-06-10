@@ -89,22 +89,15 @@ $enc = $this->encoder();
  * @see client/html/basket/standard/url/config
  */
 
-$pricefmt = $this->translate( 'client/code', 'price:default' );
-/// Price format with price value (%1$s) and currency (%2$s)
-$priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'client', '%1$s %2$s' );
+ $pricetype = 'price:default';
+ $pricefmt = $this->translate( 'client/code', $pricetype );
+ /// Price format with price value (%1$s) and currency (%2$s)
+ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'client', '%1$s %2$s' );
 
 
 ?>
 
 <div class="section aimeos basket-mini" data-jsonurl="<?= $enc->attr( $this->link( 'client/jsonapi/url' ) ) ?>">
-
-	<?php if( ( $errors = $this->get( 'miniErrorList', [] ) ) !== [] ) : ?>
-		<ul class="error-list">
-			<?php foreach( $errors as $error ) : ?>
-				<li class="error-item"><?= $enc->html( $error ) ?></li>
-			<?php endforeach ?>
-		</ul>
-	<?php endif ?>
 
 	<?php if( isset( $this->miniBasket ) ) : ?>
 		<?php
@@ -115,16 +108,16 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 
 		<div class="aimeos-overlay-offscreen"></div>
 
-		<div class="basket-mini-main menu">
+		<a class="basket-mini-main menu" href="#">
 			<span class="quantity"><?= $enc->html( $quantity ) ?></span>
 			<span class="value"><?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue() + $priceItem->getCosts(), $priceItem->getPrecision() ), $priceCurrency ) ) ?></span>
-		</div>
+		</a>
 
 		<div class="basket-mini-product zeynep">
 			<div class="header row">
-				<div class="col-2 close"></div>
-				<div class="col-8 name"><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></div>
 				<div class="col-2"></div>
+				<div class="col-8 name"><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></div>
+				<a class="col-2 close" href="#" title="<?= $enc->attr( $this->translate( 'client', 'Close' ) ) ?>"></a>
 			</div>
 
 			<div class="basket">
@@ -169,19 +162,19 @@ $priceFormat = $pricefmt !== 'price:default' ? $pricefmt : $this->translate( 'cl
 						<div class="col-7 name">
 							<?= $enc->html( $this->translate( 'client', 'Shipping' ), $enc::TRUST ) ?>
 						</div>
-						<div class="col-3 price">
+						<div class="col-4 price">
 							<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getCosts(), $priceItem->getPrecision() ), $priceCurrency ) ) ?>
 						</div>
-						<div class="col-2 action"></div>
+						<div class="col-1 action"></div>
 					</div>
 					<div class="total row">
 						<div class="col-7 name">
 							<?= $enc->html( $this->translate( 'client', 'Total' ), $enc::TRUST ) ?>
 								</div>
-						<div class="col-3 price">
+						<div class="col-4 price">
 							<?= $enc->html( sprintf( $priceFormat, $this->number( $priceItem->getValue() + $priceItem->getCosts(), $priceItem->getPrecision() ), $priceCurrency ) ) ?>
 						</div>
-						<div class="col-2 action"></div>
+						<div class="col-1 action"></div>
 					</div>
 				</div>
 			</div>

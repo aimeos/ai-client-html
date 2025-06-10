@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2022-2023
+ * @copyright Aimeos (aimeos.org), 2022-2025
  * @package Client
  * @subpackage Html
  */
@@ -67,8 +67,8 @@ class Standard
 
 		if( ( $id = $view->param( 'bas_id' ) ) != null && $view->param( 'bas_action' ) === 'delete' )
 		{
-			$manager = \Aimeos\MShop::create( $this->context(), 'order/basket' );
-			$filter = $manager->filter( true )->add( 'order.basket.id', '==', $id );
+			$manager = \Aimeos\MShop::create( $this->context(), 'basket' );
+			$filter = $manager->filter( true )->add( 'basket.id', '==', $id );
 			$manager->delete( $manager->search( $filter ) );
 
 			$msg = $view->translate( 'client', 'Saved basket removed sucessfully' );
@@ -85,13 +85,13 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
-	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$context = $this->context();
-		$manager = \Aimeos\MShop::create( $context, 'order/basket' );
-		$filter = $manager->filter()->order( '-order.basket.mtime' )
-			->add( 'order.basket.customerid', '==', $context->user()?->getId() )
-			->add( 'order.basket.name', '!=', '' );
+		$manager = \Aimeos\MShop::create( $context, 'basket' );
+		$filter = $manager->filter()->order( '-basket.mtime' )
+			->add( 'basket.customerid', '==', $context->user()?->getId() )
+			->add( 'basket.name', '!=', '' );
 
 		$view->basketItems = $manager->search( $filter );
 

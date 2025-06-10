@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 $enc = $this->encoder();
@@ -34,11 +34,12 @@ $enc = $this->encoder();
 				$entries = []; $idx = 1;
 				foreach( $this->get( 'stageCatPath', map() ) as $cat )
 				{
+					$url = $cat->getName( 'url' );
 					$entries[] = [
 						'@type' => 'ListItem',
 						'position' => $idx++,
 						'name' => $cat->getName(),
-						'item' => $this->link( 'client/html/catalog/tree/url', ['path' => $cat->getName( 'url' ), 'f_name' => $cat->getName( 'url' ), 'f_catid' => $cat->getId()], ['absoluteUri' => true] )
+						'item' => $this->link( 'client/html/catalog/tree/url', ['path' => $url, 'f_name' => $url, 'f_catid' => $cat->getId()], ['absoluteUri' => true] )
 					];
 				}
 			?>
@@ -57,8 +58,9 @@ $enc = $this->encoder();
 
 				<?php if( isset( $this->stageCatPath ) ) : ?>
 					<?php foreach( $this->get( 'stageCatPath', map() ) as $cat ) : ?>
+						<?php $name = $cat->getName( 'url' ) ?>
 						<li>
-							<a href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', array_merge( $this->get( 'stageParams', [] ), ['path' => $cat->getName( 'url' ), 'f_name' => $cat->getName( 'url' ), 'f_catid' => $cat->getId()] ) ) ) ?>">
+							<a href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', array_merge( $this->get( 'stageParams', [] ), ['path' => $name, 'f_name' => $name, 'f_catid' => $cat->getId()] ) ) ) ?>">
 								<?= $enc->html( $cat->getName(), $enc::TRUST ) ?>
 							</a>
 						</li>

@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  * @package Client
  * @subpackage Html
  */
@@ -83,7 +83,7 @@ abstract class Base
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface The view object with the data required by the templates
 	 */
-	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		foreach( $this->getSubClients() as $name => $subclient ) {
 			$view = $subclient->data( $view, $tags, $expire );
@@ -100,7 +100,7 @@ abstract class Base
 	 * @param string|null $name Name of the sub-client (Default if null)
 	 * @return \Aimeos\Client\Html\Iface Sub-client object
 	 */
-	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
+	public function getSubClient( string $type, ?string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		return $this->createSubClient( $this->clientType() . '/' . $type, $name );
 	}
@@ -290,7 +290,7 @@ abstract class Base
 	 * @param array &$tags List of tags the new tags will be added to
 	 * @param array $custom List of custom tags which are added too
 	 */
-	protected function addMetaItems( $items, string &$expire = null, array &$tags, array $custom = [] )
+	protected function addMetaItems( $items, ?string &$expire, array &$tags, array $custom = [] )
 	{
 		/** client/html/common/cache/tag-all
 		 * Adds tags for all items used in a cache entry
@@ -357,7 +357,7 @@ abstract class Base
 	 * @param array &$tags List of tags the new tags will be added to
 	 * @param array $custom List of custom tags which are added too
 	 */
-	protected function addMetaItemCatalog( \Aimeos\MShop\Catalog\Item\Iface $tree, string &$expire = null, array &$tags = [], array $custom = [] )
+	protected function addMetaItemCatalog( \Aimeos\MShop\Catalog\Item\Iface $tree, ?string &$expire = null, array &$tags = [], array $custom = [] )
 	{
 		$this->addMetaItems( $tree, $expire, $tags, $custom );
 
@@ -441,7 +441,7 @@ abstract class Base
 	 * @return \Aimeos\Client\Html\Iface Sub-part object
 	 * @throws \LogicException If class can't be instantiated
 	 */
-	protected function createSubClient( string $path, string $name = null ) : \Aimeos\Client\Html\Iface
+	protected function createSubClient( string $path, ?string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		$path = strtolower( $path );
 		$name = $name ?: $this->context->config()->get( 'client/html/' . $path . '/name', 'Standard' );
@@ -468,7 +468,7 @@ abstract class Base
 	 * @param string|null $second Second expiration date or null
 	 * @return string|null Expiration date
 	 */
-	protected function expires( string $first = null, string $second = null ) : ?string
+	protected function expires( ?string $first = null, ?string $second = null ) : ?string
 	{
 		return ( $first !== null ? ( $second !== null ? min( $first, $second ) : $first ) : $second );
 	}
@@ -481,7 +481,7 @@ abstract class Base
 	 * @param array $prefixes List of prefixes the parameters must start with
 	 * @return array Associative list of parameters used by the html client
 	 */
-	protected function getClientParams( array $params, array $prefixes = ['f_', 'l_', 'd_'] ) : array
+	protected function getClientParams( array $params, array $prefixes = ['f_', 'l_', 'd_', 'path'] ) : array
 	{
 		return map( $params )->filter( function( $val, $key ) use ( $prefixes ) {
 			return \Aimeos\Base\Str::starts( $key, $prefixes );
@@ -616,7 +616,7 @@ abstract class Base
 	 * @param string|null $expire Date/time string in "YYYY-MM-DD HH:mm:ss"	format when the cache entry expires
 	 * @return string Cached value
 	 */
-	protected function cache( string $type, string $uid, array $prefixes, string $confkey, string $value, array $tags, string $expire = null ) : string
+	protected function cache( string $type, string $uid, array $prefixes, string $confkey, string $value, array $tags, ?string $expire = null ) : string
 	{
 		$context = $this->context();
 		$config = $context->config();

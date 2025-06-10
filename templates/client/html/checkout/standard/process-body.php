@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 
@@ -39,7 +39,7 @@ $prefix = !$this->get( 'standardUrlExternal', true );
  *
  * @param array Associative list of field names and regular expressions
  * @since 2015.07
- * @see client/html/checkout/standard/address/validate
+ * @see client/html/common/address/validate
  */
 $defaultRegex = array( 'payment.cardno' => '^[0-9]{16,19}$', 'payment.cvv' => '^[0-9]{3}$' );
 $regex = $this->config( 'client/html/checkout/standard/process/validate', $defaultRegex );
@@ -151,7 +151,7 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 			<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->standardUrlPayment ) ?>">
 				<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ) ?>
 			</a>
-			<button class="btn btn-primary btn-lg btn-action">
+			<button type="submit" class="btn btn-primary btn-lg btn-action">
 				<?= $enc->html( $this->translate( 'client', 'Try again' ), $enc::TRUST ) ?>
 			</button>
 
@@ -160,7 +160,7 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 			<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->standardUrlPayment ) ?>">
 				<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ) ?>
 			</a>
-			<button class="btn btn-primary btn-lg btn-action" id="payment-button">
+			<button type="submit" class="btn btn-primary btn-lg btn-action" id="payment-button">
 				<?= $enc->html( $this->translate( 'client', 'Pay now' ), $enc::TRUST ) ?>
 			</button>
 
@@ -178,7 +178,7 @@ $regex = $this->config( 'client/html/checkout/standard/process/validate', $defau
 
 		<?php else : ?>
 
-			<button class="btn btn-primary btn-lg btn-action">
+			<button type="submit" class="btn btn-primary btn-lg btn-action">
 				<?= $enc->html( $this->translate( 'client', 'Proceed' ), $enc::TRUST ) ?>
 			</button>
 

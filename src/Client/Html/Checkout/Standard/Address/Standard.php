@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  * @package Client
  * @subpackage Html
  */
@@ -60,8 +60,8 @@ class Standard
 	 */
 	private string $subPartPath = 'client/html/checkout/standard/address/subparts';
 
-	/** client/html/checkout/standard/address/billing/name
-	 * Name of the billing part used by the checkout standard address client implementation
+	/** client/html/checkout/standard/address/payment/name
+	 * Name of the payment part used by the checkout standard address client implementation
 	 *
 	 * Use "Myname" if your class is named "\Aimeos\Client\Checkout\Standard\Address\Billing\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
@@ -79,7 +79,7 @@ class Standard
 	 * @param string Last part of the client class name
 	 * @since 2014.03
 	 */
-	private array $subPartNames = array( 'billing', 'delivery' );
+	private array $subPartNames = ['payment', 'delivery'];
 
 
 	/**
@@ -109,7 +109,7 @@ class Standard
 	 * @param string|null $name Name of the sub-client (Default if null)
 	 * @return \Aimeos\Client\Html\Iface Sub-client object
 	 */
-	public function getSubClient( string $type, string $name = null ) : \Aimeos\Client\Html\Iface
+	public function getSubClient( string $type, ?string $name = null ) : \Aimeos\Client\Html\Iface
 	{
 		/** client/html/checkout/standard/address/decorators/excludes
 		 * Excludes decorators added by the "common" option from the checkout standard address html client
@@ -201,10 +201,6 @@ class Standard
 		{
 			parent::init();
 
-			if( ( $param = $view->param( 'ca_extra' ) ) !== null ) {
-				$context->session()->set( 'client/html/checkout/standard/address/extra', (array) $param );
-			}
-
 			if( !isset( $view->standardStepActive )
 				&& !$this->call( 'isAvailable', \Aimeos\Controller\Frontend::create( $context, 'basket' )->get() )
 			) {
@@ -238,26 +234,42 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
-	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$context = $this->context();
 		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
 		$controller = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-		$orderAddressManager = \Aimeos\MShop::create( $context, 'order/address' );
+		$orderManager = \Aimeos\MShop::create( $context, 'order' );
 
 		$deliveryAddressItems = [];
 		$item = $controller->uses( ['customer/address'] )->get();
-		$paymentAddressItem = $orderAddressManager->create()->copyFrom( $item->getPaymentAddress() );
+		$paymentAddressItem = $orderManager->createAddress()->copyFrom( $item->getPaymentAddress() );
 
 		foreach( $item->getAddressItems() as $pos => $addrItem ) {
-			$deliveryAddressItems[$pos] = $orderAddressManager->create()->copyFrom( $addrItem );
+			$deliveryAddressItems[$pos] = $orderManager->createAddress()->copyFrom( $addrItem );
 		}
 
 		$view->addressCustomerItem = $item;
 		$view->addressPaymentItem = $paymentAddressItem;
 		$view->addressDeliveryItems = $deliveryAddressItems;
+		$view->addressSalutations = $this->salutations();
+		$view->addressCountries = $this->countries();
+		$view->addressStates = $this->states();
 		$view->addressLanguages = $localeManager->search( $localeManager->filter( true ) )
 			->col( 'locale.languageid', 'locale.languageid' );
+
+		return parent::data( $view, $tags, $expire );
+	}
+
+
+	/**
+	 * Returns the list of available countries
+	 *
+	 * @return array Associative list of two letter ISO country codes as keys and country names as values
+	 */
+	protected function countries() : array
+	{
+		$context = $this->context();
 
 		/** common/countries
 		 * List of available country codes for frontend and backend
@@ -277,16 +289,68 @@ class Standard
 		 * @param array List of two letter ISO country codes
 		 * @since 2023.04
 		 */
-		$countries = map( $view->config( 'common/countries', [] ) );
-		$view->addressCountries = $countries->flip()->map( function( $v, $key ) use ( $view ) {
-			return $view->translate( 'country', $key );
+		$countries = map( $context->config()->get( 'common/countries', [] ) );
+		$map = $countries->flip()->map( function( $v, $key ) use ( $context ) {
+			return $context->translate( 'country', $key );
 		} );
 
 		// Don't destroy custom order of countries, only sort if order is strictly alphabetical
 		if( $countries->is( $countries->clone()->sort(), true ) ) {
-			$view->addressCountries->asort();
+			$map->asort();
 		}
 
+		return $countries->all();
+	}
+
+
+	/**
+	 * Tests if an item is available and the step can be skipped
+	 *
+	 * @param \Aimeos\MShop\Order\Item\Iface $basket Basket object
+	 * @return bool TRUE if step can be skipped, FALSE if not
+	 */
+	protected function isAvailable( \Aimeos\MShop\Order\Item\Iface $basket ) : bool
+	{
+		return !empty( $basket->getAddress( 'payment' ) );
+	}
+
+
+	/**
+	 * Returns the list of configured salutation codes
+	 *
+	 * @return array List of salutation codes
+	 */
+	protected function salutations() : array
+	{
+		/** client/html/common/address/salutations
+		 * List of salutions the customer can select from
+		 *
+		 * The following salutations are available:
+		 *
+		 * * empty string for "unknown"
+		 * * company
+		 * * mr
+		 * * ms
+		 *
+		 * You can modify the list of salutation codes and remove the ones
+		 * which shouldn't be used or add new ones.
+		 *
+		 * @param array List of available salutation codes
+		 * @since 2024.04
+		 * @see common/countries
+		 * @see common/states
+		 */
+		return $this->context()->config()->get( 'client/html/common/address/salutations', [] );
+	}
+
+
+	/**
+	 * Returns the states map for the configured countries
+	 *
+	 * @return array Associative list of two letter ISO country codes as keys and map of state codes and state names as values
+	 */
+	protected function states() : array
+	{
 		/** common/states
 		 * List of available states for frontend and backend
 		 *
@@ -317,23 +381,7 @@ class Standard
 		 * @param array Multi-dimensional list ISO country codes and state codes/names
 		 * @since 2023.04
 		 */
-		$view->addressStates = $view->config( 'common/states', [] );
-
-		$view->addressExtra = $context->session()->get( 'client/html/checkout/standard/address/extra', [] );
-
-		return parent::data( $view, $tags, $expire );
-	}
-
-
-	/**
-	 * Tests if an item is available and the step can be skipped
-	 *
-	 * @param \Aimeos\MShop\Order\Item\Iface $basket Basket object
-	 * @return bool TRUE if step can be skipped, FALSE if not
-	 */
-	protected function isAvailable( \Aimeos\MShop\Order\Item\Iface $basket ) : bool
-	{
-		return !empty( $basket->getAddress( 'payment' ) );
+		return $this->context()->config()->get( 'common/states', [] );
 	}
 
 

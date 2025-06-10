@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 
@@ -30,7 +30,7 @@ class TestHelper
 	}
 
 
-	public static function view( $site = 'unittest', \Aimeos\Base\Config\Iface $config = null )
+	public static function view( $site = 'unittest', ?\Aimeos\Base\Config\Iface $config = null )
 	{
 		if( $config === null ) {
 			$config = self::context( $site )->config();
@@ -131,6 +131,10 @@ class TestHelper
 
 		$cache = new \Aimeos\Base\Cache\None();
 		$ctx->setCache( $cache );
+
+
+		$passwd = new \Aimeos\Base\Password\Standard();
+		$ctx->setPassword( $passwd );
 
 
 		$i18n = new \Aimeos\Base\Translation\None( 'de' );

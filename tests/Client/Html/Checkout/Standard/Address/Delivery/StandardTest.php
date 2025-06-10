@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 namespace Aimeos\Client\Html\Checkout\Standard\Address\Delivery;
@@ -48,8 +48,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 		$this->assertStringStartsWith( '<div class="checkout-standard-address-delivery', $output );
 
-		$this->assertGreaterThan( 0, count( $this->view->addressDeliveryMandatory ) );
-		$this->assertGreaterThan( 0, count( $this->view->addressDeliveryOptional ) );
+		$this->assertGreaterThan( 0, count( $this->view->addressDeliveryCss ) );
 	}
 
 
@@ -115,7 +114,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$this->assertEquals( 1, count( $this->view->addressDeliveryError ) );
-			$this->assertArrayHasKey( 'order.address.languageid', $this->view->addressDeliveryError );
+			$this->assertArrayHasKey( 'languageid', $this->view->addressDeliveryError );
 			return;
 		}
 
@@ -155,7 +154,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view = \TestHelper::view();
 
 		$config = $this->context->config();
-		$config->set( 'client/html/checkout/standard/address/validate/postal', '^[0-9]{5}$' );
+		$config->set( 'client/html/common/address/validate/postal', '^[0-9]{5}$' );
 		$helper = new \Aimeos\Base\View\Helper\Config\Standard( $this->view, $config );
 		$this->view->addHelper( 'config', $helper );
 
@@ -184,7 +183,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$this->assertEquals( 1, count( $this->view->addressDeliveryError ) );
-			$this->assertArrayHasKey( 'order.address.postal', $this->view->addressDeliveryError );
+			$this->assertArrayHasKey( 'postal', $this->view->addressDeliveryError );
 			return;
 		}
 
@@ -207,8 +206,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->onlyMethods( array( 'deleteAddressItem', 'store' ) )
 			->getMock();
 
-		$customerStub->expects( $this->once() )->method( 'deleteAddressItem' )->will( $this->returnValue( $customerStub ) );
-		$customerStub->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $customerStub ) );
+		$customerStub->expects( $this->once() )->method( 'deleteAddressItem' )->willReturn( $customerStub );
+		$customerStub->expects( $this->once() )->method( 'store' )->willReturn( $customerStub );
 
 		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Customer\Standard::class, $customerStub );
 

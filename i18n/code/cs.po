@@ -24,15 +24,15 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr ""
+msgstr "daň"
 
 #. PST tax name
 msgid "taxpst"
-msgstr ""
+msgstr "taxpst"
 
 #. GST tax name
 msgid "taxgst"
-msgstr ""
+msgstr "taxgst"
 
 #. Price type default
 msgid "price:default"
@@ -40,7 +40,7 @@ msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr ""
+msgstr "stocktype:default"
 
 #. Favorite action
 msgid "favorite"
@@ -120,7 +120,7 @@ msgstr "Číslo kreditní karty"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "payment.cvv"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
@@ -132,24 +132,24 @@ msgstr "Rok vypršení"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr ""
+msgstr "payment.expiry"
 
 #. Pick-up date
 msgid "date.value"
-msgstr ""
+msgstr "date.value"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr ""
+msgstr "time.hourminute"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr ""
+msgstr "supplier.code"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr ""
+msgstr "supplier.address"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr ""
+msgstr "delivery.type"

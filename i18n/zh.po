@@ -5,6 +5,7 @@
 # Translators:
 # Bruce Liu <zcon.bruce@gmail.com>, 2016
 # Hans He, 2022
+# Hans He, 2022
 # morgan chan <mrmmc8@gmail.com>, 2021
 # shihua16165 <shihua16165@163.com>, 2014
 # stevechen <steve.stevechen@gmail.com>, 2018
@@ -13,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2025-02-09 12:55+0100\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: Hans He, 2022\n"
+"Last-Translator: stevechen <steve.stevechen@gmail.com>, 2018\n"
 "Language-Team: Chinese (http://app.transifex.com/aimeos/aimeos-core/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,7 +67,7 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -78,7 +79,7 @@ msgstr "%1$s %2$s 折扣"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -88,9 +89,12 @@ msgstr "%1$s 在 %2$s"
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
 
+msgid "(opens in new window)"
+msgstr "(在新窗口中打开）"
+
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
@@ -110,8 +114,14 @@ msgstr "-%1$s%%"
 msgid "A non-recoverable error occured"
 msgstr "发生了不可恢复的错误"
 
+msgid "Add"
+msgstr "添加"
+
 msgid "Add billing address"
 msgstr "添加帳單地址"
+
+msgid "Add delivery address"
+msgstr "添加送货地址"
 
 msgid "Add to basket"
 msgstr "加入購物車"
@@ -139,6 +149,13 @@ msgstr "至少一筆帳單寄送地址被遺漏或無效"
 msgid "At least one delivery address part is missing or invalid"
 msgstr "至少一筆商品寄送地址被遺漏或無效"
 
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr "至少有一个付款地址部分缺失或无效"
+
+msgid "At least one product couldn't be added to the basket."
+msgstr "至少有一个产品无法添加到购物篮中。"
+
 msgid "Back"
 msgstr "返回"
 
@@ -146,13 +163,13 @@ msgid "Basket"
 msgstr "購物車"
 
 msgid "Basket details"
-msgstr ""
+msgstr "购物篮详情"
 
 msgid "Basket name"
-msgstr ""
+msgstr "篮筐名称"
 
 msgid "Basket saved sucessfully"
-msgstr ""
+msgstr "成功保存篮筐"
 
 msgid "Billing address"
 msgstr "帳單地址"
@@ -169,7 +186,7 @@ msgid "Birthday"
 msgstr "生日"
 
 msgid "Breadcrumb navigation"
-msgstr ""
+msgstr "面包屑导航"
 
 msgid "Bulk order"
 msgstr "批量訂購"
@@ -189,8 +206,26 @@ msgstr "商品型錄"
 msgid "Change"
 msgstr "變更"
 
+msgid "Change address"
+msgstr "更改地址"
+
+msgid "Change billing address"
+msgstr "更改账单地址"
+
+msgid "Change coupons"
+msgstr "更改优惠券"
+
+msgid "Change delivery"
+msgstr "变更交付"
+
+msgid "Change delivery address"
+msgstr "更改送货地址"
+
 msgid "Change payment"
 msgstr "變更支付"
+
+msgid "Change products"
+msgstr "更换产品"
 
 msgid "Characteristics"
 msgstr "特色"
@@ -231,6 +266,9 @@ msgstr "創建"
 
 msgid "Customer account"
 msgstr "用戶帳號"
+
+msgid "Decrease"
+msgstr "减少"
 
 msgid "Delete"
 msgstr "删除"
@@ -296,13 +334,13 @@ msgid "First name"
 msgstr "名"
 
 msgid "Found products"
-msgstr ""
+msgstr "找到的产品"
 
 msgid "GB999999973"
 msgstr "GB999999973"
 
 msgid "Go to page"
-msgstr ""
+msgstr "转至页面"
 
 msgid "Grid view"
 msgstr "網格顯示"
@@ -312,6 +350,15 @@ msgstr "小時:分鐘"
 
 msgid "Highest price"
 msgstr "最高价"
+
+#, php-format
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
+msgstr "我接受<a href=\"%1$s\" target=\"_blank\" title=\"条款和条件（在新标签页打开）\">条款和条件</a>、<a href=\"%2$s\" target=\"_blank\" title=\"隐私政策（在新标签页打开）\">隐私政策</a>和<a href=\"%3$s\" target=\"_blank\" title=\"取消政策（在新标签页打开）\">取消政策</a>。"
 
 #, php-format
 msgid ""
@@ -339,6 +386,9 @@ msgstr "包含 %1$s%% 增值稅"
 
 msgid "Included rebates"
 msgstr "折扣過後"
+
+msgid "Increase"
+msgstr "增加"
 
 msgid "Interval"
 msgstr "間隔"
@@ -373,6 +423,9 @@ msgstr "最近觀看"
 msgid "Latest"
 msgstr "最新"
 
+msgid "Less"
+msgstr "更少"
+
 msgid "List view"
 msgstr "列表顯示"
 
@@ -380,10 +433,13 @@ msgid "Lowest price"
 msgstr "最低价"
 
 msgid "Mobile"
-msgstr ""
+msgstr "移动电话"
 
 msgid "Mobile number"
-msgstr ""
+msgstr "手机号码"
+
+msgid "More"
+msgstr "更多"
 
 msgid "More reviews"
 msgstr "更多評論"
@@ -456,6 +512,9 @@ msgstr "支付手續費"
 msgid "Payment status"
 msgstr "支付狀態"
 
+msgid "Percentage"
+msgstr "百分比"
+
 msgid "Pin product"
 msgstr "固定产品"
 
@@ -493,7 +552,7 @@ msgid "Price"
 msgstr "價格"
 
 msgid "Price filter"
-msgstr ""
+msgstr "价格过滤器"
 
 msgid "Price range"
 msgstr "价格范围"
@@ -508,37 +567,40 @@ msgid "Product"
 msgstr "商品"
 
 msgid "Product actions"
-msgstr ""
+msgstr "产品行动"
 
 msgid "Product attributes"
-msgstr ""
+msgstr "产品属性"
 
 msgid "Product categories"
-msgstr ""
+msgstr "产品类别"
 
 msgid "Product characteristics"
-msgstr ""
+msgstr "产品特点"
 
 msgid "Product description"
-msgstr ""
+msgstr "产品说明"
+
+msgid "Product downloads"
+msgstr "产品下载"
 
 msgid "Product filters"
-msgstr ""
+msgstr "产品过滤器"
 
 msgid "Product image"
 msgstr "商品圖片"
 
 msgid "Product information"
-msgstr ""
+msgstr "产品信息"
 
 msgid "Product price"
 msgstr "商品價格"
 
 msgid "Product reviews"
-msgstr ""
+msgstr "产品评论"
 
 msgid "Product search"
-msgstr ""
+msgstr "产品搜索"
 
 msgid "Products you might be also interested in"
 msgstr "您可能會有興趣的商品"
@@ -557,6 +619,9 @@ msgstr "參考"
 
 msgid "Relevance"
 msgstr "關聯"
+
+msgid "Remove"
+msgstr "移除"
 
 msgid "Reset"
 msgstr "重置"
@@ -581,10 +646,10 @@ msgid "Save"
 msgstr "保存"
 
 msgid "Saved basket removed sucessfully"
-msgstr ""
+msgstr "保存的篮子已成功移除"
 
 msgid "Saved baskets"
-msgstr ""
+msgstr "保存的篮子"
 
 msgid "Search"
 msgstr "搜尋"
@@ -621,10 +686,13 @@ msgid "Show"
 msgstr "顯示"
 
 msgid "Sort by"
-msgstr ""
+msgstr "排序方式"
 
 msgid "Sort by:"
 msgstr "排序方式："
+
+msgid "Stars"
+msgstr "明星"
 
 msgid "State"
 msgstr "狀態"
@@ -668,7 +736,7 @@ msgid "Supplier information"
 msgstr "供應商資訊"
 
 msgid "Supplier list"
-msgstr ""
+msgstr "供应商名单"
 
 msgid "Suppliers"
 msgstr "供應商"
@@ -710,6 +778,9 @@ msgstr "三個月"
 
 msgid "Time frame"
 msgstr "時間範圍"
+
+msgid "Title"
+msgstr "標題"
 
 msgid "Toggle fullscreen"
 msgstr "切換全螢幕"
@@ -764,10 +835,10 @@ msgid "Y-m-d"
 msgstr "Y-m-d"
 
 msgid "YYYY-MM-DD"
-msgstr "YYYY-MM-DD "
+msgstr "日-月-年"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr "YYYY-MM-DD HH:mm"
+msgstr "日-月-年 时：分"
 
 msgid "You are here:"
 msgstr "您現在的位置："
@@ -781,7 +852,7 @@ msgid "You can only watch up to %1$s products"
 msgstr "您最多可关注 %1$s 个产品"
 
 msgid "You must log in first"
-msgstr ""
+msgstr "您必须先登录"
 
 msgid "You will now be forwarded to the next step"
 msgstr "正在转到下一步"

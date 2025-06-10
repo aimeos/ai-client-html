@@ -7,13 +7,14 @@
 # Translators:
 # Translators:
 # Translators:
+# Aimeos, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
 "PO-Revision-Date: 2015-07-09 20:34+0000\n"
-"Last-Translator: Aimeos <aimeos@aimeos.org>\n"
+"Last-Translator: Aimeos, 2025\n"
 "Language-Team: Swedish (http://app.transifex.com/aimeos/aimeos-core/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,15 +24,15 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr "moms"
+msgstr "Moms"
 
 #. PST tax name
 msgid "taxpst"
-msgstr "PST"
+msgstr "Moms PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr "GST"
+msgstr "Moms GST"
 
 #. Price type default
 msgid "price:default"
@@ -119,7 +120,7 @@ msgstr "Kreditkortsnummer"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "Verifieringsnummer"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
@@ -131,7 +132,7 @@ msgstr "Giltigt till år"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr ""
+msgstr "Utgångsdatum (MMÅÅ)"
 
 #. Pick-up date
 msgid "date.value"

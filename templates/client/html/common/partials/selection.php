@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2014-2023
+ * @copyright Aimeos (aimeos.org), 2014-2025
  */
 
 /* Available data:
@@ -113,7 +113,7 @@ $attrTypes = $this->get( 'attributeTypes', [] );
 		<?php $list = map( $list )->uasort( $sortfcn ) ?>
 
 		<li class="select-item <?= $enc->attr( $code . ' ' . $this->config( 'client/html/catalog/selection/type/' . $code, 'select' ) ) ?>">
-			<label class="select-name"><?= $enc->html( $attrTypes[$code]?->getName() ?: $this->translate( 'client/code', $code ) ) ?></label>
+			<label class="select-name"><?= $enc->html( isset( $attrTypes[$code] ) ? $attrTypes[$code]->getName() : $this->translate( 'client/code', $code ) ) ?></label>
 
 			<?php if( $hint = $this->translate( 'client/code', $code . '-hint', null, 0, false ) ) : ?>
 				<div class="select-hint"><?= $enc->html( $hint ) ?></div>
@@ -159,7 +159,7 @@ $attrTypes = $this->get( 'attributeTypes', [] );
 
 				<?php else : ?>
 
-					<select id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $code ) ?>" class="form-control select-list"
+					<select id="select-<?= $enc->attr( $this->productItem->getId() . '-' . $code ) ?>" class="form-select select-list"
 						name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'attrvarid', $code] ) ) ?>"
 						data-index="<?= $index++ ?>" data-type="<?= $enc->attr( $code ) ?>"
 					>

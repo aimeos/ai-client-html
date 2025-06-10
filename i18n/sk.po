@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2025-02-09 12:55+0100\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Tomas G <tomas.gmitro@gmail.com>, 2016\n"
 "Language-Team: Slovak (http://app.transifex.com/aimeos/aimeos-core/language/sk/)\n"
@@ -30,10 +30,10 @@ msgstr[3] "%1$d artikle"
 #, php-format
 msgid "%1$d review"
 msgid_plural "%1$d reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%1$d recenzia"
+msgstr[1] "%1$d recenzia"
+msgstr[2] "%1$d recenzia"
+msgstr[3] "%1$d recenzia"
 
 #, php-format
 msgid ""
@@ -68,7 +68,7 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -80,7 +80,7 @@ msgstr "%1$s %2$s rabat"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -90,13 +90,16 @@ msgstr "%1$s dňa %2$s"
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
 
+msgid "(opens in new window)"
+msgstr "(otvorí sa v novom okne)"
+
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -110,10 +113,16 @@ msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
-msgstr ""
+msgstr "Vyskytla sa neopraviteľná chyba"
+
+msgid "Add"
+msgstr "Pridať"
 
 msgid "Add billing address"
-msgstr ""
+msgstr "Pridanie fakturačnej adresy"
+
+msgid "Add delivery address"
+msgstr "Pridanie dodacej adresy"
 
 msgid "Add to basket"
 msgstr "Pridať do košíka"
@@ -125,13 +134,13 @@ msgid "Additional 2"
 msgstr "Dodatočne informácie 2"
 
 msgid "Apply"
-msgstr ""
+msgstr "Aplikovať"
 
 msgid "Article"
-msgstr ""
+msgstr "Článok"
 
 msgid "Article no."
-msgstr ""
+msgstr "Článok č."
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
@@ -141,6 +150,13 @@ msgstr "Aspoň jedna časť fakturačnej adresy je neplatná alebo nevyplnená."
 msgid "At least one delivery address part is missing or invalid"
 msgstr "Aspoň jedna časť adresy doručenia je neplatná alebo nevyplnená."
 
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr "Chýba aspoň jedna časť platobnej adresy alebo je neplatná"
+
+msgid "At least one product couldn't be added to the basket."
+msgstr "Do košíka nebolo možné pridať aspoň jeden produkt."
+
 msgid "Back"
 msgstr "Späť"
 
@@ -148,13 +164,13 @@ msgid "Basket"
 msgstr "Košík"
 
 msgid "Basket details"
-msgstr ""
+msgstr "Podrobnosti o koši"
 
 msgid "Basket name"
-msgstr ""
+msgstr "Názov koša"
 
 msgid "Basket saved sucessfully"
-msgstr ""
+msgstr "Kôš úspešne uložený"
 
 msgid "Billing address"
 msgstr "Fakturačná adresa"
@@ -171,10 +187,10 @@ msgid "Birthday"
 msgstr "Dátum narodenia"
 
 msgid "Breadcrumb navigation"
-msgstr ""
+msgstr "Drobčeková navigácia"
 
 msgid "Bulk order"
-msgstr ""
+msgstr "Hromadná objednávka"
 
 msgid "Bundled products"
 msgstr "Združené produkty"
@@ -191,8 +207,26 @@ msgstr "Kategórie"
 msgid "Change"
 msgstr "Zmeniť"
 
+msgid "Change address"
+msgstr "Zmena adresy"
+
+msgid "Change billing address"
+msgstr "Zmena fakturačnej adresy"
+
+msgid "Change coupons"
+msgstr "Zmenové kupóny"
+
+msgid "Change delivery"
+msgstr "Doručenie zmeny"
+
+msgid "Change delivery address"
+msgstr "Zmena doručovacej adresy"
+
 msgid "Change payment"
 msgstr "Zmeniť spôsob platby"
+
+msgid "Change products"
+msgstr "Zmena produktov"
 
 msgid "Characteristics"
 msgstr "Charakteristika"
@@ -234,11 +268,14 @@ msgstr "Vytvorené"
 msgid "Customer account"
 msgstr "Používateľský účet"
 
+msgid "Decrease"
+msgstr "Zníženie"
+
 msgid "Delete"
 msgstr "Zmazať"
 
 msgid "Delete item"
-msgstr ""
+msgstr "Odstrániť položku"
 
 msgid "Delivery"
 msgstr "Doručenie"
@@ -248,7 +285,7 @@ msgstr "Adresa doručenia"
 
 #, php-format
 msgid "Delivery address deleted successfully"
-msgstr ""
+msgstr "Doručovacia adresa úspešne odstránená"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
@@ -259,7 +296,7 @@ msgid "Delivery address part \"%1$s\" is missing"
 msgstr "Chýba časť adresy doručenia - \"%1$s\""
 
 msgid "Delivery within"
-msgstr ""
+msgstr "Dodanie v rámci"
 
 msgid "Description"
 msgstr "Popis"
@@ -268,7 +305,7 @@ msgid "Details"
 msgstr "Detaily"
 
 msgid "Don't store address"
-msgstr ""
+msgstr "Neukladajte adresu"
 
 msgid "Downloads"
 msgstr "Na stiahnutie"
@@ -298,22 +335,31 @@ msgid "First name"
 msgstr "Krstné meno"
 
 msgid "Found products"
-msgstr ""
+msgstr "Nájdené produkty"
 
 msgid "GB999999973"
-msgstr ""
+msgstr "GB999999973"
 
 msgid "Go to page"
-msgstr ""
+msgstr "Prejsť na stránku"
 
 msgid "Grid view"
-msgstr ""
+msgstr "Zobrazenie mriežky"
 
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 msgid "Highest price"
-msgstr ""
+msgstr "Najvyššia cena"
+
+#, php-format
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
+msgstr "Súhlasím s <a href=\"%1$s\" target=\"_blank\" title=\"obchodné podmienky (otvorí sa v novej záložke)\">obchodnými podmienkami</a>, <a href=\"%2$s\" target=\"_blank\" title=\"zásady ochrany osobných údajov (otvorí sa v novej záložke)\">zásadami ochrany osobných údajov</a> a <a href=\"%3$s\" target=\"_blank\" title=\"zásady storna (otvorí sa v novej záložke)\">zásadami storna</a>"
 
 #, php-format
 msgid ""
@@ -323,31 +369,34 @@ msgid ""
 "policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
 "title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
 "policy</a>"
-msgstr ""
+msgstr "Súhlasím s <a href=\"%1$s\" target=\"_blank\" title=\"zmluvné podmienky\" alt=\"zmluvné podmienky\">zmluvnými podmienkami</a>, <a href=\"%2$s\" target=\"_blank\" title=\"zásady ochrany osobných údajov\" alt=\"zásady ochrany osobných údajov\">zásadami ochrany osobných údajov</a> a <a href=\"%3$s\" target=\"_blank\" title=\"zásady storna\" alt=\"zásady storna\">zásadami storna</a>"
 
 msgid "If back in stock"
-msgstr ""
+msgstr "Ak je opäť na sklade"
 
 msgid "If price decreases"
-msgstr ""
+msgstr "Ak sa cena zníži"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "Vrátane %1$s%% %2$s"
 
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr ""
+msgstr "Vrátane %1$s%% DPH"
 
 msgid "Included rebates"
-msgstr ""
+msgstr "Zahrnuté zľavy"
+
+msgid "Increase"
+msgstr "Zvýšenie"
 
 msgid "Interval"
-msgstr ""
+msgstr "Interval"
 
 #, php-format
 msgid "Invalid characters in client name \"%1$s\""
-msgstr ""
+msgstr "Neplatné znaky v názve klienta \"%1$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
@@ -370,120 +419,129 @@ msgid "Last name"
 msgstr "Priezvisko"
 
 msgid "Last seen"
-msgstr ""
+msgstr "Naposledy videné"
 
 msgid "Latest"
-msgstr ""
+msgstr "Najnovšie"
+
+msgid "Less"
+msgstr "Menej"
 
 msgid "List view"
-msgstr ""
+msgstr "Zobrazenie zoznamu"
 
 msgid "Lowest price"
-msgstr ""
+msgstr "Najnižšia cena"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Mobilný portál"
 
 msgid "Mobile number"
-msgstr ""
+msgstr "Mobilné číslo"
+
+msgid "More"
+msgstr "Viac na"
 
 msgid "More reviews"
-msgstr ""
+msgstr "Viac recenzií"
 
 msgid "Name"
 msgstr "Meno"
 
 msgid "New"
-msgstr ""
+msgstr "Nový"
 
 msgid "New delivery address"
-msgstr ""
+msgstr "Nová dodacia adresa"
 
 msgid "Next"
 msgstr "Ďalší"
 
 msgid "Next order"
-msgstr ""
+msgstr "Ďalšia objednávka"
 
 #, php-format
 msgid ""
 "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
 "try again with a different keyword."
-msgstr ""
+msgstr "Nenašli sa žiadne články pre <span class=\"searchstring\">\"%1$s\"</span>. Skúste to prosím znova s iným kľúčovým slovom."
 
 msgid "No order ID available in session"
-msgstr ""
+msgstr "V relácii nie je k dispozícii ID objednávky"
 
 #, php-format
 msgid "No view available"
-msgstr ""
+msgstr "Nie je k dispozícii žiadne zobrazenie"
 
 msgid "One month"
-msgstr ""
+msgstr "Jeden mesiac"
 
 msgid "One week"
-msgstr ""
+msgstr "Jeden týždeň"
 
 msgid "Open submenu"
-msgstr ""
+msgstr "Otvoriť podmenu"
 
 msgid "Order ID"
-msgstr ""
+msgstr "ID objednávky"
 
 msgid "Order details"
-msgstr ""
+msgstr "Podrobnosti o objednávke"
 
 msgid "Order history"
-msgstr ""
+msgstr "História objednávok"
 
 msgid "Order status"
-msgstr ""
+msgstr "Stav objednávky"
 
 msgid "Other customers also bought"
-msgstr ""
+msgstr "Ostatní zákazníci tiež kúpili"
 
 #, php-format
 msgid "Page %1$d of %2$d"
 msgstr "Strana %1$d z %2$d"
 
 msgid "Pay now"
-msgstr ""
+msgstr "Zaplaťte teraz"
 
 msgid "Payment"
-msgstr ""
+msgstr "Platba"
 
 msgid "Payment costs"
-msgstr ""
+msgstr "Platobné náklady"
 
 msgid "Payment status"
 msgstr "Stav platby"
 
+msgid "Percentage"
+msgstr "Percento"
+
 msgid "Pin product"
-msgstr ""
+msgstr "Výrobok na špendlíky"
 
 msgid "Pinned products"
-msgstr ""
+msgstr "Pripnuté produkty"
 
 msgid "Please accept the terms and conditions"
-msgstr ""
+msgstr "Prosím, prijmite podmienky a ustanovenia"
 
 msgid "Please check your order"
-msgstr ""
+msgstr "Skontrolujte svoju objednávku"
 
 msgid "Please choose your delivery method"
-msgstr ""
+msgstr "Vyberte si spôsob doručenia"
 
 msgid "Please choose your payment method"
-msgstr ""
+msgstr "Vyberte si spôsob platby"
 
 msgid "Please enter at least three characters"
-msgstr ""
+msgstr "Zadajte aspoň tri znaky"
 
 msgid "Please enter your payment details"
-msgstr ""
+msgstr "Zadajte svoje platobné údaje"
 
 msgid "Please select"
-msgstr ""
+msgstr "Prosím, vyberte"
 
 msgid "Postal code"
 msgstr "Poštové smerové číslo"
@@ -495,55 +553,58 @@ msgid "Price"
 msgstr "Cena"
 
 msgid "Price filter"
-msgstr ""
+msgstr "Cenový filter"
 
 msgid "Price range"
-msgstr ""
+msgstr "Cenové rozpätie"
 
 msgid "Proceed"
-msgstr ""
+msgstr "Postupujte podľa"
 
 msgid "Processing the payment failed"
-msgstr ""
+msgstr "Spracovanie platby zlyhalo"
 
 msgid "Product"
 msgstr "Produkt"
 
 msgid "Product actions"
-msgstr ""
+msgstr "Akcie na produkte"
 
 msgid "Product attributes"
-msgstr ""
+msgstr "Atribúty produktu"
 
 msgid "Product categories"
-msgstr ""
+msgstr "Kategórie produktov"
 
 msgid "Product characteristics"
-msgstr ""
+msgstr "Charakteristika produktu"
 
 msgid "Product description"
-msgstr ""
+msgstr "Popis produktu"
+
+msgid "Product downloads"
+msgstr "Stiahnutie produktu"
 
 msgid "Product filters"
-msgstr ""
+msgstr "Filtre produktu"
 
 msgid "Product image"
-msgstr ""
+msgstr "Obrázok produktu"
 
 msgid "Product information"
-msgstr ""
+msgstr "Informácie o výrobku"
 
 msgid "Product price"
 msgstr "Cena produktu"
 
 msgid "Product reviews"
-msgstr ""
+msgstr "Recenzie produktov"
 
 msgid "Product search"
-msgstr ""
+msgstr "Vyhľadávanie produktov"
 
 msgid "Products you might be also interested in"
-msgstr ""
+msgstr "Produkty, ktoré by vás tiež mohli zaujímať"
 
 msgid "Qty"
 msgstr "Počet"
@@ -552,29 +613,32 @@ msgid "Quantity"
 msgstr "Množstvo"
 
 msgid "Rating"
-msgstr ""
+msgstr "Hodnotenie"
 
 msgid "Reference"
-msgstr ""
+msgstr "Odkaz"
 
 msgid "Relevance"
 msgstr "Relevantnosť"
 
+msgid "Remove"
+msgstr "Odstránenie stránky"
+
 msgid "Reset"
-msgstr ""
+msgstr "Obnovenie"
 
 #, php-format
 msgid "Result for \"%1$s\""
-msgstr ""
+msgstr "Výsledok pre \"%1$s\""
 
 msgid "Reviews"
-msgstr ""
+msgstr "Recenzie"
 
 msgid "SKU or article name"
-msgstr ""
+msgstr "SKU alebo názov výrobku"
 
 msgid "Sale"
-msgstr ""
+msgstr "Predaj"
 
 msgid "Salutation"
 msgstr "Oslovenie"
@@ -583,10 +647,10 @@ msgid "Save"
 msgstr "Uložiť"
 
 msgid "Saved basket removed sucessfully"
-msgstr ""
+msgstr "Uložený kôš úspešne odstránený"
 
 msgid "Saved baskets"
-msgstr ""
+msgstr "Uložené koše"
 
 msgid "Search"
 msgstr "Hľadať"
@@ -596,40 +660,43 @@ msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d arti
 msgid_plural ""
 "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
 "articles)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Výsledok vyhľadávania pre <span class=\"searchstring\">\"%1$s\"</span> (%2$d článok)"
+msgstr[1] "Výsledok vyhľadávania pre <span class=\"searchstring\">\"%1$s\"</span> (%2$d článok)"
+msgstr[2] "Výsledok vyhľadávania pre <span class=\"searchstring\">\"%1$s\"</span> (%2$d článok)"
+msgstr[3] "Výsledok vyhľadávania pre <span class=\"searchstring\">\"%1$s\"</span> (%2$d článok)"
 
 msgid "Select country"
-msgstr ""
+msgstr "Vyberte krajinu"
 
 msgid "Select currency"
-msgstr ""
+msgstr "Vyberte menu"
 
 msgid "Select language"
-msgstr ""
+msgstr "Výber jazyka"
 
 msgid "Select salutation"
-msgstr ""
+msgstr "Vyberte pozdrav"
 
 msgid "Select state"
-msgstr ""
+msgstr "Vyberte štát"
 
 msgid "Share"
-msgstr ""
+msgstr "Zdieľať"
 
 msgid "Shipping"
-msgstr ""
+msgstr "Preprava"
 
 msgid "Show"
-msgstr ""
+msgstr "Zobraziť"
 
 msgid "Sort by"
-msgstr ""
+msgstr "Zoradiť podľa"
 
 msgid "Sort by:"
 msgstr "Zoradiť podľa"
+
+msgid "Stars"
+msgstr "Hviezdy"
 
 msgid "State"
 msgstr "Štát"
@@ -639,238 +706,241 @@ msgstr "Zásoba"
 
 #, php-format
 msgid "Stock: %1$s, %2$s"
-msgstr ""
+msgstr "Sklad: %1$s, %2$s"
 
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
-msgstr ""
+msgstr "Skladom: %1$s, %2$s, späť na %3$s"
 
 msgid "Street"
 msgstr "Ulica"
 
 msgid "Sub-total"
-msgstr ""
+msgstr "Medzisúčet"
 
 msgid "Submit"
-msgstr ""
+msgstr "Odoslať"
 
 msgid "Subscription ID"
-msgstr ""
+msgstr "ID predplatného"
 
 msgid "Subscription details"
-msgstr ""
+msgstr "Podrobnosti o predplatnom"
 
 msgid "Subscriptions"
-msgstr ""
+msgstr "Predplatné"
 
 msgid "Suggested products"
-msgstr ""
+msgstr "Navrhované produkty"
 
 msgid "Sum"
-msgstr ""
+msgstr "Suma"
 
 msgid "Supplier information"
-msgstr ""
+msgstr "Informácie o dodávateľovi"
 
 msgid "Supplier list"
-msgstr ""
+msgstr "Zoznam dodávateľov"
 
 msgid "Suppliers"
-msgstr ""
+msgstr "Dodávatelia"
 
 msgid "Take a look"
-msgstr ""
+msgstr "Pozrite sa"
 
 msgid "Telephone"
 msgstr "Telefón"
 
 msgid "Terms and conditions"
-msgstr ""
+msgstr "Podmienky a pravidlá"
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
+msgstr "Ďakujeme vám za vašu objednávku a autorizáciu platby.\nE-mail s podrobnosťami o objednávke vám bude zaslaný v najbližších minútach."
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
+msgstr "Ďakujeme vám za vašu objednávku.\nVašu platbu sme prijali a v najbližších minútach vám bude zaslaný e-mail s podrobnosťami objednávky."
 
 msgid "Thank you for your review!"
-msgstr ""
+msgstr "Ďakujeme vám za vašu recenziu!"
 
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr ""
+msgstr "Objednávka bola zrušená.\nChcete svoju objednávku zopakovať?"
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr ""
+msgstr "Potvrdenie o platbe za vašu objednávku sa ešte očakáva.\nHneď ako bude platba schválená, dostanete e-mail."
 
 msgid "Three month"
-msgstr ""
+msgstr "Tri mesiace"
 
 msgid "Time frame"
-msgstr ""
+msgstr "Časový rámec"
+
+msgid "Title"
+msgstr "Titulok"
 
 msgid "Toggle fullscreen"
-msgstr ""
+msgstr "Prepnutie na celú obrazovku"
 
 msgid "Total"
 msgstr "Celkom"
 
 msgid "Try again"
-msgstr ""
+msgstr "Skúste to znova"
 
 msgid "Two weeks"
-msgstr ""
+msgstr "Dva týždne"
 
 #, php-format
 msgid "Unable to create an account: %1$s"
-msgstr ""
+msgstr "Nie je možné vytvoriť konto: %1$s"
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
-msgstr ""
+msgstr "Nie je možné uložiť adresu pre zákazníka \"%1$s\": %2$s"
 
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr ""
+msgstr "Žiaľ, platba za vašu objednávku bola zamietnutá.\nChcete to skúsiť znova?"
 
 msgid "Update"
-msgstr ""
+msgstr "Aktualizácia"
 
 msgid "Variant"
-msgstr ""
+msgstr "Variant"
 
 msgid "Vat ID"
 msgstr "IČ DPH"
 
 msgid "Vendor response"
-msgstr ""
+msgstr "Odpoveď predajcu"
 
 msgid "Watch"
-msgstr ""
+msgstr "Sledujte stránku"
 
 msgid "Watched products"
-msgstr ""
+msgstr "Sledované produkty"
 
 msgid "Web site"
-msgstr ""
+msgstr "Webové sídlo"
 
 msgid "What do you think about the product"
-msgstr ""
+msgstr "Čo si myslíte o výrobku"
 
 msgid "Y-m-d"
-msgstr ""
+msgstr "j.n.Y"
 
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "DD.MM.RRRR"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr ""
+msgstr "DD.MM.RRRR hh:mm"
 
 msgid "You are here:"
-msgstr ""
+msgstr "Nachádzate sa tu:"
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr ""
+msgstr "Medzi obľúbené produkty môžete uložiť len %1$s"
 
 #, php-format
 msgid "You can only watch up to %1$s products"
-msgstr ""
+msgstr "Môžete sledovať len %1$s produktov"
 
 msgid "You must log in first"
-msgstr ""
+msgstr "Najprv sa musíte prihlásiť"
 
 msgid "You will now be forwarded to the next step"
-msgstr ""
+msgstr "Teraz budete presmerovaní na ďalší krok"
 
 msgid "Your choice"
-msgstr ""
+msgstr "Vaša voľba"
 
 msgid "Your comment"
-msgstr ""
+msgstr "Váš komentár"
 
 msgid "Your rating"
-msgstr ""
+msgstr "Vaše hodnotenie"
 
 msgid "Your reference"
-msgstr ""
+msgstr "Váš odkaz"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "Vaše referenčné číslo"
 
 msgid "Your review"
-msgstr ""
+msgstr "Vaša recenzia"
 
 msgid "Zoom in/out"
-msgstr ""
+msgstr "Priblíženie/oddialenie"
 
 #, php-format
 msgid "address"
-msgstr ""
+msgstr "adresa"
 
 #, php-format
 msgid "delivery"
-msgstr ""
+msgstr "doručenie"
 
 msgid "favorite"
-msgstr ""
+msgstr "obľúbený"
 
 #, php-format
 msgid "from %1$s"
-msgstr ""
+msgstr "z %1$s"
 
 msgid "like billing address"
-msgstr ""
+msgstr "ako fakturačná adresa"
 
 msgid "new address"
-msgstr ""
+msgstr "nová adresa"
 
 msgid "none"
-msgstr ""
+msgstr "žiadne"
 
 msgid "on request"
-msgstr ""
+msgstr "na požiadanie"
 
 #, php-format
 msgid "payment"
-msgstr ""
+msgstr "platba"
 
 msgid "pin"
-msgstr ""
+msgstr "pin"
 
 msgid "price:default"
-msgstr ""
+msgstr "cena:predvolená"
 
 #, php-format
 msgid "process"
-msgstr ""
+msgstr "proces"
 
 msgid "stock-high"
-msgstr ""
+msgstr "zásoby - vysoké"
 
 msgid "stock-low"
-msgstr ""
+msgstr "zásoby - nízke"
 
 msgid "stock-out"
-msgstr ""
+msgstr "vypredanie zásob"
 
 msgid "stock-unlimited"
-msgstr ""
+msgstr "zásoby bez obmedzenia"
 
 #, php-format
 msgid "summary"
-msgstr ""
+msgstr "zhrnutie"
 
 msgid "watch"
-msgstr ""
+msgstr "sledovať"
 
 msgid "▲ Name"
 msgstr "▲ Názov"

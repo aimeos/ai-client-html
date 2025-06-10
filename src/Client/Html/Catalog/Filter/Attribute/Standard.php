@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  * @package Client
  * @subpackage Html
  */
@@ -29,7 +29,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
-	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		/** client/html/catalog/filter/attribute/types-option
 		 * List of attribute types whose IDs should be used in a global "OR" condition
@@ -90,7 +90,10 @@ class Standard
 		 * @see client/html/catalog/filter/attribute/types-option
 		 */
 		$attrTypes = $view->config( 'client/html/catalog/filter/attribute/types', [] );
-		$attrTypes = ( !is_array( $attrTypes ) ? explode( ',', $attrTypes ) : $attrTypes );
+
+		if( !is_array( $attrTypes ) ) {
+			$attrTypes = array_filter( explode( ',', $attrTypes ) );
+		}
 
 		/** client/html/catalog/filter/attribute/domains
 		 * List of domain names whose items should be fetched with the filter attributes
@@ -163,7 +166,7 @@ class Standard
 		$view->attributeMap = $attrMap->order( $attrTypes->getCode() );
 		$view->detailAttributeTypes = $attrTypes->col( null, 'attribute.type.code' );
 		$view->attributeMapActive = map( $view->attributeMap )->uksort( function( $a, $b ) use ( $active ) {
-			return $active[$b] <=> $active[$a];
+			return ( $active[$b] ?? null ) <=> ( $active[$a] ?? null );
 		} );
 
 		return parent::data( $view, $tags, $expire );
@@ -191,10 +194,7 @@ class Standard
 	protected function attributeTypes( \Aimeos\Map $codes ) : \Aimeos\Map
 	{
 		$manager = \Aimeos\MShop::create( $this->context(), 'attribute/type' );
-
-		$filter = $manager->filter( true )
-			->add( 'attribute.type.domain', '==', 'product' )
-			->order( 'attribute.type.position' );
+		$filter = $manager->filter( true )->order( 'attribute.type.position' );
 
 		if( !$codes->isEmpty() ) {
 			$filter->add( 'attribute.type.code', '==', $codes );
@@ -238,9 +238,7 @@ class Standard
 		$map = [];
 
 		$manager = \Aimeos\MShop::create( $this->context(), 'attribute/type' );
-		$filter = $manager->filter( true )
-			->add( 'attribute.type.domain', '==', 'product' )
-			->order( 'attribute.type.position' );
+		$filter = $manager->filter( true )->order( 'attribute.type.position' );
 
 		if( !empty( $attrTypes ) ) {
 			$filter->add( 'attribute.type.code', '==', $attrTypes );

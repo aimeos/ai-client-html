@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2016-2023
+ * @copyright Aimeos (aimeos.org), 2016-2025
  */
 
 
@@ -56,8 +56,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testInit()
 	{
 		$response = $this->getMockBuilder( \Psr\Http\Message\ResponseInterface::class )->getMock();
-		$response->expects( $this->once() )->method( 'withHeader' )->will( $this->returnSelf() );
-		$response->expects( $this->once() )->method( 'withStatus' )->will( $this->returnSelf() );
+		$response->expects( $this->once() )->method( 'withHeader' )->willReturnSelf();
+		$response->expects( $this->once() )->method( 'withStatus' )->willReturnSelf();
 
 		$helper = new \Aimeos\Base\View\Helper\Response\Standard( $this->view, $response );
 		$this->view->addHelper( 'response', $helper );
@@ -77,8 +77,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 		$object->setView( $this->view );
 
-		$object->expects( $this->once() )->method( 'checkAccess' )->will( $this->returnValue( true ) );
-		$object->expects( $this->once() )->method( 'checkDownload' )->will( $this->returnValue( true ) );
+		$object->expects( $this->once() )->method( 'checkAccess' )->willReturn( true );
+		$object->expects( $this->once() )->method( 'checkDownload' )->willReturn( true );
 
 
 		$attrManagerStub = $this->getMockBuilder( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Attribute\\Standard' )
@@ -87,21 +87,21 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->getMock();
 
 		$attrManagerStub->expects( $this->once() )->method( 'get' )
-			->will( $this->returnValue( $attrManagerStub->create() ) );
+			->willReturn( $attrManagerStub->create() );
 
 		\Aimeos\MShop::inject( '\\Aimeos\\MShop\\Order\\Manager\\Product\\Attribute\\Standard', $attrManagerStub );
 
 
 		$stream = $this->getMockBuilder( \Psr\Http\Message\StreamInterface::class )->getMock();
 		$response = $this->getMockBuilder( \Psr\Http\Message\ResponseInterface::class )->getMock();
-		$response->expects( $this->exactly( 7 ) )->method( 'withHeader' )->will( $this->returnSelf() );
+		$response->expects( $this->exactly( 7 ) )->method( 'withHeader' )->willReturnSelf();
 
 		$helper = $this->getMockBuilder( \Aimeos\Base\View\Helper\Response\Standard::class )
 			->setConstructorArgs( array( $this->view, $response ) )
 			->onlyMethods( ['createStream', 'withBody'] )
 			->getMock();
-		$helper->expects( $this->once() )->method( 'createStream' )->will( $this->returnValue( $stream ) );
-		$helper->expects( $this->once() )->method( 'withBody' )->will( $this->returnSelf() );
+		$helper->expects( $this->once() )->method( 'createStream' )->willReturn( $stream );
+		$helper->expects( $this->once() )->method( 'withBody' )->willReturnSelf();
 		$this->view->addHelper( 'response', $helper );
 
 		$object->init();
@@ -121,8 +121,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			->onlyMethods( array( 'addListItem', 'store' ) )
 			->getMock();
 
-		$customerStub->expects( $this->once() )->method( 'addListItem' )->will( $this->returnValue( $customerStub ) );
-		$customerStub->expects( $this->once() )->method( 'store' )->will( $this->returnValue( $customerStub ) );
+		$customerStub->expects( $this->once() )->method( 'addListItem' )->willReturn( $customerStub );
+		$customerStub->expects( $this->once() )->method( 'store' )->willReturn( $customerStub );
 
 		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Customer\Standard::class, $customerStub );
 		$this->assertTrue( $this->access( 'checkDownload' )->invokeArgs( $this->object, [-1, -2] ) );
@@ -149,14 +149,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$stream = $this->getMockBuilder( \Psr\Http\Message\StreamInterface::class )->getMock();
 		$response = $this->getMockBuilder( \Psr\Http\Message\ResponseInterface::class )->getMock();
-		$response->expects( $this->exactly( 7 ) )->method( 'withHeader' )->will( $this->returnSelf() );
+		$response->expects( $this->exactly( 7 ) )->method( 'withHeader' )->willReturnSelf();
 
 		$helper = $this->getMockBuilder( \Aimeos\Base\View\Helper\Response\Standard::class )
 			->setConstructorArgs( array( $this->view, $response ) )
 			->onlyMethods( ['createStream', 'withBody'] )
 			->getMock();
-		$helper->expects( $this->once() )->method( 'createStream' )->will( $this->returnValue( $stream ) );
-		$helper->expects( $this->once() )->method( 'withBody' )->will( $this->returnSelf() );
+		$helper->expects( $this->once() )->method( 'createStream' )->willReturn( $stream );
+		$helper->expects( $this->once() )->method( 'withBody' )->willReturnSelf();
 		$this->view->addHelper( 'response', $helper );
 
 		$this->access( 'addDownload' )->invokeArgs( $this->object, [$item] );
@@ -171,8 +171,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$response = $this->getMockBuilder( \Psr\Http\Message\ResponseInterface::class )->getMock();
-		$response->expects( $this->once() )->method( 'withHeader' )->will( $this->returnSelf() );
-		$response->expects( $this->once() )->method( 'withStatus' )->will( $this->returnSelf() );
+		$response->expects( $this->once() )->method( 'withHeader' )->willReturnSelf();
+		$response->expects( $this->once() )->method( 'withStatus' )->willReturnSelf();
 
 		$helper = new \Aimeos\Base\View\Helper\Response\Standard( $this->view, $response );
 		$this->view->addHelper( 'response', $helper );
@@ -189,8 +189,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 
 		$response = $this->getMockBuilder( \Psr\Http\Message\ResponseInterface::class )->getMock();
-		$response->expects( $this->never() )->method( 'withHeader' )->will( $this->returnSelf() );
-		$response->expects( $this->once() )->method( 'withStatus' )->will( $this->returnSelf() );
+		$response->expects( $this->never() )->method( 'withHeader' )->willReturnSelf();
+		$response->expects( $this->once() )->method( 'withStatus' )->willReturnSelf();
 
 		$helper = new \Aimeos\Base\View\Helper\Response\Standard( $this->view, $response );
 		$this->view->addHelper( 'response', $helper );

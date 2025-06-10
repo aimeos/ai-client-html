@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 
@@ -53,7 +53,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertTrue( $miniBasket instanceof \Aimeos\MShop\Order\Item\Iface );
 		$this->assertStringContainsString( '<div class="section aimeos basket-mini', $output );
-		$this->assertStringContainsString( '<div class="basket-mini-main', $output );
+		$this->assertStringContainsString( '<a class="basket-mini-main', $output );
 		$this->assertStringContainsString( '<div class="basket-mini-product', $output );
 	}
 

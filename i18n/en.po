@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Aimeos\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2025-02-08 13:35+0100\n"
 "PO-Revision-Date: 2012-12-24 16:33+0100\n"
 "Last-Translator: Norbert Sendetzky <norbert@aimeos.com>\n"
 "Language-Team: English (http://www.transifex.com/projects/p/aimeos/language/en/)\n"
@@ -58,36 +58,6 @@ msgstr ""
 "%17$s\n"
 "%18$s\n"
 
-#, fuzzy, php-format
-msgid ""
-"%1$s\n"
-"%2$s %3$s %4$s %5$s\n"
-"%6$s %7$s\n"
-"%8$s\n"
-"%9$s %10$s\n"
-"%11$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-"%19$s\n"
-msgstr ""
-"%2$s %3$s %4$s %5$s\n"
-"%1$s\n"
-"%7$s %6$s\n"
-"%8$s\n"
-"%10$s %11$s %9$s\n"
-"%12$s\n"
-"%13$s\n"
-"%14$s\n"
-"%15$s\n"
-"%16$s\n"
-"%17$s\n"
-"%18$s\n"
-
 #, php-format
 msgid "%1$s %2$s"
 msgstr "%2$s %1$s"
@@ -95,10 +65,6 @@ msgstr "%2$s %1$s"
 #, php-format
 msgid "%1$s %2$s off"
 msgstr "%2$s %1$s off"
-
-#, fuzzy, php-format
-msgid "%1$s (%4$s%2$s%3$s)"
-msgstr "%1$s ( %4$s%2$s%3$s )"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -108,13 +74,8 @@ msgstr ""
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%3$s%1$s + %3$s%2$s"
 
-#, fuzzy, php-format
-msgid "+ %1$s %2$s"
-msgstr "%2$s %1$s"
-
-#, fuzzy, php-format
-msgid "+ %1$s%% %2$s"
-msgstr "%2$s %1$s"
+msgid "(opens in new window)"
+msgstr ""
 
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -130,7 +91,13 @@ msgstr ""
 msgid "A non-recoverable error occured"
 msgstr ""
 
+msgid "Add"
+msgstr ""
+
 msgid "Add billing address"
+msgstr ""
+
+msgid "Add delivery address"
 msgstr ""
 
 msgid "Add to basket"
@@ -157,6 +124,13 @@ msgstr ""
 
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
+msgstr ""
+
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr ""
+
+msgid "At least one product couldn't be added to the basket."
 msgstr ""
 
 msgid "Back"
@@ -209,7 +183,19 @@ msgstr ""
 msgid "Change"
 msgstr ""
 
+msgid "Change billing address"
+msgstr ""
+
+msgid "Change coupons"
+msgstr ""
+
+msgid "Change delivery address"
+msgstr ""
+
 msgid "Change payment"
+msgstr ""
+
+msgid "Change products"
 msgstr ""
 
 msgid "Characteristics"
@@ -250,6 +236,9 @@ msgid "Created"
 msgstr ""
 
 msgid "Customer account"
+msgstr ""
+
+msgid "Decrease"
 msgstr ""
 
 msgid "Delete"
@@ -334,6 +323,10 @@ msgid "Highest price"
 msgstr ""
 
 #, php-format
+msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
+msgstr ""
+
+#, php-format
 msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
 msgstr ""
 
@@ -343,15 +336,14 @@ msgstr ""
 msgid "If price decreases"
 msgstr ""
 
-#, fuzzy, php-format
-msgid "Incl. %1$s%% %2$s"
-msgstr "%2$s %1$s"
-
 #, php-format
 msgid "Incl. %1$s%% VAT"
 msgstr ""
 
 msgid "Included rebates"
+msgstr ""
+
+msgid "Increase"
 msgstr ""
 
 msgid "Interval"
@@ -387,6 +379,9 @@ msgstr ""
 msgid "Latest"
 msgstr ""
 
+msgid "Less"
+msgstr ""
+
 msgid "List view"
 msgstr ""
 
@@ -397,6 +392,9 @@ msgid "Mobile"
 msgstr ""
 
 msgid "Mobile number"
+msgstr ""
+
+msgid "More"
 msgstr ""
 
 msgid "More reviews"
@@ -468,6 +466,9 @@ msgstr ""
 msgid "Payment status"
 msgstr ""
 
+msgid "Percentage"
+msgstr ""
+
 msgid "Pin product"
 msgstr ""
 
@@ -534,6 +535,9 @@ msgstr ""
 msgid "Product description"
 msgstr ""
 
+msgid "Product downloads"
+msgstr ""
+
 msgid "Product filters"
 msgstr ""
 
@@ -568,6 +572,9 @@ msgid "Reference"
 msgstr ""
 
 msgid "Relevance"
+msgstr ""
+
+msgid "Remove"
 msgstr ""
 
 msgid "Reset"
@@ -635,6 +642,9 @@ msgid "Sort by"
 msgstr ""
 
 msgid "Sort by:"
+msgstr ""
+
+msgid "Stars"
 msgstr ""
 
 msgid "State"
@@ -722,6 +732,9 @@ msgstr ""
 msgid "Time frame"
 msgstr ""
 
+msgid "Title"
+msgstr ""
+
 msgid "Toggle fullscreen"
 msgstr ""
 
@@ -775,10 +788,10 @@ msgid "Y-m-d"
 msgstr "m/d/Y"
 
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "YYYY-MM-DD"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr ""
+msgstr "YYYY-MM-DD HH:mm"
 
 msgid "You are here:"
 msgstr ""
@@ -904,43 +917,10 @@ msgid "◀◀"
 msgstr ""
 
 #, php-format
-#~ msgid "%1$s ( %4$s%2$s%3$s )"
-#~ msgstr "%1$s ( %4$s%2$s%3$s )"
-
-#, php-format
 #~ msgid "+ %1$s %2$s/item"
 #~ msgstr "+ %2$s %1$s/item"
 
-#~ msgid "Address"
-#~ msgid_plural "Addresses"
-#~ msgstr[0] "Address"
-#~ msgstr[1] "Address"
-
-#, fuzzy, php-format
-#~ msgid "Dear %1$s %2$s"
-#~ msgstr "%2$s %1$s"
-
-#, fuzzy, php-format
-#~ msgid "Dear Miss %1$s %2$s"
-#~ msgstr "%2$s %1$s"
-
-#, fuzzy, php-format
-#~ msgid "Dear Mr %1$s %2$s"
-#~ msgstr "%2$s %1$s"
-
-#, fuzzy, php-format
-#~ msgid "Dear Mrs %1$s %2$s"
-#~ msgstr "%2$s %1$s"
-
-#, fuzzy, php-format
-#~ msgid "Dear Ms %1$s %2$s"
-#~ msgstr "%2$s %1$s"
-
 #~ msgid "Order"
-#~ msgstr "Order"
-
-#, fuzzy, php-format
-#~ msgid "Order %1$s"
 #~ msgstr "Order"
 
 #~ msgid "basic"

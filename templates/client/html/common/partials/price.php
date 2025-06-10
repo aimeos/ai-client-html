@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 /* Available data:
@@ -19,7 +19,11 @@ $priceItems = map( $this->get( 'prices', [] ) );
 foreach( $priceItems as $priceItem )
 {
 	$qty = (string) $priceItem->getQuantity();
-	if( !( $p = $prices->get( $qty ) ) || $p->getValue() > $priceItem->getValue() ) {
+
+	if( !( $p = $prices->get( $qty ) )
+		|| $p->getValue() === null
+		|| $priceItem->getValue() !== null && $p->getValue() > $priceItem->getValue()
+	) {
 		$prices[$qty] = $priceItem;
 	}
 }

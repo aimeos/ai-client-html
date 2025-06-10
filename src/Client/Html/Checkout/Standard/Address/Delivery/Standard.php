@@ -2,8 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Metaways Infosystems GmbH, 2013
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  * @package Client
  * @subpackage Html
  */
@@ -22,25 +21,6 @@ class Standard
 	extends \Aimeos\Client\Html\Common\Client\Factory\Base
 	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
 {
-	private array $mandatory = array(
-		'order.address.firstname',
-		'order.address.lastname',
-		'order.address.address1',
-		'order.address.postal',
-		'order.address.city',
-		'order.address.languageid',
-	);
-
-	private array $optional = array(
-		'order.address.salutation',
-		'order.address.company',
-		'order.address.vatid',
-		'order.address.address2',
-		'order.address.countryid',
-		'order.address.state',
-	);
-
-
 	/**
 	 * Stores the given or fetched billing address in the basket.
 	 *
@@ -85,74 +65,74 @@ class Standard
 	/**
 	 * Checks the address fields for missing data and sanitizes the given parameter list.
 	 *
-	 * @param array &$params Associative list of address keys (order.address.* or customer.address.*) and their values
+	 * @param array $params Associative list of address keys (order.address.* or customer.address.*) and their values
 	 * @return array List of missing field names
 	 */
-	protected function checkFields( array &$params ) : array
+	protected function checkFields( array $params ) : array
 	{
 		$view = $this->view();
 
-		/** client/html/checkout/standard/address/delivery/mandatory
+		/** client/html/common/address/delivery/mandatory
 		 * List of delivery address input fields that are required
 		 *
 		 * You can configure the list of delivery address fields that are
 		 * necessary and must be filled by the customer before he can
 		 * continue the checkout process. Available field keys are:
 		 *
-		 * * order.address.company
-		 * * order.address.vatid
-		 * * order.address.salutation
-		 * * order.address.firstname
-		 * * order.address.lastname
-		 * * order.address.address1
-		 * * order.address.address2
-		 * * order.address.address3
-		 * * order.address.postal
-		 * * order.address.city
-		 * * order.address.state
-		 * * order.address.languageid
-		 * * order.address.countryid
-		 * * order.address.telephone
-		 * * order.address.telefax
-		 * * order.address.email
-		 * * order.address.website
+		 * * company
+		 * * vatid
+		 * * salutation
+		 * * firstname
+		 * * lastname
+		 * * address1
+		 * * address2
+		 * * address3
+		 * * postal
+		 * * city
+		 * * state
+		 * * languageid
+		 * * countryid
+		 * * telephone
+		 * * telefax
+		 * * email
+		 * * website
 		 *
 		 * @param array List of field keys
 		 * @since 2015.02
 		 * @see client/html/checkout/standard/address/delivery/disable-new
-		 * @see client/html/checkout/standard/address/delivery/salutations
-		 * @see client/html/checkout/standard/address/delivery/optional
-		 * @see client/html/checkout/standard/address/delivery/hidden
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/delivery/optional
+		 * @see client/html/common/address/delivery/hidden
+		 * @see client/html/common/address/salutations
+		 * @see client/html/common/address/validate
 		 * @see common/countries
 		 * @see common/states
 		 */
-		$mandatory = $view->config( 'client/html/checkout/standard/address/delivery/mandatory', $this->mandatory );
+		$mandatory = $view->config( 'client/html/common/address/delivery/mandatory', [] );
 
-		/** client/html/checkout/standard/address/delivery/optional
+		/** client/html/common/address/delivery/optional
 		 * List of delivery address input fields that are optional
 		 *
 		 * You can configure the list of delivery address fields that
 		 * customers can fill but don't have to before they can
 		 * continue the checkout process. Available field keys are:
 		 *
-		 * * order.address.company
-		 * * order.address.vatid
-		 * * order.address.salutation
-		 * * order.address.firstname
-		 * * order.address.lastname
-		 * * order.address.address1
-		 * * order.address.address2
-		 * * order.address.address3
-		 * * order.address.postal
-		 * * order.address.city
-		 * * order.address.state
-		 * * order.address.languageid
-		 * * order.address.countryid
-		 * * order.address.telephone
-		 * * order.address.telefax
-		 * * order.address.email
-		 * * order.address.website
+		 * * company
+		 * * vatid
+		 * * salutation
+		 * * firstname
+		 * * lastname
+		 * * address1
+		 * * address2
+		 * * address3
+		 * * postal
+		 * * city
+		 * * state
+		 * * languageid
+		 * * countryid
+		 * * telephone
+		 * * telefax
+		 * * email
+		 * * website
 		 * * nostore
 		 *
 		 * Using the "nostore" field displays the option to avoid storing the
@@ -161,76 +141,75 @@ class Standard
 		 * @param array List of field keys
 		 * @since 2015.02
 		 * @see client/html/checkout/standard/address/delivery/disable-new
-		 * @see client/html/checkout/standard/address/delivery/salutations
-		 * @see client/html/checkout/standard/address/delivery/mandatory
-		 * @see client/html/checkout/standard/address/delivery/hidden
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/delivery/mandatory
+		 * @see client/html/common/address/delivery/hidden
+		 * @see client/html/common/address/salutations
+		 * @see client/html/common/address/validate
 		 * @see common/countries
 		 * @see common/states
 		 */
-		$optional = $view->config( 'client/html/checkout/standard/address/delivery/optional', $this->optional );
+		$optional = $view->config( 'client/html/common/address/delivery/optional', [] );
 
-		/** client/html/checkout/standard/address/delivery/hidden
+		/** client/html/common/address/delivery/hidden
 		 * List of delivery address input fields that are optional
 		 *
 		 * You can configure the list of delivery address fields that
 		 * are hidden when a customer enters his delivery address.
 		 * Available field keys are:
 		 *
-		 * * order.address.company
-		 * * order.address.vatid
-		 * * order.address.salutation
-		 * * order.address.firstname
-		 * * order.address.lastname
-		 * * order.address.address1
-		 * * order.address.address2
-		 * * order.address.address3
-		 * * order.address.postal
-		 * * order.address.city
-		 * * order.address.state
-		 * * order.address.languageid
-		 * * order.address.countryid
-		 * * order.address.telephone
-		 * * order.address.telefax
-		 * * order.address.email
-		 * * order.address.website
+		 * * company
+		 * * vatid
+		 * * salutation
+		 * * firstname
+		 * * lastname
+		 * * address1
+		 * * address2
+		 * * address3
+		 * * postal
+		 * * city
+		 * * state
+		 * * languageid
+		 * * countryid
+		 * * telephone
+		 * * telefax
+		 * * email
+		 * * website
 		 *
 		 * Caution: Only hide fields that don't require any input
 		 *
 		 * @param array List of field keys
 		 * @since 2015.02
 		 * @see client/html/checkout/standard/address/delivery/disable-new
-		 * @see client/html/checkout/standard/address/delivery/salutations
-		 * @see client/html/checkout/standard/address/delivery/mandatory
-		 * @see client/html/checkout/standard/address/delivery/optional
+		 * @see client/html/common/address/delivery/mandatory
+		 * @see client/html/common/address/delivery/optional
+		 * @see client/html/common/address/salutations
 		 * @see common/countries
 		 * @see common/states
 		 */
-		$hidden = $view->config( 'client/html/checkout/standard/address/delivery/hidden', [] );
+		$hidden = $view->config( 'client/html/common/address/delivery/hidden', [] );
 
-		/** client/html/checkout/standard/address/validate
+		/** client/html/common/address/validate
 		 *
-		 * @see client/html/checkout/standard/address/delivery/mandatory
-		 * @see client/html/checkout/standard/address/delivery/optional
+		 * @see client/html/common/address/delivery/mandatory
+		 * @see client/html/common/address/delivery/optional
 		 */
 
 		$allFields = array_flip( array_merge( $mandatory, $optional, $hidden ) );
 		$invalid = $this->validateFields( $params, $allFields );
 		$this->checkSalutation( $params, $mandatory );
 
-		foreach( $invalid as $key => $name )
-		{
-			$msg = $view->translate( 'client', 'Delivery address part "%1$s" is invalid' );
+		$msg = $view->translate( 'client', 'Delivery address part "%1$s" is invalid' );
+
+		foreach( $invalid as $key => $name ) {
 			$invalid[$key] = sprintf( $msg, $name );
 		}
 
+		$msg = $view->translate( 'client', 'Delivery address part "%1$s" is missing' );
+
 		foreach( $mandatory as $key )
 		{
-			if( !isset( $params[$key] ) || $params[$key] == '' )
-			{
-				$msg = $view->translate( 'client', 'Delivery address part "%1$s" is missing' );
-				$invalid[$key] = sprintf( $msg, substr( $key, 19 ) );
-				unset( $params[$key] );
+			if( !isset( $params['order.address.' . $key] ) || $params['order.address.' . $key] == '' ) {
+				$invalid[$key] = sprintf( $msg, $key );
 			}
 		}
 
@@ -241,17 +220,17 @@ class Standard
 	/**
 	 * Additional checks for the salutation
 	 *
-	 * @param array &$params Associative list of address keys (order.address.* or customer.address.*) and their values
+	 * @param array $params Associative list of address keys (order.address.*) and their values
 	 * @param array &$mandatory List of mandatory field names
 	 * @since 2016.05
 	 */
-	protected function checkSalutation( array &$params, array &$mandatory )
+	protected function checkSalutation( array $params, array &$mandatory )
 	{
 		if( isset( $params['order.address.salutation'] )
-				&& $params['order.address.salutation'] === \Aimeos\MShop\Common\Item\Address\Base::SALUTATION_COMPANY
-				&& in_array( 'order.address.company', $mandatory ) === false
+				&& $params['order.address.salutation'] === 'company'
+				&& in_array( 'company', $mandatory ) === false
 		) {
-			$mandatory[] = 'order.address.company';
+			$mandatory[] = 'company';
 		}
 	}
 
@@ -329,10 +308,10 @@ class Standard
 		 *
 		 * @param boolean A value of "1" to disable, "0" enables the delivery address form
 		 * @since 2015.02
-		 * @see client/html/checkout/standard/address/delivery/salutations
-		 * @see client/html/checkout/standard/address/delivery/mandatory
-		 * @see client/html/checkout/standard/address/delivery/optional
-		 * @see client/html/checkout/standard/address/delivery/hidden
+		 * @see client/html/common/address/salutations
+		 * @see client/html/common/address/delivery/mandatory
+		 * @see client/html/common/address/delivery/optional
+		 * @see client/html/common/address/delivery/hidden
 		 */
 		$disable = $view->config( 'client/html/checkout/standard/address/delivery/disable-new', false );
 		$type = \Aimeos\MShop\Order\Item\Address\Base::TYPE_DELIVERY;
@@ -383,10 +362,10 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
-	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$context = $this->context();
-		$manager = \Aimeos\MShop::create( $context, 'order/address' );
+		$manager = \Aimeos\MShop::create( $context, 'order' );
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
 		$addrStrings = $addrValues = [];
@@ -396,7 +375,7 @@ class Standard
 		{
 			$params = $view->param( 'ca_delivery_' . $id, [] );
 			$basketValues = $addrMap->get( $id, map() )->toArray();
-			$addr = $manager->create()->copyFrom( $address )->fromArray( $basketValues )->fromArray( $params );
+			$addr = $manager->createAddress()->copyFrom( $address )->fromArray( $basketValues )->fromArray( $params );
 
 			$addrStrings[$id] = $this->getAddressString( $view, $addr );
 			$addrValues[$id] = $addr->toArray();
@@ -404,7 +383,7 @@ class Standard
 
 		$values = !$addrMap->isEmpty() ? $addrMap->first()->toArray() : [];
 		$values = array_merge( $values, $view->param( 'ca_delivery', [] ) );
-		$addrNew = $manager->create()->fromArray( $values );
+		$addrNew = $manager->createAddress()->fromArray( $values );
 
 		$addrStringNew = $this->getAddressString( $view, $addrNew );
 		$option = $addrNew->getAddressId() ?: ( $addrMap->isEmpty() ? 'like' : 'null' );
@@ -414,37 +393,24 @@ class Standard
 		$view->addressDeliveryStringNew = $addrStringNew;
 		$view->addressDeliveryStrings = $addrStrings;
 		$view->addressDeliveryValues = $addrValues;
+		$view->addressDeliveryCss = $this->cssDelivery();
 
-		$salutations = $context->config()->get( 'client/html/common/address/salutations', ['', 'mr', 'ms'] );
+		return parent::data( $view, $tags, $expire );
+	}
 
-		/** client/html/checkout/standard/address/delivery/salutations
-		 * List of salutions the customer can select from for the delivery address
-		 *
-		 * The following salutations are available:
-		 *
-		 * * empty string for "unknown"
-		 * * company
-		 * * mr
-		 * * ms
-		 *
-		 * You can modify the list of salutation codes and remove the ones
-		 * which shouldn't be used or add new ones.
-		 *
-		 * @param array List of available salutation codes
-		 * @since 2015.02
-		 * @see client/html/checkout/standard/address/delivery/disable-new
-		 * @see client/html/checkout/standard/address/delivery/mandatory
-		 * @see client/html/checkout/standard/address/delivery/optional
-		 * @see client/html/checkout/standard/address/delivery/hidden
-		 * @see client/html/common/address/salutations
-		 * @see common/countries
-		 * @see common/states
-		 */
-		$view->addressDeliverySalutations = $view->config( 'client/html/checkout/standard/address/delivery/salutations', $salutations );
 
-		$mandatory = $view->config( 'client/html/checkout/standard/address/delivery/mandatory', $this->mandatory );
-		$optional = $view->config( 'client/html/checkout/standard/address/delivery/optional', $this->optional );
-		$hidden = $view->config( 'client/html/checkout/standard/address/delivery/hidden', [] );
+	/**
+	 * Returns the CSS classes for the delivery address fields
+	 *
+	 * @return array Associative list of CSS classes for the delivery address fields
+	 */
+	protected function cssDelivery() : array
+	{
+		$config = $this->context()->config();
+
+		$mandatory = $config->get( 'client/html/common/address/delivery/mandatory', [] );
+		$optional = $config->get( 'client/html/common/address/delivery/optional', [] );
+		$hidden = $config->get( 'client/html/common/address/delivery/hidden', [] );
 
 		$css = [];
 
@@ -460,147 +426,137 @@ class Standard
 			$css[$name][] = 'hidden';
 		}
 
-		$view->addressDeliveryMandatory = $mandatory;
-		$view->addressDeliveryOptional = $optional;
-		$view->addressDeliveryHidden = $hidden;
-		$view->addressDeliveryCss = $css;
-
-		return parent::data( $view, $tags, $expire );
+		return $css;
 	}
 
 
 	/**
 	 * Validate the address key/value pairs using regular expressions
 	 *
-	 * @param array &$params Associative list of address keys (order.address.* or customer.address.*) and their values
+	 * @param array &$params Associative list of address keys (order.address.*) and their values
 	 * @param array $fields List of field names to validate
 	 * @return array List of invalid address keys
 	 * @since 2016.05
 	 */
-	protected function validateFields( array &$params, array $fields ) : array
+	protected function validateFields( array $params, array $fields ) : array
 	{
 		$config = $this->context()->config();
 
-		/** client/html/checkout/standard/address/validate/company
+		/** client/html/common/address/validate/company
 		 * Regular expression to check the "company" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/vatid
+		/** client/html/common/address/validate/vatid
 		 * Regular expression to check the "vatid" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/salutation
+		/** client/html/common/address/validate/salutation
 		 * Regular expression to check the "salutation" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/firstname
+		/** client/html/common/address/validate/firstname
 		 * Regular expression to check the "firstname" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/lastname
+		/** client/html/common/address/validate/lastname
 		 * Regular expression to check the "lastname" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/address1
+		/** client/html/common/address/validate/address1
 		 * Regular expression to check the "address1" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/address2
+		/** client/html/common/address/validate/address2
 		 * Regular expression to check the "address2" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/address3
+		/** client/html/common/address/validate/address3
 		 * Regular expression to check the "address3" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/postal
+		/** client/html/common/address/validate/postal
 		 * Regular expression to check the "postal" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/city
+		/** client/html/common/address/validate/city
 		 * Regular expression to check the "city" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/state
+		/** client/html/common/address/validate/state
 		 * Regular expression to check the "state" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/languageid
+		/** client/html/common/address/validate/languageid
 		 * Regular expression to check the "languageid" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/countryid
+		/** client/html/common/address/validate/countryid
 		 * Regular expression to check the "countryid" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/telephone
+		/** client/html/common/address/validate/telephone
 		 * Regular expression to check the "telephone" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/telefax
+		/** client/html/common/address/validate/telefax
 		 * Regular expression to check the "telefax" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/email
+		/** client/html/common/address/validate/email
 		 * Regular expression to check the "email" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
-		/** client/html/checkout/standard/address/validate/website
+		/** client/html/common/address/validate/website
 		 * Regular expression to check the "website" address value
 		 *
-		 * @see client/html/checkout/standard/address/validate
+		 * @see client/html/common/address/validate
 		 */
 
 		$invalid = [];
 
 		foreach( $params as $key => $value )
 		{
-			if( isset( $fields[$key] ) )
-			{
-				$name = ( $pos = strrpos( $key, '.' ) ) ? substr( $key, $pos + 1 ) : $key;
-				$regex = $config->get( 'client/html/checkout/standard/address/validate/' . $name );
+			$name = ( $pos = strrpos( $key, '.' ) ) ? substr( $key, $pos + 1 ) : $key;
 
-				if( $regex && preg_match( '/' . $regex . '/', $value ) !== 1 )
-				{
-					$invalid[$key] = $name;
-					unset( $params[$key] );
-				}
-			}
-			else
+			if( isset( $fields[$name] ) )
 			{
-				unset( $params[$key] );
+				$regex = $config->get( 'client/html/common/address/validate/' . $name );
+
+				if( $regex && preg_match( '/' . $regex . '/', $value ) !== 1 ) {
+					$invalid[$name] = $name;
+				}
 			}
 		}
 

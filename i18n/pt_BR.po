@@ -6,14 +6,17 @@
 # b5fdd37cec45d8078af7e530465bb050, 2016
 # Bruno Rodrigues <brunojti@gmail.com>, 2016
 # Keite Clembet, 2022
+# Keite Clembet, 2022
 # b5fdd37cec45d8078af7e530465bb050, 2016
+# Webert Max, 2023
+# Webert Max, 2023
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2025-02-09 12:55+0100\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: Keite Clembet, 2022\n"
+"Last-Translator: Webert Max, 2023\n"
 "Language-Team: Portuguese (Brazil) (http://app.transifex.com/aimeos/aimeos-core/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,7 +71,7 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s%3$s%4$s%5$s\n%6$s%7$s\n%8$s\n%9$s%10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
@@ -80,7 +83,7 @@ msgstr "%2$s %1$s de desconto"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
+msgstr "%1$s(%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -90,9 +93,12 @@ msgstr "%1$s em %2$s"
 msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%3$s%1$s + %3$s%2$s"
 
+msgid "(opens in new window)"
+msgstr "(abre em uma nova janela)"
+
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "1%1$s 2%2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
@@ -112,8 +118,14 @@ msgstr "-%1$s%%"
 msgid "A non-recoverable error occured"
 msgstr "Ocorreu um erro irrecuperável"
 
+msgid "Add"
+msgstr "Adicionar"
+
 msgid "Add billing address"
 msgstr "Adicionar endereço de cobrança"
+
+msgid "Add delivery address"
+msgstr "Adicionar endereço de entrega"
 
 msgid "Add to basket"
 msgstr "Adicionar ao carrinho"
@@ -141,6 +153,13 @@ msgstr "Pelo menos uma parte do endereço de cobrança está faltando ou inváli
 msgid "At least one delivery address part is missing or invalid"
 msgstr "Pelo menos uma parte do endereço de entrega está faltando ou inválida"
 
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr "Pelo menos uma parte do endereço de pagamento está faltando ou é inválida"
+
+msgid "At least one product couldn't be added to the basket."
+msgstr "Pelo menos um produto não pôde ser adicionado à cesta."
+
 msgid "Back"
 msgstr "Voltar"
 
@@ -148,13 +167,13 @@ msgid "Basket"
 msgstr "Carrinho"
 
 msgid "Basket details"
-msgstr ""
+msgstr "Detalhes da cesta"
 
 msgid "Basket name"
-msgstr ""
+msgstr "Nome da Cesta"
 
 msgid "Basket saved sucessfully"
-msgstr ""
+msgstr "Cesta salva com sucesso"
 
 msgid "Billing address"
 msgstr "Endereço de cobrança"
@@ -171,7 +190,7 @@ msgid "Birthday"
 msgstr "Aniversário"
 
 msgid "Breadcrumb navigation"
-msgstr ""
+msgstr "Navegação estrutural"
 
 msgid "Bulk order"
 msgstr "Pedido em massa"
@@ -191,8 +210,26 @@ msgstr "Categorias"
 msgid "Change"
 msgstr "Alterar"
 
+msgid "Change address"
+msgstr "Mudança de endereço"
+
+msgid "Change billing address"
+msgstr "Alterar o endereço de cobrança"
+
+msgid "Change coupons"
+msgstr "Alterar cupons"
+
+msgid "Change delivery"
+msgstr "Entrega de mudanças"
+
+msgid "Change delivery address"
+msgstr "Alterar o endereço de entrega"
+
 msgid "Change payment"
 msgstr "Alterar pagamento"
+
+msgid "Change products"
+msgstr "Alterar produtos"
 
 msgid "Characteristics"
 msgstr "Características"
@@ -233,6 +270,9 @@ msgstr "Criado"
 
 msgid "Customer account"
 msgstr "Conta do cliente"
+
+msgid "Decrease"
+msgstr "Diminuir"
 
 msgid "Delete"
 msgstr "Remover"
@@ -298,13 +338,13 @@ msgid "First name"
 msgstr "Primeiro Nome"
 
 msgid "Found products"
-msgstr ""
+msgstr "Produtos encontrados"
 
 msgid "GB999999973"
 msgstr "GB999999973"
 
 msgid "Go to page"
-msgstr ""
+msgstr "Vá para página"
 
 msgid "Grid view"
 msgstr "Visualização em Grade"
@@ -314,6 +354,15 @@ msgstr "HH:mm"
 
 msgid "Highest price"
 msgstr "Preço mais alto"
+
+#, php-format
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
+msgstr "Aceito os <a href=\"%1$s\" target=\"_blank\" title=\"termos e condições (abre em uma nova guia)\">termos e condições</a>, <a href=\"%2$s\" target=\"_blank\" title=\"política de privacidade (abre em uma nova guia)\">política de privacidade</a> e <a href=\"%3$s\" target=\"_blank\" title=\"política de cancelamento (abre em uma nova guia)\">política de cancelamento</a>"
 
 #, php-format
 msgid ""
@@ -341,6 +390,9 @@ msgstr "Incl. %1$s%% Taxas"
 
 msgid "Included rebates"
 msgstr "Descontos incluídos"
+
+msgid "Increase"
+msgstr "Aumento"
 
 msgid "Interval"
 msgstr "Intervalo"
@@ -375,6 +427,9 @@ msgstr "Vistos recentemente"
 msgid "Latest"
 msgstr "Último"
 
+msgid "Less"
+msgstr "Menos"
+
 msgid "List view"
 msgstr "Visualização em Lista"
 
@@ -382,10 +437,13 @@ msgid "Lowest price"
 msgstr "Preço mais baixo"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Móvel"
 
 msgid "Mobile number"
-msgstr ""
+msgstr "Número de telemóvel"
+
+msgid "More"
+msgstr "Mais"
 
 msgid "More reviews"
 msgstr "Mais reviews"
@@ -458,6 +516,9 @@ msgstr "Custos de pagamento"
 msgid "Payment status"
 msgstr "Status de pagamento"
 
+msgid "Percentage"
+msgstr "Porcentagem"
+
 msgid "Pin product"
 msgstr "Fixar produto"
 
@@ -495,7 +556,7 @@ msgid "Price"
 msgstr "Preço"
 
 msgid "Price filter"
-msgstr ""
+msgstr "Filtro de preço"
 
 msgid "Price range"
 msgstr "Faixa de preço"
@@ -510,37 +571,40 @@ msgid "Product"
 msgstr "Produto"
 
 msgid "Product actions"
-msgstr ""
+msgstr "Ações do produto"
 
 msgid "Product attributes"
-msgstr ""
+msgstr "Atributos do produto"
 
 msgid "Product categories"
-msgstr ""
+msgstr "Categorias de Produtos"
 
 msgid "Product characteristics"
-msgstr ""
+msgstr "Características do produto"
 
 msgid "Product description"
-msgstr ""
+msgstr "Descrição do produto"
+
+msgid "Product downloads"
+msgstr "Downloads de produtos"
 
 msgid "Product filters"
-msgstr ""
+msgstr "Filtros de produto"
 
 msgid "Product image"
 msgstr "Imagem do produto"
 
 msgid "Product information"
-msgstr ""
+msgstr "Informação do produto"
 
 msgid "Product price"
 msgstr "Preço do produto"
 
 msgid "Product reviews"
-msgstr ""
+msgstr "Revisão de produtos"
 
 msgid "Product search"
-msgstr ""
+msgstr "Pesquisa de produtos"
 
 msgid "Products you might be also interested in"
 msgstr "Produtos que talvez lhe interesse"
@@ -559,6 +623,9 @@ msgstr "Referência"
 
 msgid "Relevance"
 msgstr "Relevância"
+
+msgid "Remove"
+msgstr "Remover"
 
 msgid "Reset"
 msgstr "Redefinir"
@@ -583,10 +650,10 @@ msgid "Save"
 msgstr "Salvar"
 
 msgid "Saved basket removed sucessfully"
-msgstr ""
+msgstr "Cesta salva removida com sucesso"
 
 msgid "Saved baskets"
-msgstr ""
+msgstr "Cestas salvas"
 
 msgid "Search"
 msgstr "Pesquisar"
@@ -625,10 +692,13 @@ msgid "Show"
 msgstr "Exibir"
 
 msgid "Sort by"
-msgstr ""
+msgstr "Ordenar por"
 
 msgid "Sort by:"
 msgstr "Ordenar por:"
+
+msgid "Stars"
+msgstr "Estrelas"
 
 msgid "State"
 msgstr "Estado"
@@ -672,7 +742,7 @@ msgid "Supplier information"
 msgstr "Informação do fornecedor"
 
 msgid "Supplier list"
-msgstr ""
+msgstr "Lista de fornecedores"
 
 msgid "Suppliers"
 msgstr "Fornecedores"
@@ -714,6 +784,9 @@ msgstr "Três meses"
 
 msgid "Time frame"
 msgstr "Prazo"
+
+msgid "Title"
+msgstr "Título"
 
 msgid "Toggle fullscreen"
 msgstr "Alternar modo de tela cheia"
@@ -765,13 +838,13 @@ msgid "What do you think about the product"
 msgstr "O que você acha do produto"
 
 msgid "Y-m-d"
-msgstr "A-m-d"
+msgstr "d/m/Y"
 
 msgid "YYYY-MM-DD"
-msgstr "YYYY-MM-DD"
+msgstr "DD/MM/AAAA"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr "YYYY-MM-DD HH:mm"
+msgstr "DD/MM/AAAA hh:mm"
 
 msgid "You are here:"
 msgstr "Você está aqui:"
@@ -785,7 +858,7 @@ msgid "You can only watch up to %1$s products"
 msgstr "Você só pode ver até %1$s produtos"
 
 msgid "You must log in first"
-msgstr ""
+msgstr "Você deve fazer login primeiro"
 
 msgid "You will now be forwarded to the next step"
 msgstr "Você será direcionado para o próximo passo"

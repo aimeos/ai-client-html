@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 
@@ -80,19 +80,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<div class="catalog-detail-basic', $output );
 		$this->assertStringContainsString( '<div class="catalog-detail-image', $output );
 
-		$this->assertStringContainsString( '<div class="catalog-social">', $output );
+		$this->assertStringContainsString( '<ul class="catalog-social">', $output );
 		$this->assertStringContainsString( 'facebook', $output );
 
-		$this->assertStringContainsString( '<div class="catalog-actions', $output );
+		$this->assertStringContainsString( '<ul class="catalog-actions', $output );
 		$this->assertStringContainsString( 'actions-button-pin', $output );
 		$this->assertStringContainsString( 'actions-button-watch', $output );
 		$this->assertStringContainsString( 'actions-button-favorite', $output );
 
 		$this->assertStringContainsString( 'catalog-detail-additional', $output );
 
-		$this->assertStringContainsString( '<td class="name">size</td>', $output );
+		$this->assertStringContainsString( '<td class="name">Size</td>', $output );
 		$this->assertStringContainsString( '<span class="attr-name">XS</span>', $output );
-		$this->assertStringContainsString( '<td class="name">package-height</td>', $output );
+		$this->assertStringContainsString( '<td class="name">Package height</td>', $output );
 		$this->assertStringContainsString( '<td class="value">10.0</td>', $output );
 
 		$this->assertStringContainsString( '<span class="media-name">Example image</span>', $output );

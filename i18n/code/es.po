@@ -7,6 +7,7 @@
 # Translators:
 # Translators:
 # Translators:
+# Aimeos, 2025
 # Daniel Vega <danielvega131990@gmail.com>, 2015
 # Lara Merlotto <lara@vg7.it>, 2020
 # S 0l, 2021
@@ -17,7 +18,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-09 09:14+0200\n"
 "PO-Revision-Date: 2015-07-09 20:34+0000\n"
-"Last-Translator: S 0l, 2021\n"
+"Last-Translator: Aimeos, 2025\n"
 "Language-Team: Spanish (http://app.transifex.com/aimeos/aimeos-core/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +44,7 @@ msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr ""
+msgstr " "
 
 #. Favorite action
 msgid "favorite"
@@ -123,7 +124,7 @@ msgstr "Nro. tarjeta de crédito"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "pago.cvv"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
@@ -135,7 +136,7 @@ msgstr "Año de caducidad"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr ""
+msgstr "vencimiento.pago (MMAA)"
 
 #. Pick-up date
 msgid "date.value"

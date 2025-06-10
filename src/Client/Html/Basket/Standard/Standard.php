@@ -2,7 +2,7 @@
 
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  * @package Client
  * @subpackage Html
  */
@@ -63,7 +63,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
-	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$context = $this->context();
 		$site = $context->locale()->getSiteItem()->getCode();
@@ -84,8 +84,7 @@ class Standard
 	public function init()
 	{
 		$view = $this->view();
-		$context = $this->context();
-		$controller = \Aimeos\Controller\Frontend::create( $context, 'basket' );
+		$val = $view->param( 'b_check', 0 );
 
 		try
 		{
@@ -107,47 +106,19 @@ class Standard
 					$this->updateProducts( $view );
 					$this->addCoupon( $view );
 			}
-
-			/** client/html/basket/standard/check
-			 * Alters the behavior of the product checks before continuing with the checkout
-			 *
-			 * By default, the product related checks are performed every time the basket
-			 * is shown. They test if there are any products in the basket and execute all
-			 * basket plugins that have been registered for the "check.before" and "check.after"
-			 * events.
-			 *
-			 * Using this configuration setting, you can either disable all checks completely
-			 * (0) or display a "Check" button instead of the "Checkout" button (2). In the
-			 * later case, customers have to click on the "Check" button first to perform
-			 * the checks and if everything is OK, the "Checkout" button will be displayed
-			 * that allows the customers to continue the checkout process. If one of the
-			 * checks fails, the customers have to fix the related basket item and must click
-			 * on the "Check" button again before they can continue.
-			 *
-			 * Available values are:
-			 *  0 = no product related checks
-			 *  1 = checks are performed every time when the basket is displayed
-			 *  2 = checks are performed only when clicking on the "check" button
-			 *
-			 * @param integer One of the allowed values (0, 1 or 2)
-			 * @since 2016.08
-			 */
-			$check = (int) $view->config( 'client/html/basket/standard/check', 1 );
-
-			switch( $check )
-			{
-				case 2: if( $view->param( 'b_check', 0 ) == 0 ) { break; }
-				case 1: $controller->get()->check( ['order/product'] );
-				default: $view->standardCheckout = true;
-			}
 		}
 		catch( \Exception $e )
 		{
-			$controller->save();
+			try {
+				$view->standardCheckout = $this->save( $val );
+			} catch( \Exception $ex ) {
+				$view->standardCheckout = false;
+			}
+
 			throw $e;
 		}
 
-		$controller->save();
+		$view->standardCheckout = $this->save( $val );
 	}
 
 
@@ -297,6 +268,55 @@ class Standard
 
 
 	/**
+	 * Saves the basket content and checks before checkout
+	 *
+	 * @param int $val One of the allowed values (0, 1 or 2)
+	 * @return bool TRUE if checkout is possible, FALSE if not
+	 * @throws \Aimeos\MShop\Exception If checkout isn't possible
+	 */
+	protected function save( int $val ) : bool
+	{
+		$view = $this->view();
+		$controller = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' )->save();
+
+		/** client/html/basket/standard/check
+		 * Alters the behavior of the product checks before continuing with the checkout
+		 *
+		 * By default, the product related checks are performed every time the basket
+		 * is shown. They test if there are any products in the basket and execute all
+		 * basket plugins that have been registered for the "check.before" and "check.after"
+		 * events.
+		 *
+		 * Using this configuration setting, you can either disable all checks completely
+		 * (0) or display a "Check" button instead of the "Checkout" button (2). In the
+		 * later case, customers have to click on the "Check" button first to perform
+		 * the checks and if everything is OK, the "Checkout" button will be displayed
+		 * that allows the customers to continue the checkout process. If one of the
+		 * checks fails, the customers have to fix the related basket item and must click
+		 * on the "Check" button again before they can continue.
+		 *
+		 * Available values are:
+		 *  0 = no product related checks
+		 *  1 = checks are performed every time when the basket is displayed
+		 *  2 = checks are performed only when clicking on the "check" button
+		 *
+		 * @param integer One of the allowed values (0, 1 or 2)
+		 * @since 2016.08
+		 */
+		$check = (int) $view->config( 'client/html/basket/standard/check', 1 );
+
+		switch( $check )
+		{
+			case 2: if( $val == 0 ) { break; }
+			case 1: $controller->get()->check( ['order/product'] );
+			default: return true;
+		}
+
+		return false;
+	}
+
+
+	/**
 	 * Saves the basket of the user permanently
 	 *
 	 * @param \Aimeos\Base\View\Iface $view View object
@@ -313,7 +333,7 @@ class Standard
 			return;
 		}
 
-		$manager = \Aimeos\MShop::create( $context, 'order/basket' );
+		$manager = \Aimeos\MShop::create( $context, 'basket' );
 
 		$item = $manager->create()->setId( md5( microtime( true ) . getmypid() . rand() ) )
 			->setCustomerId( $userId )->setName( $view->param( 'b_name', date( 'Y-m-d H:i:s' ) ) )

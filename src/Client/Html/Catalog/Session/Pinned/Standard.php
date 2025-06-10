@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2014
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  * @package Client
  * @subpackage Html
  */
@@ -41,7 +41,6 @@ class Standard
 		 * Please refer to the single settings for details.
 		 *
 		 * @param array Associative list of name/value settings
-		 * @see client/html/catalog/session#pinned
 		 */
 		$config = $context->config()->get( 'client/html/catalog/session/pinned', [] );
 		$key = $this->getParamHash( [], $uid . ':catalog:session-pinned-body', $config );
@@ -159,7 +158,7 @@ class Standard
 	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
-	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\Base\View\Iface
+	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$items = [];
 		$context = $this->context();

@@ -3,12 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Aimeos, 2024
+# Aimeos, 2024
+# Shahar Tnufa, 2022
 # Shahar Tnufa, 2022
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-10 08:57+0200\n"
+"POT-Creation-Date: 2025-02-09 12:55+0100\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Shahar Tnufa, 2022\n"
 "Language-Team: Hebrew (http://app.transifex.com/aimeos/aimeos-core/language/he/)\n"
@@ -16,23 +19,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: he\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
+"Plural-Forms: nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;\n"
 
 #, php-format
 msgid "%1$d article"
 msgid_plural "%1$d articles"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%1$d מאמר"
+msgstr[1] "%1$d מאמרים"
+msgstr[2] "%1$d מאמרים"
 
 #, php-format
 msgid "%1$d review"
 msgid_plural "%1$d reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%1$d ביקורות"
+msgstr[1] "%1$d ביקורות"
+msgstr[2] "%1$d ביקורות"
 
 #, php-format
 msgid ""
@@ -49,7 +50,7 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #, php-format
 msgid ""
@@ -67,35 +68,38 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
-msgstr ""
+msgstr "%1$s %2$s"
 
 #, php-format
 msgid "%1$s %2$s off"
-msgstr ""
+msgstr "%1$s %2$s הנחה"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
-msgstr ""
+msgstr "%1$s ב-%2$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
+msgstr "%1$s%3$s %2$s%3$s"
+
+msgid "(opens in new window)"
 msgstr ""
 
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "%1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "%1$s%% %2$s"
 
 #, php-format
 msgid "+ %1$s%% VAT"
@@ -109,209 +113,252 @@ msgid "-%1$s%%"
 msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
-msgstr ""
+msgstr "אירעה שגיאה שאינה ניתנת לשחזור"
+
+msgid "Add"
+msgstr "הוסף"
 
 msgid "Add billing address"
+msgstr "הוסף כתובת לחיוב"
+
+msgid "Add delivery address"
 msgstr ""
 
 msgid "Add to basket"
-msgstr ""
+msgstr "הוסף לסל"
 
 msgid "Additional"
-msgstr ""
+msgstr "נוסף"
 
 msgid "Additional 2"
-msgstr ""
+msgstr "2 נוסף"
 
 msgid "Apply"
-msgstr ""
+msgstr "הגש בקשה"
 
 msgid "Article"
-msgstr ""
+msgstr "מאמר"
 
 msgid "Article no."
-msgstr ""
+msgstr "סעיף מס."
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
-msgstr ""
+msgstr "לפחות חלק אחד של כתובת החיוב חסר או לא חוקי"
 
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
+msgstr "לפחות חלק אחד מהכתובת למשלוח חסר או לא חוקי"
+
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr ""
+
+msgid "At least one product couldn't be added to the basket."
 msgstr ""
 
 msgid "Back"
-msgstr ""
+msgstr "אחורה"
 
 msgid "Basket"
-msgstr ""
+msgstr "סל"
 
 msgid "Basket details"
-msgstr ""
+msgstr "פרטי הסל"
 
 msgid "Basket name"
-msgstr ""
+msgstr "שם הסל"
 
 msgid "Basket saved sucessfully"
-msgstr ""
+msgstr "סל נשמר בהצלחה"
 
 msgid "Billing address"
-msgstr ""
+msgstr "כתובת:תשלום"
 
 #, php-format
 msgid "Billing address part \"%1$s\" is invalid"
-msgstr ""
+msgstr "חלק הכתובת לחיוב \"%1$s\" אינו חוקי"
 
 #, php-format
 msgid "Billing address part \"%1$s\" is missing"
-msgstr ""
+msgstr "חסר חלק של כתובת החיוב \"%1$s\"."
 
 msgid "Birthday"
-msgstr ""
+msgstr "יום הולדת"
 
 msgid "Breadcrumb navigation"
-msgstr ""
+msgstr "ניווט בפירורי לחם"
 
 msgid "Bulk order"
-msgstr ""
+msgstr "הזמנה בכמות גדולה"
 
 msgid "Bundled products"
-msgstr ""
+msgstr "מוצרים מצורפים"
 
 msgid "Buy now"
-msgstr ""
+msgstr "קנה עכשיו"
 
 msgid "Cancel"
-msgstr ""
+msgstr "בטל"
 
 msgid "Categories"
-msgstr ""
+msgstr "קטלוג"
 
 msgid "Change"
+msgstr "שינוי"
+
+msgid "Change address"
+msgstr ""
+
+msgid "Change billing address"
+msgstr ""
+
+msgid "Change coupons"
+msgstr ""
+
+msgid "Change delivery"
+msgstr ""
+
+msgid "Change delivery address"
 msgstr ""
 
 msgid "Change payment"
+msgstr "שנה תשלום"
+
+msgid "Change products"
 msgstr ""
 
 msgid "Characteristics"
-msgstr ""
+msgstr "מאפיין"
 
 msgid "Checkout"
-msgstr ""
+msgstr "קופה"
 
 msgid "City"
-msgstr ""
+msgstr "עיר"
 
 #, php-format
 msgid "Class \"%1$s\" not found"
-msgstr ""
+msgstr "הכיתה \"%1$s\" לא נמצאה"
 
 msgid "Close"
-msgstr ""
+msgstr "סגור"
 
 msgid "Company"
-msgstr ""
+msgstr "חברה"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "אישור"
 
 msgid "Country"
-msgstr ""
+msgstr "מדינה"
 
 msgid "Coupon codes"
-msgstr ""
+msgstr "קודי קופון"
 
 msgid "Coupons"
-msgstr ""
+msgstr "קופונים"
 
 msgid "Create a customer account for me"
-msgstr ""
+msgstr "צור עבורי חשבון לקוח"
 
 msgid "Created"
-msgstr ""
+msgstr "נוצר"
 
 msgid "Customer account"
+msgstr "חשבון לקוח"
+
+msgid "Decrease"
 msgstr ""
 
 msgid "Delete"
-msgstr ""
+msgstr "מחק"
 
 msgid "Delete item"
-msgstr ""
+msgstr "מחק פריט"
 
 msgid "Delivery"
-msgstr ""
+msgstr "משלוח"
 
 msgid "Delivery address"
-msgstr ""
+msgstr "כתובת:משלוח"
 
 #, php-format
 msgid "Delivery address deleted successfully"
-msgstr ""
+msgstr "כתובת למשלוח נמחקה בהצלחה"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
-msgstr ""
+msgstr "חלק של כתובת המשלוח \"%1$s\" אינו חוקי"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is missing"
-msgstr ""
+msgstr "חסר חלק בכתובת למשלוח \"%1$s\"."
 
 msgid "Delivery within"
-msgstr ""
+msgstr "משלוח בתוך"
 
 msgid "Description"
-msgstr ""
+msgstr "תיאור"
 
 msgid "Details"
-msgstr ""
+msgstr "פרטים"
 
 msgid "Don't store address"
-msgstr ""
+msgstr "אל תשמור כתובת"
 
 msgid "Downloads"
-msgstr ""
+msgstr "הורדות"
 
 msgid "E-Mail"
-msgstr ""
+msgstr "דואר אלקטרוני"
 
 msgid "End date"
-msgstr ""
+msgstr "תאריך סיום"
 
 msgid "Favorite products"
-msgstr ""
+msgstr "מוצרים מועדפים"
 
 msgid "Fax"
-msgstr ""
+msgstr "פקס"
 
 msgid "Fields with an * are mandatory"
-msgstr ""
+msgstr "שדות עם * הם חובה"
 
 msgid "Filter"
-msgstr ""
+msgstr "מסנן"
 
 msgid "First"
-msgstr ""
+msgstr "ראשון"
 
 msgid "First name"
-msgstr ""
+msgstr "שם פרטי"
 
 msgid "Found products"
-msgstr ""
+msgstr "מוצרים שנמצאו"
 
 msgid "GB999999973"
-msgstr ""
+msgstr "IL999999973"
 
 msgid "Go to page"
-msgstr ""
+msgstr "עבור לדף"
 
 msgid "Grid view"
-msgstr ""
+msgstr "תצוגת רשת"
 
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 msgid "Highest price"
+msgstr "המחיר הגבוה ביותר"
+
+#, php-format
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions"
+" (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
 msgstr ""
 
 #, php-format
@@ -322,575 +369,598 @@ msgid ""
 "policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
 "title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
 "policy</a>"
-msgstr ""
+msgstr "אני מקבל את <a href=\"%1$s\" target=\"_blank\" title=\"תנאים והגבלות\" alt=\"תנאים והגבלות\">תנאים והגבלות</a>, <a href=\"%2$s\" target=\"_blank\" title=\"מדיניות פרטיות\" alt=\"מדיניות פרטיות\">מדיניות פרטיות</a> ו<a href=\"%3$s\" target=\"_blank\" title=\"מדיניות ביטול\" alt=\"מדיניות ביטול\">מדיניות ביטול</a>"
 
 msgid "If back in stock"
-msgstr ""
+msgstr "אם חזר למלאי"
 
 msgid "If price decreases"
-msgstr ""
+msgstr "אם המחיר יורד"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "לְרַבּוֹת %1$s%% %2$s"
 
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr ""
+msgstr "לְרַבּוֹת %1$s%% VAT"
 
 msgid "Included rebates"
+msgstr "הנחות כלולות"
+
+msgid "Increase"
 msgstr ""
 
 msgid "Interval"
-msgstr ""
+msgstr "מרווח"
 
 #, php-format
 msgid "Invalid characters in client name \"%1$s\""
-msgstr ""
+msgstr "תווים לא חוקיים בשם הלקוח \"%1$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
-msgstr ""
+msgstr "שם מחלקה לא חוקי \"%1$s\""
 
 #, php-format
 msgid "Invalid domain \"%1$s\""
-msgstr ""
+msgstr "דומיין לא חוקי \"%1$s\""
 
 msgid "Invoice"
-msgstr ""
+msgstr "חשבונית"
 
 msgid "Language"
-msgstr ""
+msgstr "שפה"
 
 msgid "Last"
-msgstr ""
+msgstr "אחרון"
 
 msgid "Last name"
-msgstr ""
+msgstr "שם משפחה"
 
 msgid "Last seen"
-msgstr ""
+msgstr "נראה לאחרונה"
 
 msgid "Latest"
+msgstr "האחרון"
+
+msgid "Less"
 msgstr ""
 
 msgid "List view"
-msgstr ""
+msgstr "תצוגת רשימה"
 
 msgid "Lowest price"
-msgstr ""
+msgstr "המחיר הנמוך ביותר"
 
 msgid "Mobile"
-msgstr ""
+msgstr "נייד"
 
 msgid "Mobile number"
-msgstr ""
+msgstr "מספר נייד"
+
+msgid "More"
+msgstr "עוד"
 
 msgid "More reviews"
-msgstr ""
+msgstr "ביקורות נוספות"
 
 msgid "Name"
-msgstr ""
+msgstr "שם"
 
 msgid "New"
-msgstr ""
+msgstr "חדש"
 
 msgid "New delivery address"
-msgstr ""
+msgstr "כתובת חדשה למשלוח"
 
 msgid "Next"
-msgstr ""
+msgstr "הבא"
 
 msgid "Next order"
-msgstr ""
+msgstr "ההזמנה הבאה"
 
 #, php-format
 msgid ""
 "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
 "try again with a different keyword."
-msgstr ""
+msgstr "לא נמצאו מאמרים עבור <span class=\"searchstring\">\"%1$s\"</span>. "
 
 msgid "No order ID available in session"
-msgstr ""
+msgstr "אין מזהה הזמנה זמין בהפעלה"
 
 #, php-format
 msgid "No view available"
-msgstr ""
+msgstr "אין תצוגה זמינה"
 
 msgid "One month"
-msgstr ""
+msgstr "חודש אחד"
 
 msgid "One week"
-msgstr ""
+msgstr "שבוע אחד"
 
 msgid "Open submenu"
-msgstr ""
+msgstr "פתח תפריט משנה"
 
 msgid "Order ID"
-msgstr ""
+msgstr "מזהה הזמנה"
 
 msgid "Order details"
-msgstr ""
+msgstr "פרטי הזמנה"
 
 msgid "Order history"
-msgstr ""
+msgstr "היסטוריית הזמנות"
 
 msgid "Order status"
-msgstr ""
+msgstr "סטטוס הזמנה"
 
 msgid "Other customers also bought"
-msgstr ""
+msgstr "גם לקוחות אחרים קנו"
 
 #, php-format
 msgid "Page %1$d of %2$d"
-msgstr ""
+msgstr "עמוד %1$d מתוך %2$d"
 
 msgid "Pay now"
-msgstr ""
+msgstr "שלם עכשיו"
 
 msgid "Payment"
-msgstr ""
+msgstr "תשלום"
 
 msgid "Payment costs"
-msgstr ""
+msgstr "עלויות תשלום"
 
 msgid "Payment status"
+msgstr "סטטוס תשלום"
+
+msgid "Percentage"
 msgstr ""
 
 msgid "Pin product"
-msgstr ""
+msgstr "מוצר סיכה"
 
 msgid "Pinned products"
-msgstr ""
+msgstr "מוצרים מוצמדים"
 
 msgid "Please accept the terms and conditions"
-msgstr ""
+msgstr "נא לקבל את התנאים וההגבלות"
 
 msgid "Please check your order"
-msgstr ""
+msgstr "אנא בדוק את ההזמנה שלך"
 
 msgid "Please choose your delivery method"
-msgstr ""
+msgstr "אנא בחר את שיטת המשלוח שלך"
 
 msgid "Please choose your payment method"
-msgstr ""
+msgstr "אנא בחר את שיטת התשלום שלך"
 
 msgid "Please enter at least three characters"
-msgstr ""
+msgstr "נא להזין לפחות שלושה תווים"
 
 msgid "Please enter your payment details"
-msgstr ""
+msgstr "אנא הזן את פרטי התשלום שלך"
 
 msgid "Please select"
-msgstr ""
+msgstr "אנא בחר"
 
 msgid "Postal code"
-msgstr ""
+msgstr "מיקוד"
 
 msgid "Previous"
-msgstr ""
+msgstr "הקודם"
 
 msgid "Price"
-msgstr ""
+msgstr "מחיר"
 
 msgid "Price filter"
-msgstr ""
+msgstr "מסנן מחירים"
 
 msgid "Price range"
-msgstr ""
+msgstr "טווח מחירים"
 
 msgid "Proceed"
-msgstr ""
+msgstr "המשך"
 
 msgid "Processing the payment failed"
-msgstr ""
+msgstr "עיבוד התשלום נכשל"
 
 msgid "Product"
-msgstr ""
+msgstr "מוצר"
 
 msgid "Product actions"
-msgstr ""
+msgstr "פעולות מוצר"
 
 msgid "Product attributes"
-msgstr ""
+msgstr "מאפייני מוצר"
 
 msgid "Product categories"
-msgstr ""
+msgstr "קטגוריות מוצרים"
 
 msgid "Product characteristics"
-msgstr ""
+msgstr "מאפייני מוצר"
 
 msgid "Product description"
+msgstr "תיאור המוצר"
+
+msgid "Product downloads"
 msgstr ""
 
 msgid "Product filters"
-msgstr ""
+msgstr "מסנני מוצרים"
 
 msgid "Product image"
-msgstr ""
+msgstr "תמונת מוצר"
 
 msgid "Product information"
-msgstr ""
+msgstr "מידע על המוצר"
 
 msgid "Product price"
-msgstr ""
+msgstr "מחיר המוצר"
 
 msgid "Product reviews"
-msgstr ""
+msgstr "ביקורות מוצר"
 
 msgid "Product search"
-msgstr ""
+msgstr "חיפוש מוצרים"
 
 msgid "Products you might be also interested in"
-msgstr ""
+msgstr "מוצרים שאולי יעניינו אותך גם"
 
 msgid "Qty"
-msgstr ""
+msgstr "כמות"
 
 msgid "Quantity"
-msgstr ""
+msgstr "כמות"
 
 msgid "Rating"
-msgstr ""
+msgstr "דירוג"
 
 msgid "Reference"
-msgstr ""
+msgstr "הפניה"
 
 msgid "Relevance"
+msgstr "רלוונטיות"
+
+msgid "Remove"
 msgstr ""
 
 msgid "Reset"
-msgstr ""
+msgstr "אפס"
 
 #, php-format
 msgid "Result for \"%1$s\""
-msgstr ""
+msgstr "תוצאה עבור \"%1$s\""
 
 msgid "Reviews"
-msgstr ""
+msgstr "סקירה"
 
 msgid "SKU or article name"
-msgstr ""
+msgstr "SKU או שם מאמר"
 
 msgid "Sale"
-msgstr ""
+msgstr "מכירה"
 
 msgid "Salutation"
-msgstr ""
+msgstr "ברכה"
 
 msgid "Save"
-msgstr ""
+msgstr "שמור"
 
 msgid "Saved basket removed sucessfully"
-msgstr ""
+msgstr "סל שמור הוסר בהצלחה"
 
 msgid "Saved baskets"
-msgstr ""
+msgstr "סלים שמורים"
 
 msgid "Search"
-msgstr ""
+msgstr "חפש"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
 msgid_plural ""
 "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
 "articles)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "תוצאות החיפוש עבור \"%1$s\" (%2$d מאמר)"
+msgstr[1] "תוצאות החיפוש עבור \"%1$s\" (%2$d מאמרים)"
+msgstr[2] "תוצאות החיפוש עבור \"%1$s\" (%2$d מאמרים)"
 
 msgid "Select country"
-msgstr ""
+msgstr "בחר מדינה"
 
 msgid "Select currency"
-msgstr ""
+msgstr "בחר מטבע"
 
 msgid "Select language"
-msgstr ""
+msgstr "בחר שפה"
 
 msgid "Select salutation"
-msgstr ""
+msgstr "בחר ברכה"
 
 msgid "Select state"
-msgstr ""
+msgstr "בחר מצב"
 
 msgid "Share"
-msgstr ""
+msgstr "שתף"
 
 msgid "Shipping"
-msgstr ""
+msgstr "משלוח"
 
 msgid "Show"
-msgstr ""
+msgstr "הצגה"
 
 msgid "Sort by"
-msgstr ""
+msgstr "מיין לפי"
 
 msgid "Sort by:"
+msgstr "מיין לפי:"
+
+msgid "Stars"
 msgstr ""
 
 msgid "State"
-msgstr ""
+msgstr "מדינה"
 
 msgid "Stock"
-msgstr ""
+msgstr "מלאי"
 
 #, php-format
 msgid "Stock: %1$s, %2$s"
-msgstr ""
+msgstr "מלאי: %1$s, %2$s"
 
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
-msgstr ""
+msgstr "מלאי: %1$s, %2$s, חזרה ב-%3$s"
 
 msgid "Street"
-msgstr ""
+msgstr "רחוב"
 
 msgid "Sub-total"
-msgstr ""
+msgstr "סה\"כ משנה"
 
 msgid "Submit"
-msgstr ""
+msgstr "שלח"
 
 msgid "Subscription ID"
-msgstr ""
+msgstr "מזהה מנוי"
 
 msgid "Subscription details"
-msgstr ""
+msgstr "פרטי מנוי"
 
 msgid "Subscriptions"
-msgstr ""
+msgstr "מנוי"
 
 msgid "Suggested products"
-msgstr ""
+msgstr "מוצרים מוצעים"
 
 msgid "Sum"
-msgstr ""
+msgstr "סכום"
 
 msgid "Supplier information"
-msgstr ""
+msgstr "מידע על הספק"
 
 msgid "Supplier list"
-msgstr ""
+msgstr "רשימת ספקים"
 
 msgid "Suppliers"
-msgstr ""
+msgstr "ספק"
 
 msgid "Take a look"
-msgstr ""
+msgstr "תסתכל"
 
 msgid "Telephone"
-msgstr ""
+msgstr "טלפון"
 
 msgid "Terms and conditions"
-msgstr ""
+msgstr "תנאים והגבלות"
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
+msgstr "תודה על הזמנתך ואישור התשלום.\nאימייל עם פרטי ההזמנה יישלח אליך בתוך הדקות הקרובות."
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
+msgstr "תודה על הזמנתך.\nקיבלנו את התשלום שלך ואימייל עם פרטי ההזמנה יישלח אליך בתוך הדקות הקרובות."
 
 msgid "Thank you for your review!"
-msgstr ""
+msgstr "תודה על הביקורת שלך!"
 
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr ""
+msgstr "ההזמנה בוטלה.\nהאם ברצונך לנסות שוב את ההזמנה שלך?"
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr ""
+msgstr "אישור התשלום עבור ההזמנה שלך עדיין בהמתנה.\nתקבל הודעת דואר אלקטרוני ברגע שהתשלום יאושר."
 
 msgid "Three month"
-msgstr ""
+msgstr "שלושה חודשים"
 
 msgid "Time frame"
-msgstr ""
+msgstr "מסגרת זמן"
+
+msgid "Title"
+msgstr "כותרת"
 
 msgid "Toggle fullscreen"
-msgstr ""
+msgstr "החלף מסך מלא"
 
 msgid "Total"
-msgstr ""
+msgstr "סה\"כ"
 
 msgid "Try again"
-msgstr ""
+msgstr "נסה שוב"
 
 msgid "Two weeks"
-msgstr ""
+msgstr "שבועיים"
 
 #, php-format
 msgid "Unable to create an account: %1$s"
-msgstr ""
+msgstr "לא ניתן ליצור חשבון: %1$s"
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
-msgstr ""
+msgstr "לא ניתן לשמור כתובת עבור הלקוח \"%1$s\": %2$s"
 
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr ""
+msgstr "למרבה הצער, התשלום עבור ההזמנה שלך נדחה.\nהאם ברצונך לנסות שוב?"
 
 msgid "Update"
-msgstr ""
+msgstr "עדכון"
 
 msgid "Variant"
-msgstr ""
+msgstr "גרסה"
 
 msgid "Vat ID"
-msgstr ""
+msgstr "מזהה מע\"מ"
 
 msgid "Vendor response"
-msgstr ""
+msgstr "תגובת הספק"
 
 msgid "Watch"
-msgstr ""
+msgstr "צפו"
 
 msgid "Watched products"
-msgstr ""
+msgstr "מוצרים נצפו"
 
 msgid "Web site"
-msgstr ""
+msgstr "אתר אינטרנט"
 
 msgid "What do you think about the product"
-msgstr ""
+msgstr "מה אתה חושב על המוצר"
 
 msgid "Y-m-d"
-msgstr ""
+msgstr "d.m.Y"
 
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "יום/חודש/שנה"
 
 msgid "YYYY-MM-DD HH:mm"
-msgstr ""
+msgstr "יום/חודש/שנה שעה:דקה"
 
 msgid "You are here:"
-msgstr ""
+msgstr "אתה כאן:"
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr ""
+msgstr "אתה יכול לשמור רק עד %1$s מוצרים כמועדפים"
 
 #, php-format
 msgid "You can only watch up to %1$s products"
-msgstr ""
+msgstr "אתה יכול לצפות רק עד %1$s מוצרים"
 
 msgid "You must log in first"
-msgstr ""
+msgstr "עליך להתחבר תחילה"
 
 msgid "You will now be forwarded to the next step"
-msgstr ""
+msgstr "כעת תועבר לשלב הבא"
 
 msgid "Your choice"
-msgstr ""
+msgstr "בחירה שלך"
 
 msgid "Your comment"
-msgstr ""
+msgstr "ההערה שלך"
 
 msgid "Your rating"
-msgstr ""
+msgstr "הדירוג שלך"
 
 msgid "Your reference"
-msgstr ""
+msgstr "ההפניה שלך"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "מספר האסמכתה שלך"
 
 msgid "Your review"
-msgstr ""
+msgstr "הביקורת שלך"
 
 msgid "Zoom in/out"
-msgstr ""
+msgstr "זום פנימה/החוצה"
 
 #, php-format
 msgid "address"
-msgstr ""
+msgstr "כתובת"
 
 #, php-format
 msgid "delivery"
-msgstr ""
+msgstr "משלוח"
 
 msgid "favorite"
-msgstr ""
+msgstr "מועדף"
 
 #, php-format
 msgid "from %1$s"
-msgstr ""
+msgstr "מ-%1$s"
 
 msgid "like billing address"
-msgstr ""
+msgstr "כתובת לחיוב כמו"
 
 msgid "new address"
-msgstr ""
+msgstr "כתובת חדשה"
 
 msgid "none"
-msgstr ""
+msgstr "אין"
 
 msgid "on request"
-msgstr ""
+msgstr "לפי בקשה"
 
 #, php-format
 msgid "payment"
-msgstr ""
+msgstr "תשלום"
 
 msgid "pin"
-msgstr ""
+msgstr "פין"
 
 msgid "price:default"
-msgstr ""
+msgstr "מחיר:ברירת מחדל"
 
 #, php-format
 msgid "process"
-msgstr ""
+msgstr "תהליך"
 
 msgid "stock-high"
-msgstr ""
+msgstr "שיא מלאי"
 
 msgid "stock-low"
-msgstr ""
+msgstr "המלאי נמוך"
 
 msgid "stock-out"
-msgstr ""
+msgstr "אזל מלא"
 
 msgid "stock-unlimited"
-msgstr ""
+msgstr "מלאי ללא הגבלה"
 
 #, php-format
 msgid "summary"
-msgstr ""
+msgstr "סיכום"
 
 msgid "watch"
-msgstr ""
+msgstr "שעון"
 
 msgid "▲ Name"
-msgstr ""
+msgstr "▲ שם"
 
 msgid "▲ Price"
-msgstr ""
+msgstr "▲ מחיר"
 
 msgid "▶"
-msgstr ""
+msgstr "▶"
 
 msgid "▶▶"
-msgstr ""
+msgstr "▶▶"
 
 msgid "▼ Name"
-msgstr ""
+msgstr "▼ שם"
 
 msgid "▼ Price"
-msgstr ""
+msgstr "▼ מחיר"
 
 msgid "◀"
-msgstr ""
+msgstr "◀"
 
 msgid "◀◀"
-msgstr ""
+msgstr "◀◀"

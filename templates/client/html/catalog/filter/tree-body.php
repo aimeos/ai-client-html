@@ -54,13 +54,6 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 				<div class="col-2 close" data-submenu-close="<?= $enc->attr( $this->treeCatalogTree->getId() ) ?>"></div>
 			</div>
 
-			<?php if( $this->param( 'f_catid' ) ) : ?>
-				<a class="btn btn-secondary category-selected"
-					href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', map( $this->get( 'filterParams' ), [] )->remove( ['f_catid', 'f_name'] )->all() ) ) ?>">
-					<?= $enc->html( $this->translate( 'client', 'Reset' ), $enc::TRUST ) ?>
-				</a>
-			<?php endif ?>
-
 			<?php if( $enforce ) : ?>
 				<input type="hidden"
 					name="<?= $enc->attr( $this->formparam( ['f_catid'] ) ) ?>"

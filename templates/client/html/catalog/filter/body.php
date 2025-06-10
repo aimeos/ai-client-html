@@ -3,7 +3,7 @@
 /**
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
- * @copyright Aimeos (aimeos.org), 2015-2023
+ * @copyright Aimeos (aimeos.org), 2015-2025
  */
 
 
@@ -90,8 +90,18 @@ $enc = $this->encoder();
  * @see client/html/catalog/lists/url/config
  */
 
-$linkKey = $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
-$params = map( $this->param() )->only( ['path', 'f_catid', 'f_name'] );
+/** client/html/catalog/multiroute
+ * Enables multiple entities sharing the same route
+ *
+ * To allow categories, products, CMS pages, etc. sharing the same route, you
+ * have to enable this option.
+ *
+ * @param bool TRUE to enable resolving multi-routes, FALSE if not
+ * @since 2023.10
+ */
+$multi = $this->config( 'client/html/catalog/multiroute', false );
+$linkKey = $multi && $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/html/catalog/lists/url';
+$params = map( $this->param() )->only( ['path', 'f_catid', 'f_name', 'f_search'] );
 
 if( $catid = $this->config( 'client/html/catalog/filter/tree/startid' ) ) {
 	$params = $params->union( ['f_catid' => $catid] );
