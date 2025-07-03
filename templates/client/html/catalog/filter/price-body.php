@@ -19,15 +19,15 @@ $linkKey = $multi && $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'clie
 
 		<div class="price-lists">
 			<div class="price-input">
-				<input type="number" class="price-low" name="<?= $this->formparam( ['f_price', 0] )?>"
+				<input type="number" class="price-low" <?= $this->param( 'f_price/0' ) ? '' : 'data-' ?>name="<?= $this->formparam( ['f_price', 0] )?>"
 					min="0" max="<?= $enc->attr( $this->get( 'priceHigh', 0 ) ) ?>" step="1"
 					value="<?= $enc->attr( $this->param( 'f_price/0', 0 ) ) ?>"
 					title="<?= $enc->attr( $this->translate( 'client', 'Lowest price' ) ) ?>">
-				<input type="number" class="price-high" name="<?= $this->formparam( ['f_price', 1] )?>"
+				<input type="number" class="price-high" <?= $this->param( 'f_price/1' ) ? '' : 'data-' ?>name="<?= $this->formparam( ['f_price', 1] )?>"
 					min="0" max="<?= $enc->attr( max( $this->param( 'f_price/1', 1 ), $this->get( 'priceHigh', 1 ) ) ) ?>" step="1"
 					value="<?= $enc->attr( $this->param( 'f_price/1', $this->get( 'priceHigh', 1 ) ) ) ?>"
 					title="<?= $enc->attr( $this->translate( 'client', 'Highest price' ) ) ?>">
-				<input type="range" class="price-slider" name="<?= $this->formparam( ['f_price', 1] )?>"
+				<input type="range" class="price-slider"
 					min="0" max="<?= $enc->attr( max( $this->param( 'f_price/1', 1 ), $this->get( 'priceHigh', 1 ) ) ) ?>" step="1"
 					value="<?= $enc->attr( $this->param( 'f_price/1', $this->get( 'priceHigh', 1 ) ) ) ?>"
 					title="<?= $enc->attr( $this->translate( 'client', 'Price range' ) ) ?>">
