@@ -77,20 +77,45 @@ class Exceptions extends Base implements Iface
 	 */
 	public function header( string $uid = '' ) : ?string
 	{
+		$output = '';
+		$view = $this->view();
+		$context = $this->context();
+
 		try
 		{
-			return $this->client()->header( $uid );
+			$output = $this->client()->header( $uid );
 		}
-		catch( \Exception $e )
+		catch( \Aimeos\Client\Html\Exception $e )
+		{
+			$error = [$context->translate( 'client', $e->getMessage() )];
+			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
+		}
+		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			if( $e->getCode() >= 400 ) {
 				throw $e;
 			}
 
-			$this->logException( $e, \Aimeos\Base\Logger\Iface::NOTICE );
+			$error = [$context->translate( 'controller/frontend', $e->getMessage() )];
+			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
+		}
+		catch( \Aimeos\MShop\Exception $e )
+		{
+			if( $e->getCode() >= 400 ) {
+				throw $e;
+			}
+
+			$error = [$context->translate( 'mshop', $e->getMessage() )];
+			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
+		}
+		catch( \Exception $e )
+		{
+			$error = [$context->translate( 'client', 'A non-recoverable error occured' )];
+			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
+			$this->logException( $e );
 		}
 
-		return null;
+		return $view->render( 'error' ) . $output;
 	}
 
 

@@ -89,12 +89,39 @@ class ExceptionsTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testHeaderClientException()
+	{
+		$this->client->expects( $this->once() )->method( 'header' )
+			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
+
+		$this->assertStringContainsString( 'test exception', $this->object->header() );
+	}
+
+
+	public function testHeaderFrontendException()
+	{
+		$this->client->expects( $this->once() )->method( 'header' )
+			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
+
+		$this->assertStringContainsString( 'test exception', $this->object->header() );
+	}
+
+
+	public function testHeaderMShopException()
+	{
+		$this->client->expects( $this->once() )->method( 'header' )
+			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
+
+		$this->assertStringContainsString( 'test exception', $this->object->header() );
+	}
+
+
 	public function testHeaderException()
 	{
 		$this->client->expects( $this->once() )->method( 'header' )
 			->will( $this->throwException( new \Exception() ) );
 
-		$this->assertEquals( null, $this->object->header() );
+		$this->assertStringContainsString( 'A non-recoverable error occured', $this->object->header() );
 	}
 
 
