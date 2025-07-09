@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Shahar Tnufa, 2022\n"
 "Language-Team: Hebrew (http://app.transifex.com/aimeos/aimeos-core/language/he/)\n"
@@ -91,7 +91,7 @@ msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s %2$s%3$s"
 
 msgid "(opens in new window)"
-msgstr ""
+msgstr "(נפתח בחלון חדש)"
 
 #, php-format
 msgid "+ %1$s %2$s"
@@ -122,7 +122,7 @@ msgid "Add billing address"
 msgstr "הוסף כתובת לחיוב"
 
 msgid "Add delivery address"
-msgstr ""
+msgstr "הוסף כתובת משלוח"
 
 msgid "Add to basket"
 msgstr "הוסף לסל"
@@ -132,6 +132,14 @@ msgstr "נוסף"
 
 msgid "Additional 2"
 msgstr "2 נוסף"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr "החלק \"%1$s\" בכתובת אינו חוקי"
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr "חלק הכתובת \"%1$s\" חסר"
 
 msgid "Apply"
 msgstr "הגש בקשה"
@@ -152,10 +160,10 @@ msgstr "לפחות חלק אחד מהכתובת למשלוח חסר או לא ח
 
 #, php-format
 msgid "At least one payment address part is missing or invalid"
-msgstr ""
+msgstr "לפחות חלק אחד מפרטי כתובת התשלום חסר או אינו חוקי"
 
 msgid "At least one product couldn't be added to the basket."
-msgstr ""
+msgstr "לא ניתן להוסיף לפחות מוצר אחד לסל הקניות."
 
 msgid "Back"
 msgstr "אחורה"
@@ -208,25 +216,25 @@ msgid "Change"
 msgstr "שינוי"
 
 msgid "Change address"
-msgstr ""
+msgstr "שינוי כתובת"
 
 msgid "Change billing address"
-msgstr ""
+msgstr "שינוי כתובת חיוב"
 
 msgid "Change coupons"
-msgstr ""
+msgstr "שנה קופונים"
 
 msgid "Change delivery"
-msgstr ""
+msgstr "שינוי משלוח"
 
 msgid "Change delivery address"
-msgstr ""
+msgstr "שינוי כתובת משלוח"
 
 msgid "Change payment"
 msgstr "שנה תשלום"
 
 msgid "Change products"
-msgstr ""
+msgstr "החלף מוצרים"
 
 msgid "Characteristics"
 msgstr "מאפיין"
@@ -269,7 +277,7 @@ msgid "Customer account"
 msgstr "חשבון לקוח"
 
 msgid "Decrease"
-msgstr ""
+msgstr "ירידה"
 
 msgid "Delete"
 msgstr "מחק"
@@ -359,7 +367,7 @@ msgid ""
 "target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
 "policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
 "policy (opens in new tab)\">cancellation policy</a>"
-msgstr ""
+msgstr "אני מקבל את <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">התנאים וההגבלות</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">מדיניות הפרטיות</a> <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">ומדיניות הביטול</a>"
 
 #, php-format
 msgid ""
@@ -389,7 +397,7 @@ msgid "Included rebates"
 msgstr "הנחות כלולות"
 
 msgid "Increase"
-msgstr ""
+msgstr "הגדל"
 
 msgid "Interval"
 msgstr "מרווח"
@@ -425,7 +433,7 @@ msgid "Latest"
 msgstr "האחרון"
 
 msgid "Less"
-msgstr ""
+msgstr "פחות"
 
 msgid "List view"
 msgstr "תצוגת רשימה"
@@ -507,6 +515,14 @@ msgstr "שלם עכשיו"
 msgid "Payment"
 msgstr "תשלום"
 
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr "כתובת התשלום \"%1$s\" אינה חוקית"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr "חלק כתובת התשלום \"%1$s\" חסר"
+
 msgid "Payment costs"
 msgstr "עלויות תשלום"
 
@@ -514,7 +530,7 @@ msgid "Payment status"
 msgstr "סטטוס תשלום"
 
 msgid "Percentage"
-msgstr ""
+msgstr "אחוז"
 
 msgid "Pin product"
 msgstr "מוצר סיכה"
@@ -583,7 +599,7 @@ msgid "Product description"
 msgstr "תיאור המוצר"
 
 msgid "Product downloads"
-msgstr ""
+msgstr "הורדות מוצרים"
 
 msgid "Product filters"
 msgstr "מסנני מוצרים"
@@ -622,7 +638,7 @@ msgid "Relevance"
 msgstr "רלוונטיות"
 
 msgid "Remove"
-msgstr ""
+msgstr "הסר"
 
 msgid "Reset"
 msgstr "אפס"
@@ -695,7 +711,7 @@ msgid "Sort by:"
 msgstr "מיין לפי:"
 
 msgid "Stars"
-msgstr ""
+msgstr "כוכבים"
 
 msgid "State"
 msgstr "מדינה"

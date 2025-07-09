@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Федір Вільгота <fredy31415@gmail.com>, 2019\n"
 "Language-Team: Ukrainian (http://app.transifex.com/aimeos/aimeos-core/language/uk/)\n"
@@ -135,6 +135,14 @@ msgstr "Номер будинку"
 
 msgid "Additional 2"
 msgstr "Поверх / Квартира"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr "Частина адреси \"%1$s\" є невірною"
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr "Відсутня частина адреси \"%1$s\""
 
 msgid "Apply"
 msgstr "Застосувати"
@@ -509,6 +517,14 @@ msgstr "Оплатіть зараз"
 
 msgid "Payment"
 msgstr "Оплата"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr "Частина платіжної адреси \"%1$s\" є недійсною"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr "Відсутня частина платіжної адреси \"%1$s\""
 
 msgid "Payment costs"
 msgstr "Вартість оплати"

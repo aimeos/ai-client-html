@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: iulian iulian <iulian.abc@gmail.com>, 2020\n"
 "Language-Team: Romanian (http://app.transifex.com/aimeos/aimeos-core/language/ro/)\n"
@@ -131,6 +131,14 @@ msgstr "Aditional"
 
 msgid "Additional 2"
 msgstr "Aditional 2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr "Partea de adresă \"%1$s\" nu este valabilă"
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr "Partea de adresă \"%1$s\" lipsește"
 
 msgid "Apply"
 msgstr "Aplică"
@@ -505,6 +513,14 @@ msgstr "Plateste acum"
 
 msgid "Payment"
 msgstr "Plata"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr "Partea adresei de plată \"%1$s\" nu este valabilă"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr "Partea adresei de plată \"%1$s\" lipsește"
 
 msgid "Payment costs"
 msgstr "Cost plata"

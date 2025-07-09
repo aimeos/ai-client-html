@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Korean (http://app.transifex.com/aimeos/aimeos-core/language/ko/)\n"
@@ -124,6 +124,14 @@ msgstr "추가"
 
 msgid "Additional 2"
 msgstr "추가 2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr "주소 부분 \"%1$s\"가 잘못되었습니다."
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr "주소 부분 \"%1$s\"가 누락되었습니다."
 
 msgid "Apply"
 msgstr "적용"
@@ -498,6 +506,14 @@ msgstr "지금 결제하기"
 
 msgid "Payment"
 msgstr "결제"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr "결제 주소 부분 \"%1$s\"가 잘못되었습니다."
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr "결제 주소 부분 \"%1$s\"가 누락되었습니다."
 
 msgid "Payment costs"
 msgstr "결제 비용"

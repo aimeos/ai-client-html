@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-08 13:35+0100\n"
+"POT-Creation-Date: 2025-07-08 17:50+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Spanish (Argentina) (http://www.transifex.com/aimeos/aimeos-core/language/es_AR/)\n"
+"Language-Team: Spanish (Argentina) (http://www.transifex.com/aimeos/aimeos-"
+"core/language/es_AR/)\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,6 +116,9 @@ msgstr ""
 msgid "Add billing address"
 msgstr ""
 
+msgid "Add delivery address"
+msgstr ""
+
 msgid "Add to basket"
 msgstr ""
 
@@ -122,6 +126,14 @@ msgid "Additional"
 msgstr ""
 
 msgid "Additional 2"
+msgstr ""
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr ""
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
 msgstr ""
 
 msgid "Apply"
@@ -153,6 +165,12 @@ msgstr ""
 
 msgid "Basket"
 msgstr "Carrito"
+
+msgid "Basket details"
+msgstr ""
+
+msgid "Basket name"
+msgstr ""
 
 msgid "Basket saved sucessfully"
 msgstr ""
@@ -192,10 +210,25 @@ msgstr "Categorias"
 msgid "Change"
 msgstr ""
 
+msgid "Change address"
+msgstr ""
+
+msgid "Change billing address"
+msgstr ""
+
 msgid "Change coupons"
 msgstr ""
 
+msgid "Change delivery"
+msgstr ""
+
+msgid "Change delivery address"
+msgstr ""
+
 msgid "Change payment"
+msgstr ""
+
+msgid "Change products"
 msgstr ""
 
 msgid "Characteristics"
@@ -298,8 +331,14 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
+msgid "First"
+msgstr ""
+
 msgid "First name"
 msgstr "Nombre"
+
+msgid "Found products"
+msgstr ""
 
 msgid "GB999999973"
 msgstr ""
@@ -317,11 +356,22 @@ msgid "Highest price"
 msgstr ""
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions "
+"(opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
 msgstr ""
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
+"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
+"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
+"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
+"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
+"policy</a>"
 msgstr ""
 
 msgid "If back in stock"
@@ -364,6 +414,9 @@ msgstr ""
 
 msgid "Language"
 msgstr "Idioma"
+
+msgid "Last"
+msgstr ""
 
 msgid "Last name"
 msgstr "Apellido"
@@ -411,7 +464,9 @@ msgid "Next order"
 msgstr ""
 
 #, php-format
-msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
+msgid ""
+"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
+"try again with a different keyword."
 msgstr ""
 
 msgid "No order ID available in session"
@@ -454,6 +509,14 @@ msgstr ""
 
 msgid "Payment"
 msgstr "Pago"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr ""
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr ""
 
 msgid "Payment costs"
 msgstr ""
@@ -515,16 +578,40 @@ msgstr ""
 msgid "Product"
 msgstr "Producto"
 
+msgid "Product actions"
+msgstr ""
+
 msgid "Product attributes"
 msgstr ""
 
+msgid "Product categories"
+msgstr ""
+
+msgid "Product characteristics"
+msgstr ""
+
+msgid "Product description"
+msgstr ""
+
 msgid "Product downloads"
+msgstr ""
+
+msgid "Product filters"
 msgstr ""
 
 msgid "Product image"
 msgstr ""
 
 msgid "Product information"
+msgstr ""
+
+msgid "Product price"
+msgstr ""
+
+msgid "Product reviews"
+msgstr ""
+
+msgid "Product search"
 msgstr ""
 
 msgid "Products you might be also interested in"
@@ -580,8 +667,11 @@ msgid "Search"
 msgstr "Buscar"
 
 #, php-format
-msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
+msgid ""
+"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
+msgid_plural ""
+"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
+"articles)"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -659,6 +749,9 @@ msgstr ""
 msgid "Supplier information"
 msgstr ""
 
+msgid "Supplier list"
+msgstr ""
+
 msgid "Suppliers"
 msgstr "Proveedores"
 
@@ -673,12 +766,14 @@ msgstr ""
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
-"An e-mail with the order details will be sent to you within the next few minutes."
+"An e-mail with the order details will be sent to you within the next few "
+"minutes."
 msgstr ""
 
 msgid ""
 "Thank you for your order.\n"
-"We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
+"We received your payment and an e-mail with the order details will be sent "
+"to you within the next few minutes."
 msgstr ""
 
 msgid "Thank you for your review!"

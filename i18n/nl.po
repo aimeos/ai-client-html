@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Yves Vermeulen <tmastar@gmail.com>, 2015\n"
 "Language-Team: Dutch (http://app.transifex.com/aimeos/aimeos-core/language/nl/)\n"
@@ -135,6 +135,14 @@ msgstr "Meer"
 
 msgid "Additional 2"
 msgstr "Meer 2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr "Adresdeel \"%1$s\" is ongeldig"
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr "Adresdeel \"%1$s\" ontbreekt"
 
 msgid "Apply"
 msgstr "Toepassen"
@@ -509,6 +517,14 @@ msgstr "Nu afrekenen"
 
 msgid "Payment"
 msgstr "Betaling"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr "Deel betalingsadres \"%1$s\" is ongeldig"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr "Deel \"%1$s\" voor betalingsadres ontbreekt"
 
 msgid "Payment costs"
 msgstr "Betalingskosten"

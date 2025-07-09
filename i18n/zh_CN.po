@@ -10,10 +10,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-08 13:35+0100\n"
+"POT-Creation-Date: 2025-07-08 17:50+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: shihua16165 <shihua16165@163.com>, 2014\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/aimeos/aimeos-core/language/zh_CN/)\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/aimeos/aimeos-core/"
+"language/zh_CN/)\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,12 +62,34 @@ msgstr ""
 "%18$s\n"
 
 #, php-format
+msgid ""
+"%1$s\n"
+"%2$s %3$s %4$s %5$s\n"
+"%6$s %7$s\n"
+"%8$s\n"
+"%9$s %10$s\n"
+"%11$s\n"
+"%12$s\n"
+"%13$s\n"
+"%14$s\n"
+"%15$s\n"
+"%16$s\n"
+"%17$s\n"
+"%18$s\n"
+"%19$s\n"
+msgstr ""
+
+#, php-format
 msgid "%1$s %2$s"
 msgstr "%1$s %2$s"
 
 #, php-format
 msgid "%1$s %2$s off"
 msgstr "%1$s %2$s 扣减"
+
+#, php-format
+msgid "%1$s (%4$s%2$s%3$s)"
+msgstr ""
 
 #, php-format
 msgid "%1$s at %2$s"
@@ -77,6 +100,10 @@ msgid "%1$s%3$s + %2$s%3$s"
 msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "(opens in new window)"
+msgstr ""
+
+#, php-format
+msgid "+ %1$s %2$s"
 msgstr ""
 
 #, php-format
@@ -103,6 +130,9 @@ msgstr ""
 msgid "Add billing address"
 msgstr ""
 
+msgid "Add delivery address"
+msgstr ""
+
 msgid "Add to basket"
 msgstr "加入购物车"
 
@@ -111,6 +141,14 @@ msgstr "附加"
 
 msgid "Additional 2"
 msgstr "附加 2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr ""
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr ""
 
 msgid "Apply"
 msgstr ""
@@ -129,6 +167,10 @@ msgstr "至少一个账单地址部件缺失或者无效"
 msgid "At least one delivery address part is missing or invalid"
 msgstr "至少一个递送地址部件缺失或者无效"
 
+#, php-format
+msgid "At least one payment address part is missing or invalid"
+msgstr ""
+
 msgid "At least one product couldn't be added to the basket."
 msgstr ""
 
@@ -137,6 +179,12 @@ msgstr "返回"
 
 msgid "Basket"
 msgstr "购物车"
+
+msgid "Basket details"
+msgstr ""
+
+msgid "Basket name"
+msgstr ""
 
 msgid "Basket saved sucessfully"
 msgstr ""
@@ -176,8 +224,26 @@ msgstr "类目"
 msgid "Change"
 msgstr "变更"
 
+msgid "Change address"
+msgstr ""
+
+msgid "Change billing address"
+msgstr ""
+
+msgid "Change coupons"
+msgstr ""
+
+msgid "Change delivery"
+msgstr ""
+
+msgid "Change delivery address"
+msgstr ""
+
 msgid "Change payment"
 msgstr "更改付款"
+
+msgid "Change products"
+msgstr ""
 
 msgid "Characteristics"
 msgstr "特色"
@@ -279,8 +345,14 @@ msgstr "带*栏目为必填项"
 msgid "Filter"
 msgstr "筛选"
 
+msgid "First"
+msgstr ""
+
 msgid "First name"
 msgstr "名"
+
+msgid "Found products"
+msgstr ""
 
 msgid "GB999999973"
 msgstr "GB999999973"
@@ -298,11 +370,22 @@ msgid "Highest price"
 msgstr ""
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">cancellation policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions "
+"(opens in new tab)\">terms and conditions</a>, <a href=\"%2$s\" "
+"target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
+"policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
+"policy (opens in new tab)\">cancellation policy</a>"
 msgstr ""
 
 #, php-format
-msgid "I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">cancellation policy</a>"
+msgid ""
+"I accept the <a href=\"%1$s\" target=\"_blank\" title=\"terms and "
+"conditions\" alt=\"terms and conditions\">terms and conditions</a>, <a "
+"href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy "
+"policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
+"title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
+"policy</a>"
 msgstr ""
 
 msgid "If back in stock"
@@ -345,6 +428,9 @@ msgstr ""
 
 msgid "Language"
 msgstr "语言"
+
+msgid "Last"
+msgstr ""
 
 msgid "Last name"
 msgstr "姓名"
@@ -392,8 +478,11 @@ msgid "Next order"
 msgstr ""
 
 #, php-format
-msgid "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please try again with a different keyword."
-msgstr "未找到<span class=\"searchstring\">\"%1$s\"</span>产品。请换关键词再试。"
+msgid ""
+"No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
+"try again with a different keyword."
+msgstr ""
+"未找到<span class=\"searchstring\">\"%1$s\"</span>产品。请换关键词再试。"
 
 msgid "No order ID available in session"
 msgstr ""
@@ -435,6 +524,14 @@ msgstr "立即支付"
 
 msgid "Payment"
 msgstr "付款"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr ""
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr ""
 
 msgid "Payment costs"
 msgstr "支付费"
@@ -481,6 +578,9 @@ msgstr "前面一个"
 msgid "Price"
 msgstr "价格"
 
+msgid "Price filter"
+msgstr ""
+
 msgid "Price range"
 msgstr "价格"
 
@@ -493,10 +593,40 @@ msgstr "处理支付失败"
 msgid "Product"
 msgstr "商品"
 
+msgid "Product actions"
+msgstr ""
+
 msgid "Product attributes"
 msgstr ""
 
+msgid "Product categories"
+msgstr ""
+
+msgid "Product characteristics"
+msgstr ""
+
+msgid "Product description"
+msgstr ""
+
+msgid "Product downloads"
+msgstr ""
+
+msgid "Product filters"
+msgstr ""
+
 msgid "Product image"
+msgstr ""
+
+msgid "Product information"
+msgstr ""
+
+msgid "Product price"
+msgstr ""
+
+msgid "Product reviews"
+msgstr ""
+
+msgid "Product search"
 msgstr ""
 
 msgid "Products you might be also interested in"
@@ -545,13 +675,20 @@ msgstr ""
 msgid "Saved basket removed sucessfully"
 msgstr ""
 
+msgid "Saved baskets"
+msgstr ""
+
 msgid "Search"
 msgstr "搜索"
 
 #, php-format
-msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
-msgid_plural "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles)"
-msgstr[0] " <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles) 搜素结果"
+msgid ""
+"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
+msgid_plural ""
+"Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
+"articles)"
+msgstr[0] ""
+" <span class=\"searchstring\">\"%1$s\"</span> (%2$d articles) 搜素结果"
 
 msgid "Select country"
 msgstr "选择国家地区"
@@ -576,6 +713,9 @@ msgstr "送货费"
 
 msgid "Show"
 msgstr "显示"
+
+msgid "Sort by"
+msgstr ""
 
 msgid "Sort by:"
 msgstr "排序方式："
@@ -641,14 +781,16 @@ msgstr "条款和条件"
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
-"An e-mail with the order details will be sent to you within the next few minutes."
+"An e-mail with the order details will be sent to you within the next few "
+"minutes."
 msgstr ""
 "谢谢您的订单和对付款的授权。\n"
 "一封关于订单详情的电子邮件将会在几分钟后发送给您。"
 
 msgid ""
 "Thank you for your order.\n"
-"We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
+"We received your payment and an e-mail with the order details will be sent "
+"to you within the next few minutes."
 msgstr ""
 "谢谢您的订单。\n"
 "我们已经收到付款。一封关于订单详情的电子邮件将会在几分钟后发送给您。"
@@ -892,17 +1034,24 @@ msgstr "◀◀"
 #~ msgstr "地址"
 
 #~ msgid ""
-#~ "All deliveries shipped are subject to our terms and conditions, which are available on our website and which you accepted when placing your order.\n"
+#~ "All deliveries shipped are subject to our terms and conditions, which are "
+#~ "available on our website and which you accepted when placing your order.\n"
 #~ "\n"
-#~ "This email contains confidential information and is exclusively for the use of the person addressed. Should you not be that person then please reply to this e-mail and delete the e-mail and attachments afterwards."
+#~ "This email contains confidential information and is exclusively for the "
+#~ "use of the person addressed. Should you not be that person then please "
+#~ "reply to this e-mail and delete the e-mail and attachments afterwards."
 #~ msgstr ""
-#~ "所有交付运受限于我们的条款和条件，这些条款可以从我们的网站上找到，您下单的时候，网页上面也有显示。\n"
-#~ "这封邮件包含针对特定人员的机密信息。如果您错误的收到了这封邮件，请回复并删除本邮件及附件。"
+#~ "所有交付运受限于我们的条款和条件，这些条款可以从我们的网站上找到，您下单的"
+#~ "时候，网页上面也有显示。\n"
+#~ "这封邮件包含针对特定人员的机密信息。如果您错误的收到了这封邮件，请回复并删"
+#~ "除本邮件及附件。"
 
 #~ msgid "All orders are subject to our terms and conditions."
 #~ msgstr ""
-#~ "提交订单意味着接受我们的条款，这些条款可以从我们的网站上找到，您下单的时候，网页上面也有显示。\n"
-#~ "这封邮件包含针对特定人员的机密信息。如果您错误的收到了这封邮件，请回复并删除本邮件及附件。"
+#~ "提交订单意味着接受我们的条款，这些条款可以从我们的网站上找到，您下单的时"
+#~ "候，网页上面也有显示。\n"
+#~ "这封邮件包含针对特定人员的机密信息。如果您错误的收到了这封邮件，请回复并删"
+#~ "除本邮件及附件。"
 
 #~ msgid "An account has been created for you."
 #~ msgstr "已经为您生成一个账户。"
@@ -1052,7 +1201,9 @@ msgstr "◀◀"
 #~ msgid ""
 #~ "Thank you for your order %1$s from %2$s.\n"
 #~ "\n"
-#~ "The order is pending until we receive the final payment. If you've chosen to pay in advance, please transfer the money to our bank account with the order ID %1$s as reference."
+#~ "The order is pending until we receive the final payment. If you've chosen "
+#~ "to pay in advance, please transfer the money to our bank account with the "
+#~ "order ID %1$s as reference."
 #~ msgstr ""
 #~ "非常感谢您的%2$s的订单%1$s。\n"
 #~ "\n"
@@ -1069,7 +1220,9 @@ msgstr "◀◀"
 #~ "我收到了您的货款并且正在处理订单。"
 
 #, php-format
-#~ msgid "The delivery status of your order %1$s from %2$s has been changed to \"%3$s\"."
+#~ msgid ""
+#~ "The delivery status of your order %1$s from %2$s has been changed to "
+#~ "\"%3$s\"."
 #~ msgstr "订单%1$s （日期%2$s）的配送状态已经更新为\"%3$s\"。"
 
 #, php-format

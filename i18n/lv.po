@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Martins Nav <mveisis1@gmail.com>, 2021\n"
 "Language-Team: Latvian (http://app.transifex.com/aimeos/aimeos-core/language/lv/)\n"
@@ -129,6 +129,14 @@ msgstr "Papildu"
 
 msgid "Additional 2"
 msgstr "Papildu 2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr "Adreses daļa \"%1$s\" ir nederīga"
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr "Trūkst adreses daļas \"%1$s\""
 
 msgid "Apply"
 msgstr "Piesakies"
@@ -503,6 +511,14 @@ msgstr "Apmaksāt"
 
 msgid "Payment"
 msgstr "Apmaksa"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr "Maksājuma adreses daļa \"%1$s\" ir nederīga"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr "Trūkst maksājuma adreses daļas \"%1$s\""
 
 msgid "Payment costs"
 msgstr "Maksājumu izmaksas"

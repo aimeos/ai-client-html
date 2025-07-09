@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Miro Sertić <miro.sertic0606@gmail.com>, 2018\n"
 "Language-Team: Croatian (http://app.transifex.com/aimeos/aimeos-core/language/hr/)\n"
@@ -130,6 +130,14 @@ msgid "Additional"
 msgstr "Dodatno"
 
 msgid "Additional 2"
+msgstr ""
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr ""
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
 msgstr ""
 
 msgid "Apply"
@@ -505,6 +513,14 @@ msgstr ""
 
 msgid "Payment"
 msgstr "Plaćanje"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr ""
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr ""
 
 msgid "Payment costs"
 msgstr ""

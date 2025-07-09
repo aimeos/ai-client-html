@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: stevechen <steve.stevechen@gmail.com>, 2018\n"
 "Language-Team: Chinese (http://app.transifex.com/aimeos/aimeos-core/language/zh/)\n"
@@ -131,6 +131,14 @@ msgstr "附加"
 
 msgid "Additional 2"
 msgstr "附加 2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr "地址部分\"%1$s \"无效"
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr "地址部分\"%1$s \"丢失"
 
 msgid "Apply"
 msgstr "应用"
@@ -505,6 +513,14 @@ msgstr "馬上付款"
 
 msgid "Payment"
 msgstr "支付"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr "付款地址部分\"%1$s \"无效"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr "缺少付款地址\"%1$s \"部分"
 
 msgid "Payment costs"
 msgstr "支付手續費"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Plamen Petkov <mcplamen@gmail.com>, 2016,2019\n"
 "Language-Team: Bulgarian (http://app.transifex.com/aimeos/aimeos-core/language/bg/)\n"
@@ -128,6 +128,14 @@ msgstr "Допълнително"
 
 msgid "Additional 2"
 msgstr "Допълнително 2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr "Адресната част \"%1$s\" е невалидна"
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr "Липсва част от адреса \"%1$s\""
 
 msgid "Apply"
 msgstr "Приложи"
@@ -502,6 +510,14 @@ msgstr "Заплатете сега"
 
 msgid "Payment"
 msgstr "Заплащане"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr "Част от адреса за плащане \"%1$s\" е невалидна"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr "Липсва част от адреса за плащане \"%1$s\""
 
 msgid "Payment costs"
 msgstr "Разходи за плащане"

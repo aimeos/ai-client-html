@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Jeremy Flammang, 2022\n"
 "Language-Team: Luxembourgish (http://app.transifex.com/aimeos/aimeos-core/language/lb/)\n"
@@ -128,6 +128,14 @@ msgstr "Zousätzlech"
 
 msgid "Additional 2"
 msgstr "Zousätzlech 2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr ""
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr ""
 
 msgid "Apply"
 msgstr ""
@@ -501,6 +509,14 @@ msgid "Pay now"
 msgstr ""
 
 msgid "Payment"
+msgstr ""
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr ""
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
 msgstr ""
 
 msgid "Payment costs"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Greek (http://app.transifex.com/aimeos/aimeos-core/language/el/)\n"
@@ -126,6 +126,14 @@ msgstr "Επιπλέον"
 
 msgid "Additional 2"
 msgstr "Επιπλέον 2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr "Το τμήμα διεύθυνσης \"%1$s\" είναι άκυρο"
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr "Το τμήμα διεύθυνσης \"%1$s\" λείπει"
 
 msgid "Apply"
 msgstr "Εφαρμογή"
@@ -500,6 +508,14 @@ msgstr "Πληρώστε τώρα"
 
 msgid "Payment"
 msgstr "Πληρωμή"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr "Το μέρος της διεύθυνσης πληρωμής \"%1$s\" είναι άκυρο"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr "Το μέρος της διεύθυνσης πληρωμής \"%1$s\" λείπει"
 
 msgid "Payment costs"
 msgstr "Κόστος πληρωμών"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Tomas G <tomas.gmitro@gmail.com>, 2016\n"
 "Language-Team: Slovak (http://app.transifex.com/aimeos/aimeos-core/language/sk/)\n"
@@ -132,6 +132,14 @@ msgstr "Ďalšie"
 
 msgid "Additional 2"
 msgstr "Dodatočne informácie 2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr "Časť adresy \"%1$s\" je neplatná"
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr "Chýba časť adresy \"%1$s\""
 
 msgid "Apply"
 msgstr "Aplikovať"
@@ -506,6 +514,14 @@ msgstr "Zaplaťte teraz"
 
 msgid "Payment"
 msgstr "Platba"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr "Časť platobnej adresy \"%1$s\" je neplatná"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr "Chýba časť platobnej adresy \"%1$s\""
 
 msgid "Payment costs"
 msgstr "Platobné náklady"

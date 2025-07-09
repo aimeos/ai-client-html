@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Darshan Sampat <darshan@usindia.com>, 2018\n"
 "Language-Team: Japanese (http://app.transifex.com/aimeos/aimeos-core/language/ja/)\n"
@@ -127,6 +127,14 @@ msgstr "追加の"
 
 msgid "Additional 2"
 msgstr "追加の2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr "アドレス部分 \"%1$s\" が無効です。"
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr "アドレス部分 \"%1$s\" が見つかりません。"
 
 msgid "Apply"
 msgstr "応募する"
@@ -501,6 +509,14 @@ msgstr "今払う"
 
 msgid "Payment"
 msgstr "支払い"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr "支払先住所の部分 \"%1$s\" が無効です。"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr "支払先住所の部分 \"%1$s\" が見つかりません。"
 
 msgid "Payment costs"
 msgstr "支払い費用"

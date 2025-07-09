@@ -33,7 +33,7 @@ msgstr "PST"
 
 #. GST tax name
 msgid "taxgst"
-msgstr ""
+msgstr "מס GST"
 
 #. Price type default
 msgid "price:default"

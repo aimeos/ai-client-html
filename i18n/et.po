@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: ranx2k <ranko@murumets.eu>, 2021\n"
 "Language-Team: Estonian (http://app.transifex.com/aimeos/aimeos-core/language/et/)\n"
@@ -132,6 +132,14 @@ msgstr "Lisa"
 
 msgid "Additional 2"
 msgstr "Lisa 2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr "Aadressi osa \"%1$s\" on kehtetu."
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr "Aadressi osa \"%1$s\" puudub"
 
 msgid "Apply"
 msgstr "Rakenda"
@@ -506,6 +514,14 @@ msgstr "Maksa kohe"
 
 msgid "Payment"
 msgstr "Makse"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr "Makseaadressi osa \"%1$s\" on kehtetu."
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr "Makseaadressi osa \"%1$s\" puudub"
 
 msgid "Payment costs"
 msgstr "Maksmiskulu"

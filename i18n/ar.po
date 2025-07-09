@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: mahmoud devo <devosystem.sarl@gmail.com>, 2021\n"
 "Language-Team: Arabic (http://app.transifex.com/aimeos/aimeos-core/language/ar/)\n"
@@ -140,6 +140,14 @@ msgstr "إضافي"
 
 msgid "Additional 2"
 msgstr "إضافي 2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr "جزء العنوان \"%1$s\" غير صالح"
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr "جزء العنوان \"%1$s\" غير موجود"
 
 msgid "Apply"
 msgstr "تقديم"
@@ -514,6 +522,14 @@ msgstr "إدفع الأن"
 
 msgid "Payment"
 msgstr "الدفع"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr "جزء عنوان الدفع \"%1$s\" غير صالح"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr "جزء عنوان الدفع \"%1$s\" غير موجود"
 
 msgid "Payment costs"
 msgstr "تكاليف الدفع"

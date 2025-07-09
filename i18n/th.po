@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Aimeos, 2025
 # Peem Phimcha, 2023
 # Peem Phimcha, 2023
 # weeradach chinpimai <weeradach.ch@gmail.com>, 2020
@@ -10,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: weeradach chinpimai <weeradach.ch@gmail.com>, 2020\n"
+"Last-Translator: Aimeos, 2025\n"
 "Language-Team: Thai (http://app.transifex.com/aimeos/aimeos-core/language/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,12 +24,12 @@ msgstr ""
 #, php-format
 msgid "%1$d article"
 msgid_plural "%1$d articles"
-msgstr[0] ""
+msgstr[0] "%1$d บทความ"
 
 #, php-format
 msgid "%1$d review"
 msgid_plural "%1$d reviews"
-msgstr[0] ""
+msgstr[0] "%1$d รีวิว"
 
 #, php-format
 msgid ""
@@ -45,7 +46,7 @@ msgid ""
 "%16$s\n"
 "%17$s\n"
 "%18$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n"
 
 #, php-format
 msgid ""
@@ -63,289 +64,297 @@ msgid ""
 "%17$s\n"
 "%18$s\n"
 "%19$s\n"
-msgstr ""
+msgstr "%1$s\n%2$s %3$s %4$s %5$s\n%6$s %7$s\n%8$s\n%9$s %10$s\n%11$s\n%12$s\n%13$s\n%14$s\n%15$s\n%16$s\n%17$s\n%18$s\n%19$s\n"
 
 #, php-format
 msgid "%1$s %2$s"
-msgstr ""
+msgstr "%1$s %2$s"
 
 #, php-format
 msgid "%1$s %2$s off"
-msgstr ""
+msgstr "%1$s %2$s ลด"
 
 #, php-format
 msgid "%1$s (%4$s%2$s%3$s)"
-msgstr ""
+msgstr "%1$s (%4$s%2$s%3$s)"
 
 #, php-format
 msgid "%1$s at %2$s"
-msgstr ""
+msgstr "%1$s ที่ %2$s"
 
 #, php-format
 msgid "%1$s%3$s + %2$s%3$s"
-msgstr ""
+msgstr "%1$s%3$s + %2$s%3$s"
 
 msgid "(opens in new window)"
-msgstr ""
+msgstr "(เปิดในหน้าต่างใหม่)"
 
 #, php-format
 msgid "+ %1$s %2$s"
-msgstr ""
+msgstr "+ %1$s %2$s"
 
 #, php-format
 msgid "+ %1$s%% %2$s"
-msgstr ""
+msgstr "+ %1$s%% %2$s"
 
 #, php-format
 msgid "+ %1$s%% VAT"
-msgstr ""
+msgstr "+ %1$s%% ภาษีมูลค่าเพิ่ม"
 
 msgid "+1 123 456 7890"
-msgstr ""
+msgstr "+1 123 456 7890"
 
 #, php-format
 msgid "-%1$s%%"
-msgstr ""
+msgstr "-%1$s%%"
 
 msgid "A non-recoverable error occured"
-msgstr ""
+msgstr "เกิดข้อผิดพลาดที่ไม่สามารถกู้คืนได้"
 
 msgid "Add"
-msgstr ""
+msgstr "เพิ่ม"
 
 msgid "Add billing address"
-msgstr ""
+msgstr "เพิ่มที่อยู่สำหรับการเรียกเก็บเงิน"
 
 msgid "Add delivery address"
-msgstr ""
+msgstr "เพิ่มที่อยู่จัดส่ง"
 
 msgid "Add to basket"
-msgstr ""
+msgstr "เพิ่มลงในตะกร้า"
 
 msgid "Additional"
-msgstr ""
+msgstr "เพิ่มเติม"
 
 msgid "Additional 2"
-msgstr ""
+msgstr "เพิ่มเติม 2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr "ส่วนที่อยู่ \"%1$s\" ไม่ถูกต้อง"
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr "ส่วนที่อยู่ \"%1$s\" หายไป"
 
 msgid "Apply"
-msgstr ""
+msgstr "สมัคร"
 
 msgid "Article"
-msgstr ""
+msgstr "บทความ"
 
 msgid "Article no."
-msgstr ""
+msgstr "หมายเลขสินค้า"
 
 #, php-format
 msgid "At least one billing address part is missing or invalid"
-msgstr ""
+msgstr "ที่อยู่สำหรับการเรียกเก็บเงินอย่างน้อยหนึ่งส่วนหายไปหรือไม่ถูกต้อง"
 
 #, php-format
 msgid "At least one delivery address part is missing or invalid"
-msgstr ""
+msgstr "อย่างน้อยหนึ่งส่วนของที่อยู่จัดส่งไม่สมบูรณ์หรือไม่ถูกต้อง"
 
 #, php-format
 msgid "At least one payment address part is missing or invalid"
-msgstr ""
+msgstr "มีอย่างน้อยหนึ่งส่วนของที่อยู่การชำระเงินที่หายไปหรือไม่ถูกต้อง"
 
 msgid "At least one product couldn't be added to the basket."
-msgstr ""
+msgstr "ไม่สามารถเพิ่มสินค้าอย่างน้อยหนึ่งชิ้นลงในตะกร้าได้"
 
 msgid "Back"
-msgstr ""
+msgstr "ย้อนกลับ"
 
 msgid "Basket"
 msgstr "ตะกร้า"
 
 msgid "Basket details"
-msgstr ""
+msgstr "รายละเอียดตะกร้า"
 
 msgid "Basket name"
-msgstr ""
+msgstr "ชื่อตะกร้า"
 
 msgid "Basket saved sucessfully"
-msgstr ""
+msgstr "บันทึกตะกร้าสำเร็จ"
 
 msgid "Billing address"
-msgstr ""
+msgstr "ที่อยู่สำหรับออกใบแจ้งหนี้"
 
 #, php-format
 msgid "Billing address part \"%1$s\" is invalid"
-msgstr ""
+msgstr "ส่วนที่อยู่สำหรับการเรียกเก็บเงิน \"%1$s\" ไม่ถูกต้อง"
 
 #, php-format
 msgid "Billing address part \"%1$s\" is missing"
-msgstr ""
+msgstr "ส่วนที่อยู่สำหรับการเรียกเก็บเงิน \"%1$s\" หายไป"
 
 msgid "Birthday"
-msgstr ""
+msgstr "วันเกิด"
 
 msgid "Breadcrumb navigation"
-msgstr ""
+msgstr "การนำทางแบบขนมปัง"
 
 msgid "Bulk order"
-msgstr ""
+msgstr "การสั่งซื้อจำนวนมาก"
 
 msgid "Bundled products"
-msgstr ""
+msgstr "สินค้าที่รวมกัน"
 
 msgid "Buy now"
-msgstr ""
+msgstr "ซื้อตอนนี้"
 
 msgid "Cancel"
-msgstr ""
+msgstr "ยกเลิก"
 
 msgid "Categories"
-msgstr ""
+msgstr "หมวดหมู่"
 
 msgid "Change"
-msgstr ""
+msgstr "การเปลี่ยนแปลง"
 
 msgid "Change address"
-msgstr ""
+msgstr "เปลี่ยนที่อยู่"
 
 msgid "Change billing address"
-msgstr ""
+msgstr "เปลี่ยนที่อยู่สำหรับการเรียกเก็บเงิน"
 
 msgid "Change coupons"
-msgstr ""
+msgstr "เปลี่ยนคูปอง"
 
 msgid "Change delivery"
-msgstr ""
+msgstr "เปลี่ยนแปลงการจัดส่ง"
 
 msgid "Change delivery address"
-msgstr ""
+msgstr "เปลี่ยนที่อยู่จัดส่ง"
 
 msgid "Change payment"
-msgstr ""
+msgstr "เปลี่ยนแปลงการชำระเงิน"
 
 msgid "Change products"
-msgstr ""
+msgstr "เปลี่ยนสินค้า"
 
 msgid "Characteristics"
-msgstr ""
+msgstr "ลักษณะ"
 
 msgid "Checkout"
-msgstr ""
+msgstr "เช็คเอาท์"
 
 msgid "City"
-msgstr ""
+msgstr "เมือง"
 
 #, php-format
 msgid "Class \"%1$s\" not found"
-msgstr ""
+msgstr "ไม่พบคลาส \"%1$s\""
 
 msgid "Close"
-msgstr ""
+msgstr "ปิด"
 
 msgid "Company"
 msgstr "บริษัท"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "การยืนยัน"
 
 msgid "Country"
-msgstr ""
+msgstr "ประเทศ"
 
 msgid "Coupon codes"
-msgstr ""
+msgstr "รหัสคูปอง"
 
 msgid "Coupons"
-msgstr ""
+msgstr "คูปอง"
 
 msgid "Create a customer account for me"
-msgstr ""
+msgstr "สร้างบัญชีลูกค้าให้ฉัน"
 
 msgid "Created"
-msgstr ""
+msgstr "สร้างขึ้น"
 
 msgid "Customer account"
-msgstr ""
+msgstr "บัญชีลูกค้า"
 
 msgid "Decrease"
-msgstr ""
+msgstr "ลด"
 
 msgid "Delete"
-msgstr ""
+msgstr "ลบ"
 
 msgid "Delete item"
-msgstr ""
+msgstr "ลบรายการ"
 
 msgid "Delivery"
-msgstr ""
+msgstr "การจัดส่ง"
 
 msgid "Delivery address"
-msgstr ""
+msgstr "ที่อยู่สำหรับการจัดส่ง"
 
 #, php-format
 msgid "Delivery address deleted successfully"
-msgstr ""
+msgstr "ที่อยู่จัดส่งถูกลบสำเร็จ"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is invalid"
-msgstr ""
+msgstr "ส่วนที่อยู่จัดส่ง \"%1$s\" ไม่ถูกต้อง"
 
 #, php-format
 msgid "Delivery address part \"%1$s\" is missing"
-msgstr ""
+msgstr "ส่วนที่อยู่จัดส่ง \"%1$s\" หายไป"
 
 msgid "Delivery within"
-msgstr ""
+msgstr "การจัดส่งภายใน"
 
 msgid "Description"
-msgstr ""
+msgstr "คำอธิบาย"
 
 msgid "Details"
 msgstr "รายละเอียด"
 
 msgid "Don't store address"
-msgstr ""
+msgstr "อย่าเก็บที่อยู่"
 
 msgid "Downloads"
-msgstr ""
+msgstr "ดาวน์โหลด"
 
 msgid "E-Mail"
-msgstr ""
+msgstr "อีเมล"
 
 msgid "End date"
-msgstr ""
+msgstr "วันสิ้นสุด"
 
 msgid "Favorite products"
-msgstr ""
+msgstr "โปรดโปรดักส์"
 
 msgid "Fax"
-msgstr ""
+msgstr "แฟกซ์"
 
 msgid "Fields with an * are mandatory"
-msgstr ""
+msgstr "ฟิลด์ที่มีเครื่องหมาย * เป็นข้อมูลที่จำเป็น"
 
 msgid "Filter"
-msgstr ""
+msgstr "ตัวกรอง"
 
 msgid "First"
-msgstr ""
+msgstr "แรก"
 
 msgid "First name"
-msgstr ""
+msgstr "ชื่อ"
 
 msgid "Found products"
-msgstr ""
+msgstr "พบสินค้า"
 
 msgid "GB999999973"
-msgstr ""
+msgstr "GB999999973"
 
 msgid "Go to page"
-msgstr ""
+msgstr "ไปที่หน้า"
 
 msgid "Grid view"
-msgstr ""
+msgstr "มุมมองตาราง"
 
 msgid "HH:mm"
-msgstr ""
+msgstr "ชั่วโมง:นาที"
 
 msgid "Highest price"
-msgstr ""
+msgstr "ราคาสูงสุด"
 
 #, php-format
 msgid ""
@@ -354,7 +363,7 @@ msgid ""
 "target=\"_blank\" title=\"privacy policy (opens in new tab)\">privacy "
 "policy</a> and <a href=\"%3$s\" target=\"_blank\" title=\"cancellation "
 "policy (opens in new tab)\">cancellation policy</a>"
-msgstr ""
+msgstr "ฉันยอมรับ<a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions (opens in new tab)\">ข้อกำหนดและเงื่อนไข</a> <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy (opens in new tab)\">นโยบายความเป็นส่วนตัว</a>และ<a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy (opens in new tab)\">นโยบายการยกเลิก</a>"
 
 #, php-format
 msgid ""
@@ -364,468 +373,476 @@ msgid ""
 "policy\">privacy policy</a> and <a href=\"%3$s\" target=\"_blank\" "
 "title=\"cancellation policy\" alt=\"cancellation policy\">cancellation "
 "policy</a>"
-msgstr ""
+msgstr "ฉันยอมรับ<a href=\"%1$s\" target=\"_blank\" title=\"terms and conditions\" alt=\"terms and conditions\">ข้อกำหนดและเงื่อนไข</a> <a href=\"%2$s\" target=\"_blank\" title=\"privacy policy\" alt=\"privacy policy\">นโยบายความเป็นส่วนตัว</a>และ<a href=\"%3$s\" target=\"_blank\" title=\"cancellation policy\" alt=\"cancellation policy\">นโยบายการยกเลิก</a>"
 
 msgid "If back in stock"
-msgstr ""
+msgstr "หากมีสินค้าในสต็อก"
 
 msgid "If price decreases"
-msgstr ""
+msgstr "หากราคาลดลง"
 
 #, php-format
 msgid "Incl. %1$s%% %2$s"
-msgstr ""
+msgstr "รวม %1$s%% %2$s"
 
 #, php-format
 msgid "Incl. %1$s%% VAT"
-msgstr ""
+msgstr "รวม %1$s%% VAT"
 
 msgid "Included rebates"
-msgstr ""
+msgstr "รวมส่วนลดแล้ว"
 
 msgid "Increase"
-msgstr ""
+msgstr "เพิ่ม"
 
 msgid "Interval"
-msgstr ""
+msgstr "ช่วง"
 
 #, php-format
 msgid "Invalid characters in client name \"%1$s\""
-msgstr ""
+msgstr "ตัวอักษรไม่ถูกต้องในชื่อลูกค้า \"%1$s\""
 
 #, php-format
 msgid "Invalid class name \"%1$s\""
-msgstr ""
+msgstr "ชื่อคลาสไม่ถูกต้อง \"%1$s\""
 
 #, php-format
 msgid "Invalid domain \"%1$s\""
-msgstr ""
+msgstr "โดเมนไม่ถูกต้อง \"%1$s\""
 
 msgid "Invoice"
-msgstr ""
+msgstr "ใบแจ้งหนี้"
 
 msgid "Language"
 msgstr "ภาษา"
 
 msgid "Last"
-msgstr ""
+msgstr "สุดท้าย"
 
 msgid "Last name"
-msgstr ""
+msgstr "นามสกุล"
 
 msgid "Last seen"
 msgstr "ล่าสุด"
 
 msgid "Latest"
-msgstr ""
+msgstr "ล่าสุด"
 
 msgid "Less"
-msgstr ""
+msgstr "น้อยลง"
 
 msgid "List view"
-msgstr ""
+msgstr "มุมมองรายการ"
 
 msgid "Lowest price"
-msgstr ""
+msgstr "ราคาต่ำสุด"
 
 msgid "Mobile"
-msgstr ""
+msgstr "มือถือ"
 
 msgid "Mobile number"
-msgstr ""
+msgstr "หมายเลขโทรศัพท์มือถือ"
 
 msgid "More"
-msgstr ""
+msgstr "มากขึ้น"
 
 msgid "More reviews"
-msgstr ""
+msgstr "รีวิวเพิ่มเติม"
 
 msgid "Name"
-msgstr ""
+msgstr "ชื่อ"
 
 msgid "New"
-msgstr ""
+msgstr "ใหม่"
 
 msgid "New delivery address"
-msgstr ""
+msgstr "ที่อยู่จัดส่งใหม่"
 
 msgid "Next"
-msgstr ""
+msgstr "ถัดไป"
 
 msgid "Next order"
-msgstr ""
+msgstr "คำสั่งต่อไป"
 
 #, php-format
 msgid ""
 "No articles found for <span class=\"searchstring\">\"%1$s\"</span>. Please "
 "try again with a different keyword."
-msgstr ""
+msgstr "ไม่พบบทความสำหรับ<span class=\"searchstring\">\"%1$s\"</span> กรุณาลองค้นหาด้วยคำสำคัญอื่น"
 
 msgid "No order ID available in session"
-msgstr ""
+msgstr "ไม่มีหมายเลขคำสั่งซื้อในเซสชั่น"
 
 #, php-format
 msgid "No view available"
-msgstr ""
+msgstr "ไม่มีวิวให้ชม"
 
 msgid "One month"
-msgstr ""
+msgstr "หนึ่งเดือน"
 
 msgid "One week"
-msgstr ""
+msgstr "หนึ่งสัปดาห์"
 
 msgid "Open submenu"
-msgstr ""
+msgstr "เปิดเมนูย่อย"
 
 msgid "Order ID"
-msgstr ""
+msgstr "หมายเลขคำสั่งซื้อ"
 
 msgid "Order details"
-msgstr ""
+msgstr "รายละเอียดการสั่งซื้อ"
 
 msgid "Order history"
-msgstr ""
+msgstr "ประวัติการสั่งซื้อ"
 
 msgid "Order status"
-msgstr ""
+msgstr "สถานะการสั่งซื้อ"
 
 msgid "Other customers also bought"
-msgstr ""
+msgstr "ลูกค้าท่านอื่นยังซื้อ"
 
 #, php-format
 msgid "Page %1$d of %2$d"
-msgstr ""
+msgstr "หน้า %1$d จาก %2$d"
 
 msgid "Pay now"
-msgstr ""
+msgstr "ชำระเงินตอนนี้"
 
 msgid "Payment"
-msgstr ""
+msgstr "การชำระเงิน"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr "ส่วนที่อยู่การชำระเงิน \"%1$s\" ไม่ถูกต้อง"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr "ส่วนที่อยู่สำหรับการชำระเงิน \"%1$s\" หายไป"
 
 msgid "Payment costs"
-msgstr ""
+msgstr "ค่าใช้จ่ายในการชำระเงิน"
 
 msgid "Payment status"
-msgstr ""
+msgstr "สถานะการชำระเงิน"
 
 msgid "Percentage"
-msgstr ""
+msgstr "เปอร์เซ็นต์"
 
 msgid "Pin product"
-msgstr ""
+msgstr "ปักหมุดสินค้า"
 
 msgid "Pinned products"
-msgstr ""
+msgstr "สินค้าที่ปักหมุด"
 
 msgid "Please accept the terms and conditions"
-msgstr ""
+msgstr "กรุณายอมรับข้อกำหนดและเงื่อนไข"
 
 msgid "Please check your order"
-msgstr ""
+msgstr "กรุณาตรวจสอบคำสั่งซื้อของคุณ"
 
 msgid "Please choose your delivery method"
-msgstr ""
+msgstr "กรุณาเลือกวิธีการจัดส่งของคุณ"
 
 msgid "Please choose your payment method"
-msgstr ""
+msgstr "กรุณาเลือกวิธีการชำระเงินของคุณ"
 
 msgid "Please enter at least three characters"
-msgstr ""
+msgstr "กรุณาป้อนอย่างน้อยสามตัวอักษร"
 
 msgid "Please enter your payment details"
-msgstr ""
+msgstr "กรุณากรอกรายละเอียดการชำระเงินของคุณ"
 
 msgid "Please select"
-msgstr ""
+msgstr "กรุณาเลือก"
 
 msgid "Postal code"
-msgstr ""
+msgstr "รหัสไปรษณีย์"
 
 msgid "Previous"
-msgstr ""
+msgstr "ก่อนหน้า"
 
 msgid "Price"
 msgstr "ราคา"
 
 msgid "Price filter"
-msgstr ""
+msgstr "ตัวกรองราคา"
 
 msgid "Price range"
 msgstr "ราคา"
 
 msgid "Proceed"
-msgstr ""
+msgstr "ดำเนินการต่อ"
 
 msgid "Processing the payment failed"
-msgstr ""
+msgstr "การประมวลผลการชำระเงินล้มเหลว"
 
 msgid "Product"
-msgstr ""
+msgstr "ผลิตภัณฑ์"
 
 msgid "Product actions"
-msgstr ""
+msgstr "การดำเนินการผลิตภัณฑ์"
 
 msgid "Product attributes"
-msgstr ""
+msgstr "คุณลักษณะของสินค้า"
 
 msgid "Product categories"
-msgstr ""
+msgstr "หมวดหมู่สินค้า"
 
 msgid "Product characteristics"
-msgstr ""
+msgstr "คุณลักษณะของสินค้า"
 
 msgid "Product description"
-msgstr ""
+msgstr "รายละเอียดสินค้า"
 
 msgid "Product downloads"
-msgstr ""
+msgstr "การดาวน์โหลดผลิตภัณฑ์"
 
 msgid "Product filters"
-msgstr ""
+msgstr "ตัวกรองสินค้า"
 
 msgid "Product image"
-msgstr ""
+msgstr "รูปภาพสินค้า"
 
 msgid "Product information"
-msgstr ""
+msgstr "ข้อมูลสินค้า"
 
 msgid "Product price"
-msgstr ""
+msgstr "ราคาสินค้า"
 
 msgid "Product reviews"
-msgstr ""
+msgstr "รีวิวสินค้า"
 
 msgid "Product search"
-msgstr ""
+msgstr "ค้นหาสินค้า"
 
 msgid "Products you might be also interested in"
-msgstr ""
+msgstr "สินค้าที่คุณอาจสนใจเพิ่มเติม"
 
 msgid "Qty"
-msgstr ""
+msgstr "จำนวน"
 
 msgid "Quantity"
-msgstr ""
+msgstr "ปริมาณ"
 
 msgid "Rating"
-msgstr ""
+msgstr "การให้คะแนน"
 
 msgid "Reference"
-msgstr ""
+msgstr "เอกสารอ้างอิง"
 
 msgid "Relevance"
-msgstr ""
+msgstr "ความเกี่ยวข้อง"
 
 msgid "Remove"
-msgstr ""
+msgstr "ลบ"
 
 msgid "Reset"
-msgstr ""
+msgstr "รีเซ็ต"
 
 #, php-format
 msgid "Result for \"%1$s\""
-msgstr ""
+msgstr "ผลลัพธ์สำหรับ \"%1$s\""
 
 msgid "Reviews"
-msgstr ""
+msgstr "รีวิว"
 
 msgid "SKU or article name"
-msgstr ""
+msgstr "SKU หรือชื่อบทความ"
 
 msgid "Sale"
-msgstr ""
+msgstr "ลดราคา"
 
 msgid "Salutation"
-msgstr ""
+msgstr "คำทักทาย"
 
 msgid "Save"
-msgstr ""
+msgstr "บันทึก"
 
 msgid "Saved basket removed sucessfully"
-msgstr ""
+msgstr "ตะกร้าที่บันทึกไว้ถูกลบออกสำเร็จ"
 
 msgid "Saved baskets"
-msgstr ""
+msgstr "ตะกร้าที่บันทึกไว้"
 
 msgid "Search"
-msgstr ""
+msgstr "ค้นหา"
 
 #, php-format
 msgid "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d article)"
 msgid_plural ""
 "Search result for <span class=\"searchstring\">\"%1$s\"</span> (%2$d "
 "articles)"
-msgstr[0] ""
+msgstr[0] "ผลการค้นหาสำหรับ<span class=\"searchstring\">\"%1$s\"</span>(%2$d บทความ)"
 
 msgid "Select country"
-msgstr ""
+msgstr "เลือกประเทศ"
 
 msgid "Select currency"
-msgstr ""
+msgstr "เลือกสกุลเงิน"
 
 msgid "Select language"
-msgstr ""
+msgstr "เลือกภาษา"
 
 msgid "Select salutation"
-msgstr ""
+msgstr "เลือกคำทักทาย"
 
 msgid "Select state"
-msgstr ""
+msgstr "เลือกจังหวัด"
 
 msgid "Share"
-msgstr ""
+msgstr "แชร์"
 
 msgid "Shipping"
-msgstr ""
+msgstr "การจัดส่ง"
 
 msgid "Show"
-msgstr ""
+msgstr "แสดง"
 
 msgid "Sort by"
-msgstr ""
+msgstr "จัดเรียงตาม"
 
 msgid "Sort by:"
-msgstr ""
+msgstr "เรียงตาม:"
 
 msgid "Stars"
-msgstr ""
+msgstr "ดวงดาว"
 
 msgid "State"
-msgstr ""
+msgstr "รัฐ"
 
 msgid "Stock"
-msgstr ""
+msgstr "สต็อก"
 
 #, php-format
 msgid "Stock: %1$s, %2$s"
-msgstr ""
+msgstr "สต็อก: %1$s, %2$s"
 
 #, php-format
 msgid "Stock: %1$s, %2$s, back on %3$s"
-msgstr ""
+msgstr "สต็อก: %1$s, %2$s, กลับมาแล้วที่ %3$s"
 
 msgid "Street"
-msgstr ""
+msgstr "ถนน"
 
 msgid "Sub-total"
-msgstr ""
+msgstr "ยอดรวมย่อย"
 
 msgid "Submit"
-msgstr ""
+msgstr "ส่ง"
 
 msgid "Subscription ID"
-msgstr ""
+msgstr "รหัสการสมัครสมาชิก"
 
 msgid "Subscription details"
-msgstr ""
+msgstr "รายละเอียดการสมัครสมาชิก"
 
 msgid "Subscriptions"
-msgstr ""
+msgstr "การสมัครสมาชิก"
 
 msgid "Suggested products"
-msgstr ""
+msgstr "สินค้าที่แนะนำ"
 
 msgid "Sum"
-msgstr ""
+msgstr "ผลรวม"
 
 msgid "Supplier information"
-msgstr ""
+msgstr "ข้อมูลผู้จัดจำหน่าย"
 
 msgid "Supplier list"
-msgstr ""
+msgstr "รายชื่อผู้จัดจำหน่าย"
 
 msgid "Suppliers"
-msgstr ""
+msgstr "ผู้จัดหา"
 
 msgid "Take a look"
-msgstr ""
+msgstr "ลองดูสิ"
 
 msgid "Telephone"
-msgstr ""
+msgstr "โทรศัพท์"
 
 msgid "Terms and conditions"
-msgstr ""
+msgstr "ข้อกำหนดและเงื่อนไข"
 
 msgid ""
 "Thank you for your order and authorizing the payment.\n"
 "An e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
+msgstr "ขอบคุณสำหรับการสั่งซื้อและอนุมัติการชำระเงินของคุณ\nอีเมลที่มีรายละเอียดการสั่งซื้อจะถูกส่งถึงคุณภายในไม่กี่นาทีข้างหน้า"
 
 msgid ""
 "Thank you for your order.\n"
 "We received your payment and an e-mail with the order details will be sent to you within the next few minutes."
-msgstr ""
+msgstr "ขอบคุณสำหรับการสั่งซื้อของคุณ\nเราได้รับชำระเงินของคุณแล้ว และอีเมลที่มีรายละเอียดการสั่งซื้อจะถูกส่งไปให้คุณภายในไม่กี่นาทีข้างหน้า"
 
 msgid "Thank you for your review!"
-msgstr ""
+msgstr "ขอบคุณสำหรับรีวิวของคุณ!"
 
 msgid ""
 "The order was canceled.\n"
 "Do you wish to retry your order?"
-msgstr ""
+msgstr "คำสั่งซื้อถูกยกเลิก\nคุณต้องการลองสั่งซื้อใหม่หรือไม่?"
 
 msgid ""
 "The payment confirmation for your order is still pending.\n"
 "You will get an e-mail as soon as the payment is authorized."
-msgstr ""
+msgstr "การยืนยันการชำระเงินสำหรับคำสั่งซื้อของคุณยังอยู่ระหว่างดำเนินการ\nคุณจะได้รับอีเมลทันทีที่การชำระเงินได้รับการอนุมัติ"
 
 msgid "Three month"
-msgstr ""
+msgstr "สามเดือน"
 
 msgid "Time frame"
-msgstr ""
+msgstr "กรอบเวลา"
 
 msgid "Title"
-msgstr ""
+msgstr "ชื่อเรื่อง"
 
 msgid "Toggle fullscreen"
-msgstr ""
+msgstr "สลับเต็มหน้าจอ"
 
 msgid "Total"
-msgstr ""
+msgstr "รวม"
 
 msgid "Try again"
-msgstr ""
+msgstr "ลองอีกครั้ง"
 
 msgid "Two weeks"
-msgstr ""
+msgstr "สองสัปดาห์"
 
 #, php-format
 msgid "Unable to create an account: %1$s"
-msgstr ""
+msgstr "ไม่สามารถสร้างบัญชีได้: %1$s"
 
 #, php-format
 msgid "Unable to save address for customer \"%1$s\": %2$s"
-msgstr ""
+msgstr "ไม่สามารถบันทึกที่อยู่สำหรับลูกค้า \"%1$s\": %2$s"
 
 msgid ""
 "Unfortunately, the payment for your order was refused.\n"
 "Do you wish to retry?"
-msgstr ""
+msgstr "ขออภัย การชำระเงินสำหรับคำสั่งซื้อของคุณถูกปฏิเสธ\nคุณต้องการลองอีกครั้งหรือไม่?"
 
 msgid "Update"
-msgstr ""
+msgstr "อัปเดต"
 
 msgid "Variant"
-msgstr ""
+msgstr "ตัวแปร"
 
 msgid "Vat ID"
-msgstr ""
+msgstr "หมายเลข VAT"
 
 msgid "Vendor response"
-msgstr ""
+msgstr "การตอบกลับจากผู้ขาย"
 
 msgid "Watch"
-msgstr ""
+msgstr "ดู"
 
 msgid "Watched products"
-msgstr ""
+msgstr "สินค้าที่ดู"
 
 msgid "Web site"
-msgstr ""
+msgstr "เว็บไซต์"
 
 msgid "What do you think about the product"
-msgstr ""
+msgstr "คุณคิดอย่างไรเกี่ยวกับสินค้า"
 
 msgid "Y-m-d"
 msgstr "d/m/Y"
@@ -837,123 +854,123 @@ msgid "YYYY-MM-DD HH:mm"
 msgstr "วัน/เดือน/ปี ชั่วโมง:นาที"
 
 msgid "You are here:"
-msgstr ""
+msgstr "คุณอยู่ที่นี่:"
 
 #, php-format
 msgid "You can only save up to %1$s products as favorites"
-msgstr ""
+msgstr "คุณสามารถบันทึกสินค้าได้เพียง %1$s ชิ้นเท่านั้น"
 
 #, php-format
 msgid "You can only watch up to %1$s products"
-msgstr ""
+msgstr "คุณสามารถรับชมได้สูงสุดเพียง %1$s รายการเท่านั้น"
 
 msgid "You must log in first"
-msgstr ""
+msgstr "คุณต้องเข้าสู่ระบบก่อน"
 
 msgid "You will now be forwarded to the next step"
-msgstr ""
+msgstr "คุณจะถูกส่งต่อไปยังขั้นตอนถัดไป"
 
 msgid "Your choice"
-msgstr ""
+msgstr "ทางเลือกของคุณ"
 
 msgid "Your comment"
 msgstr "ความคิดเห็นของคุณ"
 
 msgid "Your rating"
-msgstr ""
+msgstr "คะแนนของคุณ"
 
 msgid "Your reference"
-msgstr ""
+msgstr "อ้างอิงของคุณ"
 
 msgid "Your reference number"
-msgstr ""
+msgstr "หมายเลขอ้างอิงของคุณ"
 
 msgid "Your review"
-msgstr ""
+msgstr "รีวิวของคุณ"
 
 msgid "Zoom in/out"
-msgstr ""
+msgstr "ซูมเข้า/ออก"
 
 #, php-format
 msgid "address"
-msgstr ""
+msgstr "ที่อยู่"
 
 #, php-format
 msgid "delivery"
 msgstr "ขนส่ง"
 
 msgid "favorite"
-msgstr ""
+msgstr "รายการโปรด"
 
 #, php-format
 msgid "from %1$s"
-msgstr ""
+msgstr "จาก %1$s"
 
 msgid "like billing address"
-msgstr ""
+msgstr "เช่น ที่อยู่สำหรับออกใบแจ้งหนี้"
 
 msgid "new address"
-msgstr ""
+msgstr "ที่อยู่ใหม่"
 
 msgid "none"
-msgstr ""
+msgstr "ไม่มี"
 
 msgid "on request"
-msgstr ""
+msgstr "ตามคำขอ"
 
 #, php-format
 msgid "payment"
 msgstr "ชำระเงิน"
 
 msgid "pin"
-msgstr ""
+msgstr "หมุด"
 
 msgid "price:default"
-msgstr ""
+msgstr "ราคา:ค่าเริ่มต้น"
 
 #, php-format
 msgid "process"
-msgstr ""
+msgstr "กระบวนการ"
 
 msgid "stock-high"
-msgstr ""
+msgstr "สูงมาก"
 
 msgid "stock-low"
-msgstr ""
+msgstr "สต็อกต่ำ"
 
 msgid "stock-out"
-msgstr ""
+msgstr "สินค้าหมด"
 
 msgid "stock-unlimited"
-msgstr ""
+msgstr "สต็อกไม่จำกัด"
 
 #, php-format
 msgid "summary"
-msgstr ""
+msgstr "สรุป"
 
 msgid "watch"
-msgstr ""
+msgstr "ดู"
 
 msgid "▲ Name"
-msgstr ""
+msgstr "▲ ชื่อ"
 
 msgid "▲ Price"
 msgstr "ราคา"
 
 msgid "▶"
-msgstr ""
+msgstr "▶"
 
 msgid "▶▶"
-msgstr ""
+msgstr "▶▶"
 
 msgid "▼ Name"
-msgstr ""
+msgstr "▼ ชื่อ"
 
 msgid "▼ Price"
 msgstr "ราคา"
 
 msgid "◀"
-msgstr ""
+msgstr "◀"
 
 msgid "◀◀"
-msgstr ""
+msgstr "◀◀"

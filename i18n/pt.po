@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
-"Last-Translator: b5fdd37cec45d8078af7e530465bb050, 2016\n"
+"Last-Translator: Rui Gomes, 2023\n"
 "Language-Team: Portuguese (http://app.transifex.com/aimeos/aimeos-core/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -134,6 +134,14 @@ msgstr "Adicional"
 
 msgid "Additional 2"
 msgstr "Adicional 2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr "A parte do endereço \"%1$s\" é inválida"
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr "A parte do endereço \"%1$s\" está em falta"
 
 msgid "Apply"
 msgstr "Aplicar"
@@ -508,6 +516,14 @@ msgstr "Pagar agora"
 
 msgid "Payment"
 msgstr "Pagamento"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr "A parte do endereço de pagamento \"%1$s\" é inválida"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr "A parte do endereço de pagamento \"%1$s\" está em falta"
 
 msgid "Payment costs"
 msgstr "Custos de pagamento"

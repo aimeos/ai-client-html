@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Mohammad Hossein Kiani Zahrani <org.kiani@gmail.com>, 2017\n"
 "Language-Team: Persian (http://app.transifex.com/aimeos/aimeos-core/language/fa/)\n"
@@ -130,6 +130,14 @@ msgstr "اضافی"
 
 msgid "Additional 2"
 msgstr "اضافی 2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr ""
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr ""
 
 msgid "Apply"
 msgstr "اعمال کردن"
@@ -504,6 +512,14 @@ msgstr "همینک پرداخت کن"
 
 msgid "Payment"
 msgstr "پرداخت"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr ""
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr ""
 
 msgid "Payment costs"
 msgstr "هزینه‌ی قابل پرداخت"

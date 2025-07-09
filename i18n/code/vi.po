@@ -23,15 +23,15 @@ msgstr ""
 
 #. Tax name
 msgid "tax"
-msgstr ""
+msgstr "thuế"
 
 #. PST tax name
 msgid "taxpst"
-msgstr ""
+msgstr "thuế"
 
 #. GST tax name
 msgid "taxgst"
-msgstr ""
+msgstr "thuế GST"
 
 #. Price type default
 msgid "price:default"
@@ -39,71 +39,71 @@ msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr ""
+msgstr "loại cổ phiếu: mặc định"
 
 #. Favorite action
 msgid "favorite"
-msgstr ""
+msgstr "yêu thích"
 
 #. Pin action
 msgid "pin"
-msgstr ""
+msgstr "kim"
 
 #. Watch action
 msgid "watch"
-msgstr ""
+msgstr "Xem"
 
 #. Product attribute
 msgid "size"
-msgstr ""
+msgstr "kích thước"
 
 #. Product attribute
 msgid "length"
-msgstr ""
+msgstr "chiều dài"
 
 #. Product attribute
 msgid "width"
-msgstr ""
+msgstr "chiều rộng"
 
 #. Product attribute
 msgid "color"
-msgstr ""
+msgstr "màu"
 
 #. Product attribute
 msgid "option"
-msgstr ""
+msgstr "tùy chọn"
 
 #. Product property package-length
 msgid "package-length"
-msgstr ""
+msgstr "Độ dài gói"
 
 #. Product property package-width
 msgid "package-width"
-msgstr ""
+msgstr "Chiều rộng gói"
 
 #. Product property package-height
 msgid "package-height"
-msgstr ""
+msgstr "Chiều cao gói hàng"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr ""
+msgstr "Trọng lượng gói hàng"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr ""
+msgstr "Trích nợ trực tiếp. Chủ tài khoản"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr ""
+msgstr "Trích nợ trực tiếp. Số tài khoản"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr ""
+msgstr "Trích nợ trực tiếp. Mã ngân hàng"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr ""
+msgstr "Trích nợ trực tiếp. Tên ngân hàng"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -115,40 +115,40 @@ msgstr "Họ"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr ""
+msgstr "Thanh toán. Số thẻ"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "Thanh toán.CVV"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr ""
+msgstr "Tháng hết hạn thanh toán"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr ""
+msgstr "Năm hết hạn thanh toán"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr ""
+msgstr "Thời hạn thanh toán"
 
 #. Pick-up date
 msgid "date.value"
-msgstr ""
+msgstr "Ngày.Giá trị"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr ""
+msgstr "giờ.phút.giây"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr ""
+msgstr "Nhà cung cấp.mã"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr ""
+msgstr "Địa chỉ nhà cung cấp"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr ""
+msgstr "Loại giao hàng"

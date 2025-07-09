@@ -4,12 +4,12 @@
 # 
 # Translators:
 # Gülsüm Akça <akcagulsum1@gmail.com>, 2021
-# Metal <meteoramic@yahoo.com>, 2015-2024
+# Metal <meteoramic@yahoo.com>, 2015-2025
 msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Gülsüm Akça <akcagulsum1@gmail.com>, 2021\n"
 "Language-Team: Turkish (http://app.transifex.com/aimeos/aimeos-core/language/tr/)\n"
@@ -128,6 +128,14 @@ msgstr "Devam"
 
 msgid "Additional 2"
 msgstr "Devam 2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr "Adres parçası \"%1$s\" geçersiz"
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr "Adres parçası \"%1$s\" eksik"
 
 msgid "Apply"
 msgstr "Uygula"
@@ -502,6 +510,14 @@ msgstr "Şimdi öde"
 
 msgid "Payment"
 msgstr "Ödeme"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr "Ödeme adresi parçası \"%1$s\" geçersiz"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr "Ödeme adresi parçası \"%1$s\" eksik"
 
 msgid "Payment costs"
 msgstr "Ödeme maliyetleri"

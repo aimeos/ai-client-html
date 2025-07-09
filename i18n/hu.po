@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Péter Kozma <kopegrafika@gmail.com>, 2016\n"
 "Language-Team: Hungarian (http://app.transifex.com/aimeos/aimeos-core/language/hu/)\n"
@@ -133,6 +133,14 @@ msgstr "Kiegészítő"
 
 msgid "Additional 2"
 msgstr "Kiegészítő 2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr "A \"%1$s\" címrész érvénytelen"
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr "A \"%1$s\" címrész hiányzik"
 
 msgid "Apply"
 msgstr "Elfogad"
@@ -507,6 +515,14 @@ msgstr "Fizetés most"
 
 msgid "Payment"
 msgstr "Fizetés"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr "A fizetési cím \"%1$s\" része érvénytelen"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr "A fizetési cím \"%1$s\" része hiányzik"
 
 msgid "Payment costs"
 msgstr "Fizetési költségek"

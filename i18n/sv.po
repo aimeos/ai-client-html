@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aimeos-core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-09 12:55+0100\n"
+"POT-Creation-Date: 2025-07-08 18:43+0200\n"
 "PO-Revision-Date: 2015-07-09 20:33+0000\n"
 "Last-Translator: Edvin Brobeck <edvin@brobeck.se>, 2020\n"
 "Language-Team: Swedish (http://app.transifex.com/aimeos/aimeos-core/language/sv/)\n"
@@ -127,6 +127,14 @@ msgstr "Extra"
 
 msgid "Additional 2"
 msgstr "Extra 2"
+
+#, php-format
+msgid "Address part \"%1$s\" is invalid"
+msgstr "Adressdelen \"%1$s\" är ogiltig"
+
+#, php-format
+msgid "Address part \"%1$s\" is missing"
+msgstr "Adressdelen \"%1$s\" saknas"
 
 msgid "Apply"
 msgstr "Tillämpa"
@@ -501,6 +509,14 @@ msgstr "Betala"
 
 msgid "Payment"
 msgstr "Betalning"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is invalid"
+msgstr "Betalningsadressens del \"%1$s\" är ogiltig"
+
+#, php-format
+msgid "Payment address part \"%1$s\" is missing"
+msgstr "Betalningsadressens del \"%1$s\" saknas"
 
 msgid "Payment costs"
 msgstr "Betalningskostnader"
