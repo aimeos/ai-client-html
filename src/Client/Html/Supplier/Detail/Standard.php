@@ -182,47 +182,40 @@ class Standard
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
-		$context = $this->context();
-		$config = $context->config();
+		$supplier = $this->supplier( $view );
 
-		/** client/html/supplier/detail/supid-default
-		 * The default supplier ID used if none is given as parameter
-		 *
-		 * You can configure the default supplier ID if no ID is passed in the
-		 * URL using this configuration.
-		 *
-		 * @param string Supplier ID
-		 * @since 2021.01
-		 * @see client/html/catalog/lists/catid-default
-		 */
-		if( $supid = $view->param( 'f_supid', $config->get( 'client/html/supplier/detail/supid-default' ) ) )
-		{
-			$controller = \Aimeos\Controller\Frontend::create( $context, 'supplier' );
+		$this->addMetaItems( $supplier, $expire, $tags );
 
-			/** client/html/supplier/detail/domains
-			 * A list of domain names whose items should be available in the supplier detail view template
-			 *
-			 * The templates rendering the supplier detail section use the texts and
-			 * maybe images and attributes associated to the categories. You can
-			 * configure your own list of domains (attribute, media, price, product,
-			 * text, etc. are domains) whose items are fetched from the storage.
-			 * Please keep in mind that the more domains you add to the configuration,
-			 * the more time is required for fetching the content!
-			 *
-			 * @param array List of domain names
-			 * @since 2020.10
-			 */
-			$domains = $config->get( 'client/html/supplier/detail/domains', ['supplier/address', 'media', 'text'] );
-
-			$supplier = $controller->uses( $domains )->get( $supid );
-
-			$this->addMetaItems( $supplier, $expire, $tags );
-
-			$view->detailSupplierItem = $supplier;
-			$view->detailSupplierAddresses = $this->getAddressStrings( $view, $supplier->getAddressItems() );
-		}
+		$view->detailSupplierItem = $supplier;
+		$view->detailSupplierAddresses = $this->getAddressStrings( $view, $supplier->getAddressItems() );
 
 		return parent::data( $view, $tags, $expire );
+	}
+
+
+	/**
+	 * Returns the data domains fetched along with the supplier
+	 *
+	 * @return array List of domain names
+	 */
+	protected function domains() : array
+	{
+		$domains = ['supplier/address', 'media', 'text'];
+
+		/** client/html/supplier/detail/domains
+		 * A list of domain names whose items should be available in the supplier detail view template
+		 *
+		 * The templates rendering the supplier detail section use the texts and
+		 * maybe images and attributes associated to the categories. You can
+		 * configure your own list of domains (attribute, media, price, product,
+		 * text, etc. are domains) whose items are fetched from the storage.
+		 * Please keep in mind that the more domains you add to the configuration,
+		 * the more time is required for fetching the content!
+		 *
+		 * @param array List of domain names
+		 * @since 2020.10
+		 */
+		return $this->context()->config()->get( 'client/html/supplier/detail/domains', $domains );
 	}
 
 
@@ -281,6 +274,35 @@ class Standard
 		}
 
 		return map( $list );
+	}
+
+
+	/**
+	 * Returns the supplier item
+	 *
+	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
+	 * @return \Aimeos\MShop\Supplier\Item\Iface Supplier item
+	 */
+	protected function supplier( \Aimeos\Base\View\Iface $view ) : \Aimeos\MShop\Supplier\Item\Iface
+	{
+		$context = $this->context();
+		$config = $context->config();
+
+		/** client/html/supplier/detail/supid-default
+		 * The default supplier ID used if none is given as parameter
+		 *
+		 * You can configure the default supplier ID if no ID is passed in the
+		 * URL using this configuration.
+		 *
+		 * @param string Supplier ID
+		 * @since 2021.01
+		 * @see client/html/catalog/lists/catid-default
+		 * @see client/html/catalog/detail/prodid-default
+		 */
+		$id = $supid = $view->param( 'f_supid', $config->get( 'client/html/supplier/detail/supid-default' ) );
+
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'supplier' )->uses( $this->domains() );
+		return $id ? $cntl->get( $id ) : $cntl->resolve( $view->param( 's_name' ) );
 	}
 
 
