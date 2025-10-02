@@ -381,7 +381,7 @@ class Standard
 	/**
 	 * Returns the category item
 	 *
-	 * @param array List of category IDs
+	 * @param array $catIds List of category IDs
 	 * @return \Aimeos\MShop\Catalog\Item\Iface|null Catalog item
 	 */
 	protected function category( array $catIds ) : ?\Aimeos\MShop\Catalog\Item\Iface
