@@ -253,14 +253,16 @@ class Standard
 		$pages = $this->pages();
 		$context = $this->context();
 		$page = min( max( $view->param( 'l_page', 1 ), 1 ), $pages );
+		$catIds = $this->categories();
 
-		if( !empty( $catIds = $this->categories() ) )
+		if( $catItem = $this->category( $catIds ) )
 		{
 			$listCatPath = \Aimeos\Controller\Frontend::create( $context, 'catalog' )
 				->uses( ['media', 'media/property', 'text'] )
-				->getPath( current( $catIds ) );
+				->getPath( $catItem->getId() );
 
 			$view->listCatPath = $this->addMetaItems( $listCatPath, $expire, $tags );
+			$catIds[] = $catItem->getId();
 		}
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
@@ -377,6 +379,29 @@ class Standard
 
 
 	/**
+	 * Returns the category item
+	 *
+	 * @param array List of category IDs
+	 * @return \Aimeos\MShop\Catalog\Item\Iface|null Catalog item
+	 */
+	protected function category( array $catIds ) : ?\Aimeos\MShop\Catalog\Item\Iface
+	{
+		$cntl = \Aimeos\Controller\Frontend::create( $this->context(), 'catalog' )
+			->uses( ['media', 'media/property', 'text'] );
+
+		if( $id = current( $catIds ) ) {
+			return $cntl->get( $id );
+		}
+
+		if( $name = $this->view()->param( 'f_name' ) ) {
+			return $cntl->resolve( $name );
+		}
+
+		return null;
+	}
+
+
+	/**
 	 * Returns the category IDs used for filtering products
 	 *
 	 * @return array List of category IDs
@@ -405,7 +430,7 @@ class Standard
 		 * @see client/html/catalog/instock
 		 */
 		$catids = $this->view()->param( 'f_catid', $this->context()->config()->get( 'client/html/catalog/lists/catid-default' ) );
-		$catids = $catids != null && is_scalar( $catids ) ? explode( ',', $catids ) : $catids; // workaround for TYPO3
+		$catids = $catids && is_scalar( $catids ) ? explode( ',', (string) $catids ) : $catids; // workaround for TYPO3
 
 		return array_filter( (array) $catids );
 	}

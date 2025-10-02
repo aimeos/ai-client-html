@@ -476,7 +476,7 @@ class Standard
 		$code = $config->get( 'client/html/catalog/detail/prodcode-default' );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $this->domains() );
-		return ( $id ? $cntl->get( $id ) : ( $code ? $cntl->find( $code ) : $cntl->resolve( $view->param( 'd_name' ) ) ) );
+		return $id ? $cntl->get( $id ) : ( $code ? $cntl->find( $code ) : $cntl->resolve( $view->param( 'd_name' ) ) );
 	}
 
 
