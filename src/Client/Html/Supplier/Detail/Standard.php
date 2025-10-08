@@ -299,7 +299,7 @@ class Standard
 		 * @see client/html/catalog/lists/catid-default
 		 * @see client/html/catalog/detail/prodid-default
 		 */
-		$id = $supid = $view->param( 'f_supid', $config->get( 'client/html/supplier/detail/supid-default' ) );
+		$id = $view->param( 'f_supid', $config->get( 'client/html/supplier/detail/supid-default' ) );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'supplier' )->uses( $this->domains() );
 		return $id ? $cntl->get( $id ) : $cntl->resolve( $view->param( 's_name' ) );
