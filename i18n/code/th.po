@@ -27,11 +27,11 @@ msgstr "ภาษี"
 
 #. PST tax name
 msgid "taxpst"
-msgstr ""
+msgstr "ภาษี"
 
 #. GST tax name
 msgid "taxgst"
-msgstr ""
+msgstr "ภาษีมูลค่าเพิ่ม"
 
 #. Price type default
 msgid "price:default"
@@ -39,7 +39,7 @@ msgstr "%1$s %2$s"
 
 #. Stock type
 msgid "stocktype:default"
-msgstr ""
+msgstr "ประเภทสินค้า:ค่าเริ่มต้น"
 
 #. Favorite action
 msgid "favorite"
@@ -55,55 +55,55 @@ msgstr "ดู"
 
 #. Product attribute
 msgid "size"
-msgstr ""
+msgstr "ขนาด"
 
 #. Product attribute
 msgid "length"
-msgstr ""
+msgstr "ความยาว"
 
 #. Product attribute
 msgid "width"
-msgstr ""
+msgstr "ความกว้าง"
 
 #. Product attribute
 msgid "color"
-msgstr ""
+msgstr "สี"
 
 #. Product attribute
 msgid "option"
-msgstr ""
+msgstr "ตัวเลือก"
 
 #. Product property package-length
 msgid "package-length"
-msgstr ""
+msgstr "ความยาวของแพ็กเกจ"
 
 #. Product property package-width
 msgid "package-width"
-msgstr ""
+msgstr "ความกว้างของแพ็กเกจ"
 
 #. Product property package-height
 msgid "package-height"
-msgstr ""
+msgstr "ความสูงของแพ็กเกจ"
 
 #. Product property package-weight
 msgid "package-weight"
-msgstr ""
+msgstr "น้ำหนักของแพ็กเกจ"
 
 #. Direct debit service provider
 msgid "directdebit.accountowner"
-msgstr ""
+msgstr "เจ้าของบัญชีหักบัญชีอัตโนมัติ"
 
 #. Direct debit service provider
 msgid "directdebit.accountno"
-msgstr ""
+msgstr "directdebit.accountno"
 
 #. Direct debit service provider
 msgid "directdebit.bankcode"
-msgstr ""
+msgstr "directdebit.bankcode"
 
 #. Direct debit service provider
 msgid "directdebit.bankname"
-msgstr ""
+msgstr "directdebit.ชื่อธนาคาร"
 
 #. Omnipay service provider
 msgid "payment.firstname"
@@ -115,40 +115,40 @@ msgstr "นามสกุล"
 
 #. Omnipay service provider
 msgid "payment.cardno"
-msgstr ""
+msgstr "หมายเลขบัตรชำระเงิน"
 
 #. Omnipay service provider
 msgid "payment.cvv"
-msgstr ""
+msgstr "การชำระเงิน.cvv"
 
 #. Omnipay service provider
 msgid "payment.expirymonth"
-msgstr ""
+msgstr "การชำระเงิน.เดือนหมดอายุ"
 
 #. Omnipay service provider
 msgid "payment.expiryyear"
-msgstr ""
+msgstr "การชำระเงิน.ปีหมดอายุ"
 
 #. Omnipay service provider
 msgid "payment.expiry"
-msgstr ""
+msgstr "การชำระเงิน.หมดอายุ"
 
 #. Pick-up date
 msgid "date.value"
-msgstr ""
+msgstr "date.value"
 
 #. Pick-up time
 msgid "time.hourminute"
-msgstr ""
+msgstr "เวลา.ชั่วโมงนาที"
 
 #. Pick-up location
 msgid "supplier.code"
-msgstr ""
+msgstr "รหัสผู้จัดจำหน่าย"
 
 #. Pick-up location
 msgid "supplier.address"
-msgstr ""
+msgstr "ที่อยู่ผู้จัดจำหน่าย"
 
 #. Delivery type
 msgid "delivery.type"
-msgstr ""
+msgstr "ประเภทการจัดส่ง"
