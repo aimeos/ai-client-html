@@ -78,8 +78,6 @@ class Exceptions extends Base implements Iface
 	public function header( string $uid = '' ) : ?string
 	{
 		$output = '';
-		$view = $this->view();
-		$context = $this->context();
 
 		try
 		{
@@ -87,35 +85,22 @@ class Exceptions extends Base implements Iface
 		}
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
-			$error = [$context->translate( 'client', $e->getMessage() )];
-			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
+			// no output in header
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
-			if( $e->getCode() >= 400 ) {
-				throw $e;
-			}
-
-			$error = [$context->translate( 'controller/frontend', $e->getMessage() )];
-			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
+			// no output in header
 		}
 		catch( \Aimeos\MShop\Exception $e )
 		{
-			if( $e->getCode() >= 400 ) {
-				throw $e;
-			}
-
-			$error = [$context->translate( 'mshop', $e->getMessage() )];
-			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
+			// no output in header
 		}
 		catch( \Exception $e )
 		{
-			$error = [$context->translate( 'client', 'A non-recoverable error occured' )];
-			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
 			$this->logException( $e );
 		}
 
-		return $view->render( 'error' ) . $output;
+		return $output;
 	}
 
 
