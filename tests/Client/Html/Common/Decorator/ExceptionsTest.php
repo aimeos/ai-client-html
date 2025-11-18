@@ -94,7 +94,7 @@ class ExceptionsTest extends \PHPUnit\Framework\TestCase
 		$this->client->expects( $this->once() )->method( 'header' )
 			->will( $this->throwException( new \Aimeos\Client\Html\Exception( 'test exception' ) ) );
 
-		$this->assertStringContainsString( 'test exception', $this->object->header() );
+		$this->assertEquals( '', $this->object->header() );
 	}
 
 
@@ -103,7 +103,7 @@ class ExceptionsTest extends \PHPUnit\Framework\TestCase
 		$this->client->expects( $this->once() )->method( 'header' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
 
-		$this->assertStringContainsString( 'test exception', $this->object->header() );
+		$this->assertEquals( '', $this->object->header() );
 	}
 
 
@@ -112,7 +112,7 @@ class ExceptionsTest extends \PHPUnit\Framework\TestCase
 		$this->client->expects( $this->once() )->method( 'header' )
 			->will( $this->throwException( new \Aimeos\MShop\Exception( 'test exception' ) ) );
 
-		$this->assertStringContainsString( 'test exception', $this->object->header() );
+		$this->assertEquals( '', $this->object->header() );
 	}
 
 
@@ -121,7 +121,7 @@ class ExceptionsTest extends \PHPUnit\Framework\TestCase
 		$this->client->expects( $this->once() )->method( 'header' )
 			->will( $this->throwException( new \Exception() ) );
 
-		$this->assertStringContainsString( 'A non-recoverable error occured', $this->object->header() );
+		$this->assertEquals( '', $this->object->header() );
 	}
 
 
