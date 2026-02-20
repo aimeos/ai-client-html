@@ -267,8 +267,8 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 								<?= $enc->html( $product->getQuantity() ) ?>
 							<?php endif ?>
 						</div>
-						<div class="unitprice col-md-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() + $product->getPrice()->getCosts(), $precision ), $priceCurrency ) ) ?></div>
-						<div class="price col-sm-5 col-md-3"><?= $enc->html( sprintf( $priceFormat, $this->number( ( $product->getPrice()->getValue() + $product->getPrice()->getCosts() ) * $product->getQuantity(), $precision ), $priceCurrency ) ) ?></div>
+						<div class="unitprice col-md-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue(), $precision ), $priceCurrency ) ) ?></div>
+						<div class="price col-sm-5 col-md-3"><?= $enc->html( sprintf( $priceFormat, $this->number( $product->getPrice()->getValue() * $product->getQuantity(), $precision ), $priceCurrency ) ) ?></div>
 						<?php if( $modify ) : ?>
 						<div class="action col-2 col-sm-2 col-md-1">
 							<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
