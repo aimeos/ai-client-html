@@ -75,7 +75,7 @@ class Standard
 		catch( \Exception $e )
 		{
 			$view->response()->withStatus( 500, 'Error updating order status' );
-			$view->response()->getBody()->write( $e->getMessage() );
+			$view->response()->getBody()->write( 'Error updating order status' );
 
 			$body = (string) $view->request()->getBody();
 			$str = "Updating order status failed: %1\$s\n%2\$s\n%3\$s";
