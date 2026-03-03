@@ -151,7 +151,7 @@ class Standard
 
 			$response->withHeader( 'Content-Description', 'File Transfer' );
 			$response->withHeader( 'Content-Type', 'application/octet-stream' );
-			$response->withHeader( 'Content-Disposition', 'attachment; filename="' . $name . '"' );
+			$response->withHeader( 'Content-Disposition', 'attachment; filename="' . str_replace( ["\r", "\n", '"'], '', $name ) . '"' );
 			$response->withHeader( 'Content-Length', (string) $fs->size( $value ) );
 			$response->withHeader( 'Cache-Control', 'must-revalidate' );
 			$response->withHeader( 'Pragma', 'private' );
@@ -181,7 +181,7 @@ class Standard
 	{
 		$context = $this->context();
 
-		if( $id && ( $customerId = $context->user() ) )
+		if( $id && ( $customerId = (string) $context->user() ) )
 		{
 			$manager = \Aimeos\MShop::create( $context, 'order' );
 
@@ -238,7 +238,7 @@ class Standard
 
 		if( $maxcnt === null || $count < $maxcnt )
 		{
-			$config['count'] = $count++;
+			$config['count'] = ++$count;
 			$cntl->addListItem( 'order', $listItem->setConfig( $config ) )->store();
 
 			return true;
