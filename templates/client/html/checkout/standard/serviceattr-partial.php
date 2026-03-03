@@ -102,7 +102,7 @@ $enc = $this->encoder();
 				<?php break; case 'date': ?>
 
 					<div class="col-md-7">
-						<input class="form-control" type="<?= $item->getType() ?>"
+						<input class="form-control" type="<?= $enc->attr( $item->getType() ) ?>"
 							id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
 							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? $item->getDefault() ) ) ?>"
@@ -113,7 +113,7 @@ $enc = $this->encoder();
 				<?php break; case 'datetime': ?>
 
 					<div class="col-md-7">
-						<input class="form-control" type="<?= $item->getType() ?>"
+						<input class="form-control" type="<?= $enc->attr( $item->getType() ) ?>"
 							id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
 							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? $item->getDefault() ) ) ?>"
@@ -124,7 +124,7 @@ $enc = $this->encoder();
 				<?php break; case 'time': ?>
 
 					<div class="col-md-7">
-						<input class="form-control" type="<?= $item->getType() ?>"
+						<input class="form-control" type="<?= $enc->attr( $item->getType() ) ?>"
 							id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
 							value="<?= $enc->attr( $this->param( 'c_' . $this->type . '/' . $this->id . '/' . $key, $item->value ?? $item->getDefault() ) ) ?>"
