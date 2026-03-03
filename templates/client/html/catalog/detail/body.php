@@ -69,7 +69,7 @@ $propTypes = $this->get( 'detailPropertyTypes', [] );
 			<!-- navigator template added by client -->
 			<!-- catalog.detail.navigator -->
 
-			<article class="product row <?= $this->detailProductItem->getConfigValue( 'css-class' ) ?>"
+			<article class="product row <?= $enc->attr( $this->detailProductItem->getConfigValue( 'css-class' ) ) ?>"
 				data-id="<?= $this->detailProductItem->getId() ?>" data-reqstock="<?= $reqstock ?>"
 				data-varattributes="<?= $enc->attr( $varAttr ) ?>">
 

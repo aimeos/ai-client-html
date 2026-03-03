@@ -109,7 +109,7 @@ $enc = $this->encoder();
 				<?php break; case 'date': ?>
 
 					<div class="col-md-7">
-						<input class="form-control" type="<?= $item->getType() ?>"
+						<input class="form-control" type="<?= $enc->attr( $item->getType() ) ?>"
 							id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
 							title="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
@@ -121,7 +121,7 @@ $enc = $this->encoder();
 				<?php break; case 'datetime': ?>
 
 					<div class="col-md-7">
-						<input class="form-control" type="<?= $item->getType() ?>"
+						<input class="form-control" type="<?= $enc->attr( $item->getType() ) ?>"
 							id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
 							title="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
@@ -133,7 +133,7 @@ $enc = $this->encoder();
 				<?php break; case 'time': ?>
 
 					<div class="col-md-7">
-						<input class="form-control" type="<?= $item->getType() ?>"
+						<input class="form-control" type="<?= $enc->attr( $item->getType() ) ?>"
 							id="<?= $enc->attr( $this->type . '-' . $key ) ?>"
 							title="<?= $enc->attr( $this->translate( 'client/code', $key ) ) ?>"
 							name="<?= $enc->attr( $this->formparam( array( 'c_' . $this->type, $this->id, $key ) ) ) ?>"
