@@ -97,7 +97,7 @@ $enc = $this->encoder();
 							<?= $enc->html( $this->translate( 'client', 'new address' ), $enc::TRUST ) ?>
 						</label>
 					</div>
-					<div class="address accordion-collapse collapse"
+					<div class="address accordion-collapse collapse <?= $this->get( 'addressDeliveryOption' ) == 'null' ? 'show' : '' ?>"
 						id="address-delivery-new" data-bs-parent="#address-delivery-list">
 
 						<div class="form-list">
@@ -117,6 +117,7 @@ $enc = $this->encoder();
 									'states' => $this->get( 'addressStates', [] ),
 									'prefix' => 'order.address.',
 									'type' => 'delivery',
+									'disabled' => $this->get( 'addressDeliveryOption' ) != 'null',
 								]
 							) ?>
 
