@@ -47,9 +47,9 @@ AimeosBasketStandard = {
 	 * Updates quantity and deletes products without page reload
 	 */
 	onChange() {
-		ev.preventDefault();
 		
 		$(document).on("click", ".basket-standard a.change", ev => {
+			ev.preventDefault();
 			Aimeos.createSpinner();
 
 			fetch($(ev.currentTarget).attr("href")).then(response => {
