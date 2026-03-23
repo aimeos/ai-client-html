@@ -69,6 +69,8 @@ AimeosBasketStandard = {
 	init() {
 		if(this.once) return;
 		this.once = true;
+		
+		$('body').addClass('basket');
 
 		this.onChange();
 		this.onSubmit();
