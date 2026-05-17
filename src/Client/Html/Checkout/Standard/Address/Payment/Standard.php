@@ -27,13 +27,14 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables if necessary.
 	 */
-	public function init()
+	public function init() : void
 	{
 		$view = $this->view();
 
 		try
 		{
 			// only start if there's something to do
+			// @phpstan-ignore-next-line
 			if( $view->param( 'ca_paymentoption', null ) === null ) {
 				return;
 			}
@@ -54,8 +55,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -63,15 +64,20 @@ class Standard
 		$context = $this->context();
 		$basketCntl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
 
+		// @phpstan-ignore-next-line
 		$addr = current( $basketCntl->get()->getAddress( 'payment' ) );
 
 		$values = $addr ? $addr->toArray() : [];
 		$id = $view->get( 'addressCustomerItem' ) && $view->addressCustomerItem->getId() ? $view->addressCustomerItem->getId() : 'null';
 		$id = ( $values['order.address.addressid'] ?? null ) ?: $id;
 
+		// @phpstan-ignore-next-line
 		$view->addressPaymentString = $this->getAddressString( $view, $view->addressPaymentItem );
+		// @phpstan-ignore-next-line
 		$view->addressPaymentValuesNew = array_merge( $values, $view->param( 'ca_payment', [] ) );
+		// @phpstan-ignore-next-line
 		$view->addressPaymentValues = array_merge( $values, $view->param( 'ca_payment_' . $id, [] ) );
+		// @phpstan-ignore-next-line
 		$view->addressPaymentOption = $view->param( 'ca_paymentoption', $id );
 		$view->addressPaymentCss = $this->cssPayment();
 
@@ -118,7 +124,7 @@ class Standard
 		 * Until 2015-02, the configuration option was available as
 		 * "client/html/common/address/payment/mandatory" starting from 2014-03.
 		 *
-		 * @param array List of field keys
+		 * @type array List of field keys
 		 * @since 2015.02
 		 * @see client/html/checkout/standard/address/payment/disable-new
 		 * @see client/html/common/address/validate
@@ -159,7 +165,7 @@ class Standard
 		 * Until 2015-02, the configuration option was available as
 		 * "client/html/common/address/payment/optional" starting from 2014-03.
 		 *
-		 * @param array List of field keys
+		 * @type array List of field keys
 		 * @since 2015.02
 		 * @see client/html/checkout/standard/address/payment/disable-new
 		 * @see client/html/common/address/validate
@@ -199,7 +205,7 @@ class Standard
 		 *
 		 * Caution: Only hide fields that don't require any input
 		 *
-		 * @param array List of field keys
+		 * @type array List of field keys
 		 * @since 2015.02
 		 * @see client/html/checkout/standard/address/payment/disable-new
 		 * @see client/html/common/address/payment/mandatory
@@ -263,19 +269,22 @@ class Standard
 		 * Until 2015-02, the configuration option was available as
 		 * "client/html/common/address/payment/validate" starting from 2014-09.
 		 *
-		 * @param array Associative list of field names and regular expressions
+		 * @type array Associative list of field names and regular expressions
 		 * @since 2014.09
 		 * @see client/html/common/address/payment/mandatory
 		 * @see client/html/common/address/payment/optional
 		 */
 
+		// @phpstan-ignore-next-line
 		$allFields = array_flip( array_merge( $mandatory, $optional, $hidden ) );
 		$invalid = $this->validateFields( $params, $allFields );
+		// @phpstan-ignore-next-line
 		$this->checkSalutation( $params, $mandatory );
 
 		$msg = $view->translate( 'client', 'Billing address part "%1$s" is invalid' );
 
 		foreach( $invalid as $key => $name ) {
+			// @phpstan-ignore-next-line
 			$invalid[$key] = sprintf( $msg, $name );
 		}
 
@@ -284,6 +293,7 @@ class Standard
 		foreach( $mandatory as $key )
 		{
 			if( !isset( $params['order.address.' . $key] ) || $params['order.address.' . $key] == '' ) {
+				// @phpstan-ignore-next-line
 				$invalid[$key] = sprintf( $msg, $key );
 			}
 		}
@@ -296,10 +306,10 @@ class Standard
 	 * Additional checks for the salutation
 	 *
 	 * @param array $params Associative list of address keys (order.address.*) and their values
-	 * @param array &$mandatory List of mandatory field names
+	 * @type array &$mandatory List of mandatory field names
 	 * @since 2016.05
 	 */
-	protected function checkSalutation( array $params, array &$mandatory )
+	protected function checkSalutation( array $params, array &$mandatory ) : void
 	{
 		if( isset( $params['order.address.salutation'] )
 			&& $params['order.address.salutation'] === 'company'
@@ -350,7 +360,7 @@ class Standard
 	 */
 	protected function getAddressString( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Order\Item\Address\Iface $addr )
 	{
-		return preg_replace( "/\n+/m", "\n", trim( sprintf(
+		return (string) preg_replace( "/\n+/m", "\n", trim( sprintf(
 			/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
 			/// address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
 			/// postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
@@ -401,7 +411,7 @@ class Standard
 	 * @throws \Aimeos\Client\Html\Exception If an error occurs
 	 * @since 2016.05
 	 */
-	protected function setAddress( \Aimeos\Base\View\Iface $view )
+	protected function setAddress( \Aimeos\Base\View\Iface $view ) : void
 	{
 		$context = $this->context();
 		$basketCtrl = \Aimeos\Controller\Frontend::create( $context, 'basket' );
@@ -417,13 +427,14 @@ class Standard
 		 * Until 2015-02, the configuration option was available as
 		 * "client/html/common/address/payment/disable-new" starting from 2014-03.
 		 *
-		 * @param boolean A value of "1" to disable, "0" enables the payment address form
+		 * @type boolean A value of "1" to disable, "0" enables the payment address form
 		 * @since 2015.02
 		 * @see client/html/common/address/payment/mandatory
 		 * @see client/html/common/address/payment/optional
 		 * @see client/html/common/address/payment/hidden
 		 * @see client/html/common/address/salutations
 		 */
+		// @phpstan-ignore-next-line
 		$disable = $view->config( 'client/html/checkout/standard/address/payment/disable-new', false );
 		$type = \Aimeos\MShop\Order\Item\Address\Base::TYPE_PAYMENT;
 
@@ -431,14 +442,17 @@ class Standard
 		{
 			$params = $view->param( 'ca_payment', [] );
 
+			// @phpstan-ignore-next-line
 			if( ( $view->addressPaymentError = $this->checkFields( $params ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one payment address part is missing or invalid' ) );
 			}
 		}
 		else // existing address
 		{
+			// @phpstan-ignore-next-line
 			$params = $view->param( 'ca_payment_' . $option, [] );
 
+			// @phpstan-ignore-next-line
 			if( !empty( $params ) && ( $view->addressPaymentError = $this->checkFields( $params ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one payment address part is missing or invalid' ) );
 			}
@@ -587,6 +601,7 @@ class Standard
 			{
 				$regex = $config->get( 'client/html/common/address/validate/' . $name );
 
+				// @phpstan-ignore-next-line
 				if( $regex && preg_match( '/' . $regex . '/', $value ) !== 1 ) {
 					$invalid[$name] = $name;
 				}
@@ -612,7 +627,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page body
+	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
 	 * @see client/html/checkout/standard/address/payment/template-header
 	 */

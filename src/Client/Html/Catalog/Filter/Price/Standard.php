@@ -25,8 +25,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -49,6 +49,7 @@ class Standard
 
 		// We need a key but there's no one for the currency alone available, only price/currency combinations
 		$view->priceHigh = (int) $cntl->aggregate( 'product.status', 'agg:' . $name, 'max' )->max() + 1;
+		// @phpstan-ignore-next-line
 		$view->priceResetParams = map( $this->getClientParams( $view->param() ) )->remove( 'f_price' )->all();
 
 		return parent::data( $view, $tags, $expire );
@@ -75,6 +76,7 @@ class Standard
 	protected function attributes() : array
 	{
 		$attrids = $this->context()->config()->get( 'client/html/catalog/lists/attrid-default' );
+		// @phpstan-ignore-next-line
 		$attrids = $attrids != null && is_scalar( $attrids ) ? explode( ',', $attrids ) : $attrids; // workaround for TYPO3
 
 		return (array) $attrids;
@@ -89,6 +91,7 @@ class Standard
 	 */
 	protected function categories( \Aimeos\Base\View\Iface $view ) : array
 	{
+		// @phpstan-ignore-next-line
 		$catids = $view->param( 'f_catid', $this->context()->config()->get( 'client/html/catalog/lists/catid-default' ) );
 		$catids = $catids != null && is_scalar( $catids ) ? explode( ',', $catids ) : $catids; // workaround for TYPO3
 
@@ -102,9 +105,11 @@ class Standard
 	 * @param \Aimeos\Controller\Frontend\Product\Iface $cntl Product controller
 	 * @param \Aimeos\Base\View\Iface $view View object
 	 */
-	protected function conditions( \Aimeos\Controller\Frontend\Product\Iface $cntl, \Aimeos\Base\View\Iface $view )
+	protected function conditions( \Aimeos\Controller\Frontend\Product\Iface $cntl, \Aimeos\Base\View\Iface $view ) : void
 	{
+		// @phpstan-ignore-next-line
 		if( $view->config( 'client/html/catalog/instock', false ) ) {
+			// @phpstan-ignore-next-line
 			$cntl->compare( '>', 'product.instock', 0 );
 		}
 	}
@@ -117,7 +122,7 @@ class Standard
 	 */
 	protected function level() : int
 	{
-		return $this->context()->config()->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
+		return (int) $this->context()->config()->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 	}
 
 
@@ -129,6 +134,7 @@ class Standard
 	 */
 	protected function suppliers( \Aimeos\Base\View\Iface $view ) : array
 	{
+		// @phpstan-ignore-next-line
 		$supids = $view->param( 'f_supid', $this->context()->config()->get( 'client/html/catalog/lists/supid-default' ) );
 		$supids = $supids != null && is_scalar( $supids ) ? explode( ',', $supids ) : $supids; // workaround for TYPO3
 
@@ -151,7 +157,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page body
+	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
 	 * @see client/html/catalog/filter/price/template-header
 	 */

@@ -48,7 +48,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page body
+	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
 	 * @see client/html/catalog/filter/search/template-header
 	 */

@@ -40,7 +40,7 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables.
 	 */
-	public function init()
+	public function init() : void
 	{
 		$context = $this->context();
 

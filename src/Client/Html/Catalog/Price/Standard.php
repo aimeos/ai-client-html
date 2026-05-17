@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyPrice"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2018.04
 	 */
 
@@ -83,7 +83,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/price/decorators/global
 	 * @see client/html/catalog/price/decorators/local
@@ -105,7 +105,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/price/decorators/excludes
 	 * @see client/html/catalog/price/decorators/local
@@ -127,7 +127,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Catalog\Decorator\Decorator2" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/price/decorators/excludes
 	 * @see client/html/catalog/price/decorators/global

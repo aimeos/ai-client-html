@@ -51,7 +51,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyFavorite"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -62,7 +62,7 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables if necessary.
 	 */
-	public function init()
+	public function init() : void
 	{
 		$view = $this->view();
 		$context = $this->context();
@@ -86,7 +86,7 @@ class Standard
 	 *
 	 * @param array $ids List of product IDs
 	 */
-	protected function addFavorites( array $ids )
+	protected function addFavorites( array $ids ) : void
 	{
 		$context = $this->context();
 
@@ -96,7 +96,7 @@ class Standard
 		 * This option limits the number of products users can add to their
 		 * favorite list. It must be a positive integer value greater than 0.
 		 *
-		 * @param integer Number of products
+		 * @type integer Number of products
 		 * @since 2019.04
 		 */
 		$max = $context->config()->get( 'client/html/account/favorite/maxitems', 100 );
@@ -104,8 +104,10 @@ class Standard
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 		$item = $cntl->uses( ['product' => ['favorite']] )->get();
 
+		// @phpstan-ignore-next-line
 		if( count( $item->getRefItems( 'product', null, 'favorite' ) ) + count( $ids ) > $max )
 		{
+			// @phpstan-ignore-next-line
 			$msg = sprintf( $context->translate( 'client', 'You can only save up to %1$s products as favorites' ), $max );
 			throw new \Aimeos\Client\Html\Exception( $msg );
 		}
@@ -127,7 +129,7 @@ class Standard
 	 *
 	 * @param array $ids List of product IDs
 	 */
-	protected function deleteFavorites( array $ids )
+	protected function deleteFavorites( array $ids ) : void
 	{
 		$cntl = \Aimeos\Controller\Frontend::create( $this->context(), 'customer' );
 		$item = $cntl->uses( ['product' => ['favorite']] )->get();
@@ -151,6 +153,7 @@ class Standard
 	 */
 	protected function getProductListPage( \Aimeos\Base\View\Iface $view ) : int
 	{
+		// @phpstan-ignore-next-line
 		$page = (int) $view->param( 'fav_page', 1 );
 		return ( $page < 1 ? 1 : $page );
 	}
@@ -177,14 +180,15 @@ class Standard
 		 * well as values above 100 are not allowed. The value can be overwritten
 		 * per request if the "l_size" parameter is part of the URL.
 		 *
-		 * @param integer Number of products
+		 * @type integer Number of products
 		 * @since 2014.09
 		 * @see client/html/catalog/lists/size
 		 */
 		$defaultSize = $this->context()->config()->get( 'client/html/account/favorite/size', 48 );
 
+		// @phpstan-ignore-next-line
 		$size = (int) $view->param( 'fav-size', $defaultSize );
-		return ( $size < 1 || $size > 100 ? $defaultSize : $size );
+		return (int) ( $size < 1 || $size > 100 ? $defaultSize : $size );
 	}
 
 
@@ -192,8 +196,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -211,7 +215,7 @@ class Standard
 		 * in mind that the more domains you add to the configuration, the
 		 * more time is required for fetching the content!
 		 *
-		 * @param array List of domain names
+		 * @type array List of domain names
 		 * @since 2014.09
 		 * @see client/html/catalog/domains
 		 */
@@ -224,6 +228,7 @@ class Standard
 		$products = \Aimeos\MShop::create( $context, 'rule' )->apply( $products, 'catalog' );
 
 		$listItems = $customer->getListItems( 'product', 'favorite' );
+		// @phpstan-ignore-next-line
 		$total = count( $listItems );
 
 		$size = $this->getProductListSize( $view );
@@ -257,7 +262,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page body
+	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2015.10
 	 * @see client/html/account/favorite/template-header
 	 */
@@ -278,7 +283,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page head
+	 * @type string Relative path to the template creating code for the HTML page head
 	 * @since 2015.10
 	 * @see client/html/account/favorite/template-body
 	 */
@@ -301,7 +306,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/account/favorite/decorators/global
 	 * @see client/html/account/favorite/decorators/local
@@ -323,7 +328,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/account/favorite/decorators/excludes
 	 * @see client/html/account/favorite/decorators/local
@@ -345,7 +350,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Account\Decorator\Decorator2" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/account/favorite/decorators/excludes
 	 * @see client/html/account/favorite/decorators/global

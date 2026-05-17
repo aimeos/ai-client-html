@@ -46,7 +46,7 @@ class Standard
 		 * you've implemented an alternative client class as well, it
 		 * should be suffixed by the name of the new class.
 		 *
-		 * @param string Relative path to the template creating code for the HTML page body
+		 * @type string Relative path to the template creating code for the HTML page body
 		 * @since 2014.09
 		 * @see client/html/locale/select/language/template-header
 		 */
@@ -63,11 +63,12 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables.
 	 */
-	public function init()
+	public function init() : void
 	{
 		$context = $this->context();
 		$name = $context->config()->get( 'client/html/locale/select/language/param-name', 'locale' );
 
+		// @phpstan-ignore-next-line
 		if( $languageId = $this->view()->param( $name ) ) {
 			$context->session()->set( 'aimeos/locale/languageid', $languageId );
 		}

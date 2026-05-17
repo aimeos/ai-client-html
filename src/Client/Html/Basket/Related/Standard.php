@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyBasket"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -59,8 +59,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -104,7 +104,7 @@ class Standard
 		 * Please keep in mind that the more domains you add to the configuration,
 		 * the more time is required for fetching the content!
 		 *
-		 * @param array List of domain names
+		 * @type array List of domain names
 		 * @since 2014.09
 		 */
 		$domains = ['catalog', 'media', 'media/property', 'price', 'supplier', 'text'];
@@ -119,7 +119,7 @@ class Standard
 		 * with product variants and product bundles. By default, also optional attributes
 		 * are displayed if they have been associated to a product.
 		 *
-		 * @param boolean True to display the button, false to hide it
+		 * @type boolean True to display the button, false to hide it
 		 * @since 2020.10
 		 * @see client/html/catalog/home/basket-add
 		 * @see client/html/catalog/lists/basket-add
@@ -127,10 +127,11 @@ class Standard
 		 * @see client/html/catalog/product/basket-add
 		 */
 		if( $config->get( 'client/html/basket/related/basket-add', false ) ) {
+			// @phpstan-ignore-next-line
 			$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute' => ['variant', 'custom', 'config']] );
 		}
 
-		return $domains;
+		return (array) $domains;
 	}
 
 
@@ -143,6 +144,7 @@ class Standard
 	{
 		$basket = \Aimeos\Controller\Frontend::create( $this->context(), 'basket' )->get();
 
+		// @phpstan-ignore return.type
 		return $basket->getProducts()
 			->concat( $basket->getProducts()->getProducts() )
 			->col( 'order.product.parentproductid' )
@@ -169,10 +171,10 @@ class Standard
 		 * the bought together products regularly to get up to date
 		 * product suggestions.
 		 *
-		 * @param integer Number of products
+		 * @type integer Number of products
 		 * @since 2014.09
 		 */
-		return $this->context()->config()->get( 'client/html/basket/related/bought/limit', 6 );
+		return (int) $this->context()->config()->get( 'client/html/basket/related/bought/limit', 6 );
 	}
 
 
@@ -191,7 +193,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page body
+	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
 	 * @see client/html/basket/related/template-header
 	 */
@@ -212,7 +214,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page head
+	 * @type string Relative path to the template creating code for the HTML page head
 	 * @since 2014.03
 	 * @see client/html/basket/related/template-body
 	 */
@@ -235,7 +237,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2014.05
 	 * @see client/html/common/decorators/default
 	 * @see client/html/basket/related/decorators/global
@@ -258,7 +260,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2014.05
 	 * @see client/html/common/decorators/default
 	 * @see client/html/basket/related/decorators/excludes
@@ -281,7 +283,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Basket\Decorator\Decorator2" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2014.05
 	 * @see client/html/common/decorators/default
 	 * @see client/html/basket/related/decorators/excludes

@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyList"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -78,7 +78,7 @@ class Standard
 		 * entries to cache or if the component contains non-cacheable parts that
 		 * can't be replaced using the modify() method.
 		 *
-		 * @param boolean True to enable caching, false to disable
+		 * @type boolean True to enable caching, false to disable
 		 * @see client/html/catalog/detail/cache
 		 * @see client/html/catalog/filter/cache
 		 * @see client/html/catalog/stage/cache
@@ -90,12 +90,13 @@ class Standard
 		 * This returns all settings related to the filter component.
 		 * Please refer to the single settings for details.
 		 *
-		 * @param array Associative list of name/value settings
+		 * @type array Associative list of name/value settings
 		 * @see client/html/catalog#list
 		 */
 		$confkey = 'client/html/catalog/lists';
 
 		$args = map( $view->param() )->except( ['f_catid', 'f_name', 'f_supid', 's_name'] )->filter( function( $val, $key ) {
+			// @phpstan-ignore-next-line
 			return !strncmp( $key, 'f_', 2 ) || !strncmp( $key, 'l_', 2 );
 		} );
 
@@ -131,7 +132,7 @@ class Standard
 		 * the types are a-z and 0-9). The catalog list type subpart
 		 * contains the template for switching between list types.
 		 *
-		 * @param string Relative path to the template creating code for the HTML page body
+		 * @type string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
 		 * @see client/html/catalog/lists/template-header
 		 * @see client/html/catalog/lists/type/template-body
@@ -162,6 +163,7 @@ class Standard
 		$prefixes = ['f_catid', 'f_supid', 'f_sort', 'l_page', 'l_type'];
 
 		$args = map( $view->param() )->except( ['f_catid', 'f_name', 'f_supid', 's_name'] )->filter( function( $val, $key ) {
+			// @phpstan-ignore-next-line
 			return !strncmp( $key, 'f_', 2 ) || !strncmp( $key, 'l_', 2 );
 		} );
 
@@ -198,7 +200,7 @@ class Standard
 		 * the types are a-z and 0-9). The catalog list type subpart
 		 * contains the template for switching between list types.
 		 *
-		 * @param string Relative path to the template creating code for the HTML page head
+		 * @type string Relative path to the template creating code for the HTML page head
 		 * @since 2014.03
 		 * @see client/html/catalog/lists/template-body
 		 * @see client/html/catalog/lists/type/template-body
@@ -222,7 +224,7 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables if necessary.
 	 */
-	public function init()
+	public function init() : void
 	{
 		$view = $this->view();
 		$context = $this->context();
@@ -241,8 +243,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -252,6 +254,7 @@ class Standard
 		$size = $this->size();
 		$pages = $this->pages();
 		$context = $this->context();
+		// @phpstan-ignore-next-line
 		$page = min( max( $view->param( 'l_page', 1 ), 1 ), $pages );
 		$catIds = $this->categories();
 
@@ -261,6 +264,7 @@ class Standard
 				->uses( ['media', 'media/property', 'text'] )
 				->getPath( $catItem->getId() );
 
+			// @phpstan-ignore-next-line
 			$view->listCatPath = $this->addMetaItems( $listCatPath, $expire, $tags );
 			$catIds[] = $catItem->getId();
 		}
@@ -276,7 +280,7 @@ class Standard
 			->allOf( $view->param( 'f_attrid', [] ) )
 			->oneOf( $view->param( 'f_optid', [] ) )
 			->oneOf( $view->param( 'f_oneid', [] ) )
-			->slice( ( $page - 1 ) * $size, $size )
+			->slice( ( $page - 1 ) * $size, $size ) // @phpstan-ignore binaryOp.invalid
 			->uses( $this->domains() );
 
 		$this->call( 'conditions', $cntl, $view );
@@ -285,8 +289,10 @@ class Standard
 		$articles = $products->getRefItems( 'product', 'default', 'default' )->flat( 1 )->union( $products );
 
 		$attrMap = $articles->getRefItems( 'attribute' )->flat( 1 )->groupBy( 'attribute.type' );
+		// @phpstan-ignore-next-line
 		$attrTypes = $this->attributeTypes( $attrMap->keys() );
 
+		// @phpstan-ignore-next-line
 		$this->addMetaItems( $products, $expire, $tags, ['product'] );
 
 
@@ -296,14 +302,15 @@ class Standard
 
 		$view->listPageSize = $size;
 		$view->listPageCurr = $page;
-		$view->listPagePrev = ( $page > 1 ? $page - 1 : 1 );
-		$view->listPageLast = ( $total != 0 ? min( ceil( $total / $size ), $pages ) : 1 );
-		$view->listPageNext = ( $page < $view->listPageLast ? $page + 1 : $view->listPageLast );
+		$view->listPagePrev = ( $page > 1 ? $page - 1 : 1 ); // @phpstan-ignore binaryOp.invalid
+		$view->listPageLast = max( 1, min( (int) ceil( max( $total, 1 ) / $size ), $pages ) );
+		$view->listPageNext = ( $page < $view->listPageLast ? $page + 1 : $view->listPageLast ); // @phpstan-ignore binaryOp.invalid
 
 		$view->listAttributeTypes = $attrTypes->col( null, 'attribute.type.code' );
 		$view->listParams = $this->getClientParams( map( $view->param() )->toArray() );
+		// @phpstan-ignore-next-line
 		$view->listStockUrl = $this->stockUrl( $articles );
-		$view->listPosition = ( $page - 1 ) * $size;
+		$view->listPosition = ( $page - 1 ) * $size; // @phpstan-ignore binaryOp.invalid
 
 		if( !empty( $type = $view->param( 'l_type' ) ) && ctype_alnum( $type ) ) {
 			return $view->set( 'listPartial', 'catalog/lists/items-' . $type );
@@ -341,7 +348,7 @@ class Standard
 		 * attribute IDs will be returned and shown in the frontend. The value
 		 * can be either a single attribute ID or a list of attribute IDs.
 		 *
-		 * @param array|string Attribute ID or IDs
+		 * @type array|string Attribute ID or IDs
 		 * @since 2021.10
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/size
@@ -353,6 +360,7 @@ class Standard
 		 * @see client/html/catalog/instock
 		 */
 		$attrids = $this->context()->config()->get( 'client/html/catalog/lists/attrid-default' );
+		// @phpstan-ignore-next-line
 		$attrids = $attrids != null && is_scalar( $attrids ) ? explode( ',', $attrids ) : $attrids; // workaround for TYPO3
 
 		return (array) $attrids;
@@ -390,10 +398,12 @@ class Standard
 			->uses( ['media', 'media/property', 'text'] );
 
 		if( $id = current( $catIds ) ) {
+			// @phpstan-ignore return.type
 			return $cntl->get( $id );
 		}
 
 		if( $name = $this->view()->param( 'f_name' ) ) {
+			// @phpstan-ignore return.type
 			return $cntl->resolve( $name );
 		}
 
@@ -418,7 +428,7 @@ class Standard
 		 * category is best for this). In most cases you can set this value
 		 * via the administration interface of the shop application.
 		 *
-		 * @param array|string Category ID or IDs
+		 * @type array|string Category ID or IDs
 		 * @since 2014.03
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/size
@@ -429,6 +439,7 @@ class Standard
 		 * @see client/html/catalog/lists/supid-default
 		 * @see client/html/catalog/instock
 		 */
+		// @phpstan-ignore-next-line
 		$catids = $this->view()->param( 'f_catid', $this->context()->config()->get( 'client/html/catalog/lists/catid-default' ) );
 		$catids = $catids && is_scalar( $catids ) ? explode( ',', (string) $catids ) : $catids; // workaround for TYPO3
 
@@ -442,7 +453,7 @@ class Standard
 	 * @param \Aimeos\Controller\Frontend\Product\Iface $cntl Product controller
 	 * @param \Aimeos\Base\View\Iface $view View object
 	 */
-	protected function conditions( \Aimeos\Controller\Frontend\Product\Iface $cntl, \Aimeos\Base\View\Iface $view )
+	protected function conditions( \Aimeos\Controller\Frontend\Product\Iface $cntl, \Aimeos\Base\View\Iface $view ) : void
 	{
 		/** client/html/catalog/instock
 		 * Show only products which are in stock
@@ -451,7 +462,7 @@ class Standard
 		 * option that allows to configure the domain names of the items fetched
 		 * for all catalog related data.
 		 *
-		 * @param int Zero to show all products, "1" to show only products with stock
+		 * @type int Zero to show all products, "1" to show only products with stock
 		 * @since 2021.10
 		 * @see client/html/catalog/domains
 		 * @see client/html/catalog/lists/domains
@@ -466,7 +477,9 @@ class Standard
 		 * @see client/html/catalog/lists/pages
 		 */
 
+		// @phpstan-ignore-next-line
 		if( $view->config( 'client/html/catalog/instock', false ) ) {
+			// @phpstan-ignore-next-line
 			$cntl->compare( '>', 'product.instock', 0 );
 		}
 	}
@@ -497,7 +510,7 @@ class Standard
 		 * configuration option that allows to configure the domain names of the
 		 * items fetched specifically for all types of product listings.
 		 *
-		 * @param array List of domain names
+		 * @type array List of domain names
 		 * @since 2014.03
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/size
@@ -522,7 +535,7 @@ class Standard
 		 * option that allows to configure the domain names of the items fetched
 		 * for all catalog related data.
 		 *
-		 * @param array List of domain names
+		 * @type array List of domain names
 		 * @since 2014.03
 		 * @see client/html/catalog/domains
 		 * @see client/html/catalog/detail/domains
@@ -539,10 +552,11 @@ class Standard
 		$domains = $config->get( 'client/html/catalog/lists/domains', $domains );
 
 		if( $config->get( 'client/html/catalog/lists/basket-add', false ) ) {
+			// @phpstan-ignore-next-line
 			$domains = array_merge_recursive( $domains, ['product' => ['default'], 'attribute' => ['variant', 'custom', 'config']] );
 		}
 
-		return $domains;
+		return (array) $domains;
 	}
 
 
@@ -576,7 +590,7 @@ class Standard
 		 * should be listed in. This can be done manually if there are only a few
 		 * ones or during the product import automatically.
 		 *
-		 * @param integer Tree level constant
+		 * @type integer Tree level constant
 		 * @since 2015.11
 		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
@@ -587,7 +601,7 @@ class Standard
 		 * @see client/html/catalog/lists/pages
 		 * @see client/html/catalog/instock
 		 */
-		return $this->context()->config()->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
+		return (int) $this->context()->config()->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 	}
 
 
@@ -608,7 +622,7 @@ class Standard
 		 * The value must be a positive integer number. Negative values are not
 		 * allowed. The value can't be overwritten per request.
 		 *
-		 * @param integer Number of pages
+		 * @type integer Number of pages
 		 * @since 2019.04
 		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
@@ -619,7 +633,7 @@ class Standard
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/instock
 		 */
-		return $this->context()->config()->get( 'client/html/catalog/lists/pages', 100 );
+		return (int) $this->context()->config()->get( 'client/html/catalog/lists/pages', 100 );
 	}
 
 
@@ -643,7 +657,7 @@ class Standard
 		 * well as values above 100 are not allowed. The value can be overwritten
 		 * per request if the "l_size" parameter is part of the URL.
 		 *
-		 * @param integer Number of products
+		 * @type integer Number of products
 		 * @since 2014.03
 		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
@@ -656,6 +670,7 @@ class Standard
 		 */
 		$size = $this->context()->config()->get( 'client/html/catalog/lists/size', 48 );
 
+		// @phpstan-ignore-next-line
 		return min( max( $this->view()->param( 'l_size', $size ), 1 ), 100 );
 	}
 
@@ -675,7 +690,7 @@ class Standard
 		 * other sort codes can be prefixed by a "-" (minus) sign to sort the products in
 		 * a descending order. By default, the sorting is ascending.
 		 *
-		 * @param string Sort code "relevance", "name", "-name", "price", "-price", "ctime" or "-ctime"
+		 * @type string Sort code "relevance", "name", "-name", "price", "-price", "ctime" or "-ctime"
 		 * @since 2018.07
 		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
@@ -685,6 +700,7 @@ class Standard
 		 * @see client/html/catalog/lists/size
 		 * @see client/html/catalog/instock
 		 */
+		// @phpstan-ignore-next-line
 		return $this->view()->param( 'f_sort', $this->context()->config()->get( 'client/html/catalog/lists/sort', 'relevance' ) );
 	}
 
@@ -705,7 +721,7 @@ class Standard
 		 * You can also configure the default supplier IDs for limiting the
 		 * products if no IDs are passed in the URL using this configuration.
 		 *
-		 * @param array|string Supplier ID or IDs
+		 * @type array|string Supplier ID or IDs
 		 * @since 2021.01
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/size
@@ -716,6 +732,7 @@ class Standard
 		 * @see client/html/catalog/detail/prodid-default
 		 * @see client/html/catalog/instock
 		 */
+		// @phpstan-ignore-next-line
 		$supids = $this->view()->param( 'f_supid', $this->context()->config()->get( 'client/html/catalog/lists/supid-default' ) );
 		$supids = $supids != null && is_scalar( $supids ) ? explode( ',', $supids ) : $supids; // workaround for TYPO3
 
@@ -742,7 +759,7 @@ class Standard
 		 * This allows to cache product items by leaving out such highly
 		 * dynamic content like stock levels which changes with each order.
 		 *
-		 * @param boolean Value of "1" to display stock levels, "0" to disable displaying them
+		 * @type boolean Value of "1" to display stock levels, "0" to disable displaying them
 		 * @since 2014.03
 		 * @see client/html/catalog/detail/stock/enable
 		 * @see client/html/catalog/stock/url/target
@@ -776,7 +793,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/lists/decorators/global
 	 * @see client/html/catalog/lists/decorators/local
@@ -798,7 +815,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/lists/decorators/excludes
 	 * @see client/html/catalog/lists/decorators/local
@@ -820,7 +837,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Catalog\Decorator\Decorator2" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/lists/decorators/excludes
 	 * @see client/html/catalog/lists/decorators/global

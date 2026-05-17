@@ -27,13 +27,14 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables if necessary.
 	 */
-	public function init()
+	public function init() : void
 	{
 		$context = $this->context();
 		$view = $this->view();
 
 		try
 		{
+			// @phpstan-ignore-next-line
 			if( ( $id = $view->param( 'ca_delivery_delete', null ) ) !== null )
 			{
 				$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
@@ -97,7 +98,7 @@ class Standard
 		 * * email
 		 * * website
 		 *
-		 * @param array List of field keys
+		 * @type array List of field keys
 		 * @since 2015.02
 		 * @see client/html/checkout/standard/address/delivery/disable-new
 		 * @see client/html/common/address/delivery/optional
@@ -138,7 +139,7 @@ class Standard
 		 * Using the "nostore" field displays the option to avoid storing the
 		 * delivery address permanently in the customer account.
 		 *
-		 * @param array List of field keys
+		 * @type array List of field keys
 		 * @since 2015.02
 		 * @see client/html/checkout/standard/address/delivery/disable-new
 		 * @see client/html/common/address/delivery/mandatory
@@ -177,7 +178,7 @@ class Standard
 		 *
 		 * Caution: Only hide fields that don't require any input
 		 *
-		 * @param array List of field keys
+		 * @type array List of field keys
 		 * @since 2015.02
 		 * @see client/html/checkout/standard/address/delivery/disable-new
 		 * @see client/html/common/address/delivery/mandatory
@@ -194,13 +195,16 @@ class Standard
 		 * @see client/html/common/address/delivery/optional
 		 */
 
+		// @phpstan-ignore-next-line
 		$allFields = array_flip( array_merge( $mandatory, $optional, $hidden ) );
 		$invalid = $this->validateFields( $params, $allFields );
+		// @phpstan-ignore-next-line
 		$this->checkSalutation( $params, $mandatory );
 
 		$msg = $view->translate( 'client', 'Delivery address part "%1$s" is invalid' );
 
 		foreach( $invalid as $key => $name ) {
+			// @phpstan-ignore-next-line
 			$invalid[$key] = sprintf( $msg, $name );
 		}
 
@@ -209,6 +213,7 @@ class Standard
 		foreach( $mandatory as $key )
 		{
 			if( !isset( $params['order.address.' . $key] ) || $params['order.address.' . $key] == '' ) {
+				// @phpstan-ignore-next-line
 				$invalid[$key] = sprintf( $msg, $key );
 			}
 		}
@@ -221,10 +226,10 @@ class Standard
 	 * Additional checks for the salutation
 	 *
 	 * @param array $params Associative list of address keys (order.address.*) and their values
-	 * @param array &$mandatory List of mandatory field names
+	 * @type array &$mandatory List of mandatory field names
 	 * @since 2016.05
 	 */
-	protected function checkSalutation( array $params, array &$mandatory )
+	protected function checkSalutation( array $params, array &$mandatory ) : void
 	{
 		if( isset( $params['order.address.salutation'] )
 				&& $params['order.address.salutation'] === 'company'
@@ -244,7 +249,7 @@ class Standard
 	 */
 	protected function getAddressString( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Order\Item\Address\Iface $addr )
 	{
-		return preg_replace( "/\n+/m", "\n", trim( sprintf(
+		return (string) preg_replace( "/\n+/m", "\n", trim( sprintf(
 			/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
 			/// address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
 			/// postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
@@ -293,7 +298,7 @@ class Standard
 	 * @throws \Aimeos\Client\Html\Exception If an error occurs
 	 * @since 2016.05
 	 */
-	protected function setAddress( \Aimeos\Base\View\Iface $view )
+	protected function setAddress( \Aimeos\Base\View\Iface $view ) : void
 	{
 		$address = null;
 		$context = $this->context();
@@ -306,13 +311,14 @@ class Standard
 		 * delivery address as well. To suppress displaying the form fields for
 		 * a delivery address, you can set this configuration option to "1".
 		 *
-		 * @param boolean A value of "1" to disable, "0" enables the delivery address form
+		 * @type boolean A value of "1" to disable, "0" enables the delivery address form
 		 * @since 2015.02
 		 * @see client/html/common/address/salutations
 		 * @see client/html/common/address/delivery/mandatory
 		 * @see client/html/common/address/delivery/optional
 		 * @see client/html/common/address/delivery/hidden
 		 */
+		// @phpstan-ignore-next-line
 		$disable = $view->config( 'client/html/checkout/standard/address/delivery/disable-new', false );
 		$type = \Aimeos\MShop\Order\Item\Address\Base::TYPE_DELIVERY;
 
@@ -320,6 +326,7 @@ class Standard
 		{
 			$params = $view->param( 'ca_delivery', [] );
 
+			// @phpstan-ignore-next-line
 			if( ( $view->addressDeliveryError = $this->checkFields( $params ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one delivery address part is missing or invalid' ) );
 			}
@@ -328,8 +335,10 @@ class Standard
 		}
 		else if( ( $option = $view->param( 'ca_deliveryoption' ) ) !== 'like' ) // existing address
 		{
+			// @phpstan-ignore-next-line
 			$params = $view->param( 'ca_delivery_' . $option, [] );
 
+			// @phpstan-ignore-next-line
 			if( !empty( $params ) && ( $view->addressDeliveryError = $this->checkFields( $params ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one delivery address part is missing or invalid' ) );
 			}
@@ -338,6 +347,7 @@ class Standard
 
 			if( ( $address = $custCntl->uses( ['customer/address'] )->get()->getAddressItem( $option ) ) !== null )
 			{
+				// @phpstan-ignore-next-line
 				$params = array_replace( $address->toArray(), $params + ['order.address.addressid' => $option] );
 				$addr = $ctrl->addAddress( $type, $params, 0 )->get()->getAddress( $type, 0 ); // sanitize address first
 				$custCntl->addAddressItem( $address->copyFrom( $addr ), $option )->store(); // update existing address
@@ -358,8 +368,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -374,20 +384,25 @@ class Standard
 		foreach( $view->get( 'addressDeliveryItems', [] ) as $id => $address )
 		{
 			$params = $view->param( 'ca_delivery_' . $id, [] );
+			// @phpstan-ignore-next-line
 			$basketValues = $addrMap->get( $id, map() )->toArray();
 			$addr = $manager->createAddress()->copyFrom( $address )->fromArray( $basketValues )->fromArray( $params );
 
+			// @phpstan-ignore-next-line
 			$addrStrings[$id] = $this->getAddressString( $view, $addr );
 			$addrValues[$id] = $addr->toArray();
 		}
 
 		$values = !$addrMap->isEmpty() ? $addrMap->first()->toArray() : [];
+		// @phpstan-ignore-next-line
 		$values = array_merge( $values, $view->param( 'ca_delivery', [] ) );
 		$addrNew = $manager->createAddress()->fromArray( $values );
 
+		// @phpstan-ignore-next-line
 		$addrStringNew = $this->getAddressString( $view, $addrNew );
 		$option = $addrNew->getAddressId() ?: ( $addrMap->isEmpty() ? 'like' : 'null' );
 
+		// @phpstan-ignore-next-line
 		$view->addressDeliveryOption = $view->param( 'ca_deliveryoption', $option );
 		$view->addressDeliveryValuesNew = $addrNew->toArray();
 		$view->addressDeliveryStringNew = $addrStringNew;
@@ -433,7 +448,7 @@ class Standard
 	/**
 	 * Validate the address key/value pairs using regular expressions
 	 *
-	 * @param array &$params Associative list of address keys (order.address.*) and their values
+	 * @type array &$params Associative list of address keys (order.address.*) and their values
 	 * @param array $fields List of field names to validate
 	 * @return array List of invalid address keys
 	 * @since 2016.05
@@ -554,6 +569,7 @@ class Standard
 			{
 				$regex = $config->get( 'client/html/common/address/validate/' . $name );
 
+				// @phpstan-ignore-next-line
 				if( $regex && preg_match( '/' . $regex . '/', $value ) !== 1 ) {
 					$invalid[$name] = $name;
 				}
@@ -579,7 +595,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page body
+	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
 	 * @see client/html/checkout/standard/address/delivery/template-header
 	 */

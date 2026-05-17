@@ -26,8 +26,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -43,7 +43,7 @@ class Standard
 		 * the more domains you add to the configuration, the more time is
 		 * required for fetching the content!
 		 *
-		 * @param array List of domain item names
+		 * @type array List of domain item names
 		 * @since 2014.03
 		 * @see controller/frontend/catalog/levels-always
 		 * @see controller/frontend/catalog/levels-only
@@ -62,7 +62,7 @@ class Standard
 		 * of the shop application. In that case you often can configure the
 		 * start ID individually for each catalog filter.
 		 *
-		 * @param string Category ID
+		 * @type string Category ID
 		 * @since 2014.03
 		 * @see controller/frontend/catalog/levels-always
 		 * @see controller/frontend/catalog/levels-only
@@ -79,8 +79,9 @@ class Standard
 			$catItems = $cntl->getPath( $currentid );
 		}
 
-		$tree = $cntl->visible( $catItems->keys()->all() )->getTree( $cntl::TREE );
+		$tree = $cntl->visible( $catItems->keys()->all() )->getTree( \Aimeos\Controller\Frontend\Catalog\Iface::TREE );
 
+		// @phpstan-ignore-next-line
 		$this->addMetaItemCatalog( $tree, $expire, $tags, ['catalog'] );
 
 		$view->treeCatalogPath = $catItems;
@@ -117,7 +118,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page body
+	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
 	 * @see client/html/catalog/filter/tree/template-header
 	 */

@@ -25,8 +25,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -40,17 +40,19 @@ class Standard
 		 * This configuration option allows shop owners to enable or disable product counts
 		 * for the tree section of the catalog filter HTML client.
 		 *
-		 * @param boolean Disabled if "0", enabled if "1"
+		 * @type boolean Disabled if "0", enabled if "1"
 		 * @since 2014.03
 		 */
 		if( $config->get( 'client/html/catalog/count/tree/aggregate', true ) == true )
 		{
 			$startid = $view->config( 'client/html/catalog/filter/tree/startid' );
+			// @phpstan-ignore-next-line
 			$level = $view->config( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_LIST );
 
 			$cntl = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->root( current( (array) $startid ) );
 			$root = $cntl->getTree( \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
+			// @phpstan-ignore-next-line
 			if( ( $catId = $view->param( 'f_catid', $root->getId() ) ) != null && $catId != $root->getId() ) {
 				$cntl->visible( $cntl->getPath( $catId )->keys()->toArray() );
 			} elseif( $level != \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE ) {
@@ -73,6 +75,7 @@ class Standard
 			$view->treeCountList = $cntl->aggregate( 'index.catalog.id' );
 
 			if( $level === \Aimeos\MW\Tree\Manager\Base::LEVEL_TREE ) {
+				// @phpstan-ignore-next-line
 				$view->treeCountList = map( $this->counts( $this->traverse( $tree, $view->treeCountList->toArray() ) ) );
 			}
 		}
@@ -89,9 +92,10 @@ class Standard
 	 */
 	protected function counts( \Aimeos\MShop\Catalog\Item\Iface $node ) : array
 	{
-		$list = [$node->getId() => $node->count];
+		$list = [($node->getId() ?? '') => $node->count]; // @phpstan-ignore property.notFound
 
 		foreach( $node->getChildren() as $child ) {
+			// @phpstan-ignore-next-line
 			$list += $this->counts( $child );
 		}
 
@@ -111,10 +115,11 @@ class Standard
 		$count = ( isset( $counts[$node->getId()] ) ? $counts[$node->getId()] : 0 );
 
 		foreach( $node->getChildren() as $child ) {
+			// @phpstan-ignore-next-line
 			$count += $this->traverse( $child, $counts )->count;
 		}
 
-		$node->count = $count;
+		$node->count = $count; // @phpstan-ignore property.notFound
 		return $node;
 	}
 
@@ -134,7 +139,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page body
+	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
 	 * @see client/html/catalog/count/tree/template-header
 	 */

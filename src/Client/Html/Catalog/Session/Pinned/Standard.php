@@ -40,9 +40,10 @@ class Standard
 		 * This returns all settings related to the catalog session pinned subpart.
 		 * Please refer to the single settings for details.
 		 *
-		 * @param array Associative list of name/value settings
+		 * @type array Associative list of name/value settings
 		 */
 		$config = $context->config()->get( 'client/html/catalog/session/pinned', [] );
+		// @phpstan-ignore-next-line
 		$key = $this->getParamHash( [], $uid . ':catalog:session-pinned-body', $config );
 
 		if( ( $html = $session->get( $key ) ) === null )
@@ -62,7 +63,7 @@ class Standard
 			 * you've implemented an alternative client class as well, it
 			 * should be suffixed by the name of the new class.
 			 *
-			 * @param string Relative path to the template creating code for the HTML page body
+			 * @type string Relative path to the template creating code for the HTML page body
 			 * @since 2014.03
 			 * @see client/html/catalog/session/pinned/template-header
 			 */
@@ -76,9 +77,10 @@ class Standard
 			$session->set( $key, $html );
 		}
 
+		// @phpstan-ignore-next-line
 		$view->block()->set( 'catalog/session/pinned', $html );
 
-		return $html;
+		return (string) $html;
 	}
 
 
@@ -88,7 +90,7 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables if necessary.
 	 */
-	public function init()
+	public function init() : void
 	{
 		$refresh = false;
 		$view = $this->view();
@@ -118,11 +120,12 @@ class Standard
 					 * to the client each time the user loads a page with the list of
 					 * pinned products.
 					 *
-					 * @param integer Number of products
+					 * @type integer Number of products
 					 * @since 2014.09
 					 */
 					$max = $context->config()->get( 'client/html/catalog/session/pinned/maxitems', 50 );
 
+					// @phpstan-ignore-next-line
 					$pinned = array_slice( $pinned, -$max, $max, true );
 					$refresh = true;
 					break;
@@ -144,6 +147,7 @@ class Standard
 			$session->set( 'aimeos/catalog/session/pinned/list', $pinned );
 
 			foreach( $session->get( 'aimeos/catalog/session/pinned/cache', [] ) as $key => $value ) {
+				// @phpstan-ignore-next-line
 				$session->set( $key, null );
 			}
 		}
@@ -154,8 +158,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -178,7 +182,7 @@ class Standard
 		 * Please keep in mind that the more domains you add to the configuration,
 		 * the more time is required for fetching the content!
 		 *
-		 * @param array List of domain names
+		 * @type array List of domain names
 		 * @since 2015.04
 		 * @see client/html/catalog/domains
 		 * @see client/html/catalog/lists/domains
@@ -189,8 +193,10 @@ class Standard
 		if( ( $pinned = $session->get( 'aimeos/catalog/session/pinned/list', [] ) ) !== [] )
 		{
 			$result = \Aimeos\Controller\Frontend::create( $context, 'product' )
+				// @phpstan-ignore-next-line
 				->uses( $domains )->product( $pinned )->slice( 0, count( $pinned ) )->search();
 
+			// @phpstan-ignore-next-line
 			foreach( array_reverse( $pinned ) as $id )
 			{
 				if( isset( $result[$id] ) ) {
@@ -200,6 +206,7 @@ class Standard
 		}
 
 		$view->pinnedProductItems = $items;
+		// @phpstan-ignore-next-line
 		$view->pinnedParams = $this->getClientParams( $view->param() );
 
 		return parent::data( $view, $tags, $expire );

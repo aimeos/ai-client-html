@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyProfile"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2016.10
 	 */
 
@@ -59,8 +59,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -81,7 +81,7 @@ class Standard
 		 * You can modify the list of salutation codes and remove the ones
 		 * which shouldn't be used or add new ones.
 		 *
-		 * @param array List of available salutation codes
+		 * @type array List of available salutation codes
 		 * @since 2021.04
 		 * @see client/html/account/profile/address/salutations
 		 */
@@ -95,7 +95,7 @@ class Standard
 		 * your own list of domains (attribute, media, price, product, text,
 		 * etc. are domains) whose items are fetched from the storage.
 		 *
-		 * @param array List of domain names
+		 * @type array List of domain names
 		 * @since 2016.10
 		 */
 		$domains = $config->get( 'client/html/account/profile/domains', ['customer/address'] );
@@ -107,7 +107,7 @@ class Standard
 		 * to know from which countries your customers are, you have to enable
 		 * the country selection in the address page of the checkout process.
 		 *
-		 * @param array List of two letter ISO country codes
+		 * @type array List of two letter ISO country codes
 		 * @since 2023.04
 		 */
 		$countries = $view->config( 'common/countries', [] );
@@ -133,7 +133,7 @@ class Standard
 		 *		],
 		 *	],
 		 *
-		 * @param array List of two letter ISO country codes
+		 * @type array List of two letter ISO country codes
 		 * @since 2023.04
 		 */
 		$states = $view->config( 'common/states', [] );
@@ -181,7 +181,7 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables if necessary.
 	 */
-	public function init()
+	public function init() : void
 	{
 		$view = $this->view();
 
@@ -192,6 +192,7 @@ class Standard
 		$data = $view->param( 'address/payment', [] );
 		$map = $view->param( 'address/delivery', [] );
 
+		// @phpstan-ignore-next-line
 		if( !empty( $data ) && ( $view->addressPaymentError = $this->checkFields( $data, 'payment' ) ) !== [] ) {
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one payment address part is missing or invalid' ) );
 		}
@@ -211,6 +212,7 @@ class Standard
 
 		foreach( $map as $pos => $data )
 		{
+			// @phpstan-ignore-next-line
 			if( ( $view->addressDeliveryError = $this->checkFields( $data, 'delivery' ) ) !== [] ) {
 				throw new \Aimeos\Client\Html\Exception( sprintf( 'At least one delivery address part is missing or invalid' ) );
 			}
@@ -238,8 +240,10 @@ class Standard
 		$optional = $view->config( 'client/html/common/address/delivery/optional', [] );
 		$hidden = $view->config( 'client/html/common/address/delivery/hidden', [] );
 
+		// @phpstan-ignore-next-line
 		$allFields = array_flip( array_merge( $mandatory, $optional, $hidden ) );
 		$invalid = $this->validateFields( $params, $allFields );
+		// @phpstan-ignore-next-line
 		$this->checkSalutation( $params, $mandatory );
 
 		$msg = match( $type ) {
@@ -249,6 +253,7 @@ class Standard
 		};
 
 		foreach( $invalid as $key => $name ) {
+			// @phpstan-ignore-next-line
 			$invalid[$key] = sprintf( $msg, $name );
 		}
 
@@ -261,6 +266,7 @@ class Standard
 		foreach( $mandatory as $key )
 		{
 			if( !isset( $params[$prefix . $key] ) || $params[$prefix . $key] == '' ) {
+				// @phpstan-ignore-next-line
 				$invalid[$key] = sprintf( $msg, $key );
 			}
 		}
@@ -273,9 +279,9 @@ class Standard
 	 * Additional checks for the salutation
 	 *
 	 * @param array $params Associative list of address keys (order.address.*) and their values
-	 * @param array &$mandatory List of mandatory field names
+	 * @type array &$mandatory List of mandatory field names
 	 */
-	protected function checkSalutation( array $params, array &$mandatory )
+	protected function checkSalutation( array $params, array &$mandatory ) : void
 	{
 		if( isset( $params['order.address.salutation'] )
 				&& $params['order.address.salutation'] === 'company'
@@ -357,7 +363,7 @@ class Standard
 	 */
 	protected function getAddressString( \Aimeos\Base\View\Iface $view, \Aimeos\MShop\Common\Item\Address\Iface $addr )
 	{
-		return preg_replace( "/\n+/m", "\n", trim( sprintf(
+		return (string) preg_replace( "/\n+/m", "\n", trim( sprintf(
 			/// Address format with company (%1$s), salutation (%2$s), title (%3$s), first name (%4$s), last name (%5$s),
 			/// address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
 			/// postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
@@ -404,7 +410,7 @@ class Standard
 	/**
 	 * Validate the address key/value pairs using regular expressions
 	 *
-	 * @param array &$params Associative list of address keys (order.address.*) and their values
+	 * @type array &$params Associative list of address keys (order.address.*) and their values
 	 * @param array $fields List of field names to validate
 	 * @return array List of invalid address keys
 	 */
@@ -421,6 +427,7 @@ class Standard
 			{
 				$regex = $config->get( 'client/html/common/address/validate/' . $name );
 
+				// @phpstan-ignore-next-line
 				if( $regex && preg_match( '/' . $regex . '/', $value ) !== 1 ) {
 					$invalid[$name] = $name;
 				}
@@ -446,7 +453,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page body
+	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2016.10
 	 * @see client/html/account/profile/template-header
 	 */
@@ -467,7 +474,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page head
+	 * @type string Relative path to the template creating code for the HTML page head
 	 * @since 2016.10
 	 * @see client/html/account/profile/template-body
 	 */
@@ -490,7 +497,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/account/profile/decorators/global
 	 * @see client/html/account/profile/decorators/local
@@ -512,7 +519,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/account/profile/decorators/excludes
 	 * @see client/html/account/profile/decorators/local
@@ -534,7 +541,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Account\Decorator\Decorator2" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/account/profile/decorators/excludes
 	 * @see client/html/account/profile/decorators/global

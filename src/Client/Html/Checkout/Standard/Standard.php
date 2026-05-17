@@ -51,7 +51,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyCheckout"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 */
 
 
@@ -84,7 +84,7 @@ class Standard
 	 * should support adding, removing or reordering content by a fluid like
 	 * design.
 	 *
-	 * @param array List of sub-client names
+	 * @type array List of sub-client names
 	 */
 	private string $subPartPath = 'client/html/checkout/standard/subparts';
 
@@ -94,7 +94,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Address\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the client class name
+	 * @type string Last part of the client class name
 	 */
 
 	/** client/html/checkout/standard/delivery/name
@@ -103,7 +103,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Delivery\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the client class name
+	 * @type string Last part of the client class name
 	 */
 
 	/** client/html/checkout/standard/payment/name
@@ -112,7 +112,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Payment\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the client class name
+	 * @type string Last part of the client class name
 	 */
 
 	/** client/html/checkout/standard/summary/name
@@ -121,7 +121,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Summary\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the client class name
+	 * @type string Last part of the client class name
 	 */
 
 	/** client/html/checkout/standard/process/name
@@ -130,7 +130,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Process\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the client class name
+	 * @type string Last part of the client class name
 	 */
 	private array $subPartNames = ['address', 'delivery', 'payment', 'summary', 'process'];
 
@@ -155,7 +155,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
+		return (array) $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -163,8 +163,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -192,7 +192,7 @@ class Standard
 		 * The order of the steps is determined by the order of sub-parts
 		 * that are configured for the checkout client.
 		 *
-		 * @param string Name of the confirm standard HTML client
+		 * @type string Name of the confirm standard HTML client
 		 * @see client/html/checkout/subparts
 		 */
 		$default = $view->config( 'client/html/checkout/standard/url/step-active', 'summary' );
@@ -224,16 +224,19 @@ class Standard
 		 * * payment
 		 * * summary
 		 *
-		 * @param array List of checkout subparts name
+		 * @type array List of checkout subparts name
 		 */
 		$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
+		// @phpstan-ignore-next-line
 		$onestep = ( !empty( $onepage ) ? array_shift( $onepage ) : $default ); // keep the first one page step
 
 		$steps = (array) $context->config()->get( $this->subPartPath, $this->subPartNames );
+		// @phpstan-ignore-next-line
 		$steps = array_values( array_diff( $steps, $onepage ) ); // remove all remaining steps in $onepage and reindex
 
 		// use first step if default step isn't available
 		$default = ( !in_array( $default, $steps ) ? reset( $steps ) : $default );
+		// @phpstan-ignore-next-line
 		$current = $view->param( 'c_step', $default );
 
 		// use $onestep if the current step isn't available due to one page layout
@@ -242,6 +245,7 @@ class Standard
 		}
 
 		// use $onestep if the active step isn't available due to one page layout
+		// @phpstan-ignore-next-line
 		if( isset( $view->standardStepActive ) && in_array( $view->standardStepActive, $onepage ) ) {
 			$view->standardStepActive = $onestep;
 		}
@@ -255,11 +259,12 @@ class Standard
 			$view->standardStepActive = $current;
 		}
 
-		$cpos = (int) array_search( $view->standardStepActive, array_values( $steps ) );
+		$cpos = (int) array_search( $view->standardStepActive, $steps );
 
 		$view->standardStepsBefore = array_slice( $steps, 0, $cpos );
 		$view->standardStepsAfter = array_slice( $steps, $cpos + 1 );
 
+		// @phpstan-ignore-next-line
 		$view = $this->navigation( $view, $steps, $view->standardStepActive );
 		$view->standardSteps = $steps;
 
@@ -284,7 +289,7 @@ class Standard
 		 * module of a software development framework. This "target" must contain or know
 		 * the controller that should be called by the generated URL.
 		 *
-		 * @param string Destination of the URL
+		 * @type string Destination of the URL
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/action
 		 * @see client/html/checkout/standard/url/config
@@ -298,7 +303,7 @@ class Standard
 		 * that create parts of the output displayed in the generated HTML page. Controller
 		 * names are usually alpha-numeric.
 		 *
-		 * @param string Name of the controller
+		 * @type string Name of the controller
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/action
 		 * @see client/html/checkout/standard/url/config
@@ -312,7 +317,7 @@ class Standard
 		 * controller that create parts of the output displayed in the generated HTML page.
 		 * Action names are usually alpha-numeric.
 		 *
-		 * @param string Name of the action
+		 * @type string Name of the action
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/config
@@ -332,7 +337,7 @@ class Standard
 		 * generating the URLs. The full list of available config options is referenced
 		 * in the "see also" section of this page.
 		 *
-		 * @param string Associative list of configuration options
+		 * @type string Associative list of configuration options
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/action
@@ -345,7 +350,7 @@ class Standard
 		 * This setting removes the listed parameters from the URLs. Keep care to
 		 * remove no required parameters!
 		 *
-		 * @param array List of parameter names to remove
+		 * @type array List of parameter names to remove
 		 * @since 2022.10
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/controller
@@ -392,7 +397,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page body
+	 * @type string Relative path to the template creating code for the HTML page body
 	 * @see client/html/checkout/template-header
 	 */
 
@@ -412,7 +417,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page head
+	 * @type string Relative path to the template creating code for the HTML page head
 	 * @see client/html/checkout/template-body
 	 */
 
@@ -434,7 +439,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/checkout/standard/decorators/global
 	 * @see client/html/checkout/standard/decorators/local
@@ -456,7 +461,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/checkout/standard/decorators/excludes
 	 * @see client/html/checkout/standard/decorators/local
@@ -478,7 +483,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Checkout\Decorator\Decorator2" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/checkout/standard/decorators/excludes
 	 * @see client/html/checkout/standard/decorators/global

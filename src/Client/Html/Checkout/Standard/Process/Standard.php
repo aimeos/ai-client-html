@@ -54,7 +54,7 @@ class Standard
 	 * should support adding, removing or reordering content by a fluid like
 	 * design.
 	 *
-	 * @param array List of sub-client names
+	 * @type array List of sub-client names
 	 * @since 2014.03
 	 */
 	private string $subPartPath = 'client/html/checkout/standard/process/subparts';
@@ -65,7 +65,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Process\Account\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the client class name
+	 * @type string Last part of the client class name
 	 * @since 2017.04
 	 */
 
@@ -75,7 +75,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Process\Address\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the client class name
+	 * @type string Last part of the client class name
 	 * @since 2017.04
 	 */
 	private array $subPartNames = ['account', 'address'];
@@ -124,7 +124,7 @@ class Standard
 		 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 		 * "client/html/common/decorators/default" to the html client.
 		 *
-		 * @param array List of decorator names
+		 * @type array List of decorator names
 		 * @since 2015.08
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/process/decorators/global
@@ -147,7 +147,7 @@ class Standard
 		 * This would add the decorator named "decorator1" defined by
 		 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 		 *
-		 * @param array List of decorator names
+		 * @type array List of decorator names
 		 * @since 2015.08
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/process/decorators/excludes
@@ -170,7 +170,7 @@ class Standard
 		 * This would add the decorator named "decorator2" defined by
 		 * "\Aimeos\Client\Html\Checkout\Decorator\Decorator2" only to the html client.
 		 *
-		 * @param array List of decorator names
+		 * @type array List of decorator names
 		 * @since 2015.08
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/process/decorators/excludes
@@ -187,7 +187,7 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables.
 	 */
-	public function init()
+	public function init() : void
 	{
 		$view = $this->view();
 		$context = $this->context();
@@ -196,7 +196,7 @@ class Standard
 			|| $view->get( 'errors', [] ) !== []
 			|| $view->get( 'standardStepActive' ) !== null
 		) {
-			return true;
+			return;
 		}
 
 		$orderCntl = \Aimeos\Controller\Frontend::create( $context, 'order' );
@@ -222,9 +222,11 @@ class Standard
 			return;
 		}
 
+		// @phpstan-ignore-next-line
 		if( ( $form = $this->processPayment( $order ) ) === null ) // no payment service available
 		{
 			$services = $order->getService( \Aimeos\MShop\Order\Item\Service\Base::TYPE_PAYMENT );
+			// @phpstan-ignore-next-line
 			$args = ( $service = reset( $services ) ) ? ['code' => $service->getCode()] : [];
 
 			$orderCntl->save( $order->setStatusPayment( \Aimeos\MShop\Order\Item\Base::PAY_AUTHORIZED ) );
@@ -298,7 +300,7 @@ class Standard
 	 */
 	protected function processPayment( \Aimeos\MShop\Order\Item\Iface $orderItem ) : ?\Aimeos\MShop\Common\Helper\Form\Iface
 	{
-		if( $orderItem->getPrice()->getValue() + $orderItem->getPrice()->getCosts() <= 0
+		if( $orderItem->getPrice()->getValue() + $orderItem->getPrice()->getCosts() <= 0 // @phpstan-ignore binaryOp.invalid
 			&& $this->isSubscription( $orderItem->getProducts() ) === false
 		) {
 			return null;
@@ -331,6 +333,7 @@ class Standard
 		}
 
 		$serviceCntl = \Aimeos\Controller\Frontend::create( $this->context(), 'service' );
+		// @phpstan-ignore return.type
 		return $serviceCntl->process( $orderItem, $service->getServiceId(), $urls, $params );
 	}
 
@@ -342,7 +345,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
+		return (array) $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -363,7 +366,7 @@ class Standard
 		 * module of a software development framework. This "target" must contain or know
 		 * the controller that should be called by the generated URL.
 		 *
-		 * @param string Destination of the URL
+		 * @type string Destination of the URL
 		 * @since 2014.03
 		 * @see client/html/checkout/confirm/url/controller
 		 * @see client/html/checkout/confirm/url/action
@@ -378,7 +381,7 @@ class Standard
 		 * that create parts of the output displayed in the generated HTML page. Controller
 		 * names are usually alpha-numeric.
 		 *
-		 * @param string Name of the controller
+		 * @type string Name of the controller
 		 * @since 2014.03
 		 * @see client/html/checkout/confirm/url/target
 		 * @see client/html/checkout/confirm/url/action
@@ -393,7 +396,7 @@ class Standard
 		 * controller that create parts of the output displayed in the generated HTML page.
 		 * Action names are usually alpha-numeric.
 		 *
-		 * @param string Name of the action
+		 * @type string Name of the action
 		 * @since 2014.03
 		 * @see client/html/checkout/confirm/url/target
 		 * @see client/html/checkout/confirm/url/controller
@@ -414,7 +417,7 @@ class Standard
 		 * generating the URLs. The full list of available config options is referenced
 		 * in the "see also" section of this page.
 		 *
-		 * @param string Associative list of configuration options
+		 * @type string Associative list of configuration options
 		 * @since 2014.03
 		 * @see client/html/checkout/confirm/url/target
 		 * @see client/html/checkout/confirm/url/controller
@@ -423,6 +426,7 @@ class Standard
 		 */
 		$config = $view->config( 'client/html/checkout/confirm/url/config', $config );
 
+		// @phpstan-ignore-next-line
 		return $view->url( $target, $cntl, $action, $params, [], $config );
 	}
 
@@ -444,7 +448,7 @@ class Standard
 		 * module of a software development framework. This "target" must contain or know
 		 * the controller that should be called by the generated URL.
 		 *
-		 * @param string Destination of the URL
+		 * @type string Destination of the URL
 		 * @since 2014.03
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/action
@@ -459,7 +463,7 @@ class Standard
 		 * that create parts of the output displayed in the generated HTML page. Controller
 		 * names are usually alpha-numeric.
 		 *
-		 * @param string Name of the controller
+		 * @type string Name of the controller
 		 * @since 2014.03
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/action
@@ -474,7 +478,7 @@ class Standard
 		 * controller that create parts of the output displayed in the generated HTML page.
 		 * Action names are usually alpha-numeric.
 		 *
-		 * @param string Name of the action
+		 * @type string Name of the action
 		 * @since 2014.03
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/controller
@@ -495,7 +499,7 @@ class Standard
 		 * generating the URLs. The full list of available config options is referenced
 		 * in the "see also" section of this page.
 		 *
-		 * @param string Associative list of configuration options
+		 * @type string Associative list of configuration options
 		 * @since 2014.03
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/controller
@@ -504,6 +508,7 @@ class Standard
 		 */
 		$config = $view->config( 'client/html/checkout/standard/url/config', $config );
 
+		// @phpstan-ignore-next-line
 		return $view->url( $target, $cntl, $action, $params, [], $config );
 	}
 
@@ -525,7 +530,7 @@ class Standard
 		 * module of a software development framework. This "target" must contain or know
 		 * the controller that should be called by the generated URL.
 		 *
-		 * @param string Destination of the URL
+		 * @type string Destination of the URL
 		 * @since 2014.03
 		 * @see client/html/checkout/update/url/controller
 		 * @see client/html/checkout/update/url/action
@@ -540,7 +545,7 @@ class Standard
 		 * that create parts of the output displayed in the generated HTML page. Controller
 		 * names are usually alpha-numeric.
 		 *
-		 * @param string Name of the controller
+		 * @type string Name of the controller
 		 * @since 2014.03
 		 * @see client/html/checkout/update/url/target
 		 * @see client/html/checkout/update/url/action
@@ -555,7 +560,7 @@ class Standard
 		 * controller that create parts of the output displayed in the generated HTML page.
 		 * Action names are usually alpha-numeric.
 		 *
-		 * @param string Name of the action
+		 * @type string Name of the action
 		 * @since 2014.03
 		 * @see client/html/checkout/update/url/target
 		 * @see client/html/checkout/update/url/controller
@@ -576,7 +581,7 @@ class Standard
 		 * generating the URLs. The full list of available config options is referenced
 		 * in the "see also" section of this page.
 		 *
-		 * @param string Associative list of configuration options
+		 * @type string Associative list of configuration options
 		 * @since 2014.03
 		 * @see client/html/checkout/update/url/target
 		 * @see client/html/checkout/update/url/controller
@@ -585,6 +590,7 @@ class Standard
 		 */
 		$config = $view->config( 'client/html/checkout/update/url/config', $config );
 
+		// @phpstan-ignore-next-line
 		return $view->url( $target, $cntl, $action, $params, [], $config );
 	}
 
@@ -612,8 +618,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -639,7 +645,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page body
+	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
 	 * @see client/html/checkout/standard/process/template-header
 	 */

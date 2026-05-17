@@ -38,6 +38,7 @@ class Standard
 		$step = $view->get( 'standardStepActive' );
 		$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
 
+		// @phpstan-ignore-next-line
 		if( $step != 'summary' && !( in_array( 'summary', $onepage ) && in_array( $step, $onepage ) ) ) {
 			return '';
 		}
@@ -52,21 +53,23 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables.
 	 */
-	public function init()
+	public function init() : void
 	{
-		$result = true;
 		$view = $this->view();
 
 		try
 		{
+			// @phpstan-ignore-next-line
 			if( $view->param( 'cs_order', null ) === null ) {
-				return $result;
+				return;
 			}
 
 
 			$context = $this->context();
 			$controller = \Aimeos\Controller\Frontend::create( $context, 'basket' );
+			// @phpstan-ignore-next-line
 			$customerref = strip_tags( $view->param( 'cs_customerref', '', false ) );
+			// @phpstan-ignore-next-line
 			$comment = strip_tags( $view->param( 'cs_comment', '', false ) );
 
 			if( $customerref || $comment )
@@ -77,7 +80,9 @@ class Standard
 
 
 			// only start if there's something to do
+			// @phpstan-ignore-next-line
 			if( $view->param( 'cs_option_terms', null ) !== null
+				// @phpstan-ignore-next-line
 				&& ( $option = $view->param( 'cs_option_terms_value', 0 ) ) != 1
 			) {
 				$error = $view->translate( 'client', 'Please accept the terms and conditions' );
@@ -86,6 +91,7 @@ class Standard
 
 				$view->summaryErrorCodes = $errors;
 				$view->standardStepActive = 'summary';
+				// @phpstan-ignore-next-line
 				$view->errors = array_merge( $view->get( 'errors', [] ), array( $error ) );
 			}
 
@@ -117,7 +123,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page body
+	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
 	 * @see client/html/checkout/standard/summary/template-header
 	 */

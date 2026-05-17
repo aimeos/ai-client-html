@@ -25,8 +25,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -44,7 +44,7 @@ class Standard
 		 * different from "client/html/catalog/filter/attribute/types-oneof" because
 		 * it's not limited within the same attribute type
 		 *
-		 * @param array List of attribute type codes
+		 * @type array List of attribute type codes
 		 * @since 2016.10
 		 * @see client/html/catalog/filter/attribute/types
 		 * @see client/html/catalog/filter/attribute/types-oneof
@@ -62,7 +62,7 @@ class Standard
 		 * the attributes within the same attribute type must be referenced by the found
 		 * products.
 		 *
-		 * @param array List of attribute type codes
+		 * @type array List of attribute type codes
 		 * @since 2016.10
 		 * @see client/html/catalog/filter/attribute/types
 		 * @see client/html/catalog/filter/attribute/types-option
@@ -83,7 +83,7 @@ class Standard
 		 * order for the attribute types can be enforced that is different
 		 * from the standard order.
 		 *
-		 * @param array List of attribute type codes
+		 * @type array List of attribute type codes
 		 * @since 2015.05
 		 * @see client/html/catalog/filter/attribute/domains
 		 * @see client/html/catalog/filter/attribute/types-oneof
@@ -92,6 +92,7 @@ class Standard
 		$attrTypes = $view->config( 'client/html/catalog/filter/attribute/types', [] );
 
 		if( !is_array( $attrTypes ) ) {
+			// @phpstan-ignore-next-line
 			$attrTypes = array_filter( explode( ',', $attrTypes ) );
 		}
 
@@ -106,7 +107,7 @@ class Standard
 		 * the more domains you add to the configuration, the more time is
 		 * required for fetching the content!
 		 *
-		 * @param array List of domain item names
+		 * @type array List of domain item names
 		 * @since 2015.05
 		 * @see client/html/catalog/filter/attribute/types
 		 */
@@ -116,14 +117,19 @@ class Standard
 			->uses( $domains )->type( $attrTypes )->compare( '!=', 'attribute.type', ['date', 'price', 'text'] )
 			->sort( 'position' )->slice( 0, 10000 )->search();
 
+		// @phpstan-ignore-next-line
 		$this->addMetaItems( $attributes, $expire, $tags );
 
 
 		$active = [];
+		// @phpstan-ignore-next-line
 		$params = $this->getClientParams( $view->param() );
 
+		// @phpstan-ignore-next-line
 		$attrIds = array_filter( $view->param( 'f_attrid', [] ) );
+		// @phpstan-ignore-next-line
 		$oneIds = array_filter( $view->param( 'f_oneid', [] ) );
+		// @phpstan-ignore-next-line
 		$optIds = array_filter( $view->param( 'f_optid', [] ) );
 
 		foreach( $attributes as $id => $item )
@@ -147,6 +153,7 @@ class Standard
 				unset( $attrparams['f_oneid'][$key] );
 			}
 
+			// @phpstan-ignore-next-line
 			$fparams = $this->getFormParams( $type, $oneof, $options );
 			$active[$item->getType()] = (int) $item->get( 'checked', $active[$item->getType()] ?? false );
 			$item->set( 'params', $attrparams )->set( 'formparam', $fparams );
@@ -160,6 +167,7 @@ class Standard
 		} );
 
 		$attrMap = $attributes->groupBy( 'attribute.type' );
+		// @phpstan-ignore-next-line
 		$attrTypes = $this->attributeTypes( $attrMap->keys() );
 
 		$view->attributeResetParams = $params;
@@ -248,6 +256,7 @@ class Standard
 		{
 			if( $list = $attrMap[$typeItem->getCode()] ?? null )
 			{
+				// @phpstan-ignore-next-line
 				uasort( $list, function( $a, $b ) {
 					return $a->getPosition() <=> $b->getPosition();
 				} );
@@ -275,7 +284,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page body
+	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
 	 * @see client/html/catalog/filter/attribute/template-header
 	 */

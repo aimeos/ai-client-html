@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MySearch"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2018.04
 	 */
 
@@ -84,7 +84,7 @@ class Standard
 	 * should support adding, removing or reordering content by a fluid like
 	 * design.
 	 *
-	 * @param array List of sub-client names
+	 * @type array List of sub-client names
 	 * @since 2018.04
 	 */
 	private string $subPartPath = 'client/html/catalog/search/subparts';
@@ -111,7 +111,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
+		return (array) $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -133,7 +133,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2018.04
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/search/decorators/global
@@ -156,7 +156,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2018.04
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/search/decorators/excludes
@@ -179,7 +179,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Catalog\Decorator\Decorator2" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2018.04
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/search/decorators/excludes

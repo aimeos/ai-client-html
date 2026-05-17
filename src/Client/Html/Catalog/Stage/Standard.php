@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyStage"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -78,7 +78,7 @@ class Standard
 		 * entries to cache or if the component contains non-cacheable parts that
 		 * can't be replaced using the modify() method.
 		 *
-		 * @param boolean True to enable caching, false to disable
+		 * @type boolean True to enable caching, false to disable
 		 * @see client/html/catalog/detail/cache
 		 * @see client/html/catalog/filter/cache
 		 * @see client/html/catalog/lists/cache
@@ -90,7 +90,7 @@ class Standard
 		 * This returns all settings related to the stage component.
 		 * Please refer to the single settings for details.
 		 *
-		 * @param array Associative list of name/value settings
+		 * @type array Associative list of name/value settings
 		 * @see client/html/catalog#stage
 		 */
 		$confkey = 'client/html/catalog/stage';
@@ -114,7 +114,7 @@ class Standard
 		 * you've implemented an alternative client class as well, it
 		 * should be suffixed by the name of the new class.
 		 *
-		 * @param string Relative path to the template creating code for the HTML page body
+		 * @type string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
 		 * @see client/html/catalog/stage/template-header
 		 */
@@ -159,7 +159,7 @@ class Standard
 		 * you've implemented an alternative client class as well, it
 		 * should be suffixed by the name of the new class.
 		 *
-		 * @param string Relative path to the template creating code for the HTML page head
+		 * @type string Relative path to the template creating code for the HTML page head
 		 * @since 2014.03
 		 * @see client/html/catalog/stage/template-body
 		 */
@@ -176,14 +176,15 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$context = $this->context();
 		$config = $context->config();
+		// @phpstan-ignore-next-line
 		$params = map( $this->getClientParams( $view->param(), ['f_', 'l_type'] ) );
 
 		if( $catid = $params->get( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default' ) ) )
@@ -212,7 +213,7 @@ class Standard
 			 * option that allows to configure the domain names of the items fetched
 			 * for all catalog related data.
 			 *
-			 * @param array List of domain names
+			 * @type array List of domain names
 			 * @since 2014.03
 			 * @see client/html/catalog/domains
 			 * @see client/html/catalog/detail/domains
@@ -226,6 +227,7 @@ class Standard
 				return !$entry->isEmpty();
 			}, true );
 
+			// @phpstan-ignore-next-line
 			$this->addMetaItems( $stageCatPath, $expire, $tags );
 
 			$view->stageCurrentCatItem = $stageCatPath->last();
@@ -258,7 +260,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/stage/decorators/global
 	 * @see client/html/catalog/stage/decorators/local
@@ -280,7 +282,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/stage/decorators/excludes
 	 * @see client/html/catalog/stage/decorators/local
@@ -302,7 +304,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Catalog\Decorator\Decorator2" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/stage/decorators/excludes
 	 * @see client/html/catalog/stage/decorators/global

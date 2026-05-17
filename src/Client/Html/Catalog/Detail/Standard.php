@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyDetail"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -75,6 +75,7 @@ class Standard
 		$code = $config->get( 'client/html/catalog/detail/prodcode-default' );
 		$id = $config->get( 'client/html/catalog/detail/prodid-default', $code );
 
+		// @phpstan-ignore-next-line
 		if( !$view->param( 'd_name', $view->param( 'd_prodid', $id ) ) ) {
 			return '';
 		}
@@ -86,7 +87,7 @@ class Standard
 		 * entries to cache or if the component contains non-cacheable parts that
 		 * can't be replaced using the modify() method.
 		 *
-		 * @param boolean True to enable caching, false to disable
+		 * @type boolean True to enable caching, false to disable
 		 * @see client/html/catalog/filter/cache
 		 * @see client/html/catalog/lists/cache
 		 * @see client/html/catalog/stage/cache
@@ -98,7 +99,7 @@ class Standard
 		 * This returns all settings related to the detail component.
 		 * Please refer to the single settings for details.
 		 *
-		 * @param array Associative list of name/value settings
+		 * @type array Associative list of name/value settings
 		 * @see client/html/catalog#detail
 		 */
 		$confkey = 'client/html/catalog/detail';
@@ -122,7 +123,7 @@ class Standard
 		 * you've implemented an alternative client class as well, it
 		 * should be suffixed by the name of the new class.
 		 *
-		 * @param string Relative path to the template creating code for the HTML page body
+		 * @type string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
 		 * @see client/html/catalog/detail/template-header
 		 * @see client/html/catalog/detail/404
@@ -152,6 +153,7 @@ class Standard
 		$code = $config->get( 'client/html/catalog/detail/prodcode-default' );
 		$id = $config->get( 'client/html/catalog/detail/prodid-default', $code );
 
+		// @phpstan-ignore-next-line
 		if( !$view->param( 'd_name', $view->param( 'd_prodid', $id ) ) ) {
 			return '';
 		}
@@ -176,7 +178,7 @@ class Standard
 		 * you've implemented an alternative client class as well, it
 		 * should be suffixed by the name of the new class.
 		 *
-		 * @param string Relative path to the template creating code for the HTML page head
+		 * @type string Relative path to the template creating code for the HTML page head
 		 * @since 2014.03
 		 * @see client/html/catalog/detail/template-body
 		 * @see client/html/catalog/detail/404
@@ -210,7 +212,7 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables if necessary.
 	 */
-	public function init()
+	public function init() : void
 	{
 		$view = $this->view();
 		$context = $this->context();
@@ -227,8 +229,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -245,6 +247,7 @@ class Standard
 		{
 			\Aimeos\Map::method( 'attrparent', function( $subProdId ) {
 				foreach( $this->list as $item ) {
+					// @phpstan-ignore-next-line
 					$item->parent = array_merge( $item->parent ?? [], [$subProdId] );
 				}
 				return $this;
@@ -252,9 +255,12 @@ class Standard
 
 			foreach( $productItem->getRefItems( 'product', null, 'default' ) as $subProdId => $subProduct )
 			{
+				// @phpstan-ignore-next-line
 				$propItems->merge( $subProduct->getPropertyItems()->assign( ['parent' => $subProdId] ) );
+				// @phpstan-ignore-next-line
 				$mediaItems->merge( $subProduct->getRefItems( 'media', 'default', 'default' ) );
 				$attrItems->replace(
+					// @phpstan-ignore-next-line
 					$subProduct->getRefItems( 'attribute', null, ['default', 'variant'] )->attrparent( $subProdId )
 				);
 			}
@@ -267,6 +273,7 @@ class Standard
 		$attrMap = $attrItems->groupBy( 'attribute.type' );
 		$propMap = $propItems->groupBy( 'product.property.type' );
 
+		// @phpstan-ignore-next-line
 		$attrTypes = $this->attributeTypes( $attrMap->keys()->concat( $productItem->getRefItems( 'attribute' )->getType() )->unique() );
 		$propTypes = $this->propertyTypes( $propMap->keys() );
 
@@ -274,7 +281,9 @@ class Standard
 		$view->detailProductItem = $productItem;
 		$view->detailPropertyTypes = $propTypes->col( null, 'product.property.type.code' );
 		$view->detailAttributeTypes = $attrTypes->col( null, 'attribute.type.code' );
+		// @phpstan-ignore-next-line
 		$view->detailAttributeMap = $attrMap->order( $attrTypes->getCode() )->filter();
+		// @phpstan-ignore-next-line
 		$view->detailPropertyMap = $propMap->order( $propTypes->getCode() )->filter();
 		$view->detailStockTypes = $productItem->getStockItems()->getType();
 		$view->detailStockUrl = $this->stockUrl( $productItem );
@@ -340,24 +349,21 @@ class Standard
 		 * "client/html/catalog/domains" option that allows to configure the
 		 * domain names of the items fetched for all catalog related data.
 		 *
-		 * @param array List of domain names
+		 * @type array List of domain names
 		 * @since 2014.03
 		 * @see client/html/catalog/domains
 		 * @see client/html/catalog/lists/domains
 		 */
 		$domains = $config->get( 'client/html/catalog/detail/domains', $domains );
 
-		return $domains;
+		return (array) $domains;
 	}
 
 
 	/**
-	 * Sets the necessary parameter values in the view.
+	 * Returns the navigator HTML for next/previous product navigation.
 	 *
-	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
-	 * @return \Aimeos\Base\View\Iface Modified view object
+	 * @return string Navigator HTML
 	 */
 	protected function navigator() : string
 	{
@@ -374,22 +380,30 @@ class Standard
 
 			$site = $context->locale()->getSiteItem()->getCode();
 			$params = $context->session()->get( 'aimeos/catalog/lists/params/last/' . $site, [] );
+			// @phpstan-ignore-next-line
 			$level = $view->config( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
 
+			// @phpstan-ignore-next-line
 			$catids = $view->value( $params, 'f_catid', $view->config( 'client/html/catalog/lists/catid-default' ) );
+			// @phpstan-ignore-next-line
 			$sort = $view->value( $params, 'f_sort', $view->config( 'client/html/catalog/lists/sort', 'relevance' ) );
 
 			$products = \Aimeos\Controller\Frontend::create( $context, 'product' )
 				->sort( $sort ) // prioritize user sorting over the sorting through relevance and category
+				// @phpstan-ignore-next-line
 				->allOf( $view->value( $params, 'f_attrid', [] ) )
+				// @phpstan-ignore-next-line
 				->oneOf( $view->value( $params, 'f_optid', [] ) )
+				// @phpstan-ignore-next-line
 				->oneOf( $view->value( $params, 'f_oneid', [] ) )
+				// @phpstan-ignore-next-line
 				->text( $view->value( $params, 'f_search' ) )
 				->category( $catids, 'default', $level )
 				->slice( $start, $size )
 				->uses( ['text'] )
 				->search();
 
+			// @phpstan-ignore-next-line
 			if( ( $count = count( $products ) ) > 1 )
 			{
 				if( $pos > 0 && ( $product = $products->first() ) !== null )
@@ -422,7 +436,7 @@ class Standard
 			 * you've implemented an alternative client class as well, it
 			 * should be suffixed by the name of the new class.
 			 *
-			 * @param string Relative path to the template creating the HTML fragment
+			 * @type string Relative path to the template creating the HTML fragment
 			 * @since 2022.10
 			 */
 			$template = $context->config()->get( 'client/html/catalog/detail/template-navigator', 'catalog/detail/navigator' );
@@ -453,11 +467,12 @@ class Standard
 		 * most useful in a CMS where the product ID can be configured
 		 * separately for each content node.
 		 *
-		 * @param string Product ID
+		 * @type string Product ID
 		 * @since 2016.01
 		 * @see client/html/catalog/detail/prodid-default
 		 * @see client/html/catalog/lists/catid-default
 		 */
+		// @phpstan-ignore-next-line
 		$id = $view->param( 'd_prodid', $config->get( 'client/html/catalog/detail/prodid-default' ) );
 
 		/** client/html/catalog/detail/prodcode-default
@@ -468,7 +483,7 @@ class Standard
 		 * most useful in a CMS where the product code can be configured
 		 * separately for each content node.
 		 *
-		 * @param string Product code
+		 * @type string Product code
 		 * @since 2019.10
 		 * @see client/html/catalog/detail/prodid-default
 		 * @see client/html/catalog/lists/catid-default
@@ -476,6 +491,7 @@ class Standard
 		$code = $config->get( 'client/html/catalog/detail/prodcode-default' );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )->uses( $this->domains() );
+		// @phpstan-ignore return.type
 		return $id ? $cntl->get( $id ) : ( $code ? $cntl->find( $code ) : $cntl->resolve( $view->param( 'd_name' ) ) );
 	}
 
@@ -503,13 +519,14 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Product\Item\Iface $product Product item
 	 */
-	protected function seen( \Aimeos\MShop\Product\Item\Iface $product )
+	protected function seen( \Aimeos\MShop\Product\Item\Iface $product ) : void
 	{
 		$id = $product->getId();
 		$context = $this->context();
 		$session = $context->session();
 		$lastSeen = map( $session->get( 'aimeos/catalog/session/seen/list', [] ) );
 
+		// @phpstan-ignore-next-line
 		if( !$lastSeen->has( $id ) )
 		{
 			$config = $context->config();
@@ -529,7 +546,7 @@ class Standard
 			 * you've implemented an alternative client class as well, it
 			 * should be suffixed by the name of the new class.
 			 *
-			 * @param string Relative path to the template creating the HTML fragment
+			 * @type string Relative path to the template creating the HTML fragment
 			 * @since 2014.03
 			 */
 			$template = $config->get( 'client/html/catalog/detail/partials/seen', 'catalog/detail/seen' );
@@ -541,15 +558,17 @@ class Standard
 			 * "last seen" section after the user visited their detail pages. It
 			 * must be a positive integer value greater than 0.
 			 *
-			 * @param integer Number of products
+			 * @type integer Number of products
 			 * @since 2014.03
 			 */
 			$max = $config->get( 'client/html/catalog/session/seen/maxitems', 6 );
 
 			$html = $this->view()->set( 'product', $product )->render( $template );
+			// @phpstan-ignore-next-line
 			$lastSeen = $lastSeen->put( $id, $html )->slice( -$max );
 		}
 
+		// @phpstan-ignore-next-line
 		$session->set( 'aimeos/catalog/session/seen/list', $lastSeen->put( $id, $lastSeen->pull( $id ) )->all() );
 	}
 
@@ -557,7 +576,7 @@ class Standard
 	/**
 	 * Returns the URL for fetching stock levels
 	 *
-	 * @param \Aimeos\MShop\Product\Item\Iface $product Product item
+	 * @param \Aimeos\MShop\Product\Item\Iface $productItem Product item
 	 * @return \Aimeos\Map List of stock URLs
 	 */
 	protected function stockUrl( \Aimeos\MShop\Product\Item\Iface $productItem ) : \Aimeos\Map
@@ -573,7 +592,7 @@ class Standard
 		 * This allows to cache product items by leaving out such highly
 		 * dynamic content like stock levels which changes with each order.
 		 *
-		 * @param boolean Value of "1" to display stock levels, "0" to disable displaying them
+		 * @type boolean Value of "1" to display stock levels, "0" to disable displaying them
 		 * @since 2014.03
 		 * @see client/html/catalog/lists/stock/enable
 		 * @see client/html/catalog/stock/url/target
@@ -609,7 +628,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/detail/decorators/global
 	 * @see client/html/catalog/detail/decorators/local
@@ -631,7 +650,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/detail/decorators/excludes
 	 * @see client/html/catalog/detail/decorators/local
@@ -653,7 +672,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Catalog\Decorator\Decorator2" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/detail/decorators/excludes
 	 * @see client/html/catalog/detail/decorators/global

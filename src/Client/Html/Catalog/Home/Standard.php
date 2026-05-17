@@ -49,7 +49,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyHome"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2019.06
 	 */
 
@@ -74,7 +74,7 @@ class Standard
 		 * entries to cache or if the component contains non-cacheable parts that
 		 * can't be replaced using the modify() method.
 		 *
-		 * @param boolean True to enable caching, false to disable
+		 * @type boolean True to enable caching, false to disable
 		 * @see client/html/catalog/detail/cache
 		 * @see client/html/catalog/filter/cache
 		 * @see client/html/catalog/stage/cache
@@ -86,7 +86,7 @@ class Standard
 		 *
 		 * Please refer to the single settings for details.
 		 *
-		 * @param array Associative list of name/value settings
+		 * @type array Associative list of name/value settings
 		 * @see client/html/catalog#home
 		 */
 		$confkey = 'client/html/catalog/home';
@@ -131,8 +131,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -143,10 +143,13 @@ class Standard
 		$products = \Aimeos\Controller\Frontend::create( $this->context(), 'product' )->uses( $this->domains() )
 			->category( $tree->getChildren()->getId()->all(), 'promotion' )->search();
 
+		// @phpstan-ignore-next-line
 		$this->addMetaItemCatalog( $tree, $expire, $tags );
+		// @phpstan-ignore-next-line
 		$this->addMetaItems( $products, $expire, $tags, ['product'] );
 
 		$view->homeTree = $tree;
+		// @phpstan-ignore-next-line
 		$view->homeStockUrl = $this->stockUrl( $products );
 
 		return parent::data( $view, $tags, $expire );
@@ -178,7 +181,7 @@ class Standard
 		 * option that allows to configure the domain names of the items fetched
 		 * for all catalog related data.
 		 *
-		 * @param array List of domain names
+		 * @type array List of domain names
 		 * @since 2020.10
 		 * @see client/html/catalog/domains
 		 * @see client/html/catalog/detail/domains
@@ -197,7 +200,7 @@ class Standard
 		 * variants and product bundles. By default, also optional attributes are
 		 * displayed if they have been associated to a product.
 		 *
-		 * @param boolean True to display the button, false to hide it
+		 * @type boolean True to display the button, false to hide it
 		 * @since 2020.10
 		 * @see client/html/catalog/lists/basket-add
 		 * @see client/html/catalog/detail/basket-add
@@ -205,10 +208,11 @@ class Standard
 		 * @see client/html/catalog/product/basket-add
 		 */
 		if( $config->get( 'client/html/catalog/home/basket-add', false ) ) {
+			// @phpstan-ignore-next-line
 			$domains = array_merge_recursive( $domains, ['attribute' => ['variant', 'custom', 'config']] );
 		}
 
-		return $domains;
+		return (array) $domains;
 	}
 
 
@@ -228,6 +232,7 @@ class Standard
 			foreach( $products as $product )
 			{
 				if( $product->getType() === 'select' ) {
+					// @phpstan-ignore-next-line
 					$articles->union( $product->getRefItems( 'product', 'default', 'default' ) );
 				}
 			}
@@ -244,7 +249,7 @@ class Standard
 		 * This allows to cache product items by leaving out such highly
 		 * dynamic content like stock levels which changes with each order.
 		 *
-		 * @param boolean Value of "1" to display stock levels, "0" to disable displaying them
+		 * @type boolean Value of "1" to display stock levels, "0" to disable displaying them
 		 * @since 2020.10
 		 * @see client/html/catalog/detail/stock/enable
 		 * @see client/html/catalog/stock/url/target
@@ -277,7 +282,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page body
+	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2020.10
 	 * @see client/html/catalog/home/template-header
 	 */
@@ -298,7 +303,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page head
+	 * @type string Relative path to the template creating code for the HTML page head
 	 * @since 2020.10
 	 * @see client/html/catalog/home/template-body
 	 */
@@ -321,7 +326,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2020.10
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/home/decorators/global
@@ -344,7 +349,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2020.10
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/home/decorators/excludes
@@ -367,7 +372,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Catalog\Decorator\Decorator2" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @since 2020.10
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/home/decorators/excludes

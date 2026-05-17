@@ -38,6 +38,7 @@ class Standard
 		$step = $view->get( 'standardStepActive' );
 		$onepage = $view->config( 'client/html/checkout/standard/onepage', [] );
 
+		// @phpstan-ignore-next-line
 		if( $step != 'payment' && !( in_array( 'payment', $onepage ) && in_array( $step, $onepage ) ) ) {
 			return '';
 		}
@@ -52,7 +53,7 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables.
 	 */
-	public function init()
+	public function init() : void
 	{
 		$view = $this->view();
 		$context = $this->context();
@@ -63,6 +64,7 @@ class Standard
 			$servCtrl = \Aimeos\Controller\Frontend::create( $context, 'service' )->uses( ['media', 'price', 'text'] );
 
 			// only start if there's something to do
+			// @phpstan-ignore-next-line
 			if( ( $serviceIds = $view->param( 'c_paymentoption', null ) ) !== null )
 			{
 				$basketCtrl->deleteService( 'payment' );
@@ -76,6 +78,7 @@ class Standard
 					catch( \Aimeos\Controller\Frontend\Basket\Exception $e )
 					{
 						$view->deliveryError = $e->getErrors();
+						// @phpstan-ignore-next-line
 						$view->errors = array_merge( $view->get( 'errors', [] ), $e->getErrors() );
 
 						throw $e;
@@ -103,8 +106,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -121,7 +124,7 @@ class Standard
 		 * of domains (attribute, media, price, text, etc. are domains) whose items
 		 * are fetched from the storage.
 		 *
-		 * @param array List of domain names
+		 * @type array List of domain names
 		 * @since 2019.04
 		 * @see client/html/checkout/standard/delivery/domains
 		 */
@@ -141,6 +144,7 @@ class Standard
 			{
 				$attr = $provider->getConfigFE( $basket );
 
+				// @phpstan-ignore-next-line
 				if( $oservice = $orderServices->get( $id ) )
 				{
 					foreach( $attr as $key => $item )
@@ -163,6 +167,7 @@ class Standard
 		}
 
 		$view->paymentServices = $services;
+		// @phpstan-ignore-next-line
 		$view->paymentOption = $view->param( 'c_paymentoption', $orderServices->firstKey() ?: key( $services ) );
 
 		return parent::data( $view, $tags, $expire );
@@ -196,7 +201,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page body
+	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
 	 * @see client/html/checkout/standard/payment/template-header
 	 */

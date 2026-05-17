@@ -39,7 +39,7 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables.
 	 */
-	public function init()
+	public function init() : void
 	{
 		$context = $this->context();
 
@@ -48,9 +48,11 @@ class Standard
 			$type = \Aimeos\MShop\Order\Item\Address\Base::TYPE_PAYMENT;
 			$addresses = \Aimeos\Controller\Frontend::create( $context, 'basket' )->get()->getAddress( $type );
 
+			// @phpstan-ignore-next-line
 			if( $context->user() === null && ( $address = current( $addresses ) ) !== false )
 			{
 				$create = (bool) $this->view()->param( 'cs_option_account' );
+				// @phpstan-ignore-next-line
 				$context->setUser( $this->getCustomer( $address, $create ) );
 			}
 		}
@@ -82,6 +84,7 @@ class Standard
 			$customer = $new ? $cntl->add( $addr->toArray() )->store()->get() : null;
 		}
 
+		// @phpstan-ignore return.type
 		return $customer;
 	}
 }

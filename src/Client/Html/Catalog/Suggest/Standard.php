@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MySuggest"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2015.02
 	 */
 
@@ -59,8 +59,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -83,7 +83,7 @@ class Standard
 		 * **Note:** The more domains you will add, the slower the autocomplete requests
 		 * will be! Keep it to an absolute minium for user friendly response times.
 		 *
-		 * @param array List of domain names
+		 * @type array List of domain names
 		 * @since 2016.08
 		 * @see client/html/catalog/suggest/template-body
 		 * @see client/html/catalog/suggest/restrict
@@ -97,7 +97,7 @@ class Standard
 		 * Limits the number of products that are shown in the list of suggested
 		 * products.
 		 *
-		 * @param integer Number of products
+		 * @type integer Number of products
 		 * @since 2018.10
 		 * @see client/html/catalog/suggest/domains
 		 * @see client/html/catalog/suggest/restrict
@@ -111,7 +111,7 @@ class Standard
 		 * attribute facets. If disabled, suggestions are limited by the
 		 * entered text only.
 		 *
-		 * @param boolean True to use category and facets, false for all results
+		 * @type boolean True to use category and facets, false for all results
 		 * @since 2019.07
 		 * @see client/html/catalog/suggest/domains
 		 * @see client/html/catalog/suggest/size
@@ -119,6 +119,7 @@ class Standard
 		if( $config->get( 'client/html/catalog/suggest/restrict', true ) == true )
 		{
 			$level = $config->get( 'client/html/catalog/lists/levels', \Aimeos\MW\Tree\Manager\Base::LEVEL_ONE );
+			// @phpstan-ignore-next-line
 			$catids = $view->param( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default' ) );
 
 			$cntl->category( $catids, 'default', $level )
@@ -141,9 +142,11 @@ class Standard
 	 * @param \Aimeos\Controller\Frontend\Product\Iface $cntl Product controller
 	 * @param \Aimeos\Base\View\Iface $view View object
 	 */
-	protected function conditions( \Aimeos\Controller\Frontend\Product\Iface $cntl, \Aimeos\Base\View\Iface $view )
+	protected function conditions( \Aimeos\Controller\Frontend\Product\Iface $cntl, \Aimeos\Base\View\Iface $view ) : void
 	{
+		// @phpstan-ignore-next-line
 		if( $view->config( 'client/html/catalog/instock', false ) ) {
+			// @phpstan-ignore-next-line
 			$cntl->compare( '>', 'product.instock', 0 );
 		}
 	}
@@ -164,7 +167,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page body
+	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2015.02
 	 * @see client/html/catalog/suggest/template-header
 	 * @see client/html/catalog/suggest/domains
@@ -186,7 +189,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page head
+	 * @type string Relative path to the template creating code for the HTML page head
 	 * @since 2015.02
 	 * @see client/html/catalog/suggest/template-body
 	 * @see client/html/catalog/suggest/domains
@@ -210,7 +213,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/suggest/decorators/global
 	 * @see client/html/catalog/suggest/decorators/local
@@ -232,7 +235,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/suggest/decorators/excludes
 	 * @see client/html/catalog/suggest/decorators/local
@@ -254,7 +257,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Catalog\Decorator\Decorator2" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/suggest/decorators/excludes
 	 * @see client/html/catalog/suggest/decorators/global

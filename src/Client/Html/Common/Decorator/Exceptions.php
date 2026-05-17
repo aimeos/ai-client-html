@@ -38,6 +38,7 @@ class Exceptions extends Base implements Iface
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = [$context->translate( 'client', $e->getMessage() )];
+			// @phpstan-ignore-next-line
 			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
@@ -47,11 +48,13 @@ class Exceptions extends Base implements Iface
 			}
 
 			$error = [$context->translate( 'controller/frontend', $e->getMessage() )];
+			// @phpstan-ignore-next-line
 			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Plugin\Provider\Exception $e )
 		{
 			$error = [$context->translate( 'mshop', $e->getMessage() )];
+			// @phpstan-ignore-next-line
 			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
@@ -61,11 +64,13 @@ class Exceptions extends Base implements Iface
 			}
 
 			$error = [$context->translate( 'mshop', $e->getMessage() )];
+			// @phpstan-ignore-next-line
 			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
 			$error = [$context->translate( 'client', 'A non-recoverable error occured' )];
+			// @phpstan-ignore-next-line
 			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
 			$this->logException( $e );
 		}
@@ -112,7 +117,7 @@ class Exceptions extends Base implements Iface
 	/**
 	 * Processes the input, e.g. store given values.
 	 */
-	public function init()
+	public function init() : void
 	{
 		$view = $this->view();
 		$context = $this->context();
@@ -124,6 +129,7 @@ class Exceptions extends Base implements Iface
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->translate( 'client', $e->getMessage() ) );
+			// @phpstan-ignore-next-line
 			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
 		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
@@ -133,11 +139,13 @@ class Exceptions extends Base implements Iface
 			}
 
 			$error = array( $context->translate( 'controller/frontend', $e->getMessage() ) );
+			// @phpstan-ignore-next-line
 			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Plugin\Provider\Exception $e )
 		{
 			$error = array( $context->translate( 'mshop', $e->getMessage() ) );
+			// @phpstan-ignore-next-line
 			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
 		}
 		catch( \Aimeos\MShop\Exception $e )
@@ -147,11 +155,13 @@ class Exceptions extends Base implements Iface
 			}
 
 			$error = array( $context->translate( 'mshop', $e->getMessage() ) );
+			// @phpstan-ignore-next-line
 			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
 		}
 		catch( \Exception $e )
 		{
 			$error = array( $context->translate( 'client', 'A non-recoverable error occured' ) );
+			// @phpstan-ignore-next-line
 			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
 			$this->logException( $e );
 		}

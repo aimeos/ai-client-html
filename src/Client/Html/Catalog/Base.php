@@ -24,7 +24,7 @@ abstract class Base
 	 * Returns the URL for retrieving the stock levels
 	 *
 	 * @param \Aimeos\Base\View\Iface $view View instance with helper
-	 * @param \Aimeos\MShop\Product\Item\Iface[] List of products with their IDs as keys
+	 * @param \Aimeos\Map $products List of products with their IDs as keys
 	 * @return \Aimeos\Map URLs to retrieve the stock levels for the given products
 	 */
 	protected function getStockUrl( \Aimeos\Base\View\Iface $view, \Aimeos\Map $products ) : \Aimeos\Map
@@ -36,7 +36,7 @@ abstract class Base
 		 * module of a software development framework. This "target" must contain or know
 		 * the controller that should be called by the generated URL.
 		 *
-		 * @param string Destination of the URL
+		 * @type string Destination of the URL
 		 * @since 2014.03
 		 * @see client/html/catalog/stock/url/controller
 		 * @see client/html/catalog/stock/url/action
@@ -52,7 +52,7 @@ abstract class Base
 		 * that create parts of the output displayed in the generated HTML page. Controller
 		 * names are usually alpha-numeric.
 		 *
-		 * @param string Name of the controller
+		 * @type string Name of the controller
 		 * @since 2014.03
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/action
@@ -68,7 +68,7 @@ abstract class Base
 		 * controller that create parts of the output displayed in the generated HTML page.
 		 * Action names are usually alpha-numeric.
 		 *
-		 * @param string Name of the action
+		 * @type string Name of the action
 		 * @since 2014.03
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/controller
@@ -90,7 +90,7 @@ abstract class Base
 		 * generating the URLs. The full list of available config options is referenced
 		 * in the "see also" section of this page.
 		 *
-		 * @param string Associative list of configuration options
+		 * @type string Associative list of configuration options
 		 * @since 2014.03
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/controller
@@ -105,7 +105,7 @@ abstract class Base
 		 * This setting removes the listed parameters from the URLs. Keep care to
 		 * remove no required parameters!
 		 *
-		 * @param array List of parameter names to remove
+		 * @type array List of parameter names to remove
 		 * @since 2022.10
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/controller
@@ -122,20 +122,21 @@ abstract class Base
 		 * If more product codes are available, several requests will be sent to the
 		 * server.
 		 *
-		 * @param integer Maximum number of product codes per request
+		 * @type integer Maximum number of product codes per request
 		 * @since 2018.10
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/controller
 		 * @see client/html/catalog/stock/url/action
 		 * @see client/html/catalog/stock/url/config
 		 */
+		// @phpstan-ignore-next-line
 		$max = $view->config( 'client/html/catalog/stock/url/max-items', 100 );
 
 
 		$urls = [];
 		$ids = $products->getId()->sort();
 
-		while( !( $list = $ids->splice( -$max ) )->isEmpty() ) {
+		while( !( $list = $ids->splice( -(int) $max ) )->isEmpty() ) {
 			$urls[] = $view->link( 'client/html/catalog/stock/url', ['st_pid' => $list->toArray()] );
 		}
 

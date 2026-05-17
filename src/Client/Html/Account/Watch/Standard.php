@@ -51,7 +51,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyWatch"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2015.10
 	 */
 
@@ -62,7 +62,7 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables if necessary.
 	 */
-	public function init()
+	public function init() : void
 	{
 		$view = $this->view();
 		$context = $this->context();
@@ -89,7 +89,7 @@ class Standard
 	 * @param \Aimeos\Base\View\Iface $view View object
 	 * @param array $ids List of referenced IDs
 	 */
-	protected function addItems( \Aimeos\Base\View\Iface $view, array $ids )
+	protected function addItems( \Aimeos\Base\View\Iface $view, array $ids ) : void
 	{
 		$context = $this->context();
 
@@ -106,7 +106,7 @@ class Standard
 		 * of the footprint of one product item including the associated
 		 * texts, prices and media.
 		 *
-		 * @param integer Number of products
+		 * @type integer Number of products
 		 * @since 2014.09
 		 */
 		$max = $context->config()->get( 'client/html/account/watch/maxitems', 100 );
@@ -114,8 +114,10 @@ class Standard
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 		$item = $cntl->uses( ['product' => ['watch']] )->get();
 
+		// @phpstan-ignore-next-line
 		if( count( $item->getRefItems( 'product', null, 'watch' ) ) + count( $ids ) > $max )
 		{
+			// @phpstan-ignore-next-line
 			$msg = sprintf( $context->translate( 'client', 'You can only watch up to %1$s products' ), $max );
 			throw new \Aimeos\Client\Html\Exception( $msg );
 		}
@@ -138,7 +140,7 @@ class Standard
 	 * @param \Aimeos\Base\View\Iface $view View object
 	 * @param array $ids List of referenced IDs
 	 */
-	protected function deleteItems( \Aimeos\Base\View\Iface $view, array $ids )
+	protected function deleteItems( \Aimeos\Base\View\Iface $view, array $ids ) : void
 	{
 		$cntl = \Aimeos\Controller\Frontend::create( $this->context(), 'customer' );
 		$item = $cntl->uses( ['product' => ['watch']] )->get();
@@ -160,16 +162,19 @@ class Standard
 	 * @param \Aimeos\Base\View\Iface $view View object
 	 * @param array $ids List of referenced IDs
 	 */
-	protected function editItems( \Aimeos\Base\View\Iface $view, array $ids )
+	protected function editItems( \Aimeos\Base\View\Iface $view, array $ids ) : void
 	{
 		$context = $this->context();
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 		$item = $cntl->uses( ['product' => ['watch']] )->get();
 
 		$config = [
+			// @phpstan-ignore-next-line
 			'timeframe' => $view->param( 'wat_timeframe', 7 ),
 			'pricevalue' => $view->param( 'wat_pricevalue', '0.00' ),
+			// @phpstan-ignore-next-line
 			'price' => $view->param( 'wat_price', 0 ),
+			// @phpstan-ignore-next-line
 			'stock' => $view->param( 'wat_stock', 0 ),
 			'currency' => $context->locale()->getCurrencyId(),
 		];
@@ -178,7 +183,7 @@ class Standard
 		{
 			if( ( $listItem = $item->getListItem( 'product', 'watch', $id ) ) !== null )
 			{
-				$time = time() + ( $config['timeframe'] + 1 ) * 86400;
+				$time = time() + ( $config['timeframe'] + 1 ) * 86400; // @phpstan-ignore binaryOp.invalid
 				$listItem = $listItem->setDateEnd( date( 'Y-m-d 00:00:00', $time ) )->setConfig( $config );
 
 				$cntl->addListItem( 'product', $listItem );
@@ -197,6 +202,7 @@ class Standard
 	 */
 	protected function getProductListPage( \Aimeos\Base\View\Iface $view ) : int
 	{
+		// @phpstan-ignore-next-line
 		$page = (int) $view->param( 'wat_page', 1 );
 		return ( $page < 1 ? 1 : $page );
 	}
@@ -223,14 +229,15 @@ class Standard
 		 * well as values above 100 are not allowed. The value can be overwritten
 		 * per request if the "l_size" parameter is part of the URL.
 		 *
-		 * @param integer Number of products
+		 * @type integer Number of products
 		 * @since 2014.09
 		 * @see client/html/catalog/lists/size
 		 */
 		$defaultSize = $this->context()->config()->get( 'client/html/account/watch/size', 48 );
 
+		// @phpstan-ignore-next-line
 		$size = (int) $view->param( 'watch-size', $defaultSize );
-		return ( $size < 1 || $size > 100 ? $defaultSize : $size );
+		return (int) ( $size < 1 || $size > 100 ? $defaultSize : $size );
 	}
 
 
@@ -238,8 +245,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -257,7 +264,7 @@ class Standard
 		 * in mind that the more domains you add to the configuration, the
 		 * more time is required for fetching the content!
 		 *
-		 * @param array List of domain names
+		 * @type array List of domain names
 		 * @since 2014.09
 		 * @see client/html/catalog/domains
 		 */
@@ -270,6 +277,7 @@ class Standard
 		$products = \Aimeos\MShop::create( $context, 'rule' )->apply( $products, 'catalog' );
 
 		$listItems = $customer->getListItems( 'product', 'watch' );
+		// @phpstan-ignore-next-line
 		$total = count( $listItems );
 
 		$size = $this->getProductListSize( $view );
@@ -301,7 +309,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page body
+	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2015.10
 	 * @see client/html/account/watch/template-header
 	 */
@@ -322,7 +330,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page head
+	 * @type string Relative path to the template creating code for the HTML page head
 	 * @since 2015.10
 	 * @see client/html/account/watch/template-body
 	 */
@@ -345,7 +353,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/account/watch/decorators/global
 	 * @see client/html/account/watch/decorators/local
@@ -367,7 +375,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/account/watch/decorators/excludes
 	 * @see client/html/account/watch/decorators/local
@@ -389,7 +397,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Account\Decorator\Decorator2" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/account/watch/decorators/excludes
 	 * @see client/html/account/watch/decorators/global

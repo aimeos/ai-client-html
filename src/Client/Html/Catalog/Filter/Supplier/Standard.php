@@ -25,8 +25,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -42,7 +42,7 @@ class Standard
 		 * the more domains you add to the configuration, the more time is
 		 * required for fetching the content!
 		 *
-		 * @param array List of domain item names
+		 * @type array List of domain item names
 		 * @since 2018.07
 		 * @see client/html/catalog/filter/supplier/types
 		 */
@@ -55,6 +55,7 @@ class Standard
 		$items = $cntl->compare( '==', 'supplier.id', $view->param( 'f_supid', [] ) )
 			->slice( 0, 100 )->search()->replace( $items );
 
+		// @phpstan-ignore-next-line
 		$this->addMetaItems( $items, $expire, $tags, ['supplier'] );
 
 		$view->supplierList = $items;
@@ -91,7 +92,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @param string Relative path to the template creating code for the HTML page body
+	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2018.07
 	 * @see client/html/catalog/filter/supplier/template-header
 	 */

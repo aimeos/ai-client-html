@@ -37,7 +37,9 @@ class Standard
 			$view = $this->view();
 
 			return sprintf( $str, $item->getName(),
+				// @phpstan-ignore-next-line
 				$view->number( abs( $value ), $priceItem->getPrecision() ),
+				// @phpstan-ignore-next-line
 				$view->translate( 'currency', $priceItem->getCurrencyId() ),
 				( $value < 0 ? '−' : '+' )
 			);

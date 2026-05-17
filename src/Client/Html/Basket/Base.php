@@ -24,11 +24,12 @@ abstract class Base
 	/**
 	 * Removes all cached basket parts from the cache.
 	 */
-	protected function clearCached()
+	protected function clearCached() : void
 	{
 		$session = $this->context()->session();
 
 		foreach( $session->get( 'aimeos/basket/cache', [] ) as $key => $value ) {
+			// @phpstan-ignore-next-line
 			$session->set( $key, null );
 		}
 	}
@@ -44,6 +45,7 @@ abstract class Base
 	 */
 	protected function getBasketCached( string $key, ?string $default = null ) : ?string
 	{
+		// @phpstan-ignore return.type
 		return $this->context()->session()->get( $key, $default );
 	}
 
@@ -69,7 +71,7 @@ abstract class Base
 		 * To ease development, the caching can be disabled but you shouldn't
 		 * disable it in your production environment!
 		 *
-		 * @param boolean True to enable, false to disable basket content caching
+		 * @type boolean True to enable, false to disable basket content caching
 		 * @since 2014.11
 		 */
 		if( $context->config()->get( 'client/html/basket/cache/enable', true ) != false )

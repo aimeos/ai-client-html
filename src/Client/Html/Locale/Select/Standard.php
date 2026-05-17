@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MySelect"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -84,7 +84,7 @@ class Standard
 	 * should support adding, removing or reordering content by a fluid like
 	 * design.
 	 *
-	 * @param array List of sub-client names
+	 * @type array List of sub-client names
 	 * @since 2014.09
 	 */
 	private string $subPartPath = 'client/html/locale/select/subparts';
@@ -95,7 +95,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Locale\Select\Language\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the client class name
+	 * @type string Last part of the client class name
 	 * @since 2014.09
 	 */
 
@@ -105,7 +105,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Locale\Select\Currency\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @param string Last part of the client class name
+	 * @type string Last part of the client class name
 	 * @since 2014.09
 	 */
 	private array $subPartNames = array( 'language', 'currency' );
@@ -127,7 +127,7 @@ class Standard
 
 		$html = '';
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->body( $uid );
+			$html .= $subclient->setView( $view )->body( $uid ); // @phpstan-ignore assignOp.invalid
 		}
 
 		/** client/html/locale/select/template-body
@@ -145,7 +145,7 @@ class Standard
 		 * you've implemented an alternative client class as well, it
 		 * should be suffixed by the name of the new class.
 		 *
-		 * @param string Relative path to the template creating code for the HTML page body
+		 * @type string Relative path to the template creating code for the HTML page body
 		 * @since 2014.09
 		 * @see client/html/locale/select/template-header
 		 */
@@ -181,7 +181,7 @@ class Standard
 		 * you've implemented an alternative client class as well, it
 		 * should be suffixed by the name of the new class.
 		 *
-		 * @param string Relative path to the template creating code for the HTML page head
+		 * @type string Relative path to the template creating code for the HTML page head
 		 * @since 2014.09
 		 * @see client/html/locale/select/template-body
 		 */
@@ -211,7 +211,7 @@ class Standard
 	 */
 	protected function getSubClientNames() : array
 	{
-		return $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
+		return (array) $this->context()->config()->get( $this->subPartPath, $this->subPartNames );
 	}
 
 
@@ -219,8 +219,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -238,7 +238,7 @@ class Standard
 		 * capable. To adapt the Aimeos parameter name to the already used name,
 		 * you are able to configure it by using this setting.
 		 *
-		 * @param string Parameter name for language ID
+		 * @type string Parameter name for language ID
 		 * @since 2015.06
 		 * @see client/html/locale/select/currency/param-name
 		 */
@@ -252,7 +252,7 @@ class Standard
 		 * currencies. To adapt the Aimeos parameter name to the already used name,
 		 * you are able to configure it by using this setting.
 		 *
-		 * @param string Parameter name for currency ID
+		 * @type string Parameter name for currency ID
 		 * @since 2015.06
 		 * @see client/html/locale/select/language/param-name
 		 */
@@ -266,7 +266,7 @@ class Standard
 		{
 			$curId = $item->getCurrencyId();
 			$langId = $item->getLanguageId();
-			$map[$langId][$curId] = [$langname => $langId, $curname => $curId];
+			$map[$langId][$curId] = [(string) $langname => $langId, (string) $curname => $curId];
 		}
 
 		$view->selectMap = map( $map );
@@ -296,7 +296,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/locale/select/decorators/global
 	 * @see client/html/locale/select/decorators/local
@@ -318,7 +318,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/locale/select/decorators/excludes
 	 * @see client/html/locale/select/decorators/local
@@ -340,7 +340,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Locale\Decorator\Decorator2" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/locale/select/decorators/excludes
 	 * @see client/html/locale/select/decorators/global

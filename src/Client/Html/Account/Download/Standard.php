@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyDownload"!
 	 *
-	 * @param string Last part of the class name
+	 * @type string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -85,7 +85,7 @@ class Standard
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables if necessary.
 	 */
-	public function init()
+	public function init() : void
 	{
 		$context = $this->context();
 
@@ -101,19 +101,24 @@ class Standard
 			 * module of a software development framework. This "target" must contain or know
 			 * the controller that should be called by the generated URL.
 			 *
-			 * @param string Destination of the URL
+			 * @type string Destination of the URL
 			 * @since 2019.04
 			 */
 			$target = $context->config()->get( 'client/html/account/download/error/url/target' );
 
+			// @phpstan-ignore-next-line
 			if( $this->checkAccess( $id ) === false ) {
-				return $view->response()->withStatus( 401 )->withHeader( 'Location', $view->url( $target ) );
+				// @phpstan-ignore-next-line
+				$view->response()->withStatus( 401 )->withHeader( 'Location', $view->url( $target ) ); return;
 			}
 
+			// @phpstan-ignore-next-line
 			if( $this->checkDownload( $id ) === false ) {
-				return $view->response()->withStatus( 403 )->withHeader( 'Location', $view->url( $target ) );
+				// @phpstan-ignore-next-line
+				$view->response()->withStatus( 403 )->withHeader( 'Location', $view->url( $target ) ); return;
 			}
 
+			// @phpstan-ignore-next-line
 			$this->addDownload( \Aimeos\MShop::create( $context, 'order/product/attribute' )->get( $id ) );
 
 			parent::init();
@@ -130,17 +135,19 @@ class Standard
 	 *
 	 * @param \Aimeos\MShop\Order\Item\Product\Attribute\Iface $item Order product attribute item with file reference
 	 */
-	protected function addDownload( \Aimeos\MShop\Order\Item\Product\Attribute\Iface $item )
+	protected function addDownload( \Aimeos\MShop\Order\Item\Product\Attribute\Iface $item ) : void
 	{
 		$fs = $this->context()->fs( 'fs-secure' );
 		$response = $this->view()->response();
 		$value = (string) $item->getValue();
 
+		// @phpstan-ignore-next-line
 		if( $fs->has( $value ) )
 		{
 			$name = $item->getName();
 
 			if( pathinfo( $name, PATHINFO_EXTENSION ) == null
+					// @phpstan-ignore-next-line
 					&& ( $ext = pathinfo( $value, PATHINFO_EXTENSION ) ) != null
 			) {
 				$name .= '.' . $ext;
@@ -154,10 +161,12 @@ class Standard
 			$response->withHeader( 'Pragma', 'private' );
 			$response->withHeader( 'Expires', '0' );
 
+			// @phpstan-ignore-next-line
 			$response->withBody( $response->createStream( $fs->reads( $value ) ) );
 		}
 		elseif( filter_var( $value, FILTER_VALIDATE_URL ) !== false )
 		{
+			// @phpstan-ignore-next-line
 			$response->withHeader( 'Location', $value );
 			$response->withStatus( 303 );
 		}
@@ -218,7 +227,7 @@ class Standard
 		 *
 		 * The default value of null enforces no limit.
 		 *
-		 * @param integer Maximum number of downloads
+		 * @type integer Maximum number of downloads
 		 * @since 2016.02
 		 */
 		$maxcnt = $context->config()->get( 'client/html/account/download/maxcount' );
@@ -263,7 +272,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/account/download/decorators/global
 	 * @see client/html/account/download/decorators/local
@@ -285,7 +294,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/account/download/decorators/excludes
 	 * @see client/html/account/download/decorators/local
@@ -307,7 +316,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Account\Decorator\Decorator2" only to the html client.
 	 *
-	 * @param array List of decorator names
+	 * @type array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/account/download/decorators/excludes
 	 * @see client/html/account/download/decorators/global

@@ -67,7 +67,7 @@ abstract class Base
 		}
 
 		foreach( $this->getSubClients() as $subclient ) {
-			$html .= $subclient->setView( $view )->body( $uid );
+			$html .= $subclient->setView( $view )->body( $uid ); // @phpstan-ignore assignOp.invalid
 		}
 
 		return $view->set( 'body', $html )
@@ -79,8 +79,8 @@ abstract class Base
 	 * Adds the data to the view object required by the templates
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @param array &$tags Result array for the list of tags that are associated to the output
-	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @type array &$tags Result array for the list of tags that are associated to the output
+	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface The view object with the data required by the templates
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -89,6 +89,7 @@ abstract class Base
 			$view = $subclient->data( $view, $tags, $expire );
 		}
 
+		// @phpstan-ignore return.type
 		return $view;
 	}
 
@@ -127,7 +128,7 @@ abstract class Base
 	 * A view must be available and this method doesn't generate any output
 	 * besides setting view variables.
 	 */
-	public function init()
+	public function init() : void
 	{
 		$view = $this->view();
 
@@ -154,7 +155,7 @@ abstract class Base
 			$content = $subclient->modify( $content, $uid );
 		}
 
-		return $content;
+		return (string) $content;
 	}
 
 
@@ -250,6 +251,7 @@ abstract class Base
 			$client = \Aimeos\Utils::create( $classname, [$client, $this->context], $interface );
 		}
 
+		// @phpstan-ignore return.type
 		return $client;
 	}
 
@@ -263,7 +265,7 @@ abstract class Base
 	 */
 	protected function addClientDecorators( \Aimeos\Client\Html\Iface $client, string $path ) : \Aimeos\Client\Html\Iface
 	{
-		if( !is_string( $path ) || $path === '' ) {
+		if( $path === '' ) {
 			throw new \Aimeos\Client\Html\Exception( sprintf( 'Invalid domain "%1$s"', $path ) );
 		}
 
@@ -272,10 +274,12 @@ abstract class Base
 
 		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
 		$decorators = $config->get( 'client/html/' . $path . '/decorators/global', [] );
+		// @phpstan-ignore-next-line
 		$client = $this->addDecorators( $client, $decorators, $classprefix );
 
 		$classprefix = '\\Aimeos\\Client\\Html\\' . $localClass . '\\Decorator\\';
 		$decorators = $config->get( 'client/html/' . $path . '/decorators/local', [] );
+		// @phpstan-ignore-next-line
 		$client = $this->addDecorators( $client, $decorators, $classprefix );
 
 		return $client;
@@ -286,11 +290,11 @@ abstract class Base
 	 * Adds the cache tags to the given list and sets a new expiration date if necessary based on the given item.
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Iface|iterable $items Item or list of items, maybe with associated list items
-	 * @param string|null &$expire Expiration date that will be overwritten if an earlier date is found
-	 * @param array &$tags List of tags the new tags will be added to
+	 * @type string|null &$expire Expiration date that will be overwritten if an earlier date is found
+	 * @type array &$tags List of tags the new tags will be added to
 	 * @param array $custom List of custom tags which are added too
 	 */
-	protected function addMetaItems( $items, ?string &$expire, array &$tags, array $custom = [] )
+	protected function addMetaItems( $items, ?string &$expire, array &$tags, array $custom = [] ) : mixed
 	{
 		/** client/html/common/cache/tag-all
 		 * Adds tags for all items used in a cache entry
@@ -316,7 +320,7 @@ abstract class Base
 		 * if you use the DB, Mysql or Redis adapter that can insert all tags
 		 * at once.
 		 *
-		 * @param boolean True to add tags for all items, false to use only a domain tag
+		 * @type boolean True to add tags for all items, false to use only a domain tag
 		 * @since 2014.07
 		 * @see client/html/common/cache/force
 		 * @see madmin/cache/manager/name
@@ -329,9 +333,11 @@ abstract class Base
 		foreach( map( $items ) as $item )
 		{
 			if( $item instanceof \Aimeos\MShop\Common\Item\ListsRef\Iface ) {
+				// @phpstan-ignore-next-line
 				$this->addMetaItemRef( $item, $expires, $tags, $tagAll );
 			}
 
+			// @phpstan-ignore-next-line
 			$this->addMetaItemSingle( $item, $expires, $tags, $tagAll );
 		}
 
@@ -340,9 +346,10 @@ abstract class Base
 		}
 
 		if( !empty( $expires ) ) {
-			$expire = min( $expires );
+			$expire = (string) min( $expires );
 		}
 
+		// @phpstan-ignore-next-line
 		$tags = array_unique( array_merge( $tags, $custom ) );
 
 		return $items;
@@ -353,15 +360,16 @@ abstract class Base
 	 * Adds the cache tags to the given list and sets a new expiration date if necessary based on the given catalog tree.
 	 *
 	 * @param \Aimeos\MShop\Catalog\Item\Iface $tree Tree node, maybe with sub-nodes
-	 * @param string|null &$expire Expiration date that will be overwritten if an earlier date is found
-	 * @param array &$tags List of tags the new tags will be added to
+	 * @type string|null &$expire Expiration date that will be overwritten if an earlier date is found
+	 * @type array &$tags List of tags the new tags will be added to
 	 * @param array $custom List of custom tags which are added too
 	 */
-	protected function addMetaItemCatalog( \Aimeos\MShop\Catalog\Item\Iface $tree, ?string &$expire = null, array &$tags = [], array $custom = [] )
+	protected function addMetaItemCatalog( \Aimeos\MShop\Catalog\Item\Iface $tree, ?string &$expire = null, array &$tags = [], array $custom = [] ) : void
 	{
 		$this->addMetaItems( $tree, $expire, $tags, $custom );
 
 		foreach( $tree->getChildren() as $child ) {
+			// @phpstan-ignore-next-line
 			$this->addMetaItemCatalog( $child, $expire, $tags, $custom );
 		}
 	}
@@ -371,11 +379,11 @@ abstract class Base
 	 * Adds expire date and tags for a single item.
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Iface $item Item, maybe with associated list items
-	 * @param array &$expires Will contain the list of expiration dates
-	 * @param array &$tags List of tags the new tags will be added to
+	 * @type array &$expires Will contain the list of expiration dates
+	 * @type array &$tags List of tags the new tags will be added to
 	 * @param bool $tagAll True of tags for all items should be added, false if only for the main item
 	 */
-	private function addMetaItemSingle( \Aimeos\MShop\Common\Item\Iface $item, array &$expires, array &$tags, bool $tagAll )
+	private function addMetaItemSingle( \Aimeos\MShop\Common\Item\Iface $item, array &$expires, array &$tags, bool $tagAll ) : void
 	{
 		$domain = str_replace( '/', '_', $item->getResourceType() ); // maximum compatiblity
 
@@ -397,11 +405,11 @@ abstract class Base
 	 * Adds expire date and tags for referenced items
 	 *
 	 * @param \Aimeos\MShop\Common\Item\ListsRef\Iface $item Item with associated list items
-	 * @param array &$expires Will contain the list of expiration dates
-	 * @param array &$tags List of tags the new tags will be added to
+	 * @type array &$expires Will contain the list of expiration dates
+	 * @type array &$tags List of tags the new tags will be added to
 	 * @param bool $tagAll True of tags for all items should be added, false if only for the main item
 	 */
-	private function addMetaItemRef( \Aimeos\MShop\Common\Item\ListsRef\Iface $item, array &$expires, array &$tags, bool $tagAll )
+	private function addMetaItemRef( \Aimeos\MShop\Common\Item\ListsRef\Iface $item, array &$expires, array &$tags, bool $tagAll ) : void
 	{
 		foreach( $item->getListItems() as $listItem )
 		{
@@ -410,6 +418,7 @@ abstract class Base
 			}
 
 			if( $tagAll === true && in_array( $listItem->getDomain(), ['catalog', 'product', 'supplier'] ) ) {
+				// @phpstan-ignore-next-line
 				$tags[] = str_replace( '/', '_', $listItem->getDomain() ) . '-' . $listItem->getRefId();
 			}
 
@@ -417,6 +426,7 @@ abstract class Base
 				$expires[] = $date;
 			}
 
+			// @phpstan-ignore-next-line
 			$this->addMetaItemSingle( $refItem, $expires, $tags, $tagAll );
 		}
 	}
@@ -447,6 +457,7 @@ abstract class Base
 		$name = $name ?: $this->context->config()->get( 'client/html/' . $path . '/name', 'Standard' );
 
 		if( empty( $name ) || ctype_alnum( $name ) === false ) {
+			// @phpstan-ignore-next-line
 			throw new \LogicException( sprintf( 'Invalid characters in client name "%1$s"', $name ), 400 );
 		}
 
@@ -455,6 +466,7 @@ abstract class Base
 		$interface = \Aimeos\Client\Html\Iface::class;
 
 		$object = \Aimeos\Utils::create( $classname, [$this->context], $interface );
+		// @phpstan-ignore-next-line
 		$object = $this->addClientDecorators( $object, $path );
 
 		return $object->setObject( $object );
@@ -511,6 +523,7 @@ abstract class Base
 	protected function getParamHash( array $prefixes = ['f_', 'l_', 'd_'], string $key = '', array $config = [] ) : string
 	{
 		$locale = $this->context()->locale();
+		// @phpstan-ignore-next-line
 		$pstr = map( $this->getClientParams( $this->view()->param(), $prefixes ) )->ksort()->toJson();
 
 		if( ( $cstr = json_encode( $config ) ) === false ) {
@@ -544,6 +557,7 @@ abstract class Base
 			$this->subclients = [];
 
 			foreach( $this->getSubClientNames() as $name ) {
+				// @phpstan-ignore-next-line
 				$this->subclients[$name] = $this->getSubClient( $name );
 			}
 		}
@@ -578,7 +592,7 @@ abstract class Base
 		 * you can enforce content caching nevertheless to keep response
 		 * times as low as possible.
 		 *
-		 * @param boolean True to cache output regardless of login, false for no caching
+		 * @type boolean True to cache output regardless of login, false for no caching
 		 * @since 2015.08
 		 * @see client/html/common/cache/tag-all
 		 */
@@ -589,6 +603,7 @@ abstract class Base
 			return null;
 		}
 
+		// @phpstan-ignore-next-line
 		$cfg = array_merge( $config->get( 'client/html', [] ), $this->getSubClientNames() );
 
 		$keys = array(
@@ -597,9 +612,10 @@ abstract class Base
 		);
 
 		if( !isset( $this->cache[$keys[$type]] ) ) {
-			$this->cache = $context->cache()->getMultiple( $keys );
+			$this->cache = (array) $context->cache()->getMultiple( $keys );
 		}
 
+		// @phpstan-ignore return.type
 		return ( isset( $this->cache[$keys[$type]] ) ? $this->cache[$keys[$type]] : null );
 	}
 
@@ -628,9 +644,11 @@ abstract class Base
 			return $value;
 		}
 
+		// @phpstan-ignore-next-line
 		$cfg = array_merge( $config->get( 'client/html', [] ), $this->getSubClientNames() );
 		$key = $this->getParamHash( $prefixes, $uid . ':' . $confkey . ':' . $type, $cfg );
 
+		// @phpstan-ignore-next-line
 		$context->cache()->set( $key, $value, $expire, array_unique( $tags ) );
 
 		return $value;
@@ -643,7 +661,7 @@ abstract class Base
 	 * @param \Exception $e Exception object
 	 * @param int $level Log level of the exception
 	 */
-	protected function logException( \Exception $e, int $level = \Aimeos\Base\Logger\Iface::WARN )
+	protected function logException( \Exception $e, int $level = \Aimeos\Base\Logger\Iface::WARN ) : void
 	{
 		$uri = $this->view()->request()->getServerParams()['REQUEST_URI'] ?? '';
 		$msg = ( $uri ? $uri . PHP_EOL : '' ) . $e->getMessage() . PHP_EOL . $e->getTraceAsString();

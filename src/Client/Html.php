@@ -19,7 +19,7 @@ namespace Aimeos\Client;
  */
 class Html
 {
-	private static $objects = [];
+	private static array $objects = [];
 
 
 	/**
@@ -46,7 +46,7 @@ class Html
 		$classname = '\\Aimeos\\Client\\Html\\' . str_replace( '/', '\\', ucwords( $path, '/' ) ) . '\\' . $name;
 
 		if( class_exists( $classname ) === false ) {
-			throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not found', $classname, 404 ) );
+			throw new \Aimeos\Client\Html\Exception( sprintf( 'Class "%1$s" not found', $classname ) );
 		}
 
 		$client = self::createComponent( $context, $classname, $interface, $path );
@@ -63,7 +63,7 @@ class Html
 	 * @param string $classname Full name of the class for which the object should be returned
 	 * @param \Aimeos\Client\Html\Iface|null $client ExtJS client object
 	 */
-	public static function inject( string $classname, ?\Aimeos\Client\Html\Iface $client = null )
+	public static function inject( string $classname, ?\Aimeos\Client\Html\Iface $client = null ) : void
 	{
 		self::$objects['\\' . ltrim( $classname, '\\' )] = $client;
 	}
@@ -84,10 +84,12 @@ class Html
 		$localClass = str_replace( '/', '\\', ucwords( $path, '/' ) );
 
 		$classprefix = '\\Aimeos\\Client\\Html\\' . $localClass . '\\Decorator\\';
+		// @phpstan-ignore-next-line
 		$decorators = array_reverse( $config->get( 'client/html/' . $path . '/decorators/local', [] ) );
 		$client = self::addDecorators( $context, $client, $decorators, $classprefix );
 
 		$classprefix = '\\Aimeos\\Client\\Html\\Common\\Decorator\\';
+		// @phpstan-ignore-next-line
 		$decorators = array_reverse( $config->get( 'client/html/' . $path . '/decorators/global', [] ) );
 		$client = self::addDecorators( $context, $client, $decorators, $classprefix );
 
@@ -109,14 +111,16 @@ class Html
 		 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" and
 		 * "\Aimeos\Client\Html\Common\Decorator\Decorator2".
 		 *
-		 * @param array List of decorator names
+		 * @type array List of decorator names
 		 * @since 2014.03
 		 */
+		// @phpstan-ignore-next-line
 		$decorators = array_reverse( $config->get( 'client/html/common/decorators/default', [] ) );
 		$excludes = $config->get( 'client/html/' . $path . '/decorators/excludes', [] );
 
 		foreach( $decorators as $key => $name )
 		{
+			// @phpstan-ignore-next-line
 			if( in_array( $name, $excludes ) ) {
 				unset( $decorators[$key] );
 			}
@@ -147,12 +151,14 @@ class Html
 		foreach( $decorators as $name )
 		{
 			if( ctype_alnum( $name ) === false ) {
+				// @phpstan-ignore-next-line
 				throw new \LogicException( sprintf( 'Invalid class name "%1$s"', $name ), 400 );
 			}
 
 			$client = \Aimeos\Utils::create( $classprefix . $name, [$client, $context], $interface );
 		}
 
+		// @phpstan-ignore return.type
 		return $client;
 	}
 
@@ -171,11 +177,13 @@ class Html
 		string $classname, string $interface, string $path ) : \Aimeos\Client\Html\Iface
 	{
 		if( isset( self::$objects[$classname] ) ) {
+			// @phpstan-ignore return.type
 			return self::$objects[$classname];
 		}
 
 		$client = \Aimeos\Utils::create( $classname, [$context], $interface );
 
+		// @phpstan-ignore-next-line
 		return self::addComponentDecorators( $context, $client, $path );
 	}
 }
