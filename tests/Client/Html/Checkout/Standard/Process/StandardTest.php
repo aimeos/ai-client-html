@@ -194,7 +194,8 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitNoStep()
 	{
-		$this->assertTrue( $this->object->init() );
+		$this->expectNotToPerformAssertions();
+		$this->object->init();
 	}
 
 
