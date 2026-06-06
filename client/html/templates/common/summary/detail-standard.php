@@ -196,7 +196,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 						<p class="code">
 							<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.' ), $enc::TRUST ) ?></span>
-							<span class="value"><?= $product->getProductCode() ?></span>
+							<span class="value"><?= $enc->html( $product->getProductCode() ) ?></span>
 						</p>
 
 						<?php if( ( $desc = $product->getDescription() ) !== '' ) : ?>

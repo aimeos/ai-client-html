@@ -64,7 +64,7 @@ $totalQty = 0;
 				<?php endforeach ?>
 			</td>
 			<td class="code">
-				<?= $product->getProductCode() ?>
+				<?= $enc->html( $product->getProductCode() ) ?>
 			</td>
 			<td class="quantity">
 				<?= $enc->html( $product->getQuantity() ) ?>
