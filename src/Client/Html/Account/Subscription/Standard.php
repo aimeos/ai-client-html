@@ -86,7 +86,9 @@ class Standard
 	{
 		$view = $this->view();
 
-		if( ( $id = $view->param( 'sub_id' ) ) != null && $view->param( 'sub_action' ) === 'cancel' ) {
+		if( $view->request()->getMethod() === 'POST'
+			&& ( $id = $view->param( 'sub_id' ) ) != null
+			&& $view->param( 'sub_action' ) === 'cancel' ) {
 			\Aimeos\Controller\Frontend::create( $this->context(), 'subscription' )->cancel( $id );
 		}
 	}

@@ -60,7 +60,7 @@ class Standard
 		try
 		{
 			// @phpstan-ignore-next-line
-			if( $view->param( 'cs_order', null ) === null ) {
+			if( $view->request()->getMethod() !== 'POST' || $view->param( 'cs_order', null ) === null ) {
 				return;
 			}
 

@@ -205,6 +205,10 @@ class Standard
 
 		if( $view->param( 'cs_order' ) !== null )
 		{
+			if( $view->request()->getMethod() !== 'POST' ) {
+				return;
+			}
+
 			parent::init();
 
 			$basketCntl->get()->setChannel( 'web' );
