@@ -262,10 +262,14 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 									<?= $enc->html( $this->translate( 'client', 'Close' ), $enc::TRUST ) ?>
 								</a>
 								<?php if( $item->getDateEnd() == null ) : ?>
-									<?php $params = ['sub_action' => 'cancel', 'sub_id' => $item->getId()] ?>
-									<a class="btn btn-primary" href="<?= $enc->attr( $this->link( 'client/html/account/subscription/url', $params, ['account-subscription'] ) ) ?>">
-										<?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ) ?>
-									</a>
+									<form class="btn-form" method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/subscription/url', [], ['account-subscription'] ) ) ?>">
+										<?= $this->csrf()->formfield() ?>
+										<input type="hidden" name="<?= $enc->attr( $this->formparam( 'sub_action' ) ) ?>" value="cancel">
+										<input type="hidden" name="<?= $enc->attr( $this->formparam( 'sub_id' ) ) ?>" value="<?= $enc->attr( $item->getId() ) ?>">
+										<button class="btn btn-primary" type="submit">
+											<?= $enc->html( $this->translate( 'client', 'Cancel' ), $enc::TRUST ) ?>
+										</button>
+									</form>
 								<?php endif ?>
 							</div>
 						</div>
