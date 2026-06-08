@@ -226,7 +226,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 
 								<?php if( $product->getQuantity() > 1 ) : ?>
 									<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() - 1 ) ?>
-									<a class="minibutton change down" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>">−</a>
+									<button class="minibutton change down" type="submit" formaction="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'Decrease' ) ) ?>">−</button>
 								<?php else : ?>
 									&nbsp;&nbsp;&nbsp;
 								<?php endif ?>
@@ -244,7 +244,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 								>
 
 								<?php $basketParams = array( 'b_action' => 'edit', 'b_position' => $position, 'b_quantity' => $product->getQuantity() + 1 ) ?>
-								<a class="minibutton change up" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>">+</a>
+								<button class="minibutton change up" type="submit" formaction="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'Increase' ) ) ?>">+</button>
 
 							<?php else : ?>
 								<?= $enc->html( $product->getQuantity() ) ?>
@@ -256,7 +256,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 						<div class="action col-1">
 							<?php if( ( $product->getFlags() & \Aimeos\MShop\Order\Item\Product\Base::FLAG_IMMUTABLE ) == 0 ) : ?>
 								<?php $basketParams = array( 'b_action' => 'delete', 'b_position' => $position ) ?>
-								<a class="minibutton delete" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>"></a>
+								<button class="minibutton delete" type="submit" formaction="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $basketParams ) ) ?>" title="<?= $enc->attr( $this->translate( 'client', 'Remove' ) ) ?>"></button>
 							<?php endif ?>
 						</div>
 						<?php endif ?>

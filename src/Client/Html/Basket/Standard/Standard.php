@@ -89,23 +89,26 @@ class Standard
 
 		try
 		{
-			switch( $view->param( 'b_action' ) )
+			if( $view->request()->getMethod() === 'POST' )
 			{
-				case 'add':
-					$this->addProducts( $view );
-					break;
-				case 'coupon-delete':
-					$this->deleteCoupon( $view );
-					break;
-				case 'delete':
-					$this->deleteProducts( $view );
-					break;
-				case 'save':
-					$this->saveBasket( $view );
-					break;
-				default:
-					$this->updateProducts( $view );
-					$this->addCoupon( $view );
+				switch( $view->param( 'b_action' ) )
+				{
+					case 'add':
+						$this->addProducts( $view );
+						break;
+					case 'coupon-delete':
+						$this->deleteCoupon( $view );
+						break;
+					case 'delete':
+						$this->deleteProducts( $view );
+						break;
+					case 'save':
+						$this->saveBasket( $view );
+						break;
+					default:
+						$this->updateProducts( $view );
+						$this->addCoupon( $view );
+				}
 			}
 
 			/** client/html/basket/standard/check
