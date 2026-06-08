@@ -84,10 +84,13 @@ $enc = $this->encoder();
 									<div class="name"><?= $enc->html( $this->translate( 'client', 'Coupons' ) ) ?>:</div>
 								</div>
 								<div class="col-6">
-									<?php foreach( $coupons as $code => $products ) : $params = array( 'b_action' => 'coupon-delete', 'b_coupon' => $code ) ?>
+									<?php foreach( $coupons as $code => $products ) : $params = array( 'b_action' => 'coupon-delete' ) ?>
 										<div class="coupon-codes">
 											<span class="coupon-code"><?= $enc->html( $code ) ?></span>
-											<a class="minibutton delete" href="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $params ) ) ?>"></a>
+											<button class="minibutton delete" type="submit"
+												name="<?= $enc->attr( $this->formparam( 'b_coupon' ) ) ?>"
+												value="<?= $enc->attr( $code ) ?>"
+												formaction="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', $params ) ) ?>"></button>
 										</div>
 									<?php endforeach ?>
 								</div>

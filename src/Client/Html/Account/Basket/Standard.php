@@ -65,7 +65,9 @@ class Standard
 	{
 		$view = $this->view();
 
-		if( ( $id = $view->param( 'bas_id' ) ) != null && $view->param( 'bas_action' ) === 'delete' )
+		if( $view->request()->getMethod() === 'POST'
+			&& ( $id = $view->param( 'bas_id' ) ) != null
+			&& $view->param( 'bas_action' ) === 'delete' )
 		{
 			$manager = \Aimeos\MShop::create( $this->context(), 'basket' );
 			$filter = $manager->filter( true )->add( 'basket.id', '==', $id );

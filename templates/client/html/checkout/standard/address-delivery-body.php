@@ -70,10 +70,11 @@ $enc = $this->encoder();
 							) ?>
 
 							<div class="button-group">
-								<a class="btn btn-delete" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ), $enc::TRUST ) ?>"
-									href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url', ['step' => 'address', 'ca_delivery_delete' => $id] ) ) ?>">
+								<button class="btn btn-delete" type="submit" name="<?= $enc->attr( $this->formparam( 'ca_delivery_delete' ) ) ?>"
+									value="<?= $enc->attr( $id ) ?>" formaction="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url', ['step' => 'address'] ) ) ?>"
+									title="<?= $enc->attr( $this->translate( 'client', 'Delete' ), $enc::TRUST ) ?>">
 									<?= $enc->html( $this->translate( 'client', 'Delete' ), $enc::TRUST ) ?>
-								</a>
+								</button>
 							</div>
 
 						</div>
