@@ -127,7 +127,7 @@ class Standard
 	{
 		$view = $this->view();
 
-		if( ( $reviews = $view->param( 'review', [] ) ) !== [] )
+		if( $view->request()->getMethod() === 'POST' && ( $reviews = $view->param( 'review', [] ) ) !== [] )
 		{
 			$ratings = 0;
 			$context = $this->context();

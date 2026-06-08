@@ -67,9 +67,14 @@ We received your payment and an e-mail with the order details will be sent to yo
 					<a class="btn btn-default btn-lg" href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url', ['c_step' => 'payment'] ) ) ?>">
 						<?= $enc->html( $this->translate( 'client', 'Change payment' ), $enc::TRUST ) ?>
 					</a>
-					<a class="btn btn-primary btn-lg" href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url', ['c_step' => 'process', 'cs_option_terms' => 1, 'cs_option_terms_value' => 1, 'cs_order' => 1] ) ) ?>">
-						<?= $enc->html( $this->translate( 'client', 'Try again' ), $enc::TRUST ) ?>
-					</a>
+					<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url', ['c_step' => 'process'] ) ) ?>">
+						<?= $this->csrf()->formfield() ?>
+						<input type="hidden" name="<?= $enc->attr( $this->formparam( 'cs_option_terms' ) ) ?>" value="1">
+						<input type="hidden" name="<?= $enc->attr( $this->formparam( 'cs_option_terms_value' ) ) ?>" value="1">
+						<button class="btn btn-primary btn-lg" type="submit" name="<?= $enc->attr( $this->formparam( 'cs_order' ) ) ?>" value="1">
+							<?= $enc->html( $this->translate( 'client', 'Try again' ), $enc::TRUST ) ?>
+						</button>
+					</form>
 				</div>
 			<?php endif ?>
 
