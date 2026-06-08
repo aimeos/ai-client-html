@@ -99,9 +99,14 @@ $enc = $this->encoder();
 							</div>
 
 							<div class="col-6 col-md-5">
-								<a class="btn btn-primary delete" href="<?= $enc->attr( $this->link( 'client/html/account/basket/url', ['bas_action' => 'delete', 'bas_id' => $basketItem->getId()] ) ) ?>">
-									<?= $enc->html( $this->translate( 'client', 'Delete' ) ) ?>
-								</a>
+								<form class="delete" method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/basket/url' ) ) ?>">
+									<?= $this->csrf()->formfield() ?>
+									<input type="hidden" name="<?= $enc->attr( $this->formparam( 'bas_action' ) ) ?>" value="delete">
+									<input type="hidden" name="<?= $enc->attr( $this->formparam( 'bas_id' ) ) ?>" value="<?= $enc->attr( $basketItem->getId() ) ?>">
+									<button class="btn btn-primary delete" type="submit">
+										<?= $enc->html( $this->translate( 'client', 'Delete' ) ) ?>
+									</button>
+								</form>
 							</div>
 
 							<div class="action col-6 col-md-2">

@@ -59,8 +59,9 @@ class Standard
 
 		try
 		{
-			if( $view->param( 'cs_order', null ) === null ) {
-				return $result;
+			// @phpstan-ignore-next-line
+			if( $view->request()->getMethod() !== 'POST' || $view->param( 'cs_order', null ) === null ) {
+				return;
 			}
 
 

@@ -145,7 +145,9 @@ class Standard
 	{
 		$view = $this->view();
 
-		if( !$view->param( 'address/save' ) && !$view->param( 'address/delete' ) ) {
+		if( $view->request()->getMethod() !== 'POST'
+			|| ( !$view->param( 'address/save' ) && !$view->param( 'address/delete' ) )
+		) {
 			return;
 		}
 

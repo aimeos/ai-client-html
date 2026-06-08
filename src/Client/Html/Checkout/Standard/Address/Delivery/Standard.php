@@ -54,7 +54,9 @@ class Standard
 
 		try
 		{
-			if( ( $id = $view->param( 'ca_delivery_delete', null ) ) !== null )
+			// @phpstan-ignore-next-line
+			if( $view->request()->getMethod() === 'POST'
+				&& ( $id = $view->param( 'ca_delivery_delete', null ) ) !== null )
 			{
 				$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
 

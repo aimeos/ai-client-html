@@ -31,9 +31,10 @@ $enc = $this->encoder();
 
 		<div class="item-address item-default">
 			<div class="header">
-				<a class="modify minibutton delete" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ) ) ?>"
-					href="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url', ['step' => 'address', 'ca_delivery_delete' => $id] ) ) ?>">
-				</a>
+				<button class="modify minibutton delete" type="submit" title="<?= $enc->attr( $this->translate( 'client', 'Delete' ) ) ?>"
+					name="<?= $enc->attr( $this->formparam( 'ca_delivery_delete' ) ) ?>" value="<?= $enc->attr( $id ) ?>"
+					formaction="<?= $enc->attr( $this->link( 'client/html/checkout/standard/url', ['step' => 'address'] ) ) ?>">
+				</button>
 				<input id="ca_deliveryoption-<?= $id ?>" type="radio" value="<?= $enc->attr( $id ) ?>"
 					name="<?= $enc->attr( $this->formparam( ['ca_deliveryoption'] ) ) ?>"
 					<?= $this->get( 'addressDeliveryOption' ) == $id ? 'checked="checked"' : '' ?>>
