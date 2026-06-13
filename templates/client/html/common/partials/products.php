@@ -225,6 +225,8 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 			<a href="<?= $enc->attr( $url ) ?>">
 
 				<div class="product-info">
+					<div class="code" itemprop="sku"><?= $enc->html( $productItem->getCode() ) ?></div>
+					
 					<?php if( $supplier = $productItem->getRefItems( 'supplier' )->getName()->first() ) : ?>
 						<div class="supplier"><?= $enc->html( $supplier ) ?></div>
 					<?php elseif( $siteItem = $productItem->getSiteItem() ) : ?>
