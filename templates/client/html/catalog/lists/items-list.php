@@ -75,9 +75,9 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 
 				<a class="text-list" href="<?= $url ?>">
-					<h3 class="code" itemprop="sku"><?= $enc->html( $productItem->getCode() ) ?></h3>
+					<div class="code" itemprop="sku"><?= $enc->html( $productItem->getCode() ) ?></div>
 					<?php if( !( $suppliers = $productItem->getRefItems( 'supplier' ) )->isEmpty() ) : ?>
-						<h3 class="supplier"><?= $enc->html( $suppliers->getName()->first(), $enc::TRUST ) ?></h3>
+						<div class="supplier"><?= $enc->html( $suppliers->getName()->first(), $enc::TRUST ) ?></div>
 					<?php endif ?>
 
 					<h2 itemprop="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h2>
