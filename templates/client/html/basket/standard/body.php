@@ -26,6 +26,7 @@ $enc = $this->encoder();
 							<input class="form-control basket-name" type="text" maxlength="255"
 								placeholder="<?= $enc->attr( $this->translate( 'client', 'Basket name' ) ) ?>"
 								name="<?= $enc->attr( $this->formparam( 'b_name' ) ) ?>"
+								required
 							>
 							<button class="btn" type="submit"
 								formaction="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ['b_action' => 'save'] ) ) ?>">
