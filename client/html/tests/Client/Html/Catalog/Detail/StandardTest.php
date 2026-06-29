@@ -186,6 +186,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testModifyBodyMultipleCsrfSections()
+	{
+		$marker = '<!-- catalog.detail.csrf -->';
+		$content = str_repeat( '<form>' . $marker . '_csrf_old' . $marker . '</form>', 4 );
+
+		$output = $this->object->modifyBody( $content, 1 );
+
+		$this->assertEquals( 4, substr_count( $output, '<input class="csrf-token" type="hidden" name="_csrf_token" value="_csrf_value"' ) );
+		$this->assertEquals( 8, substr_count( $output, $marker ) );
+		$this->assertEquals( 0, substr_count( $output, '_csrf_old' ) );
+	}
+
+
 	public function testGetBodyAttributes()
 	{
 		$product = $this->getProductItem( 'U:TESTP', array( 'attribute' ) );
