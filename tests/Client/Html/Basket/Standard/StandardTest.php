@@ -62,6 +62,70 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( '<div class="section aimeos basket-standard', $output );
 		$this->assertStringContainsString( '<div class="common-summary-detail', $output );
 		$this->assertStringContainsString( '<div class="basket-standard-coupon', $output );
+		$this->assertEquals( 2, substr_count( $output, '<form ' ) );
+		$this->assertMatchesRegularExpression( '#<form class="input-group basket-save".*<input class="form-control basket-name"[^>]+required="required".*</form>.*<form method="POST"#smU', $output );
+	}
+
+
+	public function testBodySave()
+	{
+		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' );
+		$this->context->setUser( $customer );
+
+		$name = 'Unit test basket ' . md5( __METHOD__ );
+		$this->deleteSavedBaskets( $customer->getId(), $name );
+
+		try
+		{
+			$this->addProduct( 'CNE', 1, 'default' );
+
+			$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['b_action' => 'save', 'b_name' => $name] );
+			$this->view->addHelper( 'param', $helper );
+
+			$this->object->init();
+
+			$items = $this->savedBaskets( $customer->getId(), $name );
+
+			$this->assertCount( 1, $items );
+			$this->assertEquals( $name, $items->first()->getName() );
+			$this->assertContains( 'Basket saved sucessfully', $this->view->get( 'infos', [] ) );
+		}
+		finally
+		{
+			$this->deleteSavedBaskets( $customer->getId(), $name );
+		}
+	}
+
+
+	public function testBodySaveMissingName()
+	{
+		$customer = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' );
+		$this->context->setUser( $customer );
+
+		$ids = [];
+
+		try
+		{
+			$this->addProduct( 'CNE', 1, 'default' );
+
+			$ids = $this->savedBasketIds( $customer->getId(), '' );
+
+			$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['b_action' => 'save', 'b_name' => ''] );
+			$this->view->addHelper( 'param', $helper );
+
+			$this->object->init();
+
+			$this->assertSame( $ids, $this->savedBasketIds( $customer->getId(), '' ) );
+			$this->assertContains( 'Basket name is missing', $this->view->get( 'errors', [] ) );
+		}
+		finally
+		{
+			$newIds = array_diff( $this->savedBasketIds( $customer->getId(), '' ), $ids );
+
+			if( !empty( $newIds ) ) {
+				\Aimeos\MShop::create( $this->context, 'basket' )->delete( $newIds );
+			}
+		}
 	}
 
 
@@ -449,6 +513,49 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view->addHelper( 'param', $helper );
 
 		$this->object->init();
+	}
+
+
+	/**
+	 * @param string $customerId
+	 * @param string $name
+	 */
+	protected function deleteSavedBaskets( $customerId, $name )
+	{
+		$manager = \Aimeos\MShop::create( $this->context, 'basket' );
+		$items = $this->savedBaskets( $customerId, $name );
+
+		if( !$items->isEmpty() ) {
+			$manager->delete( $items->keys() );
+		}
+	}
+
+
+	/**
+	 * @param string $customerId
+	 * @param string $name
+	 */
+	protected function savedBasketIds( $customerId, $name )
+	{
+		$ids = $this->savedBaskets( $customerId, $name )->keys()->toArray();
+		sort( $ids );
+
+		return $ids;
+	}
+
+
+	/**
+	 * @param string $customerId
+	 * @param string $name
+	 */
+	protected function savedBaskets( $customerId, $name )
+	{
+		$manager = \Aimeos\MShop::create( $this->context, 'basket' );
+		$filter = $manager->filter()
+			->add( 'basket.customerid', '==', $customerId )
+			->add( 'basket.name', '==', $name );
+
+		return $manager->search( $filter );
 	}
 
 

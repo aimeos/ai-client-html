@@ -344,10 +344,19 @@ class Standard
 			return;
 		}
 
+		if( ( $name = trim( (string) $view->param( 'b_name', '' ) ) ) === '' )
+		{
+			$msg = $view->translate( 'client', 'Basket name is missing' );
+			// @phpstan-ignore-next-line
+			$view->errors = array_merge( $view->get( 'errors', [] ), [$msg] );
+
+			return;
+		}
+
 		$manager = \Aimeos\MShop::create( $context, 'basket' );
 
 		$item = $manager->create()->setId( bin2hex( random_bytes( 16 ) ) )
-			->setCustomerId( $userId )->setName( $view->param( 'b_name', date( 'Y-m-d H:i:s' ) ) )
+			->setCustomerId( $userId )->setName( $name )
 			->setItem( \Aimeos\Controller\Frontend::create( $context, 'basket' )->get() );
 
 		// @phpstan-ignore-next-line
