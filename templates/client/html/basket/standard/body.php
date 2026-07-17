@@ -19,11 +19,14 @@ $enc = $this->encoder();
 				<h2 class="col-12 col-md-6"><?= $enc->html( $this->translate( 'client', 'Basket' ), $enc::TRUST ) ?></h2>
 
 				<div class="col-12 col-md-6">
-					<form class="input-group basket-save" method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ['b_action' => 'save'] ) ) ?>">
+					<form class="input-group basket-save" method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url', ['b_action' => 'save'] ) ) ?>"
+						toolname="save_basket"
+						tooldescription="<?= $enc->attr( $this->translate( 'client', 'Saves the current basket under a name for later use.' ) ) ?>">
 						<?= $this->csrf()->formfield() ?>
 						<input class="form-control basket-name" type="text" maxlength="255"
 							placeholder="<?= $enc->attr( $this->translate( 'client', 'Basket name' ) ) ?>"
 							name="<?= $enc->attr( $this->formparam( 'b_name' ) ) ?>"
+							toolparamdescription="<?= $enc->attr( $this->translate( 'client', 'Name for the saved basket.' ) ) ?>"
 							required="required"
 						>
 						<button class="btn" type="submit">
@@ -72,11 +75,15 @@ $enc = $this->encoder();
 
 				<div class="col-12 col-md-6 content">
 
-					<form class="input-group coupon-new" method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url' ) ) ?>">
+					<form class="input-group coupon-new" method="POST" action="<?= $enc->attr( $this->link( 'client/html/basket/standard/url' ) ) ?>"
+						toolname="apply_coupon"
+						tooldescription="<?= $enc->attr( $this->translate( 'client', 'Applies a coupon code to the current basket.' ) ) ?>">
 						<?= $this->csrf()->formfield() ?>
 						<input class="form-control coupon-code" type="text" maxlength="255"
 							placeholder="<?= $enc->attr( $this->translate( 'client', 'Coupon codes' ) ) ?>"
 							name="<?= $enc->attr( $this->formparam( 'b_coupon' ) ) ?>"
+							toolparamdescription="<?= $enc->attr( $this->translate( 'client', 'Coupon code to apply to the basket.' ) ) ?>"
+							required="required"
 						><!--
 						--><button class="btn btn-primary" type="submit"><?= $enc->html( $this->translate( 'client', 'Apply' ) ) ?></button>
 					</form>

@@ -65,9 +65,18 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertSame( $addressCount + 2, substr_count( $output, 'class="address-save ' ) );
 		$this->assertSame( $addressCount, substr_count( $output, 'class="address-delete ' ) );
 		$this->assertSame( $addressCount * 2 + 2, substr_count( $output, '<form ' ) );
+		preg_match_all( '/toolname="([^"]+)"/', $output, $tools );
+		$this->assertCount( $addressCount * 2 + 2, $tools[1] );
+		$this->assertSame( $tools[1], array_values( array_unique( $tools[1] ) ) );
+		$this->assertContains( 'update_billing_address', $tools[1] );
+		$this->assertContains( 'add_delivery_address', $tools[1] );
+		$this->assertSame( count( $tools[1] ), substr_count( $output, 'tooldescription=' ) );
+		$this->assertDoesNotMatchRegularExpression( '#<(?:input|select) class="form-control"[^>]* disabled#', $output );
 
 		foreach( $customer->getAddressItems() as $idx => $item ) {
 			$this->assertMatchesRegularExpression( '#id="address-delivery-salutation-' . $idx . '"#', $output );
+			$this->assertContains( 'update_delivery_address_' . $idx, $tools[1] );
+			$this->assertContains( 'delete_delivery_address_' . $idx, $tools[1] );
 		}
 	}
 

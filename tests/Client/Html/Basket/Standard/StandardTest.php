@@ -67,6 +67,13 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertMatchesRegularExpression( '#<form id="basket-standard-update".*<div class="common-summary-detail.*</form>\s*<div class="basket-standard-coupon#smU', $output );
 		$this->assertMatchesRegularExpression( '#<form class="input-group coupon-new".*name="b_coupon".*>.*Apply.*</form>#smU', $output );
 		$this->assertStringContainsString( 'class="btn btn-default btn-lg btn-update" type="submit" form="basket-standard-update"', $output );
+		$this->assertSame( 2, substr_count( $output, 'toolname=' ) );
+		$this->assertStringContainsString( 'toolname="save_basket"', $output );
+		$this->assertStringContainsString( 'toolname="apply_coupon"', $output );
+		$this->assertSame( 2, substr_count( $output, 'tooldescription=' ) );
+		$this->assertSame( 2, substr_count( $output, 'toolparamdescription=' ) );
+		$this->assertMatchesRegularExpression( '#<input class="form-control coupon-code"[^>]+required="required"#s', $output );
+		$this->assertStringNotContainsString( 'toolautosubmit', $output );
 	}
 
 

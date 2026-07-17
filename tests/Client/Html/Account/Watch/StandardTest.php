@@ -55,6 +55,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertStringContainsString( '<div class="section aimeos account-watch"', $output );
 		$this->assertStringContainsString( 'Cafe Noire Expresso', $output );
+		preg_match_all( '/toolname="(update_product_watch_[^"]+)"/', $output, $tools );
+		$this->assertNotEmpty( $tools[1] );
+		$this->assertSame( $tools[1], array_values( array_unique( $tools[1] ) ) );
+		$this->assertSame( count( $tools[1] ), substr_count( $output, 'class="watch-details"' ) );
+		$this->assertSame( count( $tools[1] ), substr_count( $output, 'tooldescription="Updates notification settings for the watched product' ) );
 
 		foreach( ['timeframe', 'price', 'stock'] as $type )
 		{

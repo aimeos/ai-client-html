@@ -139,7 +139,9 @@ $enc = $this->encoder();
 							</a>
 
 							<?php $url = $this->link( 'client/html/account/watch/url', $this->get( 'watchParams', [] ) ) ?>
-							<form class="watch-details" method="POST" action="<?= $enc->attr( $url ) ?>">
+							<form class="watch-details" method="POST" action="<?= $enc->attr( $url ) ?>"
+								toolname="update_product_watch_<?= $enc->attr( $watchId ) ?>"
+								tooldescription="<?= $enc->attr( sprintf( $this->translate( 'client', 'Updates notification settings for the watched product "%1$s".' ), $productItem->getName() ) ) ?>">
 								<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'wat_action' ) ) ) ?>" value="edit">
 								<input type="hidden" name="<?= $enc->attr( $this->formparam( array( 'wat_id' ) ) ) ?>" value="<?= $enc->attr( $listItem->getRefId() ) ?>">
 								<?= $this->csrf()->formfield() ?>

@@ -116,7 +116,9 @@ $url = $this->link( 'client/html/account/profile/url' );
 								</div>
 								<div class="address accordion-collapse collapse" id="address-payment" data-bs-parent="#address-payment-list">
 
-									<form class="address-save address-payment-save" method="POST" action="<?= $enc->attr( $url ) ?>">
+									<form class="address-save address-payment-save" method="POST" action="<?= $enc->attr( $url ) ?>"
+										toolname="update_billing_address"
+										tooldescription="<?= $enc->attr( $this->translate( 'client', 'Updates the billing address for the current customer account.' ) ) ?>">
 										<?= $this->csrf()->formfield() ?>
 										<input type="hidden" name="<?= $enc->attr( $this->formparam( ['address', 'save'] ) ) ?>" value="1">
 
@@ -139,6 +141,7 @@ $url = $this->link( 'client/html/account/profile/url' );
 													'id' => $addr['customer.id'] ?? null,
 													'countries' => $this->get( 'addressCountries', [] ),
 													'css' => $this->get( 'addressPaymentCss', [] ),
+													'disabled' => false,
 													'error' => $this->get( 'addressPaymentError', [] ),
 													'formnames' => ['address', 'payment'],
 													'languages' => $this->get( 'addressLanguages', [] ),
@@ -180,7 +183,9 @@ $url = $this->link( 'client/html/account/profile/url' );
 									</div>
 									<div class="address accordion-collapse collapse" id="address-delivery-<?= $enc->attr( $pos ) ?>" data-bs-parent="#address-delivery-list">
 
-										<form id="profile-address-delivery-save-<?= $enc->attr( $pos ) ?>" class="address-save address-delivery-save" method="POST" action="<?= $enc->attr( $url ) ?>">
+										<form id="profile-address-delivery-save-<?= $enc->attr( $pos ) ?>" class="address-save address-delivery-save" method="POST" action="<?= $enc->attr( $url ) ?>"
+											toolname="update_delivery_address_<?= $enc->attr( $pos ) ?>"
+											tooldescription="<?= $enc->attr( sprintf( $this->translate( 'client', 'Updates the delivery address "%1$s" for the current customer account.' ), $addr['string'] ?? '' ) ) ?>">
 											<?= $this->csrf()->formfield() ?>
 											<input type="hidden" name="<?= $enc->attr( $this->formparam( ['address', 'save'] ) ) ?>" value="1">
 
@@ -197,6 +202,7 @@ $url = $this->link( 'client/html/account/profile/url' );
 														'id' => $addr['customer.address.id'] ?? null,
 														'countries' => $this->get( 'addressCountries', [] ),
 														'css' => $this->get( 'addressDeliveryCss', [] ),
+														'disabled' => false,
 														'error' => $this->get( 'addressDeliveryError', [] ),
 														'formnames' => ['address', 'delivery', $pos],
 														'languages' => $this->get( 'addressLanguages', [] ),
@@ -211,7 +217,9 @@ $url = $this->link( 'client/html/account/profile/url' );
 											</div>
 										</form>
 
-										<form id="profile-address-delivery-delete-<?= $enc->attr( $pos ) ?>" class="address-delete address-delivery-delete" method="POST" action="<?= $enc->attr( $url ) ?>">
+										<form id="profile-address-delivery-delete-<?= $enc->attr( $pos ) ?>" class="address-delete address-delivery-delete" method="POST" action="<?= $enc->attr( $url ) ?>"
+											toolname="delete_delivery_address_<?= $enc->attr( $pos ) ?>"
+											tooldescription="<?= $enc->attr( sprintf( $this->translate( 'client', 'Deletes the delivery address "%1$s" from the current customer account.' ), $addr['string'] ?? '' ) ) ?>">
 											<?= $this->csrf()->formfield() ?>
 											<input type="hidden" name="<?= $enc->attr( $this->formparam( ['address', 'delete'] ) ) ?>" value="<?= $enc->attr( $pos ) ?>">
 										</form>
@@ -240,7 +248,9 @@ $url = $this->link( 'client/html/account/profile/url' );
 								</div>
 								<div class="address accordion-collapse collapse" id="address-delivery-<?= $enc->attr( $pos ) ?>" data-bs-parent="#address-delivery-list">
 
-									<form class="address-save address-delivery-save address-delivery-new-save" method="POST" action="<?= $enc->attr( $url ) ?>">
+									<form class="address-save address-delivery-save address-delivery-new-save" method="POST" action="<?= $enc->attr( $url ) ?>"
+										toolname="add_delivery_address"
+										tooldescription="<?= $enc->attr( $this->translate( 'client', 'Adds a new delivery address to the current customer account.' ) ) ?>">
 										<?= $this->csrf()->formfield() ?>
 										<input type="hidden" name="<?= $enc->attr( $this->formparam( ['address', 'save'] ) ) ?>" value="1">
 
@@ -256,6 +266,7 @@ $url = $this->link( 'client/html/account/profile/url' );
 													'address' => [],
 													'countries' => $this->get( 'addressCountries', [] ),
 													'css' => $this->get( 'addressDeliveryCss', [] ),
+													'disabled' => false,
 													'error' => $this->get( 'addressDeliveryError', [] ),
 													'formnames' => ['address', 'delivery', $pos],
 													'languages' => $this->get( 'addressLanguages', [] ),
