@@ -102,21 +102,35 @@ AimeosCatalogFilter = {
 	onLoadSearch() {
 
 		$(".catalog-filter-search .value").each((idx, el) => {
-			const url = $(el).data("url");
+			const url = Aimeos.sameOriginUrl($(el).data("url"));
+			if(!url) return;
+			let cache = new Map(); // workaround for re-rendering on Swiffy slider animation
+			let cachedValue;
 
 			autocomplete({
 				input: el,
 				debounceWaitMs: 200,
 				minLength: AimeosCatalogFilter.MIN_INPUT_LEN,
-				fetch: function(text, update) {
-					fetch(url.replace('_term_', encodeURIComponent(text))).then(response => {
+				fetch: async function(text, update) {
+					await Aimeos.fetchResponse(url.href.replace('_term_', encodeURIComponent(text)), 'json').then(response => {
 						return response.json();
 					}).then(data => {
-						update(data);
+						update(Array.isArray(data) ? data.filter(item => item && typeof item.label === 'string' && typeof item.html === 'string') : []);
+					}).catch(error => {
+						update([]);
+						console.warn('Unable to load search suggestions', error);
 					});
 				},
-				render: function(item) {
-					return $(item.html.trim()).get(0);
+				render: function(item, value) {
+					if(cachedValue !== value) {
+						cache.clear(); cachedValue = value;
+					}
+
+					if(!cache.has(item.label)) {
+						cache.set(item.label, Aimeos.parseHtml(item.html).body.firstElementChild);
+					}
+
+					return cache.get(item.label);
 				}
 			});
 		});
@@ -161,13 +175,11 @@ AimeosCatalogFilter = {
 
 					if(input.has(".search-hint").length === 0) {
 
-						const node = $('<div class="search-hint">' + input.data("hint") + '</div>');
+						const node = $('<div class="search-hint">').text(input.attr("data-hint") || '');
 						const pos = node.position();
 
 						node.css("left", pos.left).css("top", pos.top);
-						node.delay(3000).fadeOut(1000, () => {
-							node.remove();
-						});
+						setTimeout(() => node.remove(), 4000);
 
 						$(".catalog-filter-search", ev.currentTarget).after(node);
 					}

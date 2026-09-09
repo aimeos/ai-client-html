@@ -48,8 +48,8 @@ AimeosBasketMini = {
 						product.data("url", entry.links.self.href + urldata);
 					}
 
-					$(".name", product).html(entry.attributes['order.base.product.name']);
-					$(".quantity", product).html(entry.attributes['order.base.product.quantity']);
+					$(".name", product).text(entry.attributes['order.base.product.name']);
+					$(".quantity", product).text(entry.attributes['order.base.product.quantity']);
 					$(".price", product).html(formatter.format(entry.attributes['order.base.product.price']));
 
 					if(entry.attributes['order.base.product.flags']) {

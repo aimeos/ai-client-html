@@ -8,24 +8,26 @@ AimeosAccountWatch = {
 	 */
 	onRemoveProduct() {
 
-		$("body").on("click", ".account-watch .delete", ev => {
+		$("body").on("click", ".account-watch .delete", async ev => {
+			ev.preventDefault();
 
 			const form = $(ev.currentTarget).closest("form");
 			$(ev.currentTarget).closest("watch-item").addClass("loading");
 
-			fetch(form.attr("action"), {
+			await Aimeos.fetchHtml(form.attr("action"), {
 				body: new FormData(form[0]),
 				method: 'POST'
-			}).then(response => {
-				return response.text();
 			}).then(data => {
-				const doc = $("<html/>").html(data);
+				const doc = Aimeos.parseHtml(data);
 
 				$(".aimeos.account-watch").replaceWith($(".aimeos.account-watch", doc));
 
 				if(!$(".aimeos.account-watch .watch-items").length) {
 					Aimeos.removeOverlay();
 				}
+			}).catch(error => {
+				$(ev.currentTarget).closest('.watch-item').removeClass('loading');
+				console.warn('Unable to update the watch list', error);
 			});
 
 			return false;
@@ -38,19 +40,21 @@ AimeosAccountWatch = {
 	 */
 	onSaveProduct() {
 
-		$("body").on("click", ".account-watch .btn-action", ev => {
+		$("body").on("click", ".account-watch .btn-action", async ev => {
+			ev.preventDefault();
 
 			const form = $(ev.currentTarget).closest("form");
 			form.addClass("loading");
 
-			fetch(form.attr("action"), {
+			await Aimeos.fetchHtml(form.attr("action"), {
 				body: new FormData(form[0]),
 				method: 'POST'
-			}).then(response => {
-				return response.text();
 			}).then(data => {
-				const doc = $("<html/>").html(data);
+				const doc = Aimeos.parseHtml(data);
 				$(".aimeos.account-watch").replaceWith($(".aimeos.account-watch", doc));
+			}).catch(error => {
+				form.removeClass('loading');
+				console.warn('Unable to update the watch list', error);
 			});
 
 			return false;

@@ -168,7 +168,7 @@ $errors = $this->get( 'summaryErrorCodes', [] );
 									$url = $this->url( ( $product->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig );
 								}
 							?>
-							<a class="product-name" href="<?= $enc->attr( $url ) ?>"><?= $enc->html( $product->getName(), $enc::TRUST ) ?></a>
+							<a class="product-name" href="<?= $enc->attr( $url ) ?>"><?= $enc->html( $product->getName() ) ?></a>
 							<p class="code">
 								<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.' ), $enc::TRUST ) ?></span>
 								<span class="value"><?= $enc->html( $product->getProductCode() ) ?></span>

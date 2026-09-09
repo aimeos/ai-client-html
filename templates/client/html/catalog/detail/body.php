@@ -87,14 +87,14 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 						<?php if( !( $suppliers = $this->detailProductItem->getRefItems( 'supplier' ) )->isEmpty() ) : $name = $suppliers->getName()->first() ?>
 							<p class="supplier">
 								<a href="<?= $enc->attr( $this->link( 'client/html/supplier/detail/url', ['f_supid' => $suppliers->firstKey(), 's_name' => $name] ) ) ?>">
-									<?= $enc->html( $name, $enc::TRUST ) ?>
+									<?= $enc->html( $name ) ?>
 								</a>
 							</p>
 						<?php elseif( $this->get( 'contextSite' ) !== 'default' ) : ?>
 							<p class="site"><?= $enc->html( $this->get( 'contextSiteLabel' ) ) ?></p>
 						<?php endif ?>
 
-						<h1 class="name" itemprop="name"><?= $enc->html( $this->detailProductItem->getName(), $enc::TRUST ) ?></h1>
+						<h1 class="name" itemprop="name"><?= $enc->html( $this->detailProductItem->getName() ) ?></h1>
 
 						<p class="code">
 							<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.' ), $enc::TRUST ) ?>: </span>
@@ -414,7 +414,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 													<?php foreach( $propItems as $propItem ) : ?>
 
 														<tr class="item <?= ( $id = $propItem->get( 'parent' ) ) ? 'subproduct subproduct-' . $id : '' ?>">
-															<td class="name"><?= $enc->html( $this->translate( 'client/code', $propItem->getType() ), $enc::TRUST ) ?></td>
+															<td class="name"><?= $enc->html( $this->translate( 'client/code', $propItem->getType() ) ) ?></td>
 															<td class="value"><?= $enc->html( $propItem->getValue() ) ?></td>
 														</tr>
 
@@ -594,7 +594,7 @@ $reqstock = (int) $this->config( 'client/html/basket/require-stock', true );
 									<?php endif ?>
 
 									<h3 class="supplier-name">
-										<?= $enc->html( $supplierItem->getName(), $enc::TRUST ) ?>
+										<?= $enc->html( $supplierItem->getName() ) ?>
 
 										<?php if( ( $addrItem = $supplierItem->getAddressItems()->first() ) !== null ) : ?>
 											<span class="supplier-address">(<?= $enc->html( $addrItem->getCity() ) ?>, <?= $enc->html( $addrItem->getCountryId() ) ?>)</span>

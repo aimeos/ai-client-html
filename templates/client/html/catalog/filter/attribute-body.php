@@ -62,7 +62,7 @@ $params = $this->param();
 								<?php endif; ?>
 
 								<a class="minibutton close" href="<?= $enc->attr( $this->link( $linkKey, $attribute->get( 'params', [] ) ) ); ?>">
-									<?= $enc->html( $attribute->getName(), $enc::TRUST ); ?>
+									<?= $enc->html( $attribute->getName() ); ?>
 								</a>
 							<?php endforeach; ?>
 						<?php endforeach; ?>
@@ -102,7 +102,7 @@ $params = $this->param();
 												<?php endforeach ?>
 
 											--></div>
-											<span><?= $enc->html( $attribute->getName(), $enc::TRUST ) ?></span><!--
+											<span><?= $enc->html( $attribute->getName() ) ?></span><!--
 										--></label>
 									</li><!--
 

@@ -165,6 +165,30 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testHeaderDefaultCodeEmptyId()
+	{
+		$this->context->config()->set( 'client/html/catalog/detail/prodid-default', '' );
+		$this->context->config()->set( 'client/html/catalog/detail/prodcode-default', 'CNE' );
+
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, [] );
+		$this->view->addHelper( 'param', $helper );
+
+		$this->assertStringContainsString( '<title>Cafe Noire Expresso Test supplier | Aimeos</title>', $this->object->header() );
+	}
+
+
+	public function testBodyDefaultCodeEmptyId()
+	{
+		$this->context->config()->set( 'client/html/catalog/detail/prodid-default', '' );
+		$this->context->config()->set( 'client/html/catalog/detail/prodcode-default', 'CNE' );
+
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, [] );
+		$this->view->addHelper( 'param', $helper );
+
+		$this->assertStringContainsString( '<span class="value" itemprop="sku">CNE</span>', $this->object->body() );
+	}
+
+
 	public function testBodyCsrf()
 	{
 		$item = $this->getProductItem();

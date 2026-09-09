@@ -46,7 +46,7 @@ $config = $this->config( 'client/html/supplier/detail/url/config', [] );
 		<link rel="canonical" href="<?= $enc->attr( $this->url( $target, $cntl, $action, $params, [], $config + ['absoluteUri' => true] ) ) ?>">
 
 		<meta property="og:type" content="website">
-		<meta property="og:title" content="<?= $enc->html( $this->detailSupplierItem->getName() ) ?>">
+		<meta property="og:title" content="<?= $enc->attr( $this->detailSupplierItem->getName() ) ?>">
 		<meta property="og:url" content="<?= $enc->attr( $this->url( $target, $cntl, $action, $params, [], $config + ['absoluteUri' => true] ) ) ?>">
 
 		<?php foreach( $this->detailSupplierItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>

@@ -21,7 +21,7 @@ $enc = $this->encoder();
 			<div class="row">
 				<div class="supplier-detail-basic col-sm-6 col-md-7 col-lg-8">
 
-					<h1 class="name" itemprop="name"><?= $enc->html( $this->detailSupplierItem->getName(), $enc::TRUST ) ?></h1>
+					<h1 class="name" itemprop="name"><?= $enc->html( $this->detailSupplierItem->getName() ) ?></h1>
 
 					<?php foreach( $this->detailSupplierItem->getRefItems( 'text', 'long' ) as $textItem ) : ?>
 						<div class="long item"><?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?></div>

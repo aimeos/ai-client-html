@@ -48,7 +48,7 @@ $linkKey = $this->param( 'f_catid' ) ? 'client/html/catalog/tree/url' : 'client/
 									<?php endforeach ?>
 
 								</div>
-								<span><?= $enc->html( $supplier->getName(), $enc::TRUST ) ?></span>
+								<span><?= $enc->html( $supplier->getName() ) ?></span>
 							</label>
 						</li>
 					<?php endforeach ?>

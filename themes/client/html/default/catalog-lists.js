@@ -10,13 +10,14 @@ AimeosCatalogLists = {
 	 */
 	showBasket(form) {
 
-		fetch(form.getAttribute("action"), {
+		Aimeos.fetchHtml(form.getAttribute("action"), {
 			body: new FormData(form),
 			method: 'POST'
-		}).then(response => {
-			return response.text();
 		}).then(data => {
 			Aimeos.createContainer(AimeosBasket.updateBasket(data));
+		}).catch(error => {
+			Aimeos.removeOverlay();
+			console.warn('Unable to update the basket', error);
 		});
 	},
 
@@ -73,45 +74,83 @@ AimeosCatalogLists = {
 
 
 	/**
+	 * Identifies a stock endpoint, allowing only numeric product-ID parameters to vary.
+	 * Keep routing parameters intact, including namespaced TYPO3 parameters.
+	 */
+	stockRoute(value) {
+		const url = Aimeos.sameOriginUrl(value);
+		if(!url) return null;
+
+		for(const key of Array.from(url.searchParams.keys())) {
+			if(/(?:^|\[)st_pid\]?(?:\[\d*\])*$/.test(key)
+				&& url.searchParams.getAll(key).every(value => /^\d+$/.test(value))) {
+				url.searchParams.delete(key);
+			}
+		}
+		url.hash = '';
+		url.searchParams.sort();
+		return url.href;
+	},
+
+
+	/**
 	 * Enables infinite scroll if available
 	 */
 	onScroll() {
 
-		if($('.catalog-list-items').data('infiniteurl')) {
-			const scroll = function() {
+		// Only stock endpoints declared in the original page head may supply scripts.
+		const stocks = Array.from(document.head.querySelectorAll('script.items-stock[src]'), node => ({
+			route: this.stockRoute(node.getAttribute('src')), nonce: node.nonce
+		})).filter(item => item.route);
 
-				const list = $('.catalog-list-items');
-				const infiniteUrl = list.data('infiniteurl');
+		$('.catalog-list-items[data-infiniteurl]').each((idx, element) => {
+			const list = $(element);
+			const initial = Aimeos.sameOriginUrl(list.data('infiniteurl'));
+			if(!initial) return;
 
-				if(infiniteUrl && list.length && list[0].getBoundingClientRect().bottom < window.innerHeight * 3) {
+			const scroll = async function() {
+				const url = Aimeos.sameOriginUrl(list.data('infiniteurl'));
+
+				if(url && url.pathname === initial.pathname && element.getBoundingClientRect().bottom < window.innerHeight * 3) {
 					list.data('infiniteurl', '');
 
-					fetch(infiniteUrl).then(response => {
-						return response.text();
-					}).then(data => {
-						const nextPage = $('<html/>').html(data);
-						const newList = $('.catalog-list-items', nextPage);
+					await Aimeos.fetchHtml(url.href).then(data => {
+						const nextPage = new DOMParser().parseFromString(data, 'text/html');
+						const stockScripts = [];
+						for(const node of nextPage.querySelectorAll('script.items-stock[src]')) {
+							const src = Aimeos.sameOriginUrl(node.getAttribute('src'));
+							const route = src && AimeosCatalogLists.stockRoute(src.href);
+							const stock = stocks.find(item => item.route === route);
+							if(stock) stockScripts.push({src: src.href, nonce: stock.nonce});
+						}
+						// Never adopt script elements or inline code from a fetched page.
+						Aimeos.cleanHtml(nextPage);
+						const newList = $('.catalog-list-items[data-infiniteurl]', nextPage).first();
+						if(!newList.length) return;
 						const ids = newList.data('pinned') || {};
 
 						$('.product', newList).each((idx, node) => {
 							ids[node.dataset.prodid] ? $('.btn-pin', node).addClass('active') : null;
-							list.append(node);
+							element.appendChild(node);
 						});
 
-						$('head .items-stock', nextPage).each((idx, node) => {
-							$(document.head).append($('<script/>').attr('src', $(node).attr('src')));
-						});
+						for(const item of stockScripts) {
+							const script = document.createElement('script');
+							script.src = item.src;
+							script.nonce = item.nonce;
+							document.head.appendChild(script);
+						}
 
 						list.data('infiniteurl', newList.data('infiniteurl'));
 						$(window).trigger('scroll');
 						Aimeos.loadImages();
-					});
+					}).catch(error => console.warn('Unable to load the next catalog page', error));
 				}
 			};
 
 			$(window).on('scroll', scroll);
 			scroll();
-		}
+		});
 	},
 
 
@@ -120,10 +159,11 @@ AimeosCatalogLists = {
 	 */
 	onPin() {
 
-		$("body").on("click", ".catalog-list-items .product .btn-pin", ev => {
+		$("body").on("click", ".catalog-list-items .product .btn-pin", async ev => {
+			ev.preventDefault();
 
 			const el = $(ev.currentTarget);
-			const url = el.hasClass('active') ? el.data('rmurl') : el.attr('href');
+			const url = Aimeos.sameOriginUrl(el.hasClass('active') ? el.data('rmurl') : el.attr('href'));
 
 			if(url) {
 				const form = new FormData();
@@ -132,18 +172,19 @@ AimeosCatalogLists = {
 				form.append(csrf.attr('name'), csrf.attr('value'));
 				el.toggleClass('active');
 
-				fetch(url, {
+				await Aimeos.fetchHtml(url.href, {
 					method: 'POST',
 					body: form
-				}).then(response => {
-					return response.text();
 				}).then(data => {
-					const doc = $('<html/>').html(data);
+					const doc = Aimeos.parseHtml(data);
 					const pinned = $(".catalog-session-pinned", doc);
 
 					if(pinned.length) {
 						$('.catalog-session-pinned').replaceWith(pinned);
 					}
+				}).catch(error => {
+					el.toggleClass('active');
+					console.warn('Unable to update pinned products', error);
 				});
 
 				return false;
