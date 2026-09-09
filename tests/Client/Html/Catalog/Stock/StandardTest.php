@@ -53,4 +53,56 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$output = $this->object->body();
 		$this->assertMatchesRegularExpression( '/"' . $prodid . '".*stock-high/', $output );
 	}
+
+
+	public function testBodyEncodesStockType()
+	{
+		$item = ( new \Aimeos\MShop\Stock\Item\Standard( 'stock.' ) )->setProductId( '1' )
+			->setStockLevel( 5 )->setType( "<img/src='x'/onerror='window.stockXss=1'>" );
+		$this->view->stockItemsByProducts = ['1' => [$item]];
+
+		$output = $this->view->render( 'catalog/stock/body' );
+		$this->assertSame( 1, preg_match( '/var aimeosStockHtml = (.*);/', $output, $matches ) );
+		$html = json_decode( $matches[1], true, 512, JSON_THROW_ON_ERROR )[1];
+
+		$this->assertStringNotContainsString( '<img', $html );
+		$this->assertStringNotContainsString( 'onerror', $html );
+		$this->assertStringContainsString( '<span class="stocktext">Stock: stocktype:, stock-low</span>', $html );
+	}
+
+
+	public function testBodyHexEncodesInlineJson()
+	{
+		$prodId = '</script><script>window.stockXss=1</script>';
+		$item = ( new \Aimeos\MShop\Stock\Item\Standard( 'stock.' ) )->setProductId( $prodId )
+			->setStockLevel( 5 )->setType( 'default' );
+		$this->view->stockItemsByProducts = [$prodId => [$item]];
+
+		$output = $this->view->render( 'catalog/stock/body' );
+		$this->assertSame( 1, preg_match( '/var aimeosStockHtml = (.*);/', $output, $matches ) );
+		$this->assertStringNotContainsString( '</script>', $matches[1] );
+		$this->assertStringContainsString( '\\u003C', $matches[1] );
+		$this->assertArrayHasKey( $prodId, json_decode( $matches[1], true, 512, JSON_THROW_ON_ERROR ) );
+	}
+
+
+	public function testBodyPreservesStockInformation()
+	{
+		$items = [];
+		foreach( [null, 0, 2, 10] as $level ) {
+			$items[] = ( new \Aimeos\MShop\Stock\Item\Standard( 'stock.' ) )->setProductId( '1' )
+				->setStockLevel( $level )->setType( 'A&B' )->setDateBack( '2030-01-02 00:00:00' );
+		}
+		$this->view->stockItemsByProducts = ['1' => $items];
+
+		$output = $this->view->render( 'catalog/stock/body' );
+		$this->assertSame( 1, preg_match( '/var aimeosStockHtml = (.*);/', $output, $matches ) );
+		$html = json_decode( $matches[1], true, 512, JSON_THROW_ON_ERROR )[1];
+
+		foreach( ['unlimited', 'out', 'low', 'high'] as $level ) {
+			$this->assertStringContainsString( 'Stock: stocktype:A&amp;B, stock-' . $level, $html );
+		}
+		$this->assertStringContainsString( 'back on 2030-01-02', $html );
+		$this->assertStringNotContainsString( '&amp;amp;', $html );
+	}
 }

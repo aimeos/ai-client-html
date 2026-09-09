@@ -26,15 +26,15 @@ AimeosBasketStandard = {
 
 		$(document).on("submit", ".basket-standard form", ev => {
 			Aimeos.createSpinner();
-			const selector = ev.submitter || ev.originalEvent.submitter;
+			const selector = ev.submitter || ev.originalEvent?.submitter;
 
-			fetch($(selector).attr("formaction") || $(ev.currentTarget).attr("action"), {
+			Aimeos.fetchHtml($(selector).attr("formaction") || $(ev.currentTarget).attr("action"), {
 				body: new FormData(ev.currentTarget),
 				method: 'POST'
-			}).then(response => {
-				return response.text();
 			}).then(data => {
 				$(".basket-standard").html(AimeosBasket.updateBasket(data).html());
+			}).catch(error => {
+				console.warn('Unable to update the basket', error);
 			}).finally(() => {
 				Aimeos.removeSpinner();
 			});
@@ -52,10 +52,10 @@ AimeosBasketStandard = {
 		$(document).on("click", ".basket-standard a.change", ev => {
 			Aimeos.createSpinner();
 
-			fetch($(ev.currentTarget).attr("href")).then(response => {
-				return response.text();
-			}).then(data => {
+			Aimeos.fetchHtml($(ev.currentTarget).attr("href")).then(data => {
 				$(".basket-standard").html(AimeosBasket.updateBasket(data).html());
+			}).catch(error => {
+				console.warn('Unable to update the basket', error);
 			}).finally(() => {
 				Aimeos.removeSpinner();
 			});

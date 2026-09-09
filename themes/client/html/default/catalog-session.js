@@ -36,20 +36,27 @@ AimeosCatalogSession = {
 
 		$("body").on("click", ".catalog-session-pinned .delete", async ev => {
 
-			const form = $(ev.currentTarget).closest("form");
-			const prodid = $(ev.currentTarget).closest(".product").data('prodid');
+			ev.preventDefault();
 
-			await fetch(form.attr("action"), {
-				method: "POST",
-				body: new FormData(form[0])
-			}).then(response => {
-				return response.text();
-			}).then(data => {
-				const doc = $("<html/>").html(data);
+			const $btn = $(ev.currentTarget);
+			const form = $btn.closest("form");
+			const prodid = $btn.closest(".product").data("prodid");
+			$btn.closest(".pinned-item").addClass("loading");
+
+			try {
+				const data = await Aimeos.fetchHtml(form.attr("action"), {
+					method: "POST",
+					body: new FormData(form[0])
+				});
+
+				const doc = Aimeos.parseHtml(data);
 
 				$(".catalog-session-pinned").replaceWith($(".catalog-session-pinned", doc));
-				$('.product[data-prodid="' + prodid + '"] .btn-pin').removeClass('active');
-			});
+				$('.product[data-prodid="' + prodid + '"] .btn-pin').removeClass("active");
+			} catch(error) {
+				$btn.closest(".pinned-item").removeClass("loading");
+				console.warn("Unable to update pinned products", error);
+			}
 
 			return false;
 		});

@@ -68,6 +68,19 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testBodyEncodesCurrencyId()
+	{
+		$this->view->selectCurrencyId = '<script>window.currencyXss=1</script>';
+		$this->view->selectLanguageId = 'en';
+		$this->view->selectMap = map( ['en' => []] );
+
+		$output = $this->view->render( 'locale/select/currency-body' );
+
+		$this->assertStringContainsString( '<a href="#">window.currencyXss=1</a>', $output );
+		$this->assertStringNotContainsString( '<script>window.currencyXss=1</script>', $output );
+	}
+
+
 	public function testInit()
 	{
 		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['currency' => 'EUR'] );

@@ -71,7 +71,7 @@ $attrTypeName = function( string $code ) use ( $attrTypes ) {
 								<?php endif; ?>
 
 								<a class="minibutton close" href="<?= $enc->attr( $this->link( $linkKey, $attribute->get( 'params', [] ) ) ); ?>">
-									<?= $enc->html( $attribute->getName(), $enc::TRUST ); ?>
+									<?= $enc->html( $attribute->getName() ); ?>
 								</a>
 							<?php endforeach; ?>
 						<?php endforeach; ?>
@@ -111,7 +111,7 @@ $attrTypeName = function( string $code ) use ( $attrTypes ) {
 												<?php endforeach ?>
 
 											--></span>
-											<span><?= $enc->html( $attribute->getName(), $enc::TRUST ) ?></span><!--
+											<span><?= $enc->html( $attribute->getName() ) ?></span><!--
 										--></label>
 									</li><!--
 
