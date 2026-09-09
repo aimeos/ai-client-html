@@ -137,7 +137,7 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 										</span>
 										<span class="value col-7">
 											<?php if( $interval = $this->get( 'listsIntervalItems', map() )->get( $item->getInterval() ) ) : ?>
-												<?= $enc->html( $interval->getName(), $enc::TRUST ) ?>
+												<?= $enc->html( $interval->getName() ) ?>
 											<?php else : ?>
 												<?= $enc->html( $item->getInterval(), $enc::TRUST ) ?>
 											<?php endif ?>

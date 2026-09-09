@@ -138,7 +138,11 @@ class Standard
 
 		if( $fs->has( $value ) )
 		{
-			$name = $item->getName();
+			if( preg_match( '~^([a-f0-9])/([a-f0-9])/\\1\\2[a-f0-9]{30}/[^/]+$~D', $value ) ) {
+				$name = basename( $value );
+			} else {
+				$name = $item->getName();
+			}
 
 			if( pathinfo( $name, PATHINFO_EXTENSION ) == null
 					&& ( $ext = pathinfo( $value, PATHINFO_EXTENSION ) ) != null

@@ -47,7 +47,7 @@ $enc = $this->encoder();
 				{
 					"@context": "https://schema.org",
 					"@type": "BreadcrumbList",
-					"itemListElement": <?= json_encode( $entries ) ?>
+					"itemListElement": <?= json_encode( $entries, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ) ?>
 				}
 			</script>
 		<?php endif ?>
@@ -61,7 +61,7 @@ $enc = $this->encoder();
 						<?php $name = $cat->getName( 'url' ) ?>
 						<li>
 							<a href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', array_merge( $this->get( 'stageParams', [] ), ['path' => $name, 'f_name' => $name, 'f_catid' => $cat->getId()] ) ) ) ?>">
-								<?= $enc->html( $cat->getName(), $enc::TRUST ) ?>
+								<?= $enc->html( $cat->getName() ) ?>
 							</a>
 						</li>
 					<?php endforeach ?>

@@ -81,7 +81,7 @@ $lazy = false;
 								<div class="stage-text">
 									<div class="stage-short">
 										<?php foreach( $this->homeTree->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
-											<?= $textItem->getContent() ?>
+											<?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?>
 										<?php endforeach ?>
 									</div>
 									<div class="btn"><?= $enc->html( $this->translate( 'client', 'Take a look' ) ) ?></div>
@@ -112,7 +112,7 @@ $lazy = false;
 									<div class="stage-text">
 										<div class="stage-short">
 											<?php foreach( $child->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
-												<?= $textItem->getContent() ?>
+												<?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?>
 											<?php endforeach ?>
 										</div>
 										<div class="btn"><?= $enc->html( $this->translate( 'client', 'Take a look' ) ) ?></div>

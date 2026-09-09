@@ -38,7 +38,7 @@ $enc = $this->encoder();
 						<?php endforeach ?>
 					</div>
 
-					<h2><?= $enc->html( $service->getName(), $enc::TRUST ) ?></h2>
+					<h2><?= $enc->html( $service->getName() ) ?></h2>
 
 					<?php if( $price = $service->price ) : ?>
 						<?php if( $price->getValue() > 0 ) : ?>
@@ -64,10 +64,8 @@ $enc = $this->encoder();
 					<?php endif ?>
 
 					<div class="text">
-						<?php foreach( $service->getRefItems( 'text', null, 'default' ) as $textItem ) : ?>
-							<?php if( ( $type = $textItem->getType() ) !== 'name' ) : ?>
-								<p class="<?= $enc->attr( $type ) ?>"><?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?></p>
-							<?php endif ?>
+						<?php foreach( $service->getRefItems( 'text', ['short', 'long'], 'default' ) as $textItem ) : ?>
+							<p class="<?= $enc->attr( $textItem->getType() ) ?>"><?= $enc->html( $textItem->getContent(), $enc::TRUST ) ?></p>
 						<?php endforeach ?>
 					</div>
 

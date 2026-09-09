@@ -53,4 +53,49 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertStringContainsString( 'data-variant-color="123"', $result );
 		$this->assertStringContainsString( 'sizes="240px"', $result );
 	}
+
+
+	public function testTransformRejectsUnsafeVariantNames()
+	{
+		$types = ['color', 'size-mm', 'size_2', '', "x><img/src='x'/onerror='window.imageXss=1'>", 'x/onerror=alert(1)'];
+
+		foreach( ['image/jpeg', 'video/mp4'] as $mime )
+		{
+			$media = ( new \Aimeos\MShop\Media\Item\Standard( 'media.' ) )->setMimetype( $mime )->setUrl( 'image.jpg' );
+
+			foreach( $types as $id => $type )
+			{
+				$attr = ( new \Aimeos\MShop\Attribute\Item\Standard( 'attribute.' ) )->setId( (string) ( $id + 1 ) )->setType( $type );
+				$list = new \Aimeos\MShop\Common\Item\Lists\Standard( 'media.lists.', ['media.lists.type' => 'variant'] );
+				$media->addListItem( 'attribute', $list, $attr );
+			}
+
+			$result = $this->object->transform( $media );
+			$this->assertStringContainsString( 'data-variant-color="1"', $result );
+			$this->assertStringContainsString( 'data-variant-size-mm="2"', $result );
+			$this->assertStringContainsString( 'data-variant-size_2="3"', $result );
+			$this->assertSame( 3, substr_count( $result, ' data-variant-' ) );
+			$this->assertStringNotContainsString( 'onerror', $result );
+		}
+	}
+
+
+	public function testTransformEscapesAttributeValues()
+	{
+		foreach( ['image/jpeg', 'video/mp4'] as $mime )
+		{
+			$media = new \Aimeos\MShop\Media\Item\Standard( 'media.', [
+				'media.id' => '1" onerror="alert(1)', 'media.mimetype' => $mime, 'media.url' => 'image.jpg'
+			] );
+			$result = $this->object->transform( $media, '240px" onload="alert(2)' );
+
+			$this->assertStringContainsString( 'id="image-1&quot; onerror=&quot;alert(1)"', $result );
+			$this->assertStringNotContainsString( ' onerror="', $result );
+			$this->assertStringNotContainsString( ' onload="', $result );
+
+			if( $mime === 'image/jpeg' ) {
+				$this->assertStringContainsString( 'sizes="240px&quot; onload=&quot;alert(2)"', $result );
+			}
+		}
+	}
 }
