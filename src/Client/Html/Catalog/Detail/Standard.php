@@ -73,7 +73,7 @@ class Standard
 		$prefixes = ['d_prodid', 'd_name'];
 
 		$code = $config->get( 'client/html/catalog/detail/prodcode-default' );
-		$id = $config->get( 'client/html/catalog/detail/prodid-default', $code );
+		$id = $config->get( 'client/html/catalog/detail/prodid-default' ) ?: $code;
 
 		if( !$view->param( 'd_name', $view->param( 'd_prodid', $id ) ) ) {
 			return '';
@@ -150,7 +150,7 @@ class Standard
 		$confkey = 'client/html/catalog/detail';
 
 		$code = $config->get( 'client/html/catalog/detail/prodcode-default' );
-		$id = $config->get( 'client/html/catalog/detail/prodid-default', $code );
+		$id = $config->get( 'client/html/catalog/detail/prodid-default' ) ?: $code;
 
 		if( !$view->param( 'd_name', $view->param( 'd_prodid', $id ) ) ) {
 			return '';

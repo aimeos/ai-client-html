@@ -35,14 +35,19 @@ class Standard
 		$enc = $view->encoder();
 
 		$variant = '';
-		foreach( $media->getRefItems( 'attribute', null, 'variant' ) as $id => $item ) {
-			$variant .= ' data-variant-' . $item->getType() . '="' . $enc->attr( $id ) . '"';
+		foreach( $media->getRefItems( 'attribute', null, 'variant' ) as $id => $item )
+		{
+			$type = $item->getType();
+			// Attribute names need validation, not attribute-value encoding.
+			if( is_string( $type ) && preg_match( '/\A[a-zA-Z0-9_-]+\z/', $type ) ) {
+				$variant .= ' data-variant-' . $type . '="' . $enc->attr( $id ) . '"';
+			}
 		}
 
 		if( !strncmp( $media->getMimetype(), 'video/', 6 ) )
 		{
 			return '
-				<video autoplay muted class="item" id="image-' . $media->getId() . '" loading="lazy"
+				<video autoplay muted class="item" id="image-' . $enc->attr( $media->getId() ) . '" loading="lazy"
 					thumbnail="' . $enc->attr( $view->content( $media->getPreview(), $media->getFileSystem() ) ) . '"
 					poster="' . $enc->attr( $view->content( $media->getPreview( 600 ), $media->getFileSystem() ) ) . '"
 					src="' . $enc->attr( $view->content( $media->getUrl(), $media->getFileSystem() ) ) . '"
@@ -57,11 +62,11 @@ class Standard
 		return '
 			<div itemscope itemprop="image" itemtype="http://schema.org/ImageObject">
 				<meta itemprop="representativeOfPage" content="' . ( $main ? 'true' : 'false' ) . '">
-				<img class="item" id="image-' . $media->getId() . '" loading="lazy" itemprop="contentUrl"
+				<img class="item" id="image-' . $enc->attr( $media->getId() ) . '" loading="lazy" itemprop="contentUrl"
 					src="' . $enc->attr( $view->content( $media->getPreview(), $media->getFileSystem() ) ) . '"
 					data-zoom="' . $enc->attr( $view->content( $media->getUrl(), $media->getFileSystem() ) ) . '"
 					alt="' . $enc->attr( $media->getProperties( 'title' )->first( $media->getName() ) ) . '"
-					sizes="' . $sizes . '" ' . $srcset . ' ' . $variant . '>
+					sizes="' . $enc->attr( $sizes ) . '" ' . $srcset . ' ' . $variant . '>
 			</div>
 		';
 	}

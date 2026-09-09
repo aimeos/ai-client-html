@@ -45,13 +45,13 @@ $dateFormat = $this->translate( 'client', 'Y-m-d' );
 
 $textStock = array(
 	/// code for "product is out of stock"
-	'stock-out' => nl2br( $enc->html( $this->translate( 'client', 'stock-out' ), $enc::TRUST ) ),
+	'stock-out' => $this->translate( 'client', 'stock-out' ),
 	/// code for "only a few products are available"
-	'stock-low' => nl2br( $enc->html( $this->translate( 'client', 'stock-low' ), $enc::TRUST ) ),
+	'stock-low' => $this->translate( 'client', 'stock-low' ),
 	/// code for "product is in stock"
-	'stock-high' => nl2br( $enc->html( $this->translate( 'client', 'stock-high' ), $enc::TRUST ) ),
+	'stock-high' => $this->translate( 'client', 'stock-high' ),
 	/// code for "product is available (without stock limit)"
-	'stock-unlimited' => nl2br( $enc->html( $this->translate( 'client', 'stock-unlimited' ), $enc::TRUST ) ),
+	'stock-unlimited' => $this->translate( 'client', 'stock-unlimited' ),
 );
 
 
@@ -101,7 +101,7 @@ foreach( $this->get( 'stockItemsByProducts', [] ) as $prodId => $list )
 			<div class="stockitem ' . $level . '" data-prodid="' . $enc->attr( $prodId ) . '" title="' . $enc->attr( $textStock[$level] ) . '">
 				<meta itemprop="availability" href="' . $link . '">
 				<div class="stocklevel"></div>
-				<span class="stocktext">' . nl2br( $enc->html( $text, $enc::TRUST ) ) . '</span>
+				<span class="stocktext">' . nl2br( $enc->html( $text ) ) . '</span>
 			</div>
 		';
 	}
@@ -112,7 +112,7 @@ foreach( $this->get( 'stockItemsByProducts', [] ) as $prodId => $list )
 
 ?>
 // <!--
-var aimeosStockHtml = <?= json_encode( $result, JSON_FORCE_OBJECT ) ?>;
+var aimeosStockHtml = <?= json_encode( $result, JSON_FORCE_OBJECT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ) ?>;
 
 document.querySelectorAll(".aimeos .product .stock-list .articleitem").forEach(function(elem) {
 	var prodid = elem.dataset.prodid;

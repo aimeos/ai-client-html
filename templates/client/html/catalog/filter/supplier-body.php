@@ -51,7 +51,7 @@ $linkKey = $multi && $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'clie
 								<?php endforeach ?>
 
 							</span>
-							<span><?= $enc->html( $supplier->getName(), $enc::TRUST ) ?></span>
+							<span><?= $enc->html( $supplier->getName() ) ?></span>
 						</label>
 					</li>
 				<?php endforeach ?>
