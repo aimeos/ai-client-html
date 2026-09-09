@@ -121,7 +121,7 @@ $enc = $this->encoder();
 		<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/supplier/detail/url', $params, ['absoluteUri' => true] ) ) ?>">
 
 		<meta property="og:type" content="website">
-		<meta property="og:title" content="<?= $enc->html( $this->detailSupplierItem->getName() ) ?>">
+		<meta property="og:title" content="<?= $enc->attr( $this->detailSupplierItem->getName() ) ?>">
 		<meta property="og:url" content="<?= $enc->attr( $this->link( 'client/html/supplier/detail/url', $params, ['absoluteUri' => true] ) ) ?>">
 
 		<?php foreach( $this->detailSupplierItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>

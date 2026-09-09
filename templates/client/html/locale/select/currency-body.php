@@ -33,7 +33,7 @@ $config = $this->config( 'client/html/locale/select/currency/url/config', [] );
 	<h2 class="header"><?= $this->translate( 'client', 'Select currency' ) ?></h2>
 
 	<ul class="select-menu">
-		<li class="select-dropdown select-current"><a href="#"><?= $this->get( 'selectCurrencyId', 'EUR' ) ?></a>
+		<li class="select-dropdown select-current"><a href="#"><?= $enc->html( $this->get( 'selectCurrencyId', 'EUR' ) ) ?></a>
 			<ul class="select-dropdown">
 
 				<?php foreach( $this->get( 'selectMap', map() )->get( $this->get( 'selectLanguageId', 'en' ), [] ) as $currency => $locParam ) : ?>

@@ -136,7 +136,7 @@ $filter = array_flip( $this->config( 'client/html/catalog/tree/url/filter', [] )
 								) ?>
 							<?php endforeach ?>
 						</div>
-						<span class="cat-name"><?= $enc->html( $item->getName(), $enc::TRUST ) ?></span>
+						<span class="cat-name"><?= $enc->html( $item->getName() ) ?></span>
 					</a>
 					<?php if( !$item->getChildren()->isEmpty() ) : ?>
 						<div class="col-2 next" data-submenu="<?= $enc->attr( $item->getId() ) ?>"
@@ -157,7 +157,7 @@ $filter = array_flip( $this->config( 'client/html/catalog/tree/url/filter', [] )
 
 						<div class="row header">
 							<div class="col-2 back" data-submenu-close="<?= $enc->attr( $item->getId() ) ?>"></div>
-							<div class="col-8 name"><?= $enc->html( $item->getName(), $enc::TRUST ) ?></div>
+							<div class="col-8 name"><?= $enc->html( $item->getName() ) ?></div>
 							<div class="col-2 close"></div>
 						</div>
 

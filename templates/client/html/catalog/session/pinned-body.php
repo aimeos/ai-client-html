@@ -135,7 +135,7 @@ $enc = $this->encoder();
 							<div class="media-item"></div>
 						<?php endif ?>
 
-						<h2 class="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h2>
+						<h2 class="name"><?= $enc->html( $productItem->getName() ) ?></h2>
 						<div class="price-list">
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/price', 'common/partials/price' ),

@@ -96,6 +96,21 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testBodyEscapesCategoryName()
+	{
+		$item = \Aimeos\MShop::create( $this->context, 'catalog' )->create()
+			->setLabel( '<img src=x onerror=alert(1)></script><script>alert(2)</script>' );
+		$this->view->stageCatPath = map( [$item] );
+
+		$output = $this->object->body();
+
+		$this->assertMatchesRegularExpression( '~<a [^>]+>\s*alert\(2\)</a>~', $output );
+		$this->assertStringContainsString( '\\u003Cimg src=x onerror=alert(1)\\u003E', $output );
+		$this->assertStringNotContainsString( '<img src=x onerror=alert(1)>', $output );
+		$this->assertStringNotContainsString( '</script><script>alert(2)</script>', $output );
+	}
+
+
 	protected function getCatalogItem()
 	{
 		$catalogManager = \Aimeos\MShop::create( $this->context, 'catalog' );

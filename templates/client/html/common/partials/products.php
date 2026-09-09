@@ -189,7 +189,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 			) ?>
 
 			<a class="media-list <?= $mediaItems->count() > 1 ? 'multiple' : '' ?>"
-				href="<?= $enc->attr( $url ) ?>" title="<?= $enc->attr( $productItem->getName(), $enc::TRUST ) ?>">
+				href="<?= $enc->attr( $url ) ?>" title="<?= $enc->attr( $productItem->getName() ) ?>">
 
 				<?php if( $mediaItem = $mediaItems->first() ) : ?>
 
@@ -237,7 +237,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 				</div>
 
 				<div class="text-list">
-					<h2 class="name" itemprop="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ) ?></h2>
+					<h2 class="name" itemprop="name"><?= $enc->html( $productItem->getName() ) ?></h2>
 
 					<?php foreach( $productItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
 
