@@ -63,7 +63,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->view->render( 'catalog/stock/body' );
 		$this->assertSame( 1, preg_match( '/var aimeosStockHtml = (.*);/', $output, $matches ) );
-		$html = json_decode( $matches[1], true, 512, JSON_THROW_ON_ERROR )[1];
+		$data = json_decode( $matches[1], true );
+		$this->assertSame( JSON_ERROR_NONE, json_last_error() );
+		$html = $data[1];
 
 		$this->assertStringNotContainsString( '<img', $html );
 		$this->assertStringNotContainsString( 'onerror', $html );
@@ -82,7 +84,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->assertSame( 1, preg_match( '/var aimeosStockHtml = (.*);/', $output, $matches ) );
 		$this->assertStringNotContainsString( '</script>', $matches[1] );
 		$this->assertStringContainsString( '\\u003C', $matches[1] );
-		$this->assertArrayHasKey( $prodId, json_decode( $matches[1], true, 512, JSON_THROW_ON_ERROR ) );
+		$data = json_decode( $matches[1], true );
+		$this->assertSame( JSON_ERROR_NONE, json_last_error() );
+		$this->assertArrayHasKey( $prodId, $data );
 	}
 
 
@@ -97,7 +101,9 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->view->render( 'catalog/stock/body' );
 		$this->assertSame( 1, preg_match( '/var aimeosStockHtml = (.*);/', $output, $matches ) );
-		$html = json_decode( $matches[1], true, 512, JSON_THROW_ON_ERROR )[1];
+		$data = json_decode( $matches[1], true );
+		$this->assertSame( JSON_ERROR_NONE, json_last_error() );
+		$html = $data[1];
 
 		foreach( ['unlimited', 'out', 'low', 'high'] as $level ) {
 			$this->assertStringContainsString( 'Stock: stocktype:A&amp;B, stock-' . $level, $html );
