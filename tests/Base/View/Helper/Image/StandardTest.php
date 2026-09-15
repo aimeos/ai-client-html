@@ -61,11 +61,11 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		foreach( ['image/jpeg', 'video/mp4'] as $mime )
 		{
-			$media = ( new \Aimeos\MShop\Media\Item\Standard( 'media.' ) )->setMimetype( $mime )->setUrl( 'image.jpg' );
+			$media = ( new \Aimeos\MShop\Media\Item\Standard() )->setMimetype( $mime )->setUrl( 'image.jpg' );
 
 			foreach( $types as $id => $type )
 			{
-				$attr = ( new \Aimeos\MShop\Attribute\Item\Standard( 'attribute.' ) )->setId( (string) ( $id + 1 ) )->setType( $type );
+				$attr = ( new \Aimeos\MShop\Attribute\Item\Standard() )->setId( (string) ( $id + 1 ) )->setType( $type );
 				$list = new \Aimeos\MShop\Common\Item\Lists\Standard( 'media.lists.', ['media.lists.type' => 'variant'] );
 				$media->addListItem( 'attribute', $list, $attr );
 			}
@@ -84,7 +84,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		foreach( ['image/jpeg', 'video/mp4'] as $mime )
 		{
-			$media = new \Aimeos\MShop\Media\Item\Standard( 'media.', [
+			$media = new \Aimeos\MShop\Media\Item\Standard( [
 				'media.id' => '1" onerror="alert(1)', 'media.mimetype' => $mime, 'media.url' => 'image.jpg'
 			] );
 			$result = $this->object->transform( $media, '240px" onload="alert(2)' );

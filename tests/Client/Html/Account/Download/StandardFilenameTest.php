@@ -36,7 +36,7 @@ class StandardFilenameTest extends \PHPUnit\Framework\TestCase
 
 		$fs = $this->getMockBuilder( \Aimeos\Base\Filesystem\Standard::class )
 			->setConstructorArgs( [['basedir' => sys_get_temp_dir()]] )
-			->onlyMethods( ['has', 'size', 'reads'] )
+			->setMethods( ['has', 'size', 'reads'] )
 			->getMock();
 		$fs->expects( $this->once() )->method( 'has' )->with( $path )->willReturn( true );
 		$fs->expects( $this->once() )->method( 'size' )->with( $path )->willReturn( 4 );
@@ -52,7 +52,7 @@ class StandardFilenameTest extends \PHPUnit\Framework\TestCase
 		$response = ( new \Nyholm\Psr7\Factory\Psr17Factory() )->createResponse();
 		$view->addHelper( 'response', new \Aimeos\Base\View\Helper\Response\Standard( $view, $response ) );
 
-		$item = $this->createMock( \Aimeos\MShop\Order\Item\Product\Attribute\Iface::class );
+		$item = $this->createMock( \Aimeos\MShop\Order\Item\Base\Product\Attribute\Iface::class );
 		$item->expects( $this->once() )->method( 'getValue' )->willReturn( $path );
 
 		if( $name === null ) {
@@ -62,7 +62,7 @@ class StandardFilenameTest extends \PHPUnit\Framework\TestCase
 		}
 
 		$object = new class( $context ) extends Standard {
-			public function addDownload( \Aimeos\MShop\Order\Item\Product\Attribute\Iface $item ) : void
+			public function addDownload( \Aimeos\MShop\Order\Item\Base\Product\Attribute\Iface $item ) : void
 			{
 				parent::addDownload( $item );
 			}

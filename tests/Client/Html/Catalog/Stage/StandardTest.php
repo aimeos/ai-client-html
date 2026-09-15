@@ -104,7 +104,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 		$output = $this->object->body();
 
-		$this->assertMatchesRegularExpression( '~<a [^>]+>\s*alert\(2\)</a>~', $output );
+		$this->assertSame( 1, preg_match( '~<a [^>]+>\s*alert\(2\)</a>~', $output ) );
 		$this->assertStringContainsString( '\\u003Cimg src=x onerror=alert(1)\\u003E', $output );
 		$this->assertStringNotContainsString( '<img src=x onerror=alert(1)>', $output );
 		$this->assertStringNotContainsString( '</script><script>alert(2)</script>', $output );

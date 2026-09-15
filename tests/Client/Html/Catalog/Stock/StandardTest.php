@@ -57,7 +57,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyEncodesStockType()
 	{
-		$item = ( new \Aimeos\MShop\Stock\Item\Standard( 'stock.' ) )->setProductId( '1' )
+		$item = ( new \Aimeos\MShop\Stock\Item\Standard() )->setProductId( '1' )
 			->setStockLevel( 5 )->setType( "<img/src='x'/onerror='window.stockXss=1'>" );
 		$this->view->stockItemsByProducts = ['1' => [$item]];
 
@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testBodyHexEncodesInlineJson()
 	{
 		$prodId = '</script><script>window.stockXss=1</script>';
-		$item = ( new \Aimeos\MShop\Stock\Item\Standard( 'stock.' ) )->setProductId( $prodId )
+		$item = ( new \Aimeos\MShop\Stock\Item\Standard() )->setProductId( $prodId )
 			->setStockLevel( 5 )->setType( 'default' );
 		$this->view->stockItemsByProducts = [$prodId => [$item]];
 
@@ -90,7 +90,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	{
 		$items = [];
 		foreach( [null, 0, 2, 10] as $level ) {
-			$items[] = ( new \Aimeos\MShop\Stock\Item\Standard( 'stock.' ) )->setProductId( '1' )
+			$items[] = ( new \Aimeos\MShop\Stock\Item\Standard() )->setProductId( '1' )
 				->setStockLevel( $level )->setType( 'A&B' )->setDateBack( '2030-01-02 00:00:00' );
 		}
 		$this->view->stockItemsByProducts = ['1' => $items];
