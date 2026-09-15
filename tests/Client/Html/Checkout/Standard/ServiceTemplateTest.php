@@ -49,8 +49,7 @@ class ServiceTemplateTest extends \PHPUnit\Framework\TestCase
 
 	public function testBodyEncodesLocalizedName()
 	{
-		$manager = new \Aimeos\MShop\Text\Manager\Standard( \TestHelper::context() );
-		$text = $manager->create( ['text.type' => 'name', 'text.domain' => 'service',
+		$text = new \Aimeos\MShop\Text\Item\Standard( 'text.', ['text.type' => 'name', 'text.domain' => 'service',
 			'text.content' => 'Name & label<img src=x onerror=alert(1)>' ] );
 		$service = new \Aimeos\MShop\Service\Item\Standard( 'service.' );
 		$list = new \Aimeos\MShop\Common\Item\Lists\Standard( 'service.lists.', ['service.lists.type' => 'default'] );
