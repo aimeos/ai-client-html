@@ -194,6 +194,8 @@ class Standard
 				$filter->compare( '>=', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED ),
 				$filter->compare( '==', 'order.customerid', $customerId ),
 				$filter->compare( '==', 'order.product.attribute.id', $id ),
+				$filter->compare( '==', 'order.product.attribute.type', 'hidden' ),
+				$filter->compare( '==', 'order.product.attribute.code', 'download' ),
 			] ) )->slice( 0, 1 );
 
 			if( !$manager->search( $filter )->isEmpty() ) {

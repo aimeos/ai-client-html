@@ -74,5 +74,48 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Customer\Standard::class, $customerStub );
 
 		$this->object->init();
+
+		$this->assertSame( $customerItem, $this->context->user() );
+	}
+
+
+	public function testInitExistingCustomer()
+	{
+		$this->initExisting( ['cs_option_account' => 1] );
+	}
+
+
+	public function testInitExistingCustomerNoAccount()
+	{
+		$this->initExisting( [] );
+	}
+
+
+	protected function initExisting( array $params )
+	{
+		$customerItem = \Aimeos\MShop::create( $this->context, 'customer' )->find( 'test@example.com' );
+		$address = $customerItem->getPaymentAddress()->setEmail( 'test@example.com' )->toArray();
+
+		$basketCntl = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
+		$basketCntl->addAddress( \Aimeos\MShop\Order\Item\Address\Base::TYPE_PAYMENT, $address );
+
+		$this->view = \TestHelper::view();
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $params );
+		$this->view->addHelper( 'param', $helper );
+		$this->object->setView( $this->view );
+
+		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
+			->setConstructorArgs( array( $this->context ) )
+			->onlyMethods( array( 'add', 'store' ) )
+			->getMock();
+
+		$customerStub->expects( $this->never() )->method( 'add' );
+		$customerStub->expects( $this->never() )->method( 'store' );
+
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Customer\Standard::class, $customerStub );
+
+		$this->object->init();
+
+		$this->assertNull( $this->context->user() );
 	}
 }
