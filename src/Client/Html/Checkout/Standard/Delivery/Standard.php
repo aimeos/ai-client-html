@@ -63,7 +63,8 @@ class Standard
 			$servCtrl = \Aimeos\Controller\Frontend::create( $context, 'service' )->uses( ['media', 'price', 'text'] );
 
 			// only start if there's something to do
-			if( ( $serviceIds = $view->param( 'c_deliveryoption', null ) ) !== null )
+			if( $view->request()->getMethod() === 'POST'
+				&& ( $serviceIds = $view->param( 'c_deliveryoption', null ) ) !== null )
 			{
 				$basketCtrl->deleteService( 'delivery' );
 
