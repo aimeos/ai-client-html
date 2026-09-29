@@ -33,7 +33,7 @@ AimeosBasketStandard = {
 				body: new FormData(ev.currentTarget),
 				method: 'POST'
 			}).then(data => {
-				$(".basket-standard").html(AimeosBasket.updateBasket(data).html());
+				$(".aimeos.basket-standard").html(AimeosBasket.updateBasket(data).html());
 			}).catch(error => {
 				console.warn('Unable to update the basket', error);
 			}).finally(() => {
@@ -53,7 +53,7 @@ AimeosBasketStandard = {
 			Aimeos.createSpinner();
 
 			Aimeos.fetchHtml($(ev.currentTarget).attr("href")).then(data => {
-				$(".basket-standard").html(AimeosBasket.updateBasket(data).html());
+				$(".aimeos.basket-standard").html(AimeosBasket.updateBasket(data).html());
 			}).catch(error => {
 				console.warn('Unable to update the basket', error);
 			}).finally(() => {
