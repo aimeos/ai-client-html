@@ -113,6 +113,28 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testInitCheckAccessDownload()
+	{
+		$manager = \Aimeos\MShop::create( $this->context, 'order/base/product/attribute' );
+		$item = $manager->save( $this->getAttributeItem()->setId( null )->setType( 'hidden' )->setCode( 'download' ) );
+
+		try {
+			$result = $this->access( 'checkAccess' )->invokeArgs( $this->object, [$item->getId()] );
+		} finally {
+			$manager->delete( $item );
+		}
+
+		$this->assertTrue( $result );
+	}
+
+
+	public function testInitCheckAccessNoDownload()
+	{
+		$id = $this->getAttributeItem()->getId();
+		$this->assertFalse( $this->access( 'checkAccess' )->invokeArgs( $this->object, [$id] ) );
+	}
+
+
 	public function testInitCheckDownload()
 	{
 		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
@@ -204,5 +226,29 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$method->setAccessible( true );
 
 		return $method;
+	}
+
+
+	protected function getAttributeItem()
+	{
+		$manager = \Aimeos\MShop::create( $this->context, 'order' );
+
+		$filter = $manager->filter()->slice( 0, 1 );
+		$filter->add( $filter->and( [
+			$filter->compare( '>=', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED ),
+			$filter->compare( '==', 'order.base.customerid', (string) $this->context->user() ),
+			$filter->compare( '==', 'order.base.product.attribute.code', 'width' ),
+		] ) );
+
+		$order = $manager->search( $filter, ['order/base', 'order/base/product'] )->first( new \Exception( 'No paid order found' ) );
+
+		foreach( $order->getBaseItem()->getProducts() as $product )
+		{
+			if( $item = $product->getAttributeItem( 'width', 'default' ) ) {
+				return $item;
+			}
+		}
+
+		throw new \Exception( 'No order product attribute found' );
 	}
 }
