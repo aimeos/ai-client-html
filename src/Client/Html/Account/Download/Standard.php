@@ -194,6 +194,8 @@ class Standard
 				$search->compare( '>=', 'order.statuspayment', \Aimeos\MShop\Order\Item\Base::PAY_RECEIVED ),
 				$search->compare( '==', 'order.customerid', $customerId ),
 				$search->compare( '==', 'order.product.attribute.id', $id ),
+				$search->compare( '==', 'order.product.attribute.type', 'hidden' ),
+				$search->compare( '==', 'order.product.attribute.code', 'download' ),
 			);
 			$search->setConditions( $search->and( $expr ) );
 			$search->slice( 0, 1 );
