@@ -89,6 +89,35 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testInitGet()
+	{
+		$this->view = \TestHelper::view();
+		$request = ( new \Nyholm\Psr7\Factory\Psr17Factory() )->createServerRequest( 'GET', 'https://aimeos.org' );
+		$this->view->addHelper( 'request', new \Aimeos\Base\View\Helper\Request\Standard( $this->view, $request ) );
+		$param = [
+			'ca_deliveryoption' => 'null',
+			'ca_delivery' => [
+				'order.base.address.salutation' => 'mr',
+				'order.base.address.firstname' => 'test',
+				'order.base.address.lastname' => 'user',
+				'order.base.address.address1' => 'mystreet 1',
+				'order.base.address.postal' => '20000',
+				'order.base.address.city' => 'hamburg',
+				'order.base.address.email' => 'me@example.com',
+				'order.base.address.languageid' => 'en',
+			],
+		];
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $param );
+		$this->view->addHelper( 'param', $helper );
+
+		$this->object->setView( $this->view );
+		$this->object->init();
+
+		$basket = \Aimeos\Controller\Frontend::create( $this->context, 'basket' )->get();
+		$this->assertEquals( [], $basket->getAddress( 'delivery' ) );
+	}
+
+
 	public function testInitNewAddressMissing()
 	{
 		$this->view = \TestHelper::view();
