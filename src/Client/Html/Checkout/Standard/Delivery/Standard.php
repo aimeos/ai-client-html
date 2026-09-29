@@ -65,7 +65,9 @@ class Standard
 
 			// only start if there's something to do
 			// @phpstan-ignore-next-line
-			if( ( $serviceIds = $view->param( 'c_deliveryoption', null ) ) !== null )
+			if( $view->request()->getMethod() === 'POST'
+				// @phpstan-ignore-next-line
+				&& ( $serviceIds = $view->param( 'c_deliveryoption', null ) ) !== null )
 			{
 				$basketCtrl->deleteService( 'delivery' );
 

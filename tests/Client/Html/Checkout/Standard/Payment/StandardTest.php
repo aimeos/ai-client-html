@@ -104,6 +104,25 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testInitGet()
+	{
+		$service = \Aimeos\MShop::create( $this->context, 'service' )->find( 'unitpaymentcode' );
+
+		$this->view = \TestHelper::view();
+		$request = ( new \Nyholm\Psr7\Factory\Psr17Factory() )->createServerRequest( 'GET', 'https://aimeos.org' );
+		$this->view->addHelper( 'request', new \Aimeos\Base\View\Helper\Request\Standard( $this->view, $request ) );
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['c_paymentoption' => $service->getId()] );
+		$this->view->addHelper( 'param', $helper );
+
+		$this->object->setView( $this->view );
+		$this->object->init();
+
+		$basket = \Aimeos\Controller\Frontend::create( $this->context, 'basket' )->get();
+		$this->assertEquals( [], $basket->getService( 'payment' ) );
+		$this->assertEquals( 'payment', $this->view->get( 'standardStepActive' ) );
+	}
+
+
 	public function testInitInvalidId()
 	{
 		$this->view = \TestHelper::view();

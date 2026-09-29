@@ -48,7 +48,8 @@ class Standard
 			}
 
 			// only start if there's something to do
-			if( $view->param( 'ca_deliveryoption' ) === null ) {
+			// @phpstan-ignore-next-line
+			if( $view->request()->getMethod() !== 'POST' || $view->param( 'ca_deliveryoption' ) === null ) {
 				return;
 			}
 
