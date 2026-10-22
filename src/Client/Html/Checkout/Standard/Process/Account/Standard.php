@@ -65,23 +65,31 @@ class Standard
 
 
 	/**
-	 * Creates a new account (if necessary) and returns its customer ID
+	 * Creates a new account if requested and returns the customer item
+	 *
+	 * Existing accounts are never returned because the e-mail address from the
+	 * order address doesn't prove that the guest owns the account.
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Address\Iface $addr Address object from order
 	 * @param bool $new True to create the customer if it doesn't exist, false if not
-	 * @return \Aimeos\MShop\Customer\Item\Iface|null Unique customer ID or null if no customer is available
+	 * @return \Aimeos\MShop\Customer\Item\Iface|null New customer item or null if no customer has been created
 	 */
 	protected function getCustomer( \Aimeos\MShop\Common\Item\Address\Iface $addr, bool $new ) : ?\Aimeos\MShop\Customer\Item\Iface
 	{
-		$context = $this->context();
-		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-
-		try {
-			$customer = $cntl->find( $addr->getEmail() );
-		} catch( \Exception $e ) {
-			$customer = $new ? $cntl->add( $addr->toArray() )->store()->get() : null;
+		if( !$new ) {
+			return null;
 		}
 
-		return $customer;
+		$cntl = \Aimeos\Controller\Frontend::create( $this->context(), 'customer' );
+
+		try
+		{
+			$cntl->find( $addr->getEmail() );
+			return null; // account exists, the order stays a guest order
+		}
+		catch( \Aimeos\MShop\Exception $e )
+		{
+			return $cntl->add( $addr->toArray() )->store()->get();
+		}
 	}
 }

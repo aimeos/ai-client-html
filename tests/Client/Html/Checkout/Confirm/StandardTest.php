@@ -82,7 +82,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInit()
 	{
-		$orderId = $this->getOrder( '2011-09-17 16:14:32' )->getId();
+		$orderId = $this->getOrder( '2009-03-18 16:14:32' )->getId();
 		$this->context->session()->set( 'aimeos/orderid', $orderId );
 
 		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['code' => 'paypalexpress', 'orderid' => $orderId] );
@@ -96,6 +96,23 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		$this->view->addHelper( 'request', $helper );
 
 		$this->expectException( \Aimeos\MShop\Exception::class );
+		$this->object->init();
+	}
+
+
+	public function testInitServiceNotInOrder()
+	{
+		$orderId = $this->getOrder( '2011-09-17 16:14:32' )->getId();
+		$this->context->session()->set( 'aimeos/orderid', $orderId );
+
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['code' => 'paypalexpress', 'orderid' => $orderId] );
+		$this->view->addHelper( 'param', $helper );
+
+		$request = $this->createStub( \Psr\Http\Message\ServerRequestInterface::class );
+		$helper = new \Aimeos\Base\View\Helper\Request\Standard( $this->view, $request, '127.0.0.1', 'test' );
+		$this->view->addHelper( 'request', $helper );
+
+		$this->expectException( \Aimeos\Controller\Frontend\Service\Exception::class );
 		$this->object->init();
 	}
 
