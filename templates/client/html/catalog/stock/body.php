@@ -99,7 +99,7 @@ foreach( $this->get( 'stockItemsByProducts', [] ) as $prodId => $list )
 
 		$stocks[$level] .= '
 			<div class="stockitem ' . $level . '" data-prodid="' . $enc->attr( $prodId ) . '" title="' . $enc->attr( $textStock[$level] ) . '">
-				<meta itemprop="availability" href="' . $link . '">
+				<link itemprop="availability" href="' . $link . '">
 				<div class="stocklevel"></div>
 				<span class="stocktext">' . nl2br( $enc->html( $text ) ) . '</span>
 			</div>
