@@ -15,6 +15,21 @@ $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
 
 
+/** client/html/common/title/format
+ * Format of the page title with the page name (%1$s) and the site label (%2$s)
+ *
+ * The page titles of the shop components (e.g. product, category, basket or
+ * checkout pages) consist of the page name and the label of the current site.
+ * The default format "%1$s | %2$s" creates titles like "Coffee | Shop". You can
+ * use e.g. "%1$s » %2$s" for another separator or "%1$s" to omit the site
+ * label. Titles from the "meta-title" texts of products and categories are
+ * used as they are.
+ *
+ * @param string Format string for sprintf() with the page name and the site label
+ * @since 2026.10
+ */
+
+
 /** client/html/catalog/detail/metatags
  * Adds the title, meta and link tags to the HTML header
  *
@@ -37,10 +52,8 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 		<?php if( $title = $this->detailProductItem->getRefItems( 'text', 'meta-title', 'default' )->getContent()->first() ) : ?>
 			<title><?= $enc->html( $title ) ?></title>
 		<?php else : ?>
-			<title><?= $enc->html( strip_tags( $this->detailProductItem->getName() ) ) ?>
-				<?= $enc->html( strip_tags( ' ' . $this->detailProductItem->getRefItems( 'supplier' )->getName()->first() ) ) ?>
-				<?= $enc->html( ' | ' . $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?>
-			</title>
+			<?php $titleName = trim( strip_tags( $this->detailProductItem->getName() . ' ' . $this->detailProductItem->getRefItems( 'supplier' )->getName()->first() ) ) ?>
+			<title><?= $enc->html( sprintf( $this->config( 'client/html/common/title/format', '%1$s | %2$s' ), $titleName, $this->get( 'contextSiteLabel', 'Aimeos' ) ) ) ?></title>
 		<?php endif ?>
 
 		<?php $name = $this->detailProductItem->getName( 'url' ) ?>

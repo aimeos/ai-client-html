@@ -9,7 +9,7 @@ $enc = $this->encoder();
 
 
 ?>
-<title><?= $this->translate( 'client', 'Basket' ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
+<title><?= $enc->html( sprintf( $this->config( 'client/html/common/title/format', '%1$s | %2$s' ), $this->translate( 'client', 'Basket' ), $this->get( 'contextSiteLabel', 'Aimeos' ) ) ) ?></title>
 
 <link class="basket-standard" rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/summary.css', 'fs-theme', true ) ) ?>">
 <link class="basket-standard" rel="stylesheet" href="<?= $enc->attr( $this->content( $this->get( 'contextSiteTheme', 'default' ) . '/basket-standard.css', 'fs-theme', true ) ) ?>">
