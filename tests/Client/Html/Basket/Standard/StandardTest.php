@@ -55,6 +55,22 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testHeaderTitleFormat()
+	{
+		$tags = [];
+		$expire = null;
+
+		$config = ( clone $this->context->config() )->set( 'client/html/common/title/format', '%1$s » %2$s' );
+		$view = \TestHelper::view( 'unittest', $config );
+		$view->standardBasket = \Aimeos\MShop::create( $this->context, 'order' )->create();
+
+		$this->object->setView( $this->object->data( $view, $tags, $expire ) );
+		$output = $this->object->header();
+
+		$this->assertStringContainsString( '<title>Basket » Aimeos</title>', $output );
+	}
+
+
 	public function testBody()
 	{
 		$output = $this->object->body();
