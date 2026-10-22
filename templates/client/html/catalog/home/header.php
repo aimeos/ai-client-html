@@ -91,7 +91,7 @@ $enc = $this->encoder();
 ?>
 <?php if( isset( $this->homeTree ) ) : ?>
 
-	<title><?= $enc->html( strip_tags( $this->homeTree->getName() ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
+	<title><?= $enc->html( sprintf( $this->config( 'client/html/common/title/format', '%1$s | %2$s' ), strip_tags( $this->homeTree->getName() ), $this->get( 'contextSiteLabel', 'Aimeos' ) ) ) ?></title>
 
 	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="<?= $enc->attr( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?>">

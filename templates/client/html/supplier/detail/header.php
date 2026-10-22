@@ -107,7 +107,7 @@ $enc = $this->encoder();
 ?>
 <?php if( (bool) $this->config( 'client/html/supplier/detail/metatags', true ) === true ) : ?>
 	<?php if( isset( $this->detailSupplierItem ) ) : ?>
-		<title><?= $enc->html( $this->detailSupplierItem->getName() ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
+		<title><?= $enc->html( sprintf( $this->config( 'client/html/common/title/format', '%1$s | %2$s' ), $this->detailSupplierItem->getName(), $this->get( 'contextSiteLabel', 'Aimeos' ) ) ) ?></title>
 
 		<?php foreach( $this->detailSupplierItem->getRefItems( 'text', 'meta-keyword', 'default' ) as $textItem ) : ?>
 			<meta name="keywords" content="<?= $enc->attr( strip_tags( $textItem->getContent() ) ) ?>">

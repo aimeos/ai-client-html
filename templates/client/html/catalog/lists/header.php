@@ -33,7 +33,7 @@ $linkKey = $multi && $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'clie
 		<?php if( $title = $catItem->getRefItems( 'text', 'meta-title', 'default' )->getContent()->first() ) : ?>
 			<title><?= $enc->html( $title ) ?></title>
 		<?php else : ?>
-			<title><?= $enc->html( strip_tags( $catItem->getName() ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
+			<title><?= $enc->html( sprintf( $this->config( 'client/html/common/title/format', '%1$s | %2$s' ), strip_tags( $catItem->getName() ), $this->get( 'contextSiteLabel', 'Aimeos' ) ) ) ?></title>
 		<?php endif ?>
 
 
@@ -49,11 +49,11 @@ $linkKey = $multi && $this->param( 'path' ) || $this->param( 'f_catid' ) ? 'clie
 
 	<?php elseif( $search = $this->param( 'f_search', null ) ) : /// Product search hint with user provided search string (%1$s) ?>
 
-		<title><?= $enc->html( sprintf( $this->translate( 'client', 'Result for "%1$s"' ), strip_tags( $search ) ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
+		<title><?= $enc->html( sprintf( $this->config( 'client/html/common/title/format', '%1$s | %2$s' ), sprintf( $this->translate( 'client', 'Result for "%1$s"' ), strip_tags( $search ) ), $this->get( 'contextSiteLabel', 'Aimeos' ) ) ) ?></title>
 
 	<?php else : ?>
 
-		<title><?= $enc->html( $this->translate( 'client', 'Found products' ) ) ?> | <?= $enc->html( $this->get( 'contextSiteLabel', 'Aimeos' ) ) ?></title>
+		<title><?= $enc->html( sprintf( $this->config( 'client/html/common/title/format', '%1$s | %2$s' ), $this->translate( 'client', 'Found products' ), $this->get( 'contextSiteLabel', 'Aimeos' ) ) ) ?></title>
 		<link rel="canonical" href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', [], ['absoluteUri' => true] ) ) ?>">
 
 	<?php endif ?>
