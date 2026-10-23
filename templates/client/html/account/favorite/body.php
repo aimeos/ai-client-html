@@ -102,7 +102,7 @@ $enc = $this->encoder();
 				<?php foreach( $this->get( 'favoriteItems', map() )->reverse() as $listItem ) : ?>
 					<?php if( ( $productItem = $listItem->getRefItem() ) !== null ) : ?>
 
-						<div class="product favorite-item" data-prodid="<?= $enc->attr( $productItem->getId() ) ?>">
+						<div class="product favorite-item" data-prodid="<?= $enc->attr( $productItem->getId() ) ?>" itemscope itemtype="http://schema.org/Product">
 							<?php $params = ['fav_action' => 'delete', 'fav_id' => $listItem->getRefId()] + $this->get( 'favoriteParams', [] ) ?>
 							<form class="delete" method="POST" action="<?= $enc->attr( $this->link( 'client/html/account/favorite/url', $params ) ) ?>">
 								<button class="minibutton delete" title="<?= $this->translate( 'client', 'Delete item' ) ?>"></button>
@@ -111,7 +111,7 @@ $enc = $this->encoder();
 
 							<?php $name = $productItem->getName( 'url' ) ?>
 							<?php $params = ['path' => $name, 'd_name' => $name, 'd_prodid' => $productItem->getId(), 'd_pos' => ''] ?>
-							<a href="<?= $enc->attr( $this->link( 'client/html/catalog/detail/url', $params ) ) ?>">
+							<a href="<?= $enc->attr( $this->link( 'client/html/catalog/detail/url', $params ) ) ?>" itemprop="url">
 								<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ) ?>
 
 								<?php if( $mediaItem = $mediaItems->first() ) : ?>
@@ -127,8 +127,8 @@ $enc = $this->encoder();
 									<div class="media-item"></div>
 								<?php endif ?>
 
-								<h2 class="name"><?= $enc->html( $productItem->getName() ) ?></h2>
-								<div class="price-list">
+								<h2 class="name" itemprop="name"><?= $enc->html( $productItem->getName() ) ?></h2>
+								<div class="price-list" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
 									<?= $this->partial(
 										$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
 										array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )

@@ -120,13 +120,13 @@ $enc = $this->encoder();
 				<?php $pinParams = ['pin_action' => 'delete', 'pin_id' => $id, 'd_name' => $name] + $this->get( 'pinnedParams', [] ) ?>
 				<?php $detailParams = ['path' => $name, 'd_name' => $name, 'd_prodid' => $id, 'd_pos' => ''] ?>
 
-				<li class="pinned-item product" data-prodid="<?= $enc->attr( $id ) ?>">
+				<li class="pinned-item product" data-prodid="<?= $enc->attr( $id ) ?>" itemscope itemtype="http://schema.org/Product">
 					<form method="POST" action="<?= $enc->attr( $this->link( 'client/html/catalog/session/pinned/url', $pinParams ) ) ?>">
 						<button type="submit" class="minibutton delete" title="<?= $this->translate( 'client', 'Delete item' ) ?>"></button>
 						<?= $this->csrf()->formfield() ?>
 					</form>
 
-					<a href="<?= $enc->attr( $this->link( 'client/html/catalog/detail/url', $detailParams ) ) ?>">
+					<a href="<?= $enc->attr( $this->link( 'client/html/catalog/detail/url', $detailParams ) ) ?>" itemprop="url">
 
 						<?php $mediaItems = $productItem->getRefItems( 'media', 'default', 'default' ) ?>
 						<?php if( ( $mediaItem = $mediaItems->first() ) !== null ) : ?>
@@ -135,8 +135,8 @@ $enc = $this->encoder();
 							<div class="media-item"></div>
 						<?php endif ?>
 
-						<h2 class="name"><?= $enc->html( $productItem->getName() ) ?></h2>
-						<div class="price-list">
+						<h2 class="name" itemprop="name"><?= $enc->html( $productItem->getName() ) ?></h2>
+						<div class="price-list" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
 							<?= $this->partial(
 								$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
 								array( 'prices' => $productItem->getRefItems( 'price', null, 'default' ) )
