@@ -12,12 +12,13 @@ $enc = $this->encoder();
 ?>
 <?php if( isset( $this->product ) ) :  ?>
 
-	<a href="<?= $enc->attr( $this->link( 'client/html/catalog/detail/url', [
+	<a href="<?= $enc->attr( $url = $this->link( 'client/html/catalog/detail/url', [
 		'path' => $this->product->getName( 'url' ),
 		'd_name' => $this->product->getName( 'url' ),
 		'd_prodid' => $this->product->getId(),
 		'd_pos' => ''
-	] ) ) ?>">
+	] ) ) ?>" itemscope itemtype="http://schema.org/Product">
+		<link itemprop="url" href="<?= $enc->attr( $url ) ?>">
 
 		<?php if( ( $mediaItem = $this->product->getRefItems( 'media', 'default', 'default' )->first() ) !== null ) : ?>
 			<div class="media-item" style="background-image: url('<?= $enc->attr( $this->content( $mediaItem->getPreview(), $mediaItem->getFileSystem() ) ) ?>')"></div>
@@ -25,9 +26,9 @@ $enc = $this->encoder();
 			<div class="media-item"></div>
 		<?php endif ?>
 
-		<h2 class="name"><?= $enc->html( $this->product->getName() ) ?></h2>
+		<h2 class="name" itemprop="name"><?= $enc->html( $this->product->getName() ) ?></h2>
 
-		<div class="price-list">
+		<div class="price-list" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
 			<?= $this->partial(
 				$this->config( 'client/html/common/partials/price', 'common/partials/price' ),
 				array( 'prices' => $this->product->getRefItems( 'price', null, 'default' ) )
