@@ -429,6 +429,20 @@ class Standard
 		 */
 		$config = $view->config( 'client/html/checkout/confirm/url/config', $config );
 
+		/** client/html/checkout/confirm/url/filter
+		 * Removes parameters for the confirm page before generating the URL
+		 *
+		 * This setting removes the listed parameters from the URLs. Keep care to
+		 * remove no required parameters!
+		 *
+		 * @type array List of parameter names to remove
+		 * @since 2022.10
+		 * @see client/html/checkout/confirm/url/target
+		 * @see client/html/checkout/confirm/url/controller
+		 * @see client/html/checkout/confirm/url/action
+		 * @see client/html/checkout/confirm/url/config
+		 */
+
 		// @phpstan-ignore-next-line
 		return $view->url( $target, $cntl, $action, $params, [], $config );
 	}
