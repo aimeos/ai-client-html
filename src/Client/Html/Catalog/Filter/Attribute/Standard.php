@@ -25,8 +25,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @type array &$tags Result array for the list of tags that are associated to the output
-	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -44,7 +44,7 @@ class Standard
 		 * different from "client/html/catalog/filter/attribute/types-oneof" because
 		 * it's not limited within the same attribute type
 		 *
-		 * @type array List of attribute type codes
+		 * @param array List of attribute type codes
 		 * @since 2016.10
 		 * @see client/html/catalog/filter/attribute/types
 		 * @see client/html/catalog/filter/attribute/types-oneof
@@ -62,7 +62,7 @@ class Standard
 		 * the attributes within the same attribute type must be referenced by the found
 		 * products.
 		 *
-		 * @type array List of attribute type codes
+		 * @param array List of attribute type codes
 		 * @since 2016.10
 		 * @see client/html/catalog/filter/attribute/types
 		 * @see client/html/catalog/filter/attribute/types-option
@@ -83,7 +83,7 @@ class Standard
 		 * order for the attribute types can be enforced that is different
 		 * from the standard order.
 		 *
-		 * @type array List of attribute type codes
+		 * @param array List of attribute type codes
 		 * @since 2015.05
 		 * @see client/html/catalog/filter/attribute/domains
 		 * @see client/html/catalog/filter/attribute/types-oneof
@@ -107,7 +107,7 @@ class Standard
 		 * the more domains you add to the configuration, the more time is
 		 * required for fetching the content!
 		 *
-		 * @type array List of domain item names
+		 * @param array List of domain item names
 		 * @since 2015.05
 		 * @see client/html/catalog/filter/attribute/types
 		 */
@@ -284,7 +284,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @type string Relative path to the template creating code for the HTML page body
+	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
 	 */
 }

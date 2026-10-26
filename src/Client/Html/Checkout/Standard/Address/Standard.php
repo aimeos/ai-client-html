@@ -55,7 +55,7 @@ class Standard
 	 * should support adding, removing or reordering content by a fluid like
 	 * design.
 	 *
-	 * @type array List of sub-client names
+	 * @param array List of sub-client names
 	 * @since 2014.03
 	 */
 	private string $subPartPath = 'client/html/checkout/standard/address/subparts';
@@ -66,7 +66,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Checkout\Standard\Address\Billing\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the client class name
+	 * @param string Last part of the client class name
 	 * @since 2014.03
 	 */
 
@@ -76,7 +76,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Checkout\Standard\Address\Delivery\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the client class name
+	 * @param string Last part of the client class name
 	 * @since 2014.03
 	 */
 	private array $subPartNames = ['payment', 'delivery'];
@@ -130,7 +130,7 @@ class Standard
 		 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 		 * "client/html/common/decorators/default" to the html client.
 		 *
-		 * @type array List of decorator names
+		 * @param array List of decorator names
 		 * @since 2015.08
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/address/decorators/global
@@ -153,7 +153,7 @@ class Standard
 		 * This would add the decorator named "decorator1" defined by
 		 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 		 *
-		 * @type array List of decorator names
+		 * @param array List of decorator names
 		 * @since 2015.08
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/address/decorators/excludes
@@ -176,7 +176,7 @@ class Standard
 		 * This would add the decorator named "decorator2" defined by
 		 * "\Aimeos\Client\Html\Checkout\Decorator\Decorator2" only to the html client.
 		 *
-		 * @type array List of decorator names
+		 * @param array List of decorator names
 		 * @since 2015.08
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/address/decorators/excludes
@@ -231,8 +231,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @type array &$tags Result array for the list of tags that are associated to the output
-	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -287,7 +287,7 @@ class Standard
 		 *
 		 *  array( 'DE', 'GB', ... )
 		 *
-		 * @type array List of two letter ISO country codes
+		 * @param array List of two letter ISO country codes
 		 * @since 2023.04
 		 */
 		$countries = map( $context->config()->get( 'common/countries', [] ) );
@@ -337,7 +337,7 @@ class Standard
 		 * You can modify the list of salutation codes and remove the ones
 		 * which shouldn't be used or add new ones.
 		 *
-		 * @type array List of available salutation codes
+		 * @param array List of available salutation codes
 		 * @since 2024.04
 		 * @see common/countries
 		 * @see common/states
@@ -380,7 +380,7 @@ class Standard
 		 * state codes determine the order of the states in the frontend and
 		 * the state codes are later used for per state tax calculation.
 		 *
-		 * @type array Multi-dimensional list ISO country codes and state codes/names
+		 * @param array Multi-dimensional list ISO country codes and state codes/names
 		 * @since 2023.04
 		 */
 		return (array) $this->context()->config()->get( 'common/states', [] );
@@ -402,7 +402,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @type string Relative path to the template creating code for the HTML page body
+	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
 	 */
 }

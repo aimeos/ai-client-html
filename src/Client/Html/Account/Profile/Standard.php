@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyProfile"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2016.10
 	 */
 
@@ -59,8 +59,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @type array &$tags Result array for the list of tags that are associated to the output
-	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -81,7 +81,7 @@ class Standard
 		 * You can modify the list of salutation codes and remove the ones
 		 * which shouldn't be used or add new ones.
 		 *
-		 * @type array List of available salutation codes
+		 * @param array List of available salutation codes
 		 * @since 2021.04
 		 */
 		$salutations = $config->get( 'client/html/common/address/salutations', ['', 'company', 'mr', 'ms'] );
@@ -94,7 +94,7 @@ class Standard
 		 * your own list of domains (attribute, media, price, product, text,
 		 * etc. are domains) whose items are fetched from the storage.
 		 *
-		 * @type array List of domain names
+		 * @param array List of domain names
 		 * @since 2016.10
 		 */
 		$domains = $config->get( 'client/html/account/profile/domains', ['customer/address'] );
@@ -106,7 +106,7 @@ class Standard
 		 * to know from which countries your customers are, you have to enable
 		 * the country selection in the address page of the checkout process.
 		 *
-		 * @type array List of two letter ISO country codes
+		 * @param array List of two letter ISO country codes
 		 * @since 2023.04
 		 */
 		$countries = $view->config( 'common/countries', [] );
@@ -132,7 +132,7 @@ class Standard
 		 *		],
 		 *	],
 		 *
-		 * @type array List of two letter ISO country codes
+		 * @param array List of two letter ISO country codes
 		 * @since 2023.04
 		 */
 		$states = $view->config( 'common/states', [] );
@@ -283,7 +283,7 @@ class Standard
 	 * Additional checks for the salutation
 	 *
 	 * @param array $params Associative list of address keys (order.address.*) and their values
-	 * @type array &$mandatory List of mandatory field names
+	 * @param array &$mandatory List of mandatory field names
 	 */
 	protected function checkSalutation( array $params, array &$mandatory ) : void
 	{
@@ -414,7 +414,7 @@ class Standard
 	/**
 	 * Validate the address key/value pairs using regular expressions
 	 *
-	 * @type array &$params Associative list of address keys (order.address.*) and their values
+	 * @param array &$params Associative list of address keys (order.address.*) and their values
 	 * @param array $fields List of field names to validate
 	 * @return array List of invalid address keys
 	 */
@@ -457,7 +457,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @type string Relative path to the template creating code for the HTML page body
+	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2016.10
 	 * @see client/html/account/profile/template-header
 	 */
@@ -478,7 +478,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @type string Relative path to the template creating code for the HTML page head
+	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2016.10
 	 * @see client/html/account/profile/template-body
 	 */
@@ -501,7 +501,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/account/profile/decorators/global
 	 * @see client/html/account/profile/decorators/local
@@ -523,7 +523,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/account/profile/decorators/excludes
 	 * @see client/html/account/profile/decorators/local
@@ -545,7 +545,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Account\Decorator\Decorator2" only to the html client.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/account/profile/decorators/excludes
 	 * @see client/html/account/profile/decorators/global

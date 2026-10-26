@@ -79,8 +79,8 @@ abstract class Base
 	 * Adds the data to the view object required by the templates
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @type array &$tags Result array for the list of tags that are associated to the output
-	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface The view object with the data required by the templates
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -290,8 +290,8 @@ abstract class Base
 	 * Adds the cache tags to the given list and sets a new expiration date if necessary based on the given item.
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Iface|iterable $items Item or list of items, maybe with associated list items
-	 * @type string|null &$expire Expiration date that will be overwritten if an earlier date is found
-	 * @type array &$tags List of tags the new tags will be added to
+	 * @param string|null &$expire Expiration date that will be overwritten if an earlier date is found
+	 * @param array &$tags List of tags the new tags will be added to
 	 * @param array $custom List of custom tags which are added too
 	 */
 	protected function addMetaItems( $items, ?string &$expire, array &$tags, array $custom = [] ) : mixed
@@ -320,7 +320,7 @@ abstract class Base
 		 * if you use the DB, Mysql or Redis adapter that can insert all tags
 		 * at once.
 		 *
-		 * @type boolean True to add tags for all items, false to use only a domain tag
+		 * @param boolean True to add tags for all items, false to use only a domain tag
 		 * @since 2014.07
 		 * @see client/html/common/cache/force
 		 * @see madmin/cache/manager/name
@@ -360,8 +360,8 @@ abstract class Base
 	 * Adds the cache tags to the given list and sets a new expiration date if necessary based on the given catalog tree.
 	 *
 	 * @param \Aimeos\MShop\Catalog\Item\Iface $tree Tree node, maybe with sub-nodes
-	 * @type string|null &$expire Expiration date that will be overwritten if an earlier date is found
-	 * @type array &$tags List of tags the new tags will be added to
+	 * @param string|null &$expire Expiration date that will be overwritten if an earlier date is found
+	 * @param array &$tags List of tags the new tags will be added to
 	 * @param array $custom List of custom tags which are added too
 	 */
 	protected function addMetaItemCatalog( \Aimeos\MShop\Catalog\Item\Iface $tree, ?string &$expire = null, array &$tags = [], array $custom = [] ) : void
@@ -379,8 +379,8 @@ abstract class Base
 	 * Adds expire date and tags for a single item.
 	 *
 	 * @param \Aimeos\MShop\Common\Item\Iface $item Item, maybe with associated list items
-	 * @type array &$expires Will contain the list of expiration dates
-	 * @type array &$tags List of tags the new tags will be added to
+	 * @param array &$expires Will contain the list of expiration dates
+	 * @param array &$tags List of tags the new tags will be added to
 	 * @param bool $tagAll True of tags for all items should be added, false if only for the main item
 	 */
 	private function addMetaItemSingle( \Aimeos\MShop\Common\Item\Iface $item, array &$expires, array &$tags, bool $tagAll ) : void
@@ -405,8 +405,8 @@ abstract class Base
 	 * Adds expire date and tags for referenced items
 	 *
 	 * @param \Aimeos\MShop\Common\Item\ListsRef\Iface $item Item with associated list items
-	 * @type array &$expires Will contain the list of expiration dates
-	 * @type array &$tags List of tags the new tags will be added to
+	 * @param array &$expires Will contain the list of expiration dates
+	 * @param array &$tags List of tags the new tags will be added to
 	 * @param bool $tagAll True of tags for all items should be added, false if only for the main item
 	 */
 	private function addMetaItemRef( \Aimeos\MShop\Common\Item\ListsRef\Iface $item, array &$expires, array &$tags, bool $tagAll ) : void
@@ -592,7 +592,7 @@ abstract class Base
 		 * you can enforce content caching nevertheless to keep response
 		 * times as low as possible.
 		 *
-		 * @type boolean True to cache output regardless of login, false for no caching
+		 * @param boolean True to cache output regardless of login, false for no caching
 		 * @since 2015.08
 		 * @see client/html/common/cache/tag-all
 		 */

@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyList"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -78,7 +78,7 @@ class Standard
 		 * entries to cache or if the component contains non-cacheable parts that
 		 * can't be replaced using the modify() method.
 		 *
-		 * @type boolean True to enable caching, false to disable
+		 * @param boolean True to enable caching, false to disable
 		 * @see client/html/catalog/detail/cache
 		 * @see client/html/catalog/filter/cache
 		 * @see client/html/catalog/stage/cache
@@ -90,7 +90,7 @@ class Standard
 		 * This returns all settings related to the filter component.
 		 * Please refer to the single settings for details.
 		 *
-		 * @type array Associative list of name/value settings
+		 * @param array Associative list of name/value settings
 		 */
 		$confkey = 'client/html/catalog/lists';
 
@@ -131,7 +131,7 @@ class Standard
 		 * the types are a-z and 0-9). The catalog list type subpart
 		 * contains the template for switching between list types.
 		 *
-		 * @type string Relative path to the template creating code for the HTML page body
+		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
 		 * @see client/html/catalog/lists/template-header
 		 */
@@ -198,7 +198,7 @@ class Standard
 		 * the types are a-z and 0-9). The catalog list type subpart
 		 * contains the template for switching between list types.
 		 *
-		 * @type string Relative path to the template creating code for the HTML page head
+		 * @param string Relative path to the template creating code for the HTML page head
 		 * @since 2014.03
 		 * @see client/html/catalog/lists/template-body
 		 */
@@ -240,8 +240,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @type array &$tags Result array for the list of tags that are associated to the output
-	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -345,7 +345,7 @@ class Standard
 		 * attribute IDs will be returned and shown in the frontend. The value
 		 * can be either a single attribute ID or a list of attribute IDs.
 		 *
-		 * @type array|string Attribute ID or IDs
+		 * @param array|string Attribute ID or IDs
 		 * @since 2021.10
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/size
@@ -425,7 +425,7 @@ class Standard
 		 * category is best for this). In most cases you can set this value
 		 * via the administration interface of the shop application.
 		 *
-		 * @type array|string Category ID or IDs
+		 * @param array|string Category ID or IDs
 		 * @since 2014.03
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/size
@@ -459,7 +459,7 @@ class Standard
 		 * option that allows to configure the domain names of the items fetched
 		 * for all catalog related data.
 		 *
-		 * @type int Zero to show all products, "1" to show only products with stock
+		 * @param int Zero to show all products, "1" to show only products with stock
 		 * @since 2021.10
 		 * @see client/html/catalog/domains
 		 * @see client/html/catalog/lists/domains
@@ -507,7 +507,7 @@ class Standard
 		 * configuration option that allows to configure the domain names of the
 		 * items fetched specifically for all types of product listings.
 		 *
-		 * @type array List of domain names
+		 * @param array List of domain names
 		 * @since 2014.03
 		 * @see client/html/catalog/lists/domains
 		 * @see client/html/catalog/lists/size
@@ -532,7 +532,7 @@ class Standard
 		 * option that allows to configure the domain names of the items fetched
 		 * for all catalog related data.
 		 *
-		 * @type array List of domain names
+		 * @param array List of domain names
 		 * @since 2014.03
 		 * @see client/html/catalog/domains
 		 * @see client/html/catalog/detail/domains
@@ -587,7 +587,7 @@ class Standard
 		 * should be listed in. This can be done manually if there are only a few
 		 * ones or during the product import automatically.
 		 *
-		 * @type integer Tree level constant
+		 * @param integer Tree level constant
 		 * @since 2015.11
 		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
@@ -619,7 +619,7 @@ class Standard
 		 * The value must be a positive integer number. Negative values are not
 		 * allowed. The value can't be overwritten per request.
 		 *
-		 * @type integer Number of pages
+		 * @param integer Number of pages
 		 * @since 2019.04
 		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
@@ -654,7 +654,7 @@ class Standard
 		 * well as values above 100 are not allowed. The value can be overwritten
 		 * per request if the "l_size" parameter is part of the URL.
 		 *
-		 * @type integer Number of products
+		 * @param integer Number of products
 		 * @since 2014.03
 		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
@@ -687,7 +687,7 @@ class Standard
 		 * other sort codes can be prefixed by a "-" (minus) sign to sort the products in
 		 * a descending order. By default, the sorting is ascending.
 		 *
-		 * @type string Sort code "relevance", "name", "-name", "price", "-price", "ctime" or "-ctime"
+		 * @param string Sort code "relevance", "name", "-name", "price", "-price", "ctime" or "-ctime"
 		 * @since 2018.07
 		 * @see client/html/catalog/lists/attrid-default
 		 * @see client/html/catalog/lists/catid-default
@@ -718,7 +718,7 @@ class Standard
 		 * You can also configure the default supplier IDs for limiting the
 		 * products if no IDs are passed in the URL using this configuration.
 		 *
-		 * @type array|string Supplier ID or IDs
+		 * @param array|string Supplier ID or IDs
 		 * @since 2021.01
 		 * @see client/html/catalog/lists/sort
 		 * @see client/html/catalog/lists/size
@@ -756,7 +756,7 @@ class Standard
 		 * This allows to cache product items by leaving out such highly
 		 * dynamic content like stock levels which changes with each order.
 		 *
-		 * @type boolean Value of "1" to display stock levels, "0" to disable displaying them
+		 * @param boolean Value of "1" to display stock levels, "0" to disable displaying them
 		 * @since 2014.03
 		 * @see client/html/catalog/detail/stock/enable
 		 * @see client/html/catalog/stock/url/target
@@ -790,7 +790,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/lists/decorators/global
 	 * @see client/html/catalog/lists/decorators/local
@@ -812,7 +812,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/lists/decorators/excludes
 	 * @see client/html/catalog/lists/decorators/local
@@ -834,7 +834,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Catalog\Decorator\Decorator2" only to the html client.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/lists/decorators/excludes
 	 * @see client/html/catalog/lists/decorators/global

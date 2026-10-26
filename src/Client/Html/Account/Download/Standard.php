@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyDownload"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -101,7 +101,7 @@ class Standard
 			 * module of a software development framework. This "target" must contain or know
 			 * the controller that should be called by the generated URL.
 			 *
-			 * @type string Destination of the URL
+			 * @param string Destination of the URL
 			 * @since 2019.04
 			 */
 			$target = $context->config()->get( 'client/html/account/download/error/url/target' );
@@ -233,7 +233,7 @@ class Standard
 		 *
 		 * The default value of null enforces no limit.
 		 *
-		 * @type integer Maximum number of downloads
+		 * @param integer Maximum number of downloads
 		 * @since 2016.02
 		 */
 		$maxcnt = $context->config()->get( 'client/html/account/download/maxcount' );
@@ -278,7 +278,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/account/download/decorators/global
 	 * @see client/html/account/download/decorators/local
@@ -300,7 +300,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/account/download/decorators/excludes
 	 * @see client/html/account/download/decorators/local
@@ -322,7 +322,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Account\Decorator\Decorator2" only to the html client.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/account/download/decorators/excludes
 	 * @see client/html/account/download/decorators/global

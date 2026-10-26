@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyCount"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -84,7 +84,7 @@ class Standard
 	 * should support adding, removing or reordering content by a fluid like
 	 * design.
 	 *
-	 * @type array List of sub-client names
+	 * @param array List of sub-client names
 	 * @since 2014.03
 	 */
 	private string $subPartPath = 'client/html/catalog/count/subparts';
@@ -95,7 +95,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Count\Tree\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the client class name
+	 * @param string Last part of the client class name
 	 * @since 2014.03
 	 */
 
@@ -105,7 +105,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Count\Attribute\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the client class name
+	 * @param string Last part of the client class name
 	 * @since 2018.07
 	 */
 
@@ -115,7 +115,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Count\Attribute\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the client class name
+	 * @param string Last part of the client class name
 	 * @since 2014.03
 	 */
 	private array $subPartNames = ['tree', 'supplier', 'attribute'];
@@ -167,7 +167,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @type string Relative path to the template creating code for the HTML page body
+	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
 	 * @see client/html/catalog/count/template-header
 	 */
@@ -188,7 +188,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @type string Relative path to the template creating code for the HTML page head
+	 * @param string Relative path to the template creating code for the HTML page head
 	 * @since 2014.03
 	 * @see client/html/catalog/count/template-body
 	 */
@@ -211,7 +211,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2014.05
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/count/decorators/global
@@ -234,7 +234,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2014.05
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/count/decorators/excludes
@@ -257,7 +257,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Catalog\Decorator\Decorator2" only to the html client.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2014.05
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/count/decorators/excludes

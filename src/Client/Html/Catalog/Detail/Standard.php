@@ -50,7 +50,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyDetail"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -87,7 +87,7 @@ class Standard
 		 * entries to cache or if the component contains non-cacheable parts that
 		 * can't be replaced using the modify() method.
 		 *
-		 * @type boolean True to enable caching, false to disable
+		 * @param boolean True to enable caching, false to disable
 		 * @see client/html/catalog/filter/cache
 		 * @see client/html/catalog/lists/cache
 		 * @see client/html/catalog/stage/cache
@@ -99,7 +99,7 @@ class Standard
 		 * This returns all settings related to the detail component.
 		 * Please refer to the single settings for details.
 		 *
-		 * @type array Associative list of name/value settings
+		 * @param array Associative list of name/value settings
 		 */
 		$confkey = 'client/html/catalog/detail';
 
@@ -122,7 +122,7 @@ class Standard
 		 * you've implemented an alternative client class as well, it
 		 * should be suffixed by the name of the new class.
 		 *
-		 * @type string Relative path to the template creating code for the HTML page body
+		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
 		 * @see client/html/catalog/detail/template-header
 		 */
@@ -176,7 +176,7 @@ class Standard
 		 * you've implemented an alternative client class as well, it
 		 * should be suffixed by the name of the new class.
 		 *
-		 * @type string Relative path to the template creating code for the HTML page head
+		 * @param string Relative path to the template creating code for the HTML page head
 		 * @since 2014.03
 		 * @see client/html/catalog/detail/template-body
 		 */
@@ -226,8 +226,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @type array &$tags Result array for the list of tags that are associated to the output
-	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -346,7 +346,7 @@ class Standard
 		 * "client/html/catalog/domains" option that allows to configure the
 		 * domain names of the items fetched for all catalog related data.
 		 *
-		 * @type array List of domain names
+		 * @param array List of domain names
 		 * @since 2014.03
 		 * @see client/html/catalog/domains
 		 * @see client/html/catalog/lists/domains
@@ -433,7 +433,7 @@ class Standard
 			 * you've implemented an alternative client class as well, it
 			 * should be suffixed by the name of the new class.
 			 *
-			 * @type string Relative path to the template creating the HTML fragment
+			 * @param string Relative path to the template creating the HTML fragment
 			 * @since 2022.10
 			 */
 			$template = $context->config()->get( 'client/html/catalog/detail/template-navigator', 'catalog/detail/navigator' );
@@ -464,7 +464,7 @@ class Standard
 		 * most useful in a CMS where the product ID can be configured
 		 * separately for each content node.
 		 *
-		 * @type string Product ID
+		 * @param string Product ID
 		 * @since 2016.01
 		 * @see client/html/catalog/detail/prodid-default
 		 * @see client/html/catalog/lists/catid-default
@@ -480,7 +480,7 @@ class Standard
 		 * most useful in a CMS where the product code can be configured
 		 * separately for each content node.
 		 *
-		 * @type string Product code
+		 * @param string Product code
 		 * @since 2019.10
 		 * @see client/html/catalog/detail/prodid-default
 		 * @see client/html/catalog/lists/catid-default
@@ -543,7 +543,7 @@ class Standard
 			 * you've implemented an alternative client class as well, it
 			 * should be suffixed by the name of the new class.
 			 *
-			 * @type string Relative path to the template creating the HTML fragment
+			 * @param string Relative path to the template creating the HTML fragment
 			 * @since 2014.03
 			 */
 			$template = $config->get( 'client/html/catalog/detail/partials/seen', 'catalog/detail/seen' );
@@ -555,7 +555,7 @@ class Standard
 			 * "last seen" section after the user visited their detail pages. It
 			 * must be a positive integer value greater than 0.
 			 *
-			 * @type integer Number of products
+			 * @param integer Number of products
 			 * @since 2014.03
 			 */
 			$max = $config->get( 'client/html/catalog/session/seen/maxitems', 6 );
@@ -589,7 +589,7 @@ class Standard
 		 * This allows to cache product items by leaving out such highly
 		 * dynamic content like stock levels which changes with each order.
 		 *
-		 * @type boolean Value of "1" to display stock levels, "0" to disable displaying them
+		 * @param boolean Value of "1" to display stock levels, "0" to disable displaying them
 		 * @since 2014.03
 		 * @see client/html/catalog/lists/stock
 		 * @see client/html/catalog/stock/url/target
@@ -625,7 +625,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/detail/decorators/global
 	 * @see client/html/catalog/detail/decorators/local
@@ -647,7 +647,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/detail/decorators/excludes
 	 * @see client/html/catalog/detail/decorators/local
@@ -669,7 +669,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Catalog\Decorator\Decorator2" only to the html client.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/detail/decorators/excludes
 	 * @see client/html/catalog/detail/decorators/global

@@ -54,7 +54,7 @@ class Standard
 	 * should support adding, removing or reordering content by a fluid like
 	 * design.
 	 *
-	 * @type array List of sub-client names
+	 * @param array List of sub-client names
 	 * @since 2014.03
 	 */
 	private string $subPartPath = 'client/html/checkout/standard/process/subparts';
@@ -65,7 +65,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Process\Account\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the client class name
+	 * @param string Last part of the client class name
 	 * @since 2017.04
 	 */
 
@@ -75,7 +75,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Checkout\Standard\Process\Address\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the client class name
+	 * @param string Last part of the client class name
 	 * @since 2017.04
 	 */
 	private array $subPartNames = ['account', 'address'];
@@ -124,7 +124,7 @@ class Standard
 		 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 		 * "client/html/common/decorators/default" to the html client.
 		 *
-		 * @type array List of decorator names
+		 * @param array List of decorator names
 		 * @since 2015.08
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/process/decorators/global
@@ -147,7 +147,7 @@ class Standard
 		 * This would add the decorator named "decorator1" defined by
 		 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 		 *
-		 * @type array List of decorator names
+		 * @param array List of decorator names
 		 * @since 2015.08
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/process/decorators/excludes
@@ -170,7 +170,7 @@ class Standard
 		 * This would add the decorator named "decorator2" defined by
 		 * "\Aimeos\Client\Html\Checkout\Decorator\Decorator2" only to the html client.
 		 *
-		 * @type array List of decorator names
+		 * @param array List of decorator names
 		 * @since 2015.08
 		 * @see client/html/common/decorators/default
 		 * @see client/html/checkout/standard/process/decorators/excludes
@@ -370,7 +370,7 @@ class Standard
 		 * module of a software development framework. This "target" must contain or know
 		 * the controller that should be called by the generated URL.
 		 *
-		 * @type string Destination of the URL
+		 * @param string Destination of the URL
 		 * @since 2014.03
 		 * @see client/html/checkout/confirm/url/controller
 		 * @see client/html/checkout/confirm/url/action
@@ -385,7 +385,7 @@ class Standard
 		 * that create parts of the output displayed in the generated HTML page. Controller
 		 * names are usually alpha-numeric.
 		 *
-		 * @type string Name of the controller
+		 * @param string Name of the controller
 		 * @since 2014.03
 		 * @see client/html/checkout/confirm/url/target
 		 * @see client/html/checkout/confirm/url/action
@@ -400,7 +400,7 @@ class Standard
 		 * controller that create parts of the output displayed in the generated HTML page.
 		 * Action names are usually alpha-numeric.
 		 *
-		 * @type string Name of the action
+		 * @param string Name of the action
 		 * @since 2014.03
 		 * @see client/html/checkout/confirm/url/target
 		 * @see client/html/checkout/confirm/url/controller
@@ -421,7 +421,7 @@ class Standard
 		 * generating the URLs. The full list of available config options is referenced
 		 * in the "see also" section of this page.
 		 *
-		 * @type string Associative list of configuration options
+		 * @param string Associative list of configuration options
 		 * @since 2014.03
 		 * @see client/html/checkout/confirm/url/target
 		 * @see client/html/checkout/confirm/url/controller
@@ -435,7 +435,7 @@ class Standard
 		 * This setting removes the listed parameters from the URLs. Keep care to
 		 * remove no required parameters!
 		 *
-		 * @type array List of parameter names to remove
+		 * @param array List of parameter names to remove
 		 * @since 2022.10
 		 * @see client/html/checkout/confirm/url/target
 		 * @see client/html/checkout/confirm/url/controller
@@ -465,7 +465,7 @@ class Standard
 		 * module of a software development framework. This "target" must contain or know
 		 * the controller that should be called by the generated URL.
 		 *
-		 * @type string Destination of the URL
+		 * @param string Destination of the URL
 		 * @since 2014.03
 		 * @see client/html/checkout/standard/url/controller
 		 * @see client/html/checkout/standard/url/action
@@ -480,7 +480,7 @@ class Standard
 		 * that create parts of the output displayed in the generated HTML page. Controller
 		 * names are usually alpha-numeric.
 		 *
-		 * @type string Name of the controller
+		 * @param string Name of the controller
 		 * @since 2014.03
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/action
@@ -495,7 +495,7 @@ class Standard
 		 * controller that create parts of the output displayed in the generated HTML page.
 		 * Action names are usually alpha-numeric.
 		 *
-		 * @type string Name of the action
+		 * @param string Name of the action
 		 * @since 2014.03
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/controller
@@ -516,7 +516,7 @@ class Standard
 		 * generating the URLs. The full list of available config options is referenced
 		 * in the "see also" section of this page.
 		 *
-		 * @type string Associative list of configuration options
+		 * @param string Associative list of configuration options
 		 * @since 2014.03
 		 * @see client/html/checkout/standard/url/target
 		 * @see client/html/checkout/standard/url/controller
@@ -546,7 +546,7 @@ class Standard
 		 * module of a software development framework. This "target" must contain or know
 		 * the controller that should be called by the generated URL.
 		 *
-		 * @type string Destination of the URL
+		 * @param string Destination of the URL
 		 * @since 2014.03
 		 * @see client/html/checkout/update/url/controller
 		 * @see client/html/checkout/update/url/action
@@ -561,7 +561,7 @@ class Standard
 		 * that create parts of the output displayed in the generated HTML page. Controller
 		 * names are usually alpha-numeric.
 		 *
-		 * @type string Name of the controller
+		 * @param string Name of the controller
 		 * @since 2014.03
 		 * @see client/html/checkout/update/url/target
 		 * @see client/html/checkout/update/url/action
@@ -576,7 +576,7 @@ class Standard
 		 * controller that create parts of the output displayed in the generated HTML page.
 		 * Action names are usually alpha-numeric.
 		 *
-		 * @type string Name of the action
+		 * @param string Name of the action
 		 * @since 2014.03
 		 * @see client/html/checkout/update/url/target
 		 * @see client/html/checkout/update/url/controller
@@ -597,7 +597,7 @@ class Standard
 		 * generating the URLs. The full list of available config options is referenced
 		 * in the "see also" section of this page.
 		 *
-		 * @type string Associative list of configuration options
+		 * @param string Associative list of configuration options
 		 * @since 2014.03
 		 * @see client/html/checkout/update/url/target
 		 * @see client/html/checkout/update/url/controller
@@ -633,8 +633,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @type array &$tags Result array for the list of tags that are associated to the output
-	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -660,7 +660,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @type string Relative path to the template creating code for the HTML page body
+	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
 	 */
 }

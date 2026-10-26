@@ -36,7 +36,7 @@ abstract class Base
 		 * module of a software development framework. This "target" must contain or know
 		 * the controller that should be called by the generated URL.
 		 *
-		 * @type string Destination of the URL
+		 * @param string Destination of the URL
 		 * @since 2014.03
 		 * @see client/html/catalog/stock/url/controller
 		 * @see client/html/catalog/stock/url/action
@@ -52,7 +52,7 @@ abstract class Base
 		 * that create parts of the output displayed in the generated HTML page. Controller
 		 * names are usually alpha-numeric.
 		 *
-		 * @type string Name of the controller
+		 * @param string Name of the controller
 		 * @since 2014.03
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/action
@@ -68,7 +68,7 @@ abstract class Base
 		 * controller that create parts of the output displayed in the generated HTML page.
 		 * Action names are usually alpha-numeric.
 		 *
-		 * @type string Name of the action
+		 * @param string Name of the action
 		 * @since 2014.03
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/controller
@@ -90,7 +90,7 @@ abstract class Base
 		 * generating the URLs. The full list of available config options is referenced
 		 * in the "see also" section of this page.
 		 *
-		 * @type string Associative list of configuration options
+		 * @param string Associative list of configuration options
 		 * @since 2014.03
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/controller
@@ -105,7 +105,7 @@ abstract class Base
 		 * This setting removes the listed parameters from the URLs. Keep care to
 		 * remove no required parameters!
 		 *
-		 * @type array List of parameter names to remove
+		 * @param array List of parameter names to remove
 		 * @since 2022.10
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/controller
@@ -122,7 +122,7 @@ abstract class Base
 		 * If more product codes are available, several requests will be sent to the
 		 * server.
 		 *
-		 * @type integer Maximum number of product codes per request
+		 * @param integer Maximum number of product codes per request
 		 * @since 2018.10
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/controller

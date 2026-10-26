@@ -55,8 +55,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @type array &$tags Result array for the list of tags that are associated to the output
-	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -124,7 +124,7 @@ class Standard
 		 * Until 2015-02, the configuration option was available as
 		 * "client/html/common/address/payment/mandatory" starting from 2014-03.
 		 *
-		 * @type array List of field keys
+		 * @param array List of field keys
 		 * @since 2015.02
 		 * @see client/html/checkout/standard/address/payment/disable-new
 		 * @see client/html/common/address/validate
@@ -165,7 +165,7 @@ class Standard
 		 * Until 2015-02, the configuration option was available as
 		 * "client/html/common/address/payment/optional" starting from 2014-03.
 		 *
-		 * @type array List of field keys
+		 * @param array List of field keys
 		 * @since 2015.02
 		 * @see client/html/checkout/standard/address/payment/disable-new
 		 * @see client/html/common/address/validate
@@ -205,7 +205,7 @@ class Standard
 		 *
 		 * Caution: Only hide fields that don't require any input
 		 *
-		 * @type array List of field keys
+		 * @param array List of field keys
 		 * @since 2015.02
 		 * @see client/html/checkout/standard/address/payment/disable-new
 		 * @see client/html/common/address/payment/mandatory
@@ -269,7 +269,7 @@ class Standard
 		 * Until 2015-02, the configuration option was available as
 		 * "client/html/common/address/payment/validate" starting from 2014-09.
 		 *
-		 * @type array Associative list of field names and regular expressions
+		 * @param array Associative list of field names and regular expressions
 		 * @since 2014.09
 		 * @see client/html/common/address/payment/mandatory
 		 * @see client/html/common/address/payment/optional
@@ -306,7 +306,7 @@ class Standard
 	 * Additional checks for the salutation
 	 *
 	 * @param array $params Associative list of address keys (order.address.*) and their values
-	 * @type array &$mandatory List of mandatory field names
+	 * @param array &$mandatory List of mandatory field names
 	 * @since 2016.05
 	 */
 	protected function checkSalutation( array $params, array &$mandatory ) : void
@@ -427,7 +427,7 @@ class Standard
 		 * Until 2015-02, the configuration option was available as
 		 * "client/html/common/address/payment/disable-new" starting from 2014-03.
 		 *
-		 * @type boolean A value of "1" to disable, "0" enables the payment address form
+		 * @param boolean A value of "1" to disable, "0" enables the payment address form
 		 * @since 2015.02
 		 * @see client/html/common/address/payment/mandatory
 		 * @see client/html/common/address/payment/optional
@@ -627,7 +627,7 @@ class Standard
 	 * you've implemented an alternative client class as well, it
 	 * should be suffixed by the name of the new class.
 	 *
-	 * @type string Relative path to the template creating code for the HTML page body
+	 * @param string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
 	 */
 }

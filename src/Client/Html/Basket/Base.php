@@ -71,7 +71,7 @@ abstract class Base
 		 * To ease development, the caching can be disabled but you shouldn't
 		 * disable it in your production environment!
 		 *
-		 * @type boolean True to enable, false to disable basket content caching
+		 * @param boolean True to enable, false to disable basket content caching
 		 * @since 2014.11
 		 */
 		if( $context->config()->get( 'client/html/basket/cache/enable', true ) != false )

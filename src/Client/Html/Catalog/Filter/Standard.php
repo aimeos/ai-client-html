@@ -51,7 +51,7 @@ class Standard
 	 * name with an upper case character and continue only with lower case characters
 	 * or numbers. Avoid chamel case names like "MyFilter"!
 	 *
-	 * @type string Last part of the class name
+	 * @param string Last part of the class name
 	 * @since 2014.03
 	 */
 
@@ -84,7 +84,7 @@ class Standard
 	 * should support adding, removing or reordering content by a fluid like
 	 * design.
 	 *
-	 * @type array List of sub-client names
+	 * @param array List of sub-client names
 	 * @since 2014.03
 	 */
 	private string $subPartPath = 'client/html/catalog/filter/subparts';
@@ -95,7 +95,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Filter\Search\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the client class name
+	 * @param string Last part of the client class name
 	 * @since 2014.03
 	 */
 
@@ -105,7 +105,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Filter\Tree\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the client class name
+	 * @param string Last part of the client class name
 	 * @since 2014.03
 	 */
 
@@ -115,7 +115,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Filter\Price\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the client class name
+	 * @param string Last part of the client class name
 	 * @since 2020.10
 	 */
 
@@ -125,7 +125,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Filter\Attribute\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the client class name
+	 * @param string Last part of the client class name
 	 * @since 2014.03
 	 */
 
@@ -135,7 +135,7 @@ class Standard
 	 * Use "Myname" if your class is named "\Aimeos\Client\Html\Catalog\Filter\Supplier\Myname".
 	 * The name is case-sensitive and you should avoid camel case names like "MyName".
 	 *
-	 * @type string Last part of the client class name
+	 * @param string Last part of the client class name
 	 * @since 2018.07
 	 */
 	private array $subPartNames = ['tree', 'search', 'price', 'supplier', 'attribute'];
@@ -163,7 +163,7 @@ class Standard
 		 * entries to cache or if the component contains non-cacheable parts that
 		 * can't be replaced using the modify() method.
 		 *
-		 * @type boolean True to enable caching, false to disable
+		 * @param boolean True to enable caching, false to disable
 		 * @see client/html/catalog/detail/cache
 		 * @see client/html/catalog/lists/cache
 		 * @see client/html/catalog/stage/cache
@@ -175,7 +175,7 @@ class Standard
 		 * This returns all settings related to the filter component.
 		 * Please refer to the single settings for details.
 		 *
-		 * @type array Associative list of name/value settings
+		 * @param array Associative list of name/value settings
 		 */
 		$confkey = 'client/html/catalog/filter';
 
@@ -210,7 +210,7 @@ class Standard
 		 * you've implemented an alternative client class as well, it
 		 * should be suffixed by the name of the new class.
 		 *
-		 * @type string Relative path to the template creating code for the HTML page body
+		 * @param string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
 		 * @see client/html/catalog/filter/template-header
 		 */
@@ -268,7 +268,7 @@ class Standard
 		 * you've implemented an alternative client class as well, it
 		 * should be suffixed by the name of the new class.
 		 *
-		 * @type string Relative path to the template creating code for the HTML page head
+		 * @param string Relative path to the template creating code for the HTML page head
 		 * @since 2014.03
 		 * @see client/html/catalog/filter/template-body
 		 */
@@ -328,8 +328,8 @@ class Standard
 	 * Sets the necessary parameter values in the view.
 	 *
 	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
-	 * @type array &$tags Result array for the list of tags that are associated to the output
-	 * @type string|null &$expire Result variable for the expiration date of the output (null for no expiry)
+	 * @param array &$tags Result array for the list of tags that are associated to the output
+	 * @param string|null &$expire Result variable for the expiration date of the output (null for no expiry)
 	 * @return \Aimeos\Base\View\Iface Modified view object
 	 */
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
@@ -350,7 +350,7 @@ class Standard
 		 * leaving out such highly dynamic content like product count which
 		 * changes with used filter parameter.
 		 *
-		 * @type boolean Value of "1" to display product counts, "0" to disable them
+		 * @param boolean Value of "1" to display product counts, "0" to disable them
 		 * @since 2014.03
 		 * @see client/html/catalog/count/url/target
 		 * @see client/html/catalog/count/url/controller
@@ -369,7 +369,7 @@ class Standard
 			 * module of a software development framework. This "target" must contain or know
 			 * the controller that should be called by the generated URL.
 			 *
-			 * @type string Destination of the URL
+			 * @param string Destination of the URL
 			 * @since 2014.03
 			 * @see client/html/catalog/count/url/controller
 			 * @see client/html/catalog/count/url/action
@@ -384,7 +384,7 @@ class Standard
 			 * that create parts of the output displayed in the generated HTML page. Controller
 			 * names are usually alpha-numeric.
 			 *
-			 * @type string Name of the controller
+			 * @param string Name of the controller
 			 * @since 2014.03
 			 * @see client/html/catalog/count/url/target
 			 * @see client/html/catalog/count/url/action
@@ -399,7 +399,7 @@ class Standard
 			 * controller that create parts of the output displayed in the generated HTML page.
 			 * Action names are usually alpha-numeric.
 			 *
-			 * @type string Name of the action
+			 * @param string Name of the action
 			 * @since 2014.03
 			 * @see client/html/catalog/count/url/target
 			 * @see client/html/catalog/count/url/controller
@@ -420,7 +420,7 @@ class Standard
 			 * generating the URLs. The full list of available config options is referenced
 			 * in the "see also" section of this page.
 			 *
-			 * @type string Associative list of configuration options
+			 * @param string Associative list of configuration options
 			 * @since 2014.03
 			 * @see client/html/catalog/count/url/target
 			 * @see client/html/catalog/count/url/controller
@@ -434,7 +434,7 @@ class Standard
 			 * This setting removes the listed parameters from the URLs. Keep care to
 			 * remove no required parameters!
 			 *
-			 * @type array List of parameter names to remove
+			 * @param array List of parameter names to remove
 			 * @since 2022.10
 			 * @see client/html/catalog/count/url/target
 			 * @see client/html/catalog/count/url/controller
@@ -452,7 +452,7 @@ class Standard
 			 *
 			 * Downside: It will be impossible for customers to deselect the category!
 			 *
-			 * @type array List of parameter names
+			 * @param array List of parameter names
 			 * @since 2020.04
 			 */
 
@@ -494,7 +494,7 @@ class Standard
 	 * common decorators ("\Aimeos\Client\Html\Common\Decorator\*") added via
 	 * "client/html/common/decorators/default" to the html client.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2014.05
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/filter/decorators/global
@@ -517,7 +517,7 @@ class Standard
 	 * This would add the decorator named "decorator1" defined by
 	 * "\Aimeos\Client\Html\Common\Decorator\Decorator1" only to the html client.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2014.05
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/filter/decorators/excludes
@@ -540,7 +540,7 @@ class Standard
 	 * This would add the decorator named "decorator2" defined by
 	 * "\Aimeos\Client\Html\Catalog\Decorator\Decorator2" only to the html client.
 	 *
-	 * @type array List of decorator names
+	 * @param array List of decorator names
 	 * @since 2014.05
 	 * @see client/html/common/decorators/default
 	 * @see client/html/catalog/filter/decorators/excludes
