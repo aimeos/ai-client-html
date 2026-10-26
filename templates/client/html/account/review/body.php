@@ -66,7 +66,6 @@
  * @see client/html/account/review/url/target
  * @see client/html/account/review/url/controller
  * @see client/html/account/review/url/action
- * @see client/html/url/config
  */
 
 /** client/html/account/review/url/filter

@@ -86,7 +86,6 @@ $detailAction = $this->config( 'client/html/catalog/detail/url/action', 'detail'
  * @see client/html/catalog/detail/url/controller
  * @see client/html/catalog/detail/url/action
  * @see client/html/catalog/detail/url/filter
- * @see client/html/url/config
  */
 $detailConfig = $this->config( 'client/html/catalog/detail/url/config', [] );
 

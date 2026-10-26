@@ -91,7 +91,6 @@ class Standard
 		 * Please refer to the single settings for details.
 		 *
 		 * @type array Associative list of name/value settings
-		 * @see client/html/catalog#list
 		 */
 		$confkey = 'client/html/catalog/lists';
 
@@ -135,7 +134,6 @@ class Standard
 		 * @type string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
 		 * @see client/html/catalog/lists/template-header
-		 * @see client/html/catalog/lists/type/template-body
 		 */
 		$template = $this->context()->config()->get( 'client/html/catalog/lists/template-body', 'catalog/lists/body' );
 
@@ -203,7 +201,6 @@ class Standard
 		 * @type string Relative path to the template creating code for the HTML page head
 		 * @since 2014.03
 		 * @see client/html/catalog/lists/template-body
-		 * @see client/html/catalog/lists/type/template-body
 		 */
 		$template = $this->context()->config()->get( 'client/html/catalog/lists/template-header', 'catalog/lists/header' );
 

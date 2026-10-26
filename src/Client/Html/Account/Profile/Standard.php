@@ -83,7 +83,6 @@ class Standard
 		 *
 		 * @type array List of available salutation codes
 		 * @since 2021.04
-		 * @see client/html/account/profile/address/salutations
 		 */
 		$salutations = $config->get( 'client/html/common/address/salutations', ['', 'company', 'mr', 'ms'] );
 

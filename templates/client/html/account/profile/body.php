@@ -67,7 +67,6 @@ $enc = $this->encoder();
  * @see client/html/account/profile/url/target
  * @see client/html/account/profile/url/controller
  * @see client/html/account/profile/url/action
- * @see client/html/url/config
  */
 
 /** client/html/account/profile/url/filter

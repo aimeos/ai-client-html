@@ -80,8 +80,6 @@ class Standard
 		 * @type boolean True to enable caching, false to disable
 		 * @since 2020.10
 		 * @see client/html/supplier/detail/cache
-		 * @see client/html/supplier/filter/cache
-		 * @see client/html/supplier/lists/cache
 		 */
 
 		/** client/html/supplier/detail
@@ -92,7 +90,6 @@ class Standard
 		 *
 		 * @type array Associative list of name/value settings
 		 * @since 2020.10
-		 * @see client/html/supplier#detail
 		 */
 		$confkey = 'client/html/supplier/detail';
 

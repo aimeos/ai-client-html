@@ -100,7 +100,6 @@ class Standard
 		 * Please refer to the single settings for details.
 		 *
 		 * @type array Associative list of name/value settings
-		 * @see client/html/catalog#detail
 		 */
 		$confkey = 'client/html/catalog/detail';
 
@@ -126,7 +125,6 @@ class Standard
 		 * @type string Relative path to the template creating code for the HTML page body
 		 * @since 2014.03
 		 * @see client/html/catalog/detail/template-header
-		 * @see client/html/catalog/detail/404
 		 */
 		$template = $config->get( 'client/html/catalog/detail/template-body', 'catalog/detail/body' );
 
@@ -181,7 +179,6 @@ class Standard
 		 * @type string Relative path to the template creating code for the HTML page head
 		 * @since 2014.03
 		 * @see client/html/catalog/detail/template-body
-		 * @see client/html/catalog/detail/404
 		 */
 		$template = $config->get( 'client/html/catalog/detail/template-header', 'catalog/detail/header' );
 
@@ -594,7 +591,7 @@ class Standard
 		 *
 		 * @type boolean Value of "1" to display stock levels, "0" to disable displaying them
 		 * @since 2014.03
-		 * @see client/html/catalog/lists/stock/enable
+		 * @see client/html/catalog/lists/stock
 		 * @see client/html/catalog/stock/url/target
 		 * @see client/html/catalog/stock/url/controller
 		 * @see client/html/catalog/stock/url/action

@@ -86,6 +86,5 @@ class Standard
 	 *
 	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2018.07
-	 * @see client/html/catalog/count/supplier/template-header
 	 */
 }

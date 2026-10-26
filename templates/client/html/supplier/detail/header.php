@@ -100,7 +100,6 @@ $enc = $this->encoder();
  *
  * @param boolean True to display the meta tags, false to hide it
  * @since 2021.01
- * @see client/html/supplier/lists/metatags
  */
 
 

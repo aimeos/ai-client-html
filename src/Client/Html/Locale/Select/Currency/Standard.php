@@ -48,7 +48,6 @@ class Standard
 		 *
 		 * @type string Relative path to the template creating code for the HTML page body
 		 * @since 2014.09
-		 * @see client/html/locale/select/currency/template-header
 		 */
 		$tplconf = 'client/html/locale/select/currency/template-body';
 		$default = 'locale/select/currency-body';

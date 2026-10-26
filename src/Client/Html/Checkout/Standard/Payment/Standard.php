@@ -205,6 +205,5 @@ class Standard
 	 *
 	 * @type string Relative path to the template creating code for the HTML page body
 	 * @since 2014.03
-	 * @see client/html/checkout/standard/payment/template-header
 	 */
 }

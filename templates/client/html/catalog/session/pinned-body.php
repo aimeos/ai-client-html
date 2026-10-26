@@ -21,7 +21,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/session/pinned/url/controller
  * @see client/html/catalog/session/pinned/url/action
  * @see client/html/catalog/session/pinned/url/config
- * @see client/html/catalog/session/url/filter
+ * @see client/html/catalog/session/pinned/url/filter
  */
 
 /** client/html/catalog/session/pinned/url/controller
@@ -36,7 +36,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/session/pinned/url/target
  * @see client/html/catalog/session/pinned/url/action
  * @see client/html/catalog/session/pinned/url/config
- * @see client/html/catalog/session/url/filter
+ * @see client/html/catalog/session/pinned/url/filter
  */
 
 /** client/html/catalog/session/pinned/url/action
@@ -51,7 +51,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/session/pinned/url/target
  * @see client/html/catalog/session/pinned/url/controller
  * @see client/html/catalog/session/pinned/url/config
- * @see client/html/catalog/session/url/filter
+ * @see client/html/catalog/session/pinned/url/filter
  */
 
 /** client/html/catalog/session/pinned/url/config
@@ -72,7 +72,7 @@ $enc = $this->encoder();
  * @see client/html/catalog/session/pinned/url/target
  * @see client/html/catalog/session/pinned/url/controller
  * @see client/html/catalog/session/pinned/url/action
- * @see client/html/catalog/session/url/filter
+ * @see client/html/catalog/session/pinned/url/filter
  */
 
 /** client/html/catalog/session/pinned/url/filter

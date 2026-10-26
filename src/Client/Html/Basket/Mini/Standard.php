@@ -112,7 +112,6 @@ class Standard
 		 * Please refer to the single settings for details.
 		 *
 		 * @type array Associative list of name/value settings
-		 * @see client/html/basket#mini
 		 */
 		$config = $context->config()->get( 'client/html/basket/mini', [] );
 		// @phpstan-ignore-next-line

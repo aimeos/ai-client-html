@@ -176,7 +176,6 @@ class Standard
 		 * Please refer to the single settings for details.
 		 *
 		 * @type array Associative list of name/value settings
-		 * @see client/html/catalog#filter
 		 */
 		$confkey = 'client/html/catalog/filter';
 

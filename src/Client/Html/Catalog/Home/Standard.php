@@ -78,7 +78,7 @@ class Standard
 		 * @see client/html/catalog/detail/cache
 		 * @see client/html/catalog/filter/cache
 		 * @see client/html/catalog/stage/cache
-		 * @see client/html/catalog/list/cache
+		 * @see client/html/catalog/lists/cache
 		 */
 
 		/** client/html/catalog/home
@@ -87,7 +87,6 @@ class Standard
 		 * Please refer to the single settings for details.
 		 *
 		 * @type array Associative list of name/value settings
-		 * @see client/html/catalog#home
 		 */
 		$confkey = 'client/html/catalog/home';
 		$config = $this->context()->config();

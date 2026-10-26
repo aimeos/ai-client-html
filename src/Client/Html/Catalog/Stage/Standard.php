@@ -91,7 +91,6 @@ class Standard
 		 * Please refer to the single settings for details.
 		 *
 		 * @type array Associative list of name/value settings
-		 * @see client/html/catalog#stage
 		 */
 		$confkey = 'client/html/catalog/stage';
 

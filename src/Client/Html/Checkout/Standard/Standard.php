@@ -193,7 +193,7 @@ class Standard
 		 * that are configured for the checkout client.
 		 *
 		 * @type string Name of the confirm standard HTML client
-		 * @see client/html/checkout/subparts
+		 * @see client/html/checkout/standard/subparts
 		 */
 		$default = $view->config( 'client/html/checkout/standard/url/step-active', 'summary' );
 
@@ -398,7 +398,7 @@ class Standard
 	 * should be suffixed by the name of the new class.
 	 *
 	 * @type string Relative path to the template creating code for the HTML page body
-	 * @see client/html/checkout/template-header
+	 * @see client/html/checkout/standard/template-header
 	 */
 
 	/** client/html/checkout/standard/template-header
@@ -418,7 +418,7 @@ class Standard
 	 * should be suffixed by the name of the new class.
 	 *
 	 * @type string Relative path to the template creating code for the HTML page head
-	 * @see client/html/checkout/template-body
+	 * @see client/html/checkout/standard/template-body
 	 */
 
 	/** client/html/checkout/standard/decorators/excludes

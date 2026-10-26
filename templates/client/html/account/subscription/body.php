@@ -202,7 +202,6 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 												 * @param string Relative path to the address partial
 												 * @since 2018.04
 												 * @see client/html/account/subscription/summary/detail
-												 * @see client/html/account/subscription/summary/service
 												 */
 												$this->config( 'client/html/account/subscription/summary/address', 'common/summary/address' ),
 												['addresses' => $item->getOrderItem()->getAddress( 'payment' )]
@@ -248,7 +247,6 @@ $dateformat = $this->translate( 'client', 'Y-m-d' );
 										 * @param string Relative path to the detail partial
 										 * @since 2018.04
 										 * @see client/html/account/subscription/summary/address
-										 * @see client/html/account/subscription/summary/service
 										 */
 										$this->config( 'client/html/account/subscription/summary/detail', 'common/summary/detail' ),
 										['summaryBasket' => $item->getOrderItem()]
