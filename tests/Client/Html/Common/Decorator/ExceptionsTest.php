@@ -63,6 +63,34 @@ class ExceptionsTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testBodyFrontendExceptionHttpCode()
+	{
+		$this->client->expects( $this->once() )->method( 'body' )
+			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception', 404 ) ) );
+
+		$this->expectException( \Aimeos\Controller\Frontend\Exception::class );
+		$this->object->body();
+	}
+
+
+	public function testBodyBasketException()
+	{
+		$this->client->expects( $this->once() )->method( 'body' )
+			->will( $this->throwException( new \Aimeos\Controller\Frontend\Basket\Exception( 'test exception', 409 ) ) );
+
+		$this->assertStringContainsString( 'test exception', $this->object->body() );
+	}
+
+
+	public function testBodyPluginException()
+	{
+		$this->client->expects( $this->once() )->method( 'body' )
+			->will( $this->throwException( new \Aimeos\MShop\Plugin\Provider\Exception( 'test exception' ) ) );
+
+		$this->assertStringContainsString( 'test exception', $this->object->body() );
+	}
+
+
 	public function testBodyMShopException()
 	{
 		$this->client->expects( $this->once() )->method( 'body' )
@@ -148,6 +176,38 @@ class ExceptionsTest extends \PHPUnit\Framework\TestCase
 	{
 		$this->client->expects( $this->once() )->method( 'init' )
 			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception' ) ) );
+
+		$this->object->init();
+
+		$this->assertStringContainsString( 'test exception', $this->object->body() );
+	}
+
+
+	public function testInitFrontendExceptionHttpCode()
+	{
+		$this->client->expects( $this->once() )->method( 'init' )
+			->will( $this->throwException( new \Aimeos\Controller\Frontend\Exception( 'test exception', 404 ) ) );
+
+		$this->expectException( \Aimeos\Controller\Frontend\Exception::class );
+		$this->object->init();
+	}
+
+
+	public function testInitBasketException()
+	{
+		$this->client->expects( $this->once() )->method( 'init' )
+			->will( $this->throwException( new \Aimeos\Controller\Frontend\Basket\Exception( 'test exception', 429 ) ) );
+
+		$this->object->init();
+
+		$this->assertStringContainsString( 'test exception', $this->object->body() );
+	}
+
+
+	public function testInitPluginException()
+	{
+		$this->client->expects( $this->once() )->method( 'init' )
+			->will( $this->throwException( new \Aimeos\MShop\Plugin\Provider\Exception( 'test exception' ) ) );
 
 		$this->object->init();
 
