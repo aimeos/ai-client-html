@@ -499,6 +499,32 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testBodyCouponLimit()
+	{
+		$controller = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
+		$controller->addProduct( $this->getProductItem( 'CNC' ), 1 );
+
+
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['b_coupon' => '90AB'] );
+		$this->view->addHelper( 'param', $helper );
+
+		$this->object->init();
+
+		$helper = new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['b_coupon' => 'OPQR'] );
+		$this->view->addHelper( 'param', $helper );
+
+		$this->object->init();
+
+		$controller = \Aimeos\Controller\Frontend::create( $this->context, 'basket' );
+		$this->view->standardBasket = $controller->get();
+		$output = $this->object->body();
+
+		$this->assertStringContainsString( 'Number of coupon codes exceeds the limit', $output );
+		$this->assertStringContainsString( '<span class="coupon-code">90AB</span>', $output );
+		$this->assertStringNotContainsString( 'OPQR', $output );
+	}
+
+
 	public function testGetSubClientInvalid()
 	{
 		$this->expectException( \LogicException::class );

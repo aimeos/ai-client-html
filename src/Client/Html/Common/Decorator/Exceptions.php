@@ -41,6 +41,12 @@ class Exceptions extends Base implements Iface
 			// @phpstan-ignore-next-line
 			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
 		}
+		catch( \Aimeos\Controller\Frontend\Basket\Exception $e )
+		{
+			$error = [$context->translate( 'controller/frontend', $e->getMessage() )];
+			// @phpstan-ignore-next-line
+			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
+		}
 		catch( \Aimeos\Controller\Frontend\Exception $e )
 		{
 			if( $e->getCode() >= 400 ) {
@@ -129,6 +135,12 @@ class Exceptions extends Base implements Iface
 		catch( \Aimeos\Client\Html\Exception $e )
 		{
 			$error = array( $context->translate( 'client', $e->getMessage() ) );
+			// @phpstan-ignore-next-line
+			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
+		}
+		catch( \Aimeos\Controller\Frontend\Basket\Exception $e )
+		{
+			$error = array( $context->translate( 'controller/frontend', $e->getMessage() ) );
 			// @phpstan-ignore-next-line
 			$view->errors = array_merge( $view->get( 'errors', [] ), $error );
 		}
