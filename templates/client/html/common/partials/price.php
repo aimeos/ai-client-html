@@ -77,7 +77,8 @@ $notax = $this->translate( 'client', '+ %1$s%% VAT' );
 			</span>
 		<?php endif ?>
 
-		<span class="value" itemscope itemprop="priceType" itemtype="http://schema.org/SalePrice">
+		<link itemprop="priceType" href="https://schema.org/SalePrice">
+		<span class="value">
 			<?php if( $priceItem->getValue() !== null ) : ?>
 				<?= $enc->html( sprintf( $format['value'], $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $currency ), $enc::TRUST ) ?>
 			<?php else : ?>
