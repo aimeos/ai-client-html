@@ -113,6 +113,15 @@ $propTypes = $this->get( 'detailPropertyTypes', [] );
 							<span class="name"><?= $enc->html( $this->translate( 'client', 'Article no.' ), $enc::TRUST ) ?>: </span>
 							<span class="value" itemprop="sku"><?= $enc->html( $this->detailProductItem->getCode() ) ?></span>
 						</p>
+						<?php
+							$brandName = isset( $suppliers ) && !$suppliers->isEmpty() ? $suppliers->getName()->first() : null;
+						?>
+						<?php if( $brandName ) : ?>
+							<div itemprop="brand" itemscope itemtype="http://schema.org/Brand">
+								<meta itemprop="name" content="<?= $enc->attr( $brandName ) ?>">
+							</div>
+						<?php endif ?>
+						<meta itemprop="mpn" content="<?= $enc->attr( $this->detailProductItem->getCode() ) ?>">
 
 						<?php if( $this->detailProductItem->getRating() > 0 ) : ?>
 							<div class="rating" itemscope itemprop="aggregateRating" itemtype="http://schema.org/AggregateRating">
