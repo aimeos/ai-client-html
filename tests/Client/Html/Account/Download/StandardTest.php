@@ -138,16 +138,22 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testInitCheckDownload()
 	{
-		$customerStub = $this->getMockBuilder( \Aimeos\Controller\Frontend\Customer\Standard::class )
-			->setConstructorArgs( array( $this->context ) )
-			->onlyMethods( array( 'addListItem', 'store' ) )
-			->getMock();
+		$manager = \Aimeos\MShop::create( $this->context, 'customer/lists' );
+		$filter = $manager->filter()->add( [
+			'customer.lists.parentid' => (string) $this->context->user(),
+			'customer.lists.domain' => 'order/product/attribute',
+			'customer.lists.type' => 'download',
+			'customer.lists.refid' => '-1',
+		] );
 
-		$customerStub->expects( $this->once() )->method( 'addListItem' )->willReturn( $customerStub );
-		$customerStub->expects( $this->once() )->method( 'store' )->willReturn( $customerStub );
+		$this->assertTrue( $this->access( 'checkDownload' )->invokeArgs( $this->object, [-1] ) );
+		$this->assertTrue( $this->access( 'checkDownload' )->invokeArgs( $this->object, [-1] ) );
 
-		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Customer\Standard::class, $customerStub );
-		$this->assertTrue( $this->access( 'checkDownload' )->invokeArgs( $this->object, [-1, -2] ) );
+		$items = $manager->search( $filter );
+		$manager->delete( $items );
+
+		$this->assertEquals( 1, count( $items ) );
+		$this->assertEquals( 2, $items->first()->getConfigValue( 'count' ) );
 	}
 
 

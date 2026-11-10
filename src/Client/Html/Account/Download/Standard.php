@@ -238,21 +238,26 @@ class Standard
 		 */
 		$maxcnt = $context->config()->get( 'client/html/account/download/maxcount' );
 
-		$cntl = \Aimeos\Controller\Frontend::create( $context, 'customer' );
-		$item = $cntl->uses( ['order' => ['download']] )->get();
+		// Customers aren't allowed to manage list items of that domain via the frontend controller
+		$manager = \Aimeos\MShop::create( $context, 'customer/lists' );
+		$values = [
+			'customer.lists.parentid' => (string) $context->user(),
+			'customer.lists.domain' => 'order/product/attribute',
+			'customer.lists.type' => 'download',
+			'customer.lists.refid' => (string) $id,
+		];
 
-		if( ( $listItem = $item->getListItem( 'order', 'download', $id ) ) === null ) {
-			$listItem = $cntl->createListItem()->setType( 'download' )->setRefId( $id );
+		$filter = $manager->filter()->add( $values )->slice( 0, 1 );
+
+		if( ( $listItem = $manager->search( $filter )->first() ) === null ) {
+			$listItem = $manager->create( $values );
 		}
 
-		$config = $listItem->getConfig();
 		$count = (int) $listItem->getConfigValue( 'count', 0 );
 
 		if( $maxcnt === null || $count < $maxcnt )
 		{
-			$config['count'] = ++$count;
-			$cntl->addListItem( 'order', $listItem->setConfig( $config ) )->store();
-
+			$manager->save( $listItem->setConfigValue( 'count', ++$count ) );
 			return true;
 		}
 
