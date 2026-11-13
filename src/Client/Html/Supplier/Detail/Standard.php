@@ -273,7 +273,7 @@ class Standard
 				$view->translate( 'country', (string) $addr->getCountryId() ),
 				$view->translate( 'language', (string) $addr->getLanguageId() ),
 				// @phpstan-ignore-next-line
-				$addr->getEmail(),
+				$view->idn( $addr->getEmail() ),
 				// @phpstan-ignore-next-line
 				$addr->getTelephone(),
 				// @phpstan-ignore-next-line

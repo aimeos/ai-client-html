@@ -401,7 +401,7 @@ class Standard
 			$addr->getState(),
 			$view->translate( 'country', (string) $addr->getCountryId() ),
 			$view->translate( 'language', (string) $addr->getLanguageId() ),
-			$addr->getEmail(),
+			$view->idn( $addr->getEmail() ),
 			$addr->getTelephone(),
 			$addr->getTelefax(),
 			$addr->getMobile(),

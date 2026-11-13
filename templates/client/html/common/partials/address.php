@@ -354,7 +354,7 @@ $id = $this->get( 'id' );
 
 
 <div class="row form-item form-group email <?= $enc->attr( ( $this->value( $error, 'email' ) ? 'error ' : '' ) . join( ' ', $this->value( $css, 'email', [] ) ) ) ?>"
-	data-regex="<?= $enc->attr( $this->config( 'client/html/common/address/validate/email', '^.+@[a-zA-Z0-9\-]+(\.[a-zA-Z0-9\-]+)*$' ) ) ?>">
+	data-regex="<?= $enc->attr( $this->config( 'client/html/common/address/validate/email', '^.+@[^\s@.]+(\.[^\s@.]+)*$' ) ) ?>">
 
 	<div class="col-md-5">
 		<label for="address-<?= $this->get( 'type', 'payment' ) ?>-email-<?= $id ?>">
@@ -365,7 +365,7 @@ $id = $this->get( 'id' );
 		<input class="form-control" type="email" autocomplete="email"
 			id="address-<?= $this->get( 'type', 'payment' ) ?>-email-<?= $id ?>"
 			name="<?= $enc->attr( $this->formparam( array_merge( $fnames, [$prefix . 'email'] ) ) ) ?>"
-			value="<?= $enc->attr( $this->value( $addr, $prefix . 'email' ) ) ?>"
+			value="<?= $enc->attr( $this->idn( $this->value( $addr, $prefix . 'email' ) ) ) ?>"
 			placeholder="name@example.com"
 			<?= !$disabled && $this->value( $css, 'email' ) ? '' : 'disabled' ?>
 		>

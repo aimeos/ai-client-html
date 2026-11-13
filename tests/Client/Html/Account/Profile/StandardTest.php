@@ -136,4 +136,16 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Customer\Standard::class, $stub );
 		$this->object->init();
 	}
+
+
+	public function testGetAddressStringIdn()
+	{
+		$manager = \Aimeos\MShop::create( $this->context, 'customer/address' );
+		$addr = $manager->create()->setEmail( 'test@xn--mller-kva.de' );
+
+		$method = new \ReflectionMethod( \Aimeos\Client\Html\Account\Profile\Standard::class, 'getAddressString' );
+		$result = $method->invokeArgs( $this->object, [$this->view, $addr] );
+
+		$this->assertStringContainsString( "test@m\u{fc}ller.de", $result );
+	}
 }
