@@ -68,7 +68,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$prefixes = ['f_catid'];
+		$prefixes = ['f_catid', 'd_name'];
 		$config = $this->context()->config();
 
 		/** client/html/catalog/stage/cache
@@ -134,7 +134,7 @@ class Standard
 	 */
 	public function header( string $uid = '' ) : ?string
 	{
-		$prefixes = ['f_catid'];
+		$prefixes = ['f_catid', 'd_name'];
 		$config = $this->context()->config();
 		$confkey = 'client/html/catalog/stage';
 
@@ -185,6 +185,37 @@ class Standard
 		$config = $context->config();
 		// @phpstan-ignore-next-line
 		$params = map( $this->getClientParams( $view->param(), ['f_', 'l_type'] ) );
+
+		$prodid = $view->param( 'd_prodid' );
+
+		if( !$view->param( 'f_catid' ) && !$prodid && ( $name = $view->param( 'd_name' ) ) )
+		{
+			try {
+				$prodid = \Aimeos\Controller\Frontend::create( $context, 'product' )->resolve( $name )->getId();
+			} catch( \Throwable $e ) {
+				$prodid = null;
+			}
+		}
+
+		if( !$view->param( 'f_catid' ) && $prodid )
+		{
+			try
+			{
+				$stmt = $context->db()->create( 'SELECT catid FROM mshop_index_catalog WHERE prodid = ? AND siteid = ? ORDER BY CAST( catid AS UNSIGNED )' );
+				$stmt->bind( 1, (string) $prodid );
+				$stmt->bind( 2, $context->locale()->getSiteId() );
+
+				$result = $stmt->execute();
+				$row = $result->fetch();
+				$result->finish();
+
+				if( $row ) {
+					$config->set( 'client/html/catalog/lists/catid-default', $row['catid'] );
+				}
+			}
+			catch( \Throwable $e ) {
+			}
+		}
 
 		if( $catid = $params->get( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default' ) ) )
 		{
