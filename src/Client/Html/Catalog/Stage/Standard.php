@@ -18,7 +18,7 @@ namespace Aimeos\Client\Html\Catalog\Stage;
  * @subpackage Html
  */
 class Standard
-	extends \Aimeos\Client\Html\Common\Client\Factory\Base
+	extends \Aimeos\Client\Html\Catalog\Base
 	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
 {
 	/** client/html/catalog/stage/name
@@ -57,6 +57,7 @@ class Standard
 
 	private array $tags = [];
 	private ?string $expire = null;
+	private bool $uncachable = false;
 	private ?\Aimeos\Base\View\Iface $view = null;
 
 
@@ -68,7 +69,7 @@ class Standard
 	 */
 	public function body( string $uid = '' ) : string
 	{
-		$prefixes = ['f_catid'];
+		$prefixes = $this->prefixes( $this->view() );
 		$config = $this->context()->config();
 
 		/** client/html/catalog/stage/cache
@@ -122,7 +123,7 @@ class Standard
 		$view = $this->view = $this->view ?? $this->object()->data( $this->view(), $this->tags, $this->expire );
 		$html = $view->render( $template );
 
-		return $this->cache( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+		return $this->uncachable ? $html : $this->cache( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 	}
 
 
@@ -134,7 +135,7 @@ class Standard
 	 */
 	public function header( string $uid = '' ) : ?string
 	{
-		$prefixes = ['f_catid'];
+		$prefixes = $this->prefixes( $this->view() );
 		$config = $this->context()->config();
 		$confkey = 'client/html/catalog/stage';
 
@@ -167,7 +168,7 @@ class Standard
 		$view = $this->view = $this->view ?? $this->object()->data( $this->view(), $this->tags, $this->expire );
 		$html = $view->render( $template );
 
-		return $this->cache( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+		return $this->uncachable ? $html : $this->cache( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 	}
 
 
@@ -186,7 +187,37 @@ class Standard
 		// @phpstan-ignore-next-line
 		$params = map( $this->getClientParams( $view->param(), ['f_', 'l_type'] ) );
 
-		if( $catid = $params->get( 'f_catid', $config->get( 'client/html/catalog/lists/catid-default' ) ) )
+		/** client/html/catalog/stage/listtype
+		 * List type of the product category used for the breadcrumb on the product detail page
+		 *
+		 * If no category ID is passed in the URL, the breadcrumb on the product
+		 * detail page is built from the first category (by position) the product
+		 * is assigned to using this list type. Use a dedicated list type like
+		 * "breadcrumb" to define the canonical category of a product independently
+		 * from the other category assignments.
+		 *
+		 * @param string List type code of the product/catalog relation
+		 * @since 2026.10
+		 * @see client/html/catalog/lists/catid-default
+		 */
+		$listtype = $config->get( 'client/html/catalog/stage/listtype', 'default' );
+		$catid = $params->get( 'f_catid' );
+		$product = $catid ? null : $this->product( $view, $listtype );
+
+		if( $product ) {
+			// @phpstan-ignore-next-line
+			$this->addMetaItems( $product, $expire, $tags );
+		}
+
+		// don't cache output for unknown products or non-canonical parameters to prevent flooding the cache
+		$this->uncachable = $product
+			? !$this->canonical( $product, $view, $this->prefixes( $view ) )
+			: !$catid && ( $view->param( 'd_prodid' ) || $view->param( 'd_name' ) );
+
+		$prodCatId = $product?->getRefItems( 'catalog', null, $listtype )->first()?->getId();
+		$catid = $catid ?: $prodCatId ?: $config->get( 'client/html/catalog/lists/catid-default' );
+
+		if( $catid )
 		{
 			$controller = \Aimeos\Controller\Frontend::create( $context, 'catalog' );
 
@@ -220,7 +251,17 @@ class Standard
 			 */
 			$domains = $config->get( 'client/html/catalog/stage/domains', $domains );
 
-			$stageCatPath = $controller->uses( $domains )->getPath( $catid );
+			try {
+				$stageCatPath = $controller->uses( $domains )->getPath( $catid );
+			} catch( \Aimeos\Controller\Frontend\Exception $e ) {
+				// categories derived from the product may have unavailable parents
+				$stageCatPath = $prodCatId ? map() : throw $e;
+			}
+
+			if( $view->param( 'f_catid' ) ) {
+				// IDs are cast to integers so "1x" or "01" would create additional cache entries
+				$this->uncachable = $view->param( 'f_catid' ) !== (string) $stageCatPath->last()?->getId();
+			}
 
 			$mediaItems = $stageCatPath->getRefItems( 'media', 'stage', 'default' )->find( function( \Aimeos\Map $entry ) {
 				return !$entry->isEmpty();
@@ -238,6 +279,46 @@ class Standard
 		$view->stageParams = $params->all();
 
 		return parent::data( $view, $tags, $expire );
+	}
+
+
+	/**
+	 * Returns the names of the parameters the output depends on
+	 *
+	 * @param \Aimeos\Base\View\Iface $view View object with the request parameters
+	 * @return string[] List of parameter names used for the cache key
+	 */
+	protected function prefixes( \Aimeos\Base\View\Iface $view ) : array
+	{
+		// only the parameter used for fetching the category or product is relevant
+		return $view->param( 'f_catid' ) ? ['f_catid'] : ( $view->param( 'd_prodid' ) ? ['d_prodid'] : ['d_name'] );
+	}
+
+
+	/**
+	 * Returns the product shown on the detail page including its categories of the given list type
+	 *
+	 * @param \Aimeos\Base\View\Iface $view The view object which generates the HTML output
+	 * @param string $listtype List type of the product/catalog relation
+	 * @return \Aimeos\MShop\Product\Item\Iface|null Product item or null if no or no available product is shown
+	 */
+	protected function product( \Aimeos\Base\View\Iface $view, string $listtype ) : ?\Aimeos\MShop\Product\Item\Iface
+	{
+		// ignore manipulated parameters like "d_prodid[]=1" which would cause type errors
+		$id = is_string( $id = $view->param( 'd_prodid' ) ) ? $id : null;
+		$name = is_string( $name = $view->param( 'd_name' ) ) ? $name : null;
+
+		if( !$id && !$name ) {
+			return null;
+		}
+
+		$controller = \Aimeos\Controller\Frontend::create( $this->context(), 'product' )->uses( ['catalog' => [$listtype]] );
+
+		try {
+			return $id ? $controller->get( $id ) : $controller->resolve( $name );
+		} catch( \Aimeos\Controller\Frontend\Exception | \Aimeos\MShop\Exception $e ) {
+			return null;
+		}
 	}
 
 

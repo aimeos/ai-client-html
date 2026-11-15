@@ -293,6 +293,58 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testBodyCached()
+	{
+		$this->expectCacheSet( $this->once() );
+		$this->body( ['d_name' => 'cafe-noire-expresso'] );
+	}
+
+
+	public function testBodyIdVariantUncached()
+	{
+		$this->expectCacheSet( $this->never() );
+		$this->body( ['d_prodid' => $this->getProductItem()->getId() . 'x'] );
+	}
+
+
+	public function testBodyNameVariantUncached()
+	{
+		$this->expectCacheSet( $this->never() );
+		$this->body( ['d_name' => 'Cafe-Noire-Expresso'] );
+	}
+
+
+	public function testPrefixes()
+	{
+		$method = new \ReflectionMethod( $this->object, 'prefixes' );
+
+		$this->view->addHelper( 'param', new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['d_name' => 'test'] ) );
+		$this->assertEquals( ['d_name'], $method->invoke( $this->object, $this->view ) );
+
+		$this->view->addHelper( 'param', new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['d_prodid' => '1', 'd_name' => 'test'] ) );
+		$this->assertEquals( ['d_prodid'], $method->invoke( $this->object, $this->view ) );
+
+		$this->context->config()->set( 'client/html/catalog/detail/prodcode-default', 'CNE' );
+		$this->view->addHelper( 'param', new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['d_name' => 'test'] ) );
+		$this->assertEquals( [], $method->invoke( $this->object, $this->view ) );
+	}
+
+
+	protected function body( array $params ) : string
+	{
+		$this->view->addHelper( 'param', new \Aimeos\Base\View\Helper\Param\Standard( $this->view, $params ) );
+		return $this->object->setView( $this->object->data( $this->view ) )->body();
+	}
+
+
+	protected function expectCacheSet( $rule ) : void
+	{
+		$cache = $this->getMockBuilder( \Aimeos\Base\Cache\None::class )->onlyMethods( ['set'] )->getMock();
+		$cache->expects( $rule )->method( 'set' );
+		$this->context->setCache( $cache );
+	}
+
+
 	protected function getProductItem( $code = 'CNE', $domains = [] )
 	{
 		$manager = \Aimeos\MShop::create( $this->context, 'product' );

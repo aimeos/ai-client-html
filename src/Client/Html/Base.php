@@ -515,7 +515,7 @@ abstract class Base
 	/**
 	 * Generates an unique hash from based on the input suitable to be used as part of the cache key
 	 *
-	 * @param array $prefixes List of prefixes the parameters must start with
+	 * @param array $prefixes List of parameter names or prefixes ending with "_" (e.g. "f_") the parameters must start with
 	 * @param string $key Unique identifier if the content is placed more than once on the same page
 	 * @param array $config Multi-dimensional array of configuration options used by the client and sub-clients
 	 * @return string Unique hash
@@ -523,8 +523,14 @@ abstract class Base
 	protected function getParamHash( array $prefixes = ['f_', 'l_', 'd_'], string $key = '', array $config = [] ) : string
 	{
 		$locale = $this->context()->locale();
+		$names = array_filter( $prefixes, fn( $prefix ) => !str_ends_with( $prefix, '_' ) );
+		$prefixes = array_diff( $prefixes, $names );
+
+		// exact names prevent cache entries for additional parameters like "f_catidX"
 		// @phpstan-ignore-next-line
-		$pstr = map( $this->getClientParams( $this->view()->param(), $prefixes ) )->ksort()->toJson();
+		$pstr = map( $this->view()->param() )->filter( function( $val, $key ) use ( $names, $prefixes ) {
+			return in_array( $key, $names, true ) || \Aimeos\Base\Str::starts( $key, $prefixes );
+		} )->ksort()->toJson();
 
 		if( ( $cstr = json_encode( $config ) ) === false ) {
 			throw new \Aimeos\Client\Html\Exception( 'Unable to encode parameters or configuration options' );
@@ -571,7 +577,7 @@ abstract class Base
 	 *
 	 * @param string $type Type of the cache entry, i.e. "body" or "header"
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param string[] $prefixes List of prefixes of all parameters that are relevant for generating the output
+	 * @param string[] $prefixes List of names or prefixes ending with "_" of all parameters that are relevant for generating the output
 	 * @param string $confkey Configuration key prefix that matches all relevant settings for the component
 	 * @return string|null Cached entry or null if not available
 	 */
@@ -625,7 +631,7 @@ abstract class Base
 	 *
 	 * @param string $type Type of the cache entry, i.e. "body" or "header"
 	 * @param string $uid Unique identifier for the output if the content is placed more than once on the same page
-	 * @param string[] $prefixes List of prefixes of all parameters that are relevant for generating the output
+	 * @param string[] $prefixes List of names or prefixes ending with "_" of all parameters that are relevant for generating the output
 	 * @param string $confkey Configuration key prefix that matches all relevant settings for the component
 	 * @param string $value Value string that should be stored for the given key
 	 * @param array $tags List of tag strings that should be assoicated to the given value in the cache
