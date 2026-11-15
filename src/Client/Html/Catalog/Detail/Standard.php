@@ -58,6 +58,7 @@ class Standard
 	private array $tags = [];
 	private ?string $expire = null;
 	private ?\Aimeos\Base\View\Iface $view = null;
+	private bool $uncachable = false;
 
 
 	/**
@@ -70,7 +71,7 @@ class Standard
 	{
 		$view = $this->view();
 		$config = $this->context()->config();
-		$prefixes = ['d_prodid', 'd_name'];
+		$prefixes = $this->prefixes( $view );
 
 		$code = $config->get( 'client/html/catalog/detail/prodcode-default' );
 		$id = $config->get( 'client/html/catalog/detail/prodid-default' ) ?: $code;
@@ -131,7 +132,7 @@ class Standard
 		$view = $this->view = $this->view ?? $this->object()->data( $view, $this->tags, $this->expire );
 		$html = $this->modify( $view->render( $template ), $uid );
 
-		return $this->cache( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+		return $this->uncachable ? $html : $this->cache( 'body', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 	}
 
 
@@ -145,7 +146,7 @@ class Standard
 	{
 		$view = $this->view();
 		$config = $this->context()->config();
-		$prefixes = ['d_prodid', 'd_name'];
+		$prefixes = $this->prefixes( $view );
 		$confkey = 'client/html/catalog/detail';
 
 		$code = $config->get( 'client/html/catalog/detail/prodcode-default' );
@@ -185,7 +186,7 @@ class Standard
 		$view = $this->view = $this->view ?? $this->object()->data( $this->view(), $this->tags, $this->expire );
 		$html = $view->render( $template );
 
-		return $this->cache( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
+		return $this->uncachable ? $html : $this->cache( 'header', $uid, $prefixes, $confkey, $html, $this->tags, $this->expire );
 	}
 
 
@@ -233,6 +234,9 @@ class Standard
 	public function data( \Aimeos\Base\View\Iface $view, array &$tags = [], ?string &$expire = null ) : \Aimeos\Base\View\Iface
 	{
 		$productItem = $this->product( $view );
+
+		// don't cache output for non-canonical parameters to prevent flooding the cache
+		$this->uncachable = !$this->canonical( $productItem, $view, $this->prefixes( $view ) );
 
 		$propItems = $productItem->getPropertyItems();
 		$attrItems = $productItem->getRefItems( 'attribute', null, 'default' );
@@ -442,6 +446,26 @@ class Standard
 		}
 
 		return '';
+	}
+
+
+	/**
+	 * Returns the names of the parameters the output depends on
+	 *
+	 * @param \Aimeos\Base\View\Iface $view View object with the request parameters
+	 * @return string[] List of parameter names used for the cache key
+	 */
+	protected function prefixes( \Aimeos\Base\View\Iface $view ) : array
+	{
+		$config = $this->context()->config();
+
+		if( $view->param( 'd_prodid' ) ) {
+			return ['d_prodid'];
+		}
+
+		// the URL name is ignored if a default product is configured
+		return $config->get( 'client/html/catalog/detail/prodid-default' )
+			|| $config->get( 'client/html/catalog/detail/prodcode-default' ) ? [] : ['d_name'];
 	}
 
 

@@ -21,6 +21,29 @@ abstract class Base
 	extends \Aimeos\Client\Html\Common\Client\Factory\Base
 {
 	/**
+	 * Tests if the product was requested by its canonical ID or URL name
+	 *
+	 * Other values like "123abc" for the ID "123" or "Name" for the URL name
+	 * "name" still match the product but each variation would create a new
+	 * cache entry.
+	 *
+	 * @param \Aimeos\MShop\Product\Item\Iface $product Product item fetched for the request
+	 * @param \Aimeos\Base\View\Iface $view View object with the request parameters
+	 * @param string[] $names Names of the parameters used for fetching the product
+	 * @return bool TRUE if the parameter values are canonical, FALSE if not
+	 */
+	protected function canonical( \Aimeos\MShop\Product\Item\Iface $product, \Aimeos\Base\View\Iface $view, array $names ) : bool
+	{
+		$id = $view->param( 'd_prodid' );
+		$name = $view->param( 'd_name' );
+
+		// URL names are stored as slugs in the index
+		return ( !in_array( 'd_prodid', $names ) || $id === (string) $product->getId() )
+			&& ( !in_array( 'd_name', $names ) || is_string( $name ) && $name === \Aimeos\Base\Str::slug( $name ) );
+	}
+
+
+	/**
 	 * Returns the URL for retrieving the stock levels
 	 *
 	 * @param \Aimeos\Base\View\Iface $view View instance with helper
