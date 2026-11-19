@@ -193,6 +193,135 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	}
 
 
+	public function testInitSession()
+	{
+		$this->context->session()->set( 'aimeos/orderid', '123' );
+		$this->view->addHelper( 'param', new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['c_step' => 'process'] ) );
+
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
+			->setConstructorArgs( [$this->context] )
+			->onlyMethods( ['processPayment'] )
+			->getMock();
+		$object->setView( $this->view );
+
+		$basketMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Basket\Standard::class )
+			->setConstructorArgs( [$this->context] )
+			->onlyMethods( ['load'] )
+			->getMock();
+
+		$orderMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Order\Standard::class )
+			->setConstructorArgs( [$this->context] )
+			->onlyMethods( ['get', 'save'] )
+			->getMock();
+
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create( ['order.ctime' => date( 'Y-m-d H:i:s' )] )
+			->setId( '123' )->setBaseId( '-1' )->setStatusPayment( \Aimeos\MShop\Order\Item\Base::PAY_UNFINISHED );
+
+		$form = new \Aimeos\MShop\Common\Helper\Form\Standard( 'url', 'POST', [], true );
+
+		$object->expects( $this->once() )->method( 'processPayment' )->willReturn( $form );
+		$basketMock->expects( $this->once() )->method( 'load' )->willReturn( $basketMock->get() );
+		$orderMock->expects( $this->once() )->method( 'get' )->willReturn( $orderItem );
+		$orderMock->expects( $this->never() )->method( 'save' );
+
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Basket\Standard::class, $basketMock );
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Order\Standard::class, $orderMock );
+
+		$object->init();
+
+		$this->assertEquals( 'url', $this->view->standardUrlNext );
+		$this->assertEquals( '123', $this->context->session()->get( 'aimeos/orderid' ) );
+	}
+
+
+	public function testInitSessionExpired()
+	{
+		$this->context->session()->set( 'aimeos/orderid', '123' );
+		$this->view->addHelper( 'param', new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['c_step' => 'process'] ) );
+
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
+			->setConstructorArgs( [$this->context] )
+			->onlyMethods( ['processPayment'] )
+			->getMock();
+		$object->setView( $this->view );
+
+		$basketMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Basket\Standard::class )
+			->setConstructorArgs( [$this->context] )
+			->onlyMethods( ['load'] )
+			->getMock();
+
+		$orderMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Order\Standard::class )
+			->setConstructorArgs( [$this->context] )
+			->onlyMethods( ['get', 'save'] )
+			->getMock();
+
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create( ['order.ctime' => date( 'Y-m-d H:i:s', time() - 86400 - 60 )] )
+			->setId( '123' )->setBaseId( '-1' )->setStatusPayment( \Aimeos\MShop\Order\Item\Base::PAY_UNFINISHED );
+
+		$object->expects( $this->never() )->method( 'processPayment' );
+		$basketMock->expects( $this->never() )->method( 'load' );
+		$orderMock->expects( $this->once() )->method( 'get' )->willReturn( $orderItem );
+		$orderMock->expects( $this->never() )->method( 'save' );
+
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Basket\Standard::class, $basketMock );
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Order\Standard::class, $orderMock );
+
+		try
+		{
+			$object->init();
+			$this->fail( 'Exception expected' );
+		}
+		catch( \Aimeos\Client\Html\Exception $e )
+		{
+			$this->assertNull( $this->context->session()->get( 'aimeos/orderid' ) );
+		}
+	}
+
+
+	public function testInitSessionRefused()
+	{
+		$this->context->session()->set( 'aimeos/orderid', '123' );
+		$this->view->addHelper( 'param', new \Aimeos\Base\View\Helper\Param\Standard( $this->view, ['c_step' => 'process'] ) );
+
+		$object = $this->getMockBuilder( \Aimeos\Client\Html\Checkout\Standard\Process\Standard::class )
+			->setConstructorArgs( [$this->context] )
+			->onlyMethods( ['processPayment'] )
+			->getMock();
+		$object->setView( $this->view );
+
+		$basketMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Basket\Standard::class )
+			->setConstructorArgs( [$this->context] )
+			->onlyMethods( ['load'] )
+			->getMock();
+
+		$orderMock = $this->getMockBuilder( \Aimeos\Controller\Frontend\Order\Standard::class )
+			->setConstructorArgs( [$this->context] )
+			->onlyMethods( ['get', 'save'] )
+			->getMock();
+
+		$orderItem = \Aimeos\MShop::create( $this->context, 'order' )->create( ['order.ctime' => date( 'Y-m-d H:i:s' )] )
+			->setId( '123' )->setBaseId( '-1' )->setStatusPayment( \Aimeos\MShop\Order\Item\Base::PAY_REFUSED );
+
+		$object->expects( $this->never() )->method( 'processPayment' );
+		$basketMock->expects( $this->never() )->method( 'load' );
+		$orderMock->expects( $this->once() )->method( 'get' )->willReturn( $orderItem );
+		$orderMock->expects( $this->never() )->method( 'save' );
+
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Basket\Standard::class, $basketMock );
+		\Aimeos\Controller\Frontend::inject( \Aimeos\Controller\Frontend\Order\Standard::class, $orderMock );
+
+		try
+		{
+			$object->init();
+			$this->fail( 'Exception expected' );
+		}
+		catch( \Aimeos\Client\Html\Exception $e )
+		{
+			$this->assertNull( $this->context->session()->get( 'aimeos/orderid' ) );
+		}
+	}
+
+
 	public function testInitNoStep()
 	{
 		$this->assertTrue( $this->object->init() );

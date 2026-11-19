@@ -220,6 +220,15 @@ class Standard
 		{
 			$parts = ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
 			$orderItem = $orderCntl->get( $orderid, false );
+
+			if( !$orderCntl->payable( $orderItem ) )
+			{
+				$context->session()->set( 'aimeos/orderid', null );
+
+				$msg = $context->translate( 'client', 'Your order has expired, please check out again' );
+				throw new \Aimeos\Client\Html\Exception( $msg );
+			}
+
 			$basket = $basketCntl->load( $orderItem->getBaseId(), $parts, false );
 		}
 		else
