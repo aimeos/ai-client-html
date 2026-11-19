@@ -220,6 +220,14 @@ class Standard
 		{
 			$refs = $context->config()->get( 'mshop/order/manager/subdomains', [] );
 			$order = $orderCntl->uses( $refs )->get( $orderid, false );
+
+			if( !$orderCntl->payable( $order ) )
+			{
+				$context->session()->set( 'aimeos/orderid', null );
+
+				$msg = $context->translate( 'client', 'Your order has expired, please check out again' );
+				throw new \Aimeos\Client\Html\Exception( $msg );
+			}
 		}
 		else
 		{
